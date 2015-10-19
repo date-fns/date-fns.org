@@ -5,7 +5,8 @@ import docs from 'app/_lib/docs'
 
 const converter = new showdown.Converter({
   simplifiedAutoLink: true,
-  tables: true
+  tables: true,
+  literalMidWordUnderscores: true
 })
 
 export default class Doc extends React.Component {
