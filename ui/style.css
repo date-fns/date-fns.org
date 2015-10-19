@@ -1,0 +1,51 @@
+@import 'reset.css';
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, input, select, textarea, button {
+  font: 14px Helvetica, arial, freesans, clean, sans-serif;
+  color: var(--textColor);
+  line-height: 1.4em;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.ui {
+  min-height: 100vh;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ui.is-collapsed .ui-promo {
+  margin-left: -66.6%;
+}
+
+.ui-promo,
+.ui-features,
+.ui-docs {
+  flex-basis: 33.3%;
+  display: flex;
+}
+
+.ui-promo {
+  transition: margin 300ms;
+}
+
+.ui-features {
+  border-right: 1px solid #E6E0E6;
+}
+
+.ui-doc {
+  margin-right: -66.6%;
+  flex-basis: 66.6%;
+  border-left: 1px solid #E6E0E6;
+}

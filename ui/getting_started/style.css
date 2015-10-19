@@ -1,0 +1,55 @@
+.getting_started {
+  margin-top: 60px;
+}
+
+.getting_started-options {
+  display: flex;
+  justify-content: center;
+}
+
+.getting_started-option {
+  margin: 0 5px;
+}
+
+.getting_started-option_link {
+  color: #FFE9C9;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  display: block;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: rgba(255, 148, 197, .1);
+}
+
+.getting_started-option_link.is-current {
+  color: #FFF6E8;
+  background-color: rgba(41, 2, 23, 0.3);
+}
+
+.getting_started-instruction {
+  padding: 15px;
+  border-radius: 3px;
+  background-color: rgba(41, 2, 23, 0.3);
+}
+
+.getting_started-instruction_header {
+  color: #FFF8C5;
+  margin: 15px 0 5px;
+  font-size: 14px;
+}
+
+.getting_started-instruction_header:first-child {
+  margin-top: 0;
+}
+
+.getting_started-code {
+  background: rgba(117, 23, 69, 0.4);
+  color: #FFF8C5;
+  font-family: monospace;
+  padding: 7px 13px;
+  border-radius: 2px;
+  width: 100%;
+  display: block;
+  font-size: 13px;
+}

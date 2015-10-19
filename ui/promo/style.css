@@ -1,0 +1,67 @@
+.promo {
+  display: flex;
+  width: 100%;
+  color: white;
+  background: #5a0530;
+  background-image: url('./img/background.png');
+  background-size: cover;
+  background-position: top center;
+}
+
+.promo-inner {
+  background: linear-gradient(rgba(118, 10, 61, 0.7), #4c042b);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.promo-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33px;
+}
+
+.promo-logo_image {
+  width: 40px;
+}
+
+.promo-logo_name {
+  font-size: 35px;
+  color: #FFF;
+  font-weight: 400;
+  margin-left: 10px;
+  position: relative;
+  top: -1px;
+}
+
+.promo-header {
+  text-align: center;
+  color: #FBD7A1;
+  font-size: 20px;
+  margin-top: 30px;
+  font-weight: 300;
+}
+
+.promo-text {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 200;
+  text-align: center;
+  margin-top: 10px;
+  color: #FFE9C9;
+}
+
+.promo-sponsored {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  opacity: .4;
+}
+
+.promo-toptal_logo {
+  height: 20px;
+  margin-left: 5px;
+}

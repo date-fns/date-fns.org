@@ -1,0 +1,117 @@
+import React from 'react'
+
+export default class Features extends React.Component {
+  render() {
+    return <div className='features'>
+      <h2 className='features-header'>
+        Why date-fns?
+      </h2>
+
+      <ol className='features-list'>
+        <li className='features-item'>
+          <div className='features-icon is-modular' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Modular
+            </h3>
+
+            <p className='features-description'>
+              It is a perfect companion for <strong>webpack</strong> and <strong>Browserify</strong>.
+              With function per-file you can pick just what you need
+              and stop bloating your project with useless functionality.
+            </p>
+          </div>
+        </li>
+
+        <li className='features-item'>
+          <div className='features-icon is-immutable' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Immutable
+            </h3>
+
+            <p className='features-description'>
+              Build on pure functions, date-fns always returns a new date
+              instead of changing passed one.
+            </p>
+          </div>
+        </li>
+
+        <li className='features-item'>
+          <div className='features-icon is-consistent' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Consistent
+            </h3>
+
+            <p className='features-description'>
+              It always returns date in the local timezone regardless
+              that you have passed timestamp, string or date object.
+            </p>
+          </div>
+        </li>
+
+        <li className='features-item'>
+          <div className='features-icon is-reliable' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Reliable
+            </h3>
+
+            <p className='features-description'>
+              It respects timezones & DST.
+            </p>
+          </div>
+        </li>
+
+        <li className='features-item'>
+          <div className='features-icon is-simple' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Simple
+            </h3>
+
+            <p className='features-description'>
+              The best API is API that doesn't exists. With date-fns you
+              always has one function that does one thing.
+            </p>
+          </div>
+        </li>
+
+        <li className='features-item'>
+          <div className='features-icon is-safe' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Safe
+            </h3>
+
+            <p className='features-description'>
+              It doesn't extend base classes.
+            </p>
+          </div>
+        </li>
+
+        <li className='features-item'>
+          <div className='features-icon is-fast' />
+
+          <div className='features-content'>
+            <h3 className='features-title'>
+              Fast
+            </h3>
+
+            <p className='features-description'>
+              In additional to tiny size, date-fns is fast. So you can be
+              sure that your users has the best user-expirience.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  }
+}

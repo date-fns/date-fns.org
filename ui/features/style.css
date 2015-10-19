@@ -1,0 +1,98 @@
+.features {
+  width: 100%;
+  padding: 30px;
+  background-color: #FFFBF5;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.features-header {
+  color: #770C56;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.features-list {
+  color: #4A3142;
+  margin-top: 15px;
+  font-size: 17px;
+}
+
+.features-item {
+  margin-top: 20px;
+  display: flex;
+}
+
+.features-item:last-child {
+  margin-bottom: 0;
+}
+
+.features-title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.features-description {
+  color: #4C193C;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.features-icon {
+  width: 50px;
+  height: 50px;
+  background-size: 40px;
+  border: 1px solid #770C56;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.features-icon.is-modular {
+  background-image: url('./img/modular.svg');
+  background-size: 26px;
+  background-position: center 6px;
+}
+
+.features-icon.is-immutable {
+  background-image: url('./img/immutable.svg');
+  background-size: 24px;
+  background-position: center 6px;
+}
+
+.features-icon.is-consistent {
+  background-image: url('./img/consistent.svg');
+  background-size: 32px;
+  background-position: center 8px;
+}
+
+.features-icon.is-reliable {
+  background-image: url('./img/reliable.svg');
+  background-size: 32px;
+  background-position: center 6px;
+}
+
+.features-icon.is-simple {
+  background-image: url('./img/simple.svg');
+  background-size: 32px;
+  background-position: center 9px;
+}
+
+.features-icon.is-safe {
+  background-image: url('./img/safe.svg');
+  background-size: 27px;
+}
+
+.features-icon.is-fast {
+  background-image: url('./img/fast.svg');
+  background-size: 22px;
+  background-position: center 9px;
+}
+
+.features-content {
+  margin-left: 15px;
+}

@@ -1,0 +1,56 @@
+{
+  "name": "date-fns.org",
+  "version": "0.1.0",
+  "description": "date-fns home page",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "babel-node env/dev",
+    "preinstall": "rm -f $(pwd)/node_modules/app",
+    "postinstall": "ln -s $(pwd) $(pwd)/node_modules/app",
+    "deploy": "firebase deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/date-fns/date-fns.org.git"
+  },
+  "keywords": [
+    "date-fns"
+  ],
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/date-fns/date-fns.org/issues"
+  },
+  "homepage": "https://github.com/date-fns/date-fns.org",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "baggage-loader": "^0.2.4",
+    "css-loader": "^0.19.0",
+    "cssnext-loader": "^1.0.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "file-loader": "^0.8.4",
+    "firebase-tools": "^2.0.1",
+    "json-loader": "^0.5.3",
+    "loader-utils": "^0.2.11",
+    "react-hot-loader": "^1.3.0",
+    "source-map": "^0.5.1",
+    "style-loader": "^0.12.4",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.2",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.3.0"
+  },
+  "dependencies": {
+    "classnames": "^2.1.5",
+    "codemirror": "^5.7.0",
+    "date-fns": "^1.0.0-alpha2",
+    "lodash": "^3.10.1",
+    "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1",
+    "reset.css": "^2.0.2",
+    "showdown": "^1.2.3"
+  }
+}
