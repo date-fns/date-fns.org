@@ -26,6 +26,8 @@ export default class Docs extends React.Component {
             value={this.state.query}
             onChange={(e) => this.setState({query: e.currentTarget.value})}
           />
+
+          {this.state.query ? this._renderCancelButton() : null}
         </div>
       </header>
 
@@ -33,6 +35,13 @@ export default class Docs extends React.Component {
         {this._renderCategories()}
       </ul>
     </div>
+  }
+
+  _renderCancelButton() {
+    return <div
+      className='docs-search_cancel'
+      onClick={this._clearQuery.bind(this)}
+    />
   }
 
   _renderCategories() {
@@ -97,6 +106,10 @@ export default class Docs extends React.Component {
     } else {
       return docs
     }
+  }
+
+  _clearQuery() {
+    this.setState({query: null})
   }
 
   _openDoc(fnName) {
