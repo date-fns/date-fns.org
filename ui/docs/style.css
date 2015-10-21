@@ -5,6 +5,11 @@
   overflow-y: auto;
 }
 
+.docs-logo_image {
+  cursor: pointer;
+  height: 40px;
+}
+
 .docs-header {
   color: #770C56;
   font-weight: 600;
