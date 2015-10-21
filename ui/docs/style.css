@@ -2,10 +2,11 @@
   background: #fffbf5;
   width: 100%;
   height: 100vh;
-  overflow-y: auto;
+  position: relative;
 }
 
 .docs-header {
+  border-bottom: 1px solid #E6E0E6;
   color: #770C56;
   font-weight: 600;
   font-size: 20px;
@@ -15,6 +16,9 @@
   align-items: center;
   height: 79px;
   background-color: #FAF6F0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
 .docs-search {
@@ -29,7 +33,11 @@
 }
 
 .docs-categories {
-  border-top: 1px solid #E6E0E6;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  height: 100%;
+  padding-top: 79px;
 }
 
 .docs-category {
