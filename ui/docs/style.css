@@ -33,13 +33,25 @@
 
 .docs-search {
   margin: -6px 0;
+  position: relative;
 }
 
 .docs-search_field {
-  padding: 5px 10px;
+  padding: 5px 30px 5px 10px;
   border: 1px solid #E6E0E6;
   border-radius: 8px;
   width: 200px;
+}
+
+.docs-search_cancel {
+  height: 16px;
+  width: 16px;
+  top: 9px;
+  right: 9px;
+  cursor: pointer;
+  background-image: url('./img/cancel.svg');
+  background-size: 16px;
+  position: absolute;
 }
 
 .docs-categories {
