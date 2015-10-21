@@ -3,8 +3,11 @@ import classnames from 'classnames'
 import routes from 'app/routes'
 import docs from 'app/_lib/docs'
 
+const logoPath = require('./img/logo.svg')
+
 export default class Docs extends React.Component {
   static propTypes = {
+    showLogo: React.PropTypes.bool,
     currentDocId: React.PropTypes.string
   }
 
@@ -13,8 +16,12 @@ export default class Docs extends React.Component {
   }
 
   render() {
+    const {showLogo} = this.props
+
     return <div className='docs'>
       <header className='docs-header'>
+        {showLogo ? this._renderLogo() : null}
+
         <h2 className='docs-header_title'>
           Docs
         </h2>
@@ -33,6 +40,14 @@ export default class Docs extends React.Component {
         {this._renderCategories()}
       </ul>
     </div>
+  }
+
+  _renderLogo() {
+    return <img
+      src={logoPath}
+      className='docs-logo_image'
+      onClick={this._openHome.bind(this)}
+    />
   }
 
   _renderCategories() {
@@ -97,6 +112,10 @@ export default class Docs extends React.Component {
     } else {
       return docs
     }
+  }
+
+  _openHome() {
+    routes.navigateToRoute('home')
   }
 
   _openDoc(fnName) {
