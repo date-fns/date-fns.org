@@ -39,7 +39,7 @@ export default class Doc extends React.Component {
 
         {this._renderExceptionsSection(doc.exceptions)}
 
-        {this._renderExamplesSection(doc.examples)}
+        {this._renderExamplesSection(doc.examples, doc.id)}
       </div>
     } else {
       return null
@@ -142,7 +142,7 @@ export default class Doc extends React.Component {
     </section>
   }
 
-  _renderExamplesSection(examples) {
+  _renderExamplesSection(examples, docID) {
     if (!examples) return
 
     return <section className='doc-section'>
@@ -152,7 +152,7 @@ export default class Doc extends React.Component {
 
       <div>
         {examples.map((example, index) => {
-          return <div className='doc-code' key={index}>
+          return <div className='doc-code' key={`${docID}-${index}`}>
             <Code
               value={example}
               options={{
