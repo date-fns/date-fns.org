@@ -105,11 +105,9 @@
 
 .docs-no_results {
   display: flex;
-  justify-content: space-between;
+  flex-grow: 1;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.65);
-  padding: 10px 30px;
-  border-bottom: 1px solid #E6E0E6;
+  justify-content: center;
 }
 
 .docs-no_results_text {

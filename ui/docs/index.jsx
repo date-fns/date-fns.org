@@ -38,9 +38,7 @@ export default class Docs extends React.Component {
         </div>
       </header>
 
-      <ul className='docs-categories'>
-        {this._renderCategories()}
-      </ul>
+      {this._renderCategories()}
     </div>
   }
 
@@ -63,19 +61,21 @@ export default class Docs extends React.Component {
         </p>
       </div>
     } else {
-      return categoryNames.map((categoryName) => {
-        const fns = filteredDocs[categoryName]
+      return <ul className='docs-categories'>
+        {categoryNames.map((categoryName) => {
+          const fns = filteredDocs[categoryName]
 
-        return <li className='docs-category' key={categoryName}>
-          <h3 className='docs-category_header'>
-            {categoryName}
-          </h3>
+          return <li className='docs-category' key={categoryName}>
+            <h3 className='docs-category_header'>
+              {categoryName}
+            </h3>
 
-          <ul className='docs-functions'>
-            {this._renderFunctions(fns)}
-          </ul>
-        </li>
-      })
+            <ul className='docs-functions'>
+              {this._renderFunctions(fns)}
+            </ul>
+          </li>
+        })}
+      </ul>
     }
   }
 
