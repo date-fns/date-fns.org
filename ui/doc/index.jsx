@@ -47,6 +47,8 @@ export default class Doc extends React.Component {
   }
 
   _renderArgumentsSection(args) {
+    if (!args) return
+
     return <section className='doc-section'>
       <h3 className='doc-subheader'>
         Arguments
