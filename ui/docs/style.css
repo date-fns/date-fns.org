@@ -6,6 +6,12 @@
   flex-direction: column;
 }
 
+.docs-logo_image {
+  cursor: pointer;
+  height: 30px;
+  margin-right: 10px;
+}
+
 .docs-header {
   color: #770C56;
   font-weight: 600;
@@ -18,6 +24,11 @@
   background-color: #FAF6F0;
   flex-shrink: 0;
   border-bottom: 1px solid #E6E0E6;
+}
+
+.docs-header_title_wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .docs-search {

@@ -11,9 +11,8 @@ export default class Ui extends React.Component {
   }
 
   render() {
-    const className = classnames('ui', {
-      'is-collapsed': this.props.routeData.route.name != 'home'
-    })
+    const isCollapsed = this.props.routeData.route.name != 'home'
+    const className = classnames('ui', {'is-collapsed': isCollapsed})
 
     return <div className={className}>
       <div className='ui-promo'>
@@ -25,7 +24,10 @@ export default class Ui extends React.Component {
       </div>
 
       <div className='ui-docs'>
-        <Docs currentDocId={this._currentDocId()} />
+        <Docs
+          showLogo={isCollapsed}
+          currentDocId={this._currentDocId()}
+        />
       </div>
 
       <div className='ui-doc'>
