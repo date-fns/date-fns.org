@@ -103,3 +103,16 @@
   margin-left: 10px;
 }
 
+.docs-no_results {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-no_results_text {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #7B6D77;
+}

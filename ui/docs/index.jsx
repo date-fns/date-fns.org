@@ -38,9 +38,7 @@ export default class Docs extends React.Component {
         </div>
       </header>
 
-      <ul className='docs-categories'>
-        {this._renderCategories()}
-      </ul>
+      {this._renderCategories()}
     </div>
   }
 
@@ -55,19 +53,30 @@ export default class Docs extends React.Component {
   _renderCategories() {
     const filteredDocs = this._filteredDocs()
     const categoryNames = Object.keys(filteredDocs)
-    return categoryNames.map((categoryName) => {
-      const fns = filteredDocs[categoryName]
 
-      return <li className='docs-category' key={categoryName}>
-        <h3 className='docs-category_header'>
-          {categoryName}
-        </h3>
+    if (categoryNames.length === 0) {
+      return <div className='docs-no_results'>
+        <p className='docs-no_results_text'>
+          Your search didn't match any results.
+        </p>
+      </div>
+    } else {
+      return <ul className='docs-categories'>
+        {categoryNames.map((categoryName) => {
+          const fns = filteredDocs[categoryName]
 
-        <ul className='docs-functions'>
-          {this._renderFunctions(fns)}
-        </ul>
-      </li>
-    })
+          return <li className='docs-category' key={categoryName}>
+            <h3 className='docs-category_header'>
+              {categoryName}
+            </h3>
+
+            <ul className='docs-functions'>
+              {this._renderFunctions(fns)}
+            </ul>
+          </li>
+        })}
+      </ul>
+    }
   }
 
   _renderFunctions(fns) {
