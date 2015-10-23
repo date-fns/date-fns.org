@@ -103,3 +103,18 @@
   margin-left: 10px;
 }
 
+.docs-no_results {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.65);
+  padding: 10px 30px;
+  border-bottom: 1px solid #E6E0E6;
+}
+
+.docs-no_results_text {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #7B6D77;
+}
