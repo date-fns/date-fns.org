@@ -14,6 +14,10 @@ export default class Doc extends React.Component {
     docId: React.PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.docId !== undefined
+  }
+
   render() {
     if (this.props.docId) {
       let doc = this._doc()
