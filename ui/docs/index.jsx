@@ -20,11 +20,13 @@ export default class Docs extends React.Component {
 
     return <div className='docs'>
       <header className='docs-header'>
-        {showLogo ? this._renderLogo() : null}
+        <div className='docs-header_title_wrapper'>
+          {showLogo ? this._renderLogo() : null}
 
-        <h2 className='docs-header_title'>
-          Docs
-        </h2>
+          <h2 className='docs-header_title'>
+            Docs
+          </h2>
+        </div>
 
         <div className='docs-search'>
           <input

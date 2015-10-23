@@ -8,7 +8,8 @@
 
 .docs-logo_image {
   cursor: pointer;
-  height: 40px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .docs-header {
@@ -23,6 +24,11 @@
   background-color: #FAF6F0;
   flex-shrink: 0;
   border-bottom: 1px solid #E6E0E6;
+}
+
+.docs-header_title_wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .docs-search {
