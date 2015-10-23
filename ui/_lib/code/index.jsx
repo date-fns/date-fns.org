@@ -15,6 +15,12 @@ export default class Code extends React.Component {
     }, this.props.options))
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this._codeMirror.setValue(nextProps.value)
+    }
+  }
+
   componentWillUnmount() {
     this._codeMirror.toTextArea()
   }
