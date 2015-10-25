@@ -70,6 +70,10 @@
   margin-left: 25px;
 }
 
+.doc-argument_optional {
+  font-style: italic;
+}
+
 .doc-code {
   margin-bottom: 10px;
 }
