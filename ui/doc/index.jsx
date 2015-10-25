@@ -85,7 +85,7 @@ export default class Doc extends React.Component {
       return <tr key={index}>
         <td>
           {arg.name}
-          {arg.optional ? this._renderArgumentOptionalLabel() : null}
+          {arg.optional ? this._renderArgumentOptionalLabel(arg.defaultvalue) : null}
         </td>
         <td>
           {this._renderArgumentType(arg.type, arg.variable)}
@@ -97,8 +97,10 @@ export default class Doc extends React.Component {
     })
   }
 
-  _renderArgumentOptionalLabel() {
-    return <div className='doc-argument_optional'>(optional)</div>
+  _renderArgumentOptionalLabel(defaultValue) {
+    return <div className='doc-argument_optional'>
+      {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
+    </div>
   }
 
   _renderArgumentType(type, variable) {
