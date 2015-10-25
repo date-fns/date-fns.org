@@ -32,7 +32,6 @@
 }
 
 .docs-search {
-  margin: -6px 0;
   position: relative;
 }
 
@@ -46,8 +45,9 @@
 .docs-search_cancel {
   height: 16px;
   width: 16px;
-  top: 9px;
+  top: 50%;
   right: 9px;
+  margin-top: -9px;
   cursor: pointer;
   background-image: url('./img/cancel.svg');
   background-size: 16px;
