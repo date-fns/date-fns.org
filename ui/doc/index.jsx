@@ -26,6 +26,8 @@ export default class Doc extends React.Component {
           {doc.name}
         </h2>
 
+        {this._renderSyntaxSection(doc.name, doc.params)}
+
         <section className='doc-section'>
           <h3 className='doc-subheader'>
             Description
@@ -48,6 +50,31 @@ export default class Doc extends React.Component {
     } else {
       return null
     }
+  }
+
+  _renderSyntaxSection(name, args) {
+    const argsString = (args || [])
+      .map((arg) => {
+        const spreadString = arg.variable ? '...' : ''
+        const defaultValueString = arg.defaultvalue !== undefined ? '=' + arg.defaultvalue : ''
+        const argString = spreadString + arg.name + defaultValueString
+        return arg.optional ? `[${argString}]` : argString
+      })
+      .join(', ')
+
+    return <section className='doc-section'>
+      <h3 className='doc-subheader'>
+        Syntax
+      </h3>
+
+      <Code
+        value={`${name}(${argsString})`}
+        options={{
+          readOnly: true,
+          mode: 'javascript'
+        }}
+      />
+    </section>
   }
 
   _renderArgumentsSection(args) {
