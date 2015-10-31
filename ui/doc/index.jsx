@@ -85,15 +85,31 @@ export default class Doc extends React.Component {
       return <tr key={index}>
         <td>
           {arg.name}
+          {arg.optional ? this._renderArgumentOptionalLabel(arg.defaultvalue) : null}
         </td>
         <td>
-          {arg.type.names.join(' | ')}
+          {this._renderArgumentType(arg.type, arg.variable)}
         </td>
         <td>
           {arg.description}
         </td>
       </tr>
     })
+  }
+
+  _renderArgumentOptionalLabel(defaultValue) {
+    return <div className='doc-argument_optional'>
+      {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
+    </div>
+  }
+
+  _renderArgumentType(type, variable) {
+    const types = type.names.join(' | ')
+    if (variable) {
+      return type.names.length > 1 ? `...(${types})` : `...${types}`
+    } else {
+      return types
+    }
   }
 
   _renderReturnsSection(returns) {
