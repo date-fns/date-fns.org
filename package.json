@@ -46,7 +46,7 @@
   "dependencies": {
     "classnames": "^2.1.5",
     "codemirror": "^5.7.0",
-    "date-fns": "^1.0.0-alpha3",
+    "date-fns": "^1.0.0-alpha4",
     "lodash": "^3.10.1",
     "react": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
