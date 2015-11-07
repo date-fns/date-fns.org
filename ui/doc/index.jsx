@@ -56,14 +56,36 @@ export default class Doc extends React.Component {
   }
 
   _renderSyntaxSection(name, args) {
-    const argsString = (args || [])
-      .map((arg) => {
-        const spreadString = arg.variable ? '...' : ''
-        const defaultValueString = arg.defaultvalue !== undefined ? '=' + arg.defaultvalue : ''
-        const argString = spreadString + arg.name + defaultValueString
-        return arg.optional ? `[${argString}]` : argString
-      })
-      .join(', ')
+    const argsString = args ? (
+      args.reduce((acc, arg, index, array) => {
+        if (!arg.optional && acc.nesting > 0) {
+          acc.result += ']'.repeat(acc.nesting) + ', '
+        } else if (acc.result !== '') {
+          acc.result += ', '
+        }
+
+        if (arg.optional) {
+          acc.nesting += 1
+          acc.result += '['
+        }
+
+        if (arg.variable) {
+          acc.result += '...'
+        }
+
+        acc.result += arg.name
+
+        if (arg.defaultvalue !== undefined) {
+          acc.result += '=' + arg.defaultvalue
+        }
+
+        if (index === array.length - 1) {
+          acc.result += ']'.repeat(acc.nesting)
+        }
+
+        return acc
+      }, {nesting: 0, result: ''}).result
+    ) : ''
 
     return <section className='doc-section'>
       <h3 className='doc-subheader'>
