@@ -21,7 +21,9 @@ export default class Doc extends React.Component {
 
   render() {
     if (this.props.docId) {
-      let doc = this._doc()
+      const doc = this._getDoc(this.props.docId)
+      const params = this._calculateParams(doc.params)
+
       return <div className='doc'>
         <h2 className='doc-header'>
           {doc.name}
@@ -29,7 +31,7 @@ export default class Doc extends React.Component {
 
         <DocUsage name={doc.name} />
 
-        {this._renderSyntaxSection(doc.name, doc.params)}
+        {this._renderSyntaxSection(doc.name, params)}
 
         <section className='doc-section'>
           <h3 className='doc-subheader'>
@@ -42,7 +44,7 @@ export default class Doc extends React.Component {
           />
         </section>
 
-        {this._renderArgumentsSection(doc.params)}
+        {this._renderArgumentsSection(params)}
 
         {this._renderReturnsSection(doc.returns)}
 
@@ -57,34 +59,19 @@ export default class Doc extends React.Component {
 
   _renderSyntaxSection(name, args) {
     const argsString = args ? (
-      args.reduce((acc, arg, index, array) => {
-        if (!arg.optional && acc.nesting > 0) {
-          acc.result += ']'.repeat(acc.nesting) + ', '
-        } else if (acc.result !== '') {
-          acc.result += ', '
-        }
+      args
+        .filter((arg) => !arg.isProperty)
+        .reduce((acc, arg, index, array) => {
+          const isLast = index === array.length - 1
+          const {argumentsString, nesting} = this._addArgumentSyntax(
+            acc.result, arg, acc.nesting, isLast
+          )
 
-        if (arg.optional) {
-          acc.nesting += 1
-          acc.result += '['
-        }
-
-        if (arg.variable) {
-          acc.result += '...'
-        }
-
-        acc.result += arg.name
-
-        if (arg.defaultvalue !== undefined) {
-          acc.result += '=' + arg.defaultvalue
-        }
-
-        if (index === array.length - 1) {
-          acc.result += ']'.repeat(acc.nesting)
-        }
-
-        return acc
-      }, {nesting: 0, result: ''}).result
+          acc.result = argumentsString
+          acc.nesting = nesting
+          return acc
+        }, {nesting: 0, result: ''})
+        .result
     ) : ''
 
     return <section className='doc-section'>
@@ -132,21 +119,24 @@ export default class Doc extends React.Component {
     </section>
   }
 
-  _renderArguments(args) {
-    return args.map((arg, index) => {
-      return <tr key={index}>
-        <td>
-          {arg.name}
-          {arg.optional ? this._renderArgumentOptionalLabel(arg.defaultvalue) : null}
-        </td>
-        <td>
-          {this._renderArgumentType(arg.type, arg.variable)}
-        </td>
-        <td>
-          {arg.description}
-        </td>
-      </tr>
-    })
+  _renderArguments(args, renderProperties) {
+    return args
+      .filter((arg) => renderProperties || !arg.isProperty)
+      .map((arg, index) => {
+        return <tr key={index}>
+          <td>
+            {arg.name}
+            {arg.optional ? this._renderArgumentOptionalLabel(arg.defaultvalue) : null}
+          </td>
+          <td>
+            {this._renderArgumentType(arg.type, arg.variable)}
+          </td>
+          <td>
+            {arg.description}
+            {arg.props ? this._renderArgumentPropsTable(arg.props) : null}
+          </td>
+        </tr>
+      })
   }
 
   _renderArgumentOptionalLabel(defaultValue) {
@@ -162,6 +152,34 @@ export default class Doc extends React.Component {
     } else {
       return types
     }
+  }
+
+  _renderArgumentPropsTable(props) {
+    return <div>
+      <div className='doc-argument_props'>
+        Properties:
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {this._renderArguments(props, true)}
+        </tbody>
+      </table>
+    </div>
   }
 
   _renderReturnsSection(returns) {
@@ -183,13 +201,13 @@ export default class Doc extends React.Component {
         </thead>
 
         <tbody>
-          {returns.map((retunsData, index) => {
+          {returns.map((returnsData, index) => {
             return <tr key='index'>
               <td>
-                {retunsData.type.names.join(' | ')}
+                {returnsData.type.names.join(' | ')}
               </td>
               <td>
-                {retunsData.description}
+                {returnsData.description}
               </td>
             </tr>
           })}
@@ -260,15 +278,75 @@ export default class Doc extends React.Component {
     </section>
   }
 
-  _doc() {
+  _getDoc(docId) {
     for (let categoryName in docs) {
       let fns = docs[categoryName]
       for (let fnIndex in fns) {
         let fn = fns[fnIndex]
-        if (fn.name == this.props.docId) {
+        if (fn.name == docId) {
           return fn
         }
       }
     }
+  }
+
+  _calculateParams(params) {
+    if (!params) {
+      return null
+    }
+
+    const paramIndices = params.reduce((result, param, index) => {
+      result[param.name] = index
+      return result
+    }, {})
+
+    return params.map((param, index) => {
+      const {name, isProperty} = param
+      const indexOfDot = name.indexOf('.')
+
+      if (indexOfDot >= 0 && !isProperty) {
+        const parentIndex = paramIndices[name.substring(0, indexOfDot)]
+        const parent = params[parentIndex]
+
+        param.name = name.substring(indexOfDot + 1)
+        param.isProperty = true
+        if (!parent.props) {
+          parent.props = [param]
+        } else {
+          parent.props.push(param)
+        }
+      }
+
+      return param
+    })
+  }
+
+  _addArgumentSyntax(argumentsString, arg, nesting, isLast) {
+    if (!arg.optional && nesting > 0) {
+      argumentsString += ']'.repeat(nesting) + ', '
+    } else if (argumentsString !== '') {
+      argumentsString += ', '
+    }
+
+    if (arg.optional) {
+      nesting += 1
+      argumentsString += '['
+    }
+
+    if (arg.variable) {
+      argumentsString += '...'
+    }
+
+    argumentsString += arg.name
+
+    if (arg.defaultvalue !== undefined) {
+      argumentsString += '=' + arg.defaultvalue
+    }
+
+    if (isLast) {
+      argumentsString += ']'.repeat(nesting)
+    }
+
+    return {argumentsString, nesting}
   }
 }

@@ -79,6 +79,12 @@
   font-style: italic;
 }
 
+.doc-argument_props {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
 .doc-code {
   margin-bottom: 10px;
 }
