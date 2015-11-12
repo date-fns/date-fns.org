@@ -49,3 +49,26 @@ strong {
   flex-basis: 66.6%;
   border-left: 1px solid #E6E0E6;
 }
+
+@media (max-width: 800px) {
+  .ui {
+    width: auto;
+    overflow-x: visible;
+  }
+
+  .ui-promo,
+  .ui-features,
+  .ui-docs,
+  .ui-doc {
+    flex-basis: 80%;
+    min-width: 80%;
+  }
+
+  .ui.not-collapsed .ui-doc {
+    display: none;
+  }
+
+  .ui.is-collapsed .ui-promo {
+    margin-left: -160%;
+  }
+}
