@@ -14,7 +14,10 @@ export default class Ui extends React.Component {
 
   render() {
     const isCollapsed = this.props.routeData.route.name != 'home'
-    const className = classnames('ui', {'is-collapsed': isCollapsed})
+    const className = classnames('ui', {
+      'is-collapsed': isCollapsed,
+      'not-collapsed': !isCollapsed
+    })
 
     return <div className={className}>
       <div className='ui-promo'>
