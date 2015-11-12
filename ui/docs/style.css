@@ -57,9 +57,7 @@
 
 .docs-categories {
   overflow-y: auto;
-}
-
-.docs-category {
+  overflow-x: hidden;
 }
 
 .docs-category:first-child {
