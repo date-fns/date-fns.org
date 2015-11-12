@@ -1,0 +1,26 @@
+.doc_usage-options {
+  list-style: none;
+  display: flex;
+  justify-content: left;
+}
+
+.doc_usage-option {
+  list-style: none;
+  margin: 0 5px;
+}
+
+.doc_usage-option_link {
+  color: #4A3142;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  display: block;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #FFF0F3;
+}
+
+.doc_usage-option_link.is-current {
+  color: black;
+  background-color: #B9A2B2;
+}
