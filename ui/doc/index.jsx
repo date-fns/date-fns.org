@@ -181,13 +181,33 @@ export default class Doc extends React.Component {
         Exceptions
       </h3>
 
-      <ul>
-        {exceptions.map((exception, index) => {
-          return <li key={index}>
-            {exception.description}
-          </li>
-        })}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {exceptions.map((exceptionData, index) => {
+            const {type = {names: ['Error']}, description} = exceptionData
+
+            return <tr key='index'>
+              <td>
+                {type.names.join(' | ')}
+              </td>
+              <td>
+                {description}
+              </td>
+            </tr>
+          })}
+        </tbody>
+      </table>
     </section>
   }
 
