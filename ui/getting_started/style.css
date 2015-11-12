@@ -5,6 +5,7 @@
 .getting_started-options {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
 .getting_started-option {
