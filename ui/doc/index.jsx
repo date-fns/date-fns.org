@@ -3,6 +3,8 @@ import Code from 'app/ui/_lib/code'
 import showdown from 'showdown'
 import docs from 'app/_lib/docs'
 import DocUsage from 'app/ui/doc/usage'
+import DocSyntax from 'app/ui/doc/doc_syntax'
+import DocArguments from 'app/ui/doc/doc_arguments'
 
 const converter = new showdown.Converter({
   simplifiedAutoLink: true,
@@ -20,126 +22,39 @@ export default class Doc extends React.Component {
   }
 
   render() {
-    if (this.props.docId) {
-      let doc = this._doc()
-      return <div className='doc'>
-        <h2 className='doc-header'>
-          {doc.name}
-        </h2>
+    if (!this.props.docId) return null
 
-        <DocUsage name={doc.name} />
+    const doc = this._getDoc(this.props.docId)
+    const params = this._calculateParams(doc.params)
 
-        {this._renderSyntaxSection(doc.name, doc.params)}
+    return <div className='doc'>
+      <h2 className='doc-header'>
+        {doc.name}
+      </h2>
 
-        <section className='doc-section'>
-          <h3 className='doc-subheader'>
-            Description
-          </h3>
+      <section className='doc-section'>
+        <h3 className='doc-subheader'>
+          Description
+        </h3>
 
-          <div
-            className='doc-description'
-            dangerouslySetInnerHTML={{__html: converter.makeHtml(doc.description)}}
-          />
-        </section>
+        <div
+          className='doc-description'
+          dangerouslySetInnerHTML={{__html: converter.makeHtml(doc.description)}}
+        />
+      </section>
 
-        {this._renderArgumentsSection(doc.params)}
+      <DocUsage name={doc.name} />
 
-        {this._renderReturnsSection(doc.returns)}
+      <DocSyntax name={doc.name} args={params} />
 
-        {this._renderExceptionsSection(doc.exceptions)}
+      <DocArguments args={params} />
 
-        {this._renderExamplesSection(doc.examples)}
-      </div>
-    } else {
-      return null
-    }
-  }
+      {this._renderReturnsSection(doc.returns)}
 
-  _renderSyntaxSection(name, args) {
-    const argsString = (args || [])
-      .map((arg) => {
-        const spreadString = arg.variable ? '...' : ''
-        const defaultValueString = arg.defaultvalue !== undefined ? '=' + arg.defaultvalue : ''
-        const argString = spreadString + arg.name + defaultValueString
-        return arg.optional ? `[${argString}]` : argString
-      })
-      .join(', ')
+      {this._renderExceptionsSection(doc.exceptions)}
 
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
-        Syntax
-      </h3>
-
-      <Code
-        value={`${name}(${argsString})`}
-        options={{
-          readOnly: true,
-          mode: 'javascript'
-        }}
-      />
-    </section>
-  }
-
-  _renderArgumentsSection(args) {
-    if (!args) return
-
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
-        Arguments
-      </h3>
-
-      <table>
-        <thead>
-          <tr>
-            <th>
-              Name
-            </th>
-            <th>
-              Type
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {this._renderArguments(args)}
-        </tbody>
-      </table>
-    </section>
-  }
-
-  _renderArguments(args) {
-    return args.map((arg, index) => {
-      return <tr key={index}>
-        <td>
-          {arg.name}
-          {arg.optional ? this._renderArgumentOptionalLabel(arg.defaultvalue) : null}
-        </td>
-        <td>
-          {this._renderArgumentType(arg.type, arg.variable)}
-        </td>
-        <td>
-          {arg.description}
-        </td>
-      </tr>
-    })
-  }
-
-  _renderArgumentOptionalLabel(defaultValue) {
-    return <div className='doc-argument_optional'>
-      {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
+      {this._renderExamplesSection(doc.examples)}
     </div>
-  }
-
-  _renderArgumentType(type, variable) {
-    const types = type.names.join(' | ')
-    if (variable) {
-      return type.names.length > 1 ? `...(${types})` : `...${types}`
-    } else {
-      return types
-    }
   }
 
   _renderReturnsSection(returns) {
@@ -161,13 +76,13 @@ export default class Doc extends React.Component {
         </thead>
 
         <tbody>
-          {returns.map((retunsData, index) => {
+          {returns.map((returnsData, index) => {
             return <tr key='index'>
               <td>
-                {retunsData.type.names.join(' | ')}
+                {returnsData.type.names.join(' | ')}
               </td>
               <td>
-                {retunsData.description}
+                {returnsData.description}
               </td>
             </tr>
           })}
@@ -238,15 +153,46 @@ export default class Doc extends React.Component {
     </section>
   }
 
-  _doc() {
+  _getDoc(docId) {
     for (let categoryName in docs) {
       let fns = docs[categoryName]
       for (let fnIndex in fns) {
         let fn = fns[fnIndex]
-        if (fn.name == this.props.docId) {
+        if (fn.name == docId) {
           return fn
         }
       }
     }
+  }
+
+  _calculateParams(params) {
+    if (!params) {
+      return null
+    }
+
+    const paramIndices = params.reduce((result, param, index) => {
+      result[param.name] = index
+      return result
+    }, {})
+
+    return params.map((param, index) => {
+      const {name, isProperty} = param
+      const indexOfDot = name.indexOf('.')
+
+      if (indexOfDot >= 0 && !isProperty) {
+        const parentIndex = paramIndices[name.substring(0, indexOfDot)]
+        const parent = params[parentIndex]
+
+        param.name = name.substring(indexOfDot + 1)
+        param.isProperty = true
+        if (!parent.props) {
+          parent.props = [param]
+        } else {
+          parent.props.push(param)
+        }
+      }
+
+      return param
+    })
   }
 }
