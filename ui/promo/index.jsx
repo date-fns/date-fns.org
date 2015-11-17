@@ -20,8 +20,8 @@ export default class Promo extends React.Component {
         </h1>
 
         <div className='promo-text'>
-          date-fns provides most comprehensive yet simple and consistent toolset
-          for working with JavaScript dates in <strong>a browser & Node.js</strong>.
+          date-fns provides the most comprehensive yet simple and consistent toolset
+          for manipulating JavaScript dates in <strong>browser & Node.js</strong>.
         </div>
 
         <div className='promo-getting_started'>
