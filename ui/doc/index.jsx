@@ -32,10 +32,6 @@ export default class Doc extends React.Component {
         {doc.name}
       </h2>
 
-      <DocUsage name={doc.name} />
-
-      <DocSyntax name={doc.name} args={params} />
-
       <section className='doc-section'>
         <h3 className='doc-subheader'>
           Description
@@ -46,6 +42,10 @@ export default class Doc extends React.Component {
           dangerouslySetInnerHTML={{__html: converter.makeHtml(doc.description)}}
         />
       </section>
+
+      <DocUsage name={doc.name} />
+
+      <DocSyntax name={doc.name} args={params} />
 
       <DocArguments args={params} />
 
