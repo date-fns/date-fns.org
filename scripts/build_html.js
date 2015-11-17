@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import ejs from 'ejs'
 import appConfig from '../config/app'
+import crypto from 'crypto'
 
 Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
   .then(([staticMap, entriesMap, template]) => {
@@ -30,14 +31,20 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
       }
     })
 
-    const templateOutput = path.join(appConfig.distPath, 'index.html')
-    fs.writeFile(templateOutput, html, (err) => {
+
+    const htmlFingerprint = getFingerprint(html)
+    const htmlFileName = `index-${htmlFingerprint}.html`
+    const templateFilePath = path.join(appConfig.distPath, htmlFileName)
+
+    writeFirebaseConfig(htmlFileName)
+
+    fs.writeFile(templateFilePath, html, (err) => {
       if (err) {
         console.log(err)
         process.exit(1)
       }
 
-      console.log(`Template written to ${templateOutput}`)
+      console.log(`Template written to ${templateFilePath}`)
     })
   })
   .catch((err) => {
@@ -69,9 +76,48 @@ function getStaticResults() {
 function getEntriesResults() {
   return new Promise((resolve, reject) => {
     fs.readFile(path.join(appConfig.distPath, 'webpack-assets.json'), (err, contentStream) => {
-      if (err) reject(err)
-      const entriesMap = JSON.parse(contentStream.toString())
-      resolve(entriesMap)
+      if (err) {
+        reject(err)
+      } else {
+        const entriesMap = JSON.parse(contentStream.toString())
+        resolve(entriesMap)
+      }
     })
   })
+}
+
+function writeFirebaseConfig(htmlFileName) {
+  const content = JSON.stringify(getFirebaseConfig(htmlFileName))
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path.join(appConfig.distPath, 'firebase.json'), content, (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
+  })
+}
+
+function getFirebaseConfig(htmlFileName) {
+  return {
+    firebase: 'date-fns',
+    public: './',
+    ignore: [
+      "static.json",
+      "webpack-assets.json"
+    ],
+    rewrites: [
+      {
+        source: '**',
+        destination: `/${htmlFileName}`
+      }
+    ]
+  }
+}
+
+function getFingerprint(str) {
+  const hash = crypto.createHash('md5')
+  hash.update(str)
+  return hash.digest('hex')
 }
