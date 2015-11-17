@@ -41,6 +41,18 @@ export default class DocUsage extends React.Component {
             UMD
           </a>
         </li>
+
+        <li className='doc_usage-option'>
+          <a
+            href='#'
+            onClick={this._changeSource.bind(this, 'es2015')}
+            className={classnames('doc_usage-option_link', {
+              'is-current': this.state.source == 'es2015'
+            })}
+          >
+            ES 2015
+          </a>
+        </li>
       </ul>
 
       {this._renderUsage()}
@@ -59,14 +71,24 @@ export default class DocUsage extends React.Component {
             mode: 'javascript'
           }}
         />
+
       case 'umd':
-      return <Code
-        value={`var ${name} = dateFns.${name}`}
-        options={{
-          readOnly: true,
-          mode: 'javascript'
-        }}
-      />
+        return <Code
+          value={`var ${name} = dateFns.${name}`}
+          options={{
+            readOnly: true,
+            mode: 'javascript'
+          }}
+        />
+
+      case 'es2015':
+        return <Code
+          value={`import ${name} from 'date-fns/${this._convertToUnderscore(name)}'`}
+          options={{
+            readOnly: true,
+            mode: 'javascript'
+          }}
+        />
     }
   }
 
