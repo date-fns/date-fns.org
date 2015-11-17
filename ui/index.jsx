@@ -1,3 +1,5 @@
+require.context('!!static-file!./static', true, /.+/)
+
 import React from 'react'
 import Promo from 'app/ui/promo'
 import classnames from 'classnames'

@@ -1,33 +1,49 @@
 import path from 'path'
 import webpack from 'webpack'
+import AssetsWebpackPlugin from 'assets-webpack-plugin'
+import StaticFilesWebpackPlugin from 'static-files-webpack-plugin'
+import appConfig from './app'
 
-const isProduction = process.env.NODE_ENV == 'production'
+const env = process.env.NODE_ENV
+const isDevelopment = env == 'development'
+const isProduction = env == 'production'
+
+const plugins = []
+
+if (isDevelopment) {
+  plugins.push(new webpack.HotModuleReplacementPlugin())
+}
+
+if (isProduction) {
+  plugins.push(new AssetsWebpackPlugin({
+    path: appConfig.distPath
+  }))
+  plugins.push(new StaticFilesWebpackPlugin({
+    outputPath: path.join(appConfig.distPath, 'static.json')
+  }))
+}
 
 export default {
   cache: true,
   devtool: isProduction ? 'source-map' : 'inline-source-map',
 
   entry: {
-    app: [
-      'webpack-hot-middleware/client',
-      'app/env/web'
-    ]
+    app: (isProduction ? [] : ['webpack-hot-middleware/client']).concat('app/env/web')
   },
 
   output: {
-    path: path.join(process.cwd(), 'dist'),
+    path: appConfig.distPath,
     publicPath: '/',
-    filename: (isProduction ? 'js/[name]-[chunkhash].js' : 'js/[name].js'),
+    filename: (isProduction ? 'js/[name]-[hash].js' : 'js/[name].js'),
     chunkFilename: (isProduction ? 'js/[id]-[chunkhash].js' : 'js/[id].js')
   },
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins,
 
   resolve: {
     modulesDirectories: ['.', 'node_modules'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {app: process.cwd()}
   },
 
   module: {
