@@ -51,6 +51,11 @@
 .doc table {
   background-color: #FFFFFE;
   border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.doc table:last-child {
+  margin-bottom: 0;
 }
 
 .doc table th,

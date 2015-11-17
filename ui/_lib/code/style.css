@@ -4,6 +4,11 @@
   height: auto;
   border-radius: 2px;
   font-size: 13px;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.cm-s-wormhole pre {
+  padding: 1px;
 }
 
 .cm-s-wormhole span.cm-comment {
@@ -36,6 +41,11 @@
   height: auto;
   font-size: 13px;
   border: 1px solid #B9A2B2;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.cm-s-milky pre {
+  padding: 1px;
 }
 
 .cm-s-milky span.cm-comment {

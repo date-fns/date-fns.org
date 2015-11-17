@@ -1,2 +1,2 @@
-import docsJSON from 'date-fns/dist/date_fns_docs.json'
+import docsJSON from 'date-fns/docs.json'
 export default docsJSON
