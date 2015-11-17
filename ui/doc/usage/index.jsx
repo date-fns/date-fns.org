@@ -11,6 +11,16 @@ export default class DocUsage extends React.Component {
     source: 'commonjs'
   }
 
+  componentWillMount() {
+    const source = localStorage.getItem('usageSource')
+
+    if (source) {
+      this.setState({source})
+    } else {
+      localStorage.setItem('usageSource', 'commonjs')
+    }
+  }
+
   render() {
     return <section className='doc-section'>
       <h3 className='doc-subheader'>
@@ -95,6 +105,7 @@ export default class DocUsage extends React.Component {
   _changeSource(source, e) {
     e.preventDefault()
     this.setState({source})
+    localStorage.setItem('usageSource', source)
   }
 
   _convertToUnderscore(string) {
