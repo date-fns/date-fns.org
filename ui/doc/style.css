@@ -70,6 +70,20 @@
   background-color: #FAF6F0;
 }
 
+.doc table table {
+  font-size: 14px;
+}
+
+.doc table table th {
+  background-color: #FDFDFD;
+}
+
+.doc table table th,
+.doc table table td {
+  border: 1px solid #D6CDD3;
+  padding: 3px 6px;
+}
+
 .doc ul {
   list-style: disc;
   margin-left: 25px;
