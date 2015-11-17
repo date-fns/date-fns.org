@@ -2,6 +2,7 @@ import React from 'react'
 import Code from 'app/ui/_lib/code'
 import showdown from 'showdown'
 import docs from 'app/_lib/docs'
+import DocUsage from 'app/ui/doc/usage'
 
 const converter = new showdown.Converter({
   simplifiedAutoLink: true,
@@ -25,6 +26,8 @@ export default class Doc extends React.Component {
         <h2 className='doc-header'>
           {doc.name}
         </h2>
+
+        <DocUsage name={doc.name} />
 
         {this._renderSyntaxSection(doc.name, doc.params)}
 
