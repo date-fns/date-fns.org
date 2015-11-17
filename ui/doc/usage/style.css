@@ -2,25 +2,26 @@
   list-style: none;
   display: flex;
   justify-content: left;
+  margin: 0 !important;
 }
 
 .doc_usage-option {
   list-style: none;
-  margin: 0 5px;
+  margin-right: 10px;
 }
 
 .doc_usage-option_link {
   color: #4A3142;
   text-decoration: none;
-  font-size: 14px;
-  padding: 10px 15px;
+  font-size: 13px;
+  padding: 4px 8px;
   display: block;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  background-color: #FFF0F3;
+  background-color: #FAF6F0;
 }
 
 .doc_usage-option_link.is-current {
-  color: black;
-  background-color: #B9A2B2;
+  color: #000;
+  background-color: #E8D6E3;
 }

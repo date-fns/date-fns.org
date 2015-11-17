@@ -27,6 +27,8 @@ export default class Doc extends React.Component {
           {doc.name}
         </h2>
 
+        <DocUsage name={doc.name} />
+
         {this._renderSyntaxSection(doc.name, doc.params)}
 
         <section className='doc-section'>
@@ -45,8 +47,6 @@ export default class Doc extends React.Component {
         {this._renderReturnsSection(doc.returns)}
 
         {this._renderExceptionsSection(doc.exceptions)}
-
-        <DocUsage name={doc.name} />
 
         {this._renderExamplesSection(doc.examples)}
       </div>
