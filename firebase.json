@@ -2,8 +2,13 @@
   "firebase": "date-fns",
   "public": "dist",
   "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
+    "public.json",
+    "webpack-assets.json"
+  ],
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
   ]
 }
