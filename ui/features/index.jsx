@@ -17,8 +17,8 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              It is a perfect companion for <strong>webpack</strong> and <strong>Browserify</strong>.
-              With function per-file you can pick just what you need
+              It is the perfect companion for <strong>webpack</strong> and <strong>Browserify</strong>.
+              With the function-per-file style you can pick just what you need
               and stop bloating your project with useless functionality.
             </p>
           </div>
@@ -34,7 +34,7 @@ export default class Features extends React.Component {
 
             <p className='features-description'>
               Build on pure functions, date-fns always returns a new date
-              instead of changing passed one.
+              instead of changing the passed one.
             </p>
           </div>
         </li>
@@ -48,8 +48,8 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              It always returns date in the local timezone regardless
-              that you have passed timestamp, string or date object.
+              It always returns a date in the local timezone, no matter what
+              you passed: a timestamp, a string or a date object.
             </p>
           </div>
         </li>
@@ -78,7 +78,7 @@ export default class Features extends React.Component {
 
             <p className='features-description'>
               The best API is API that doesn't exists. With date-fns you
-              always has one function that does one thing.
+              always have one function that does one thing.
             </p>
           </div>
         </li>
@@ -106,8 +106,8 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              In additional to tiny size, date-fns is fast. So you can be
-              sure that your users has the best user-expirience.
+              In addition to tiny size, date-fns is fast. You can be
+              sure that your users have the best user expirience.
             </p>
           </div>
         </li>
