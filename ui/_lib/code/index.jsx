@@ -1,5 +1,6 @@
 import React from 'react'
 import CodeMirror from 'codemirror'
+import objectAssign from 'object-assign'
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/lib/codemirror.css'
 
@@ -10,7 +11,7 @@ export default class Code extends React.Component {
   }
 
   componentDidMount() {
-    this._codeMirror = CodeMirror.fromTextArea(this.refs.textarea, Object.assign({
+    this._codeMirror = CodeMirror.fromTextArea(this.refs.textarea, objectAssign({
       theme: 'milky'
     }, this.props.options))
   }
