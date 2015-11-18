@@ -51,6 +51,7 @@
     "codemirror": "^5.7.0",
     "date-fns": "^1.0.0-rc1",
     "lodash": "^3.10.1",
+    "object-assign": "^4.0.1",
     "react": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
     "reset.css": "^2.0.2",
