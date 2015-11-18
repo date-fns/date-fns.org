@@ -13,19 +13,21 @@ const server = express()
 const webpackCompiler = webpack(webpackConfig)
 
 server
-  .use(webpackDevMiddleware(webpackCompiler))
+  .use(webpackDevMiddleware(webpackCompiler, {
+    publicPath: webpackConfig.output.publicPath
+  }))
   .use(webpackHotMiddleware(webpackCompiler))
-  .use(express.static(appConfig.staticPath))
+  .use('/assets', express.static(appConfig.staticPath))
   .get('*', (req, res) => {
     fs.readFile(path.join(__dirname, 'template.ejs'), (err, templateStream) => {
       const template = ejs.compile(templateStream.toString())
       const html = template({
         staticPath(staticName) {
-          return staticName
+          return `/assets${staticName}`
         },
 
         entryPath(entryName, type = 'js') {
-          return `/${type}/${entryName}.${type}`
+          return `/assets/${type}/${entryName}.${type}`
         }
       })
       res.send(html)

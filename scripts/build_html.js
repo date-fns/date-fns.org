@@ -31,7 +31,6 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
       }
     })
 
-
     const htmlFingerprint = getFingerprint(html)
     const htmlFileName = `index-${htmlFingerprint}.html`
     const templateFilePath = path.join(appConfig.distPath, htmlFileName)
@@ -106,6 +105,15 @@ function getFirebaseConfig(htmlFileName) {
     ignore: [
       "static.json",
       "webpack-assets.json"
+    ],
+    headers: [
+      {
+        source: '**/*',
+        headers: [
+          {key: 'Cache-Control', value: 'public, max-age=3122064000'}
+
+        ]
+      }
     ],
     rewrites: [
       {
