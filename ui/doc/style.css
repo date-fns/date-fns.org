@@ -92,3 +92,7 @@
 .doc-code {
   margin-bottom: 10px;
 }
+
+.CodeMirror {
+  max-width: 800px;
+}
