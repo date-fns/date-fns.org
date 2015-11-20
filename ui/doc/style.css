@@ -1,9 +1,7 @@
 .doc {
   padding: 30px;
-  overflow-y: auto;
   color: #4A3142;
   background-color: #FFFDF9;
-  height: 100vh;
 }
 
 .doc-header {
@@ -91,4 +89,8 @@
 
 .doc-code {
   margin-bottom: 10px;
+}
+
+.CodeMirror {
+  max-width: 800px;
 }

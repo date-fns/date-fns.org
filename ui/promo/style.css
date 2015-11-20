@@ -1,5 +1,4 @@
 .promo {
-  display: flex;
   width: 100%;
   color: white;
   background: #5a0530;
@@ -14,6 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .promo-logo {

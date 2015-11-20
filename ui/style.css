@@ -34,33 +34,70 @@ code:before, code:after {
 }
 
 .ui {
-  min-height: 100vh;
   display: flex;
   width: 100%;
-  overflow: hidden;
-}
-
-.ui.is-collapsed .ui-promo {
-  margin-left: -66.6%;
 }
 
 .ui-promo,
 .ui-features,
 .ui-docs {
-  flex-basis: 33.3%;
   display: flex;
-}
-
-.ui-promo {
-  transition: margin 300ms;
 }
 
 .ui-features {
   border-right: 1px solid #E6E0E6;
+  border-bottom: 1px solid #E6E0E6;
 }
 
 .ui-doc {
-  margin-right: -66.6%;
-  flex-basis: 66.6%;
   border-left: 1px solid #E6E0E6;
+  border-top: 1px solid #E6E0E6;
+}
+
+@media (max-width: 800px) {
+  .ui {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .ui.is-collapsed .ui-promo,
+  .ui.is-collapsed .ui-features,
+  .ui.is-collapsed .docs-categories,
+  .ui.is-collapsed .docs-no_results,
+  .ui.is-collapsed .docs-search {
+    display: none;
+  }
+
+  .ui.not-collapsed .ui-doc {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .ui {
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .ui-promo,
+  .ui-features,
+  .ui-docs,
+  .ui-doc {
+    height: 100vh;
+    overflow-y: auto;
+    flex-basis: 33.3%;
+  }
+
+  .ui-promo {
+    transition: margin 300ms;
+  }
+
+  .ui.is-collapsed .ui-promo {
+    margin-left: -66.6%;
+  }
+
+  .ui-doc {
+    margin-right: -66.6%;
+    flex-basis: 66.6%;
+  }
 }
