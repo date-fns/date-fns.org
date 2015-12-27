@@ -1,0 +1,15 @@
+sudo: false
+language: node_js
+node_js:
+  - 4.2
+script:
+  - echo 'TODO'
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: scripts/deploy.sh
+  on:
+    branch: master
+cache:
+  directories:
+    - node_modules
