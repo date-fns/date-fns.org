@@ -32,7 +32,7 @@ export default {
   },
 
   output: {
-    path: appConfig.distPath,
+    path: path.join(appConfig.distPath, 'assets'),
     publicPath: '/assets/',
     filename: (isProduction ? 'js/[name]-[hash].js' : 'js/[name].js'),
     chunkFilename: (isProduction ? 'js/[id]-[chunkhash].js' : 'js/[id].js')
