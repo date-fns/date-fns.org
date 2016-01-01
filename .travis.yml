@@ -7,7 +7,7 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: scripts/deploy.sh
+  script: npm run deploy
   on:
     branch: master
 cache:
