@@ -1,7 +1,7 @@
 # date-fns.org
 [![Build Status](https://travis-ci.org/date-fns/date-fns.svg?branch=master)](https://travis-ci.org/date-fns/date-fns) [![Backlog](https://badge.waffle.io/date-fns/date-fns.org.svg?label=Backlog&title=Backlog)](http://waffle.io/date-fns/date-fns.org)
 
-[date-fns.org](https://date-fns.org) is [date-fns library](https://github.com/date-fns/date-fns)
+[date-fns.org](https://date-fns.org) is a [date-fns library](https://github.com/date-fns/date-fns)
 homepage.
 It provides information about key library features,
 the comprehensive documentation, and all the related links.
@@ -15,7 +15,7 @@ powered by [webpack](http://webpack.github.io/) and [Babel](https://babeljs.io).
 
 1. [Install Node.js](https://nodejs.org/en/download)
 2. Clone the repo
-3. Run `npm install` to install application dependecies
+3. Run `npm install` to install application dependencies
 
 ### Run Locally
 
@@ -27,7 +27,7 @@ npm start
 
 It starts the dev server at [localhost:5000](http://localhost:5000).
 
-The port could be ovveriden using `APP_PORT` environment variable.
+The port could be overridden using `APP_PORT` environment variable.
 
 
 
