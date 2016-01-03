@@ -9,10 +9,10 @@ import fs from 'fs'
 import path from 'path'
 
 const DEFAULT_PORT = 5000
-const server = express()
+const app = express()
 const webpackCompiler = webpack(webpackConfig)
 
-server
+app
   .use(webpackDevMiddleware(webpackCompiler, {
     publicPath: webpackConfig.output.publicPath
   }))
@@ -33,4 +33,15 @@ server
       res.send(html)
     })
   })
-  .listen(process.env.APP_PORT || DEFAULT_PORT)
+
+const server = app.listen(
+  process.env.INTEGRATION_TESTS ? 5001 : process.env.APP_PORT || DEFAULT_PORT
+)
+
+if (process.env.INTEGRATION_TESTS) {
+  process.title = 'INTEGRATION_TESTS_SERVER'
+  process.on('SIGQUIT', () => {
+    server.close()
+    process.exit(0)
+  })
+}

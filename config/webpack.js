@@ -7,10 +7,11 @@ import appConfig from './app'
 const env = process.env.NODE_ENV
 const isDevelopment = env == 'development'
 const isProduction = env == 'production'
+const isIntegrationTests = process.env.INTEGRATION_TESTS
 
 const plugins = []
 
-if (isDevelopment) {
+if (isDevelopment && !isIntegrationTests) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
@@ -28,7 +29,7 @@ export default {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
 
   entry: {
-    app: (isProduction ? [] : ['webpack-hot-middleware/client']).concat('app/env/web')
+    app: (isProduction || isIntegrationTests ? [] : ['webpack-hot-middleware/client']).concat('app/env/web')
   },
 
   output: {
