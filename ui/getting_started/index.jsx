@@ -72,7 +72,9 @@ export default class GettingStarted extends React.Component {
           <h4 className='getting_started-instruction_header'>
             Example
           </h4>
-          <Code value={NPM_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+          <div id='qa-npm'>
+            <Code value={NPM_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+          </div>
         </div>
 
       case 'bower':
@@ -85,7 +87,9 @@ export default class GettingStarted extends React.Component {
           <h4 className='getting_started-instruction_header'>
             Example
           </h4>
-          <Code value={BOWER_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+          <div id='qa-bower'>
+            <Code value={BOWER_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+          </div>
         </div>
 
       case 'cdn':
@@ -94,7 +98,9 @@ export default class GettingStarted extends React.Component {
             Installation
           </h4>
 
-          CDN
+          <div id='qa-cdn'>
+            CDN
+          </div>
         </div>
     }
   }
