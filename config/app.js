@@ -1,6 +1,6 @@
 import path from 'path'
 
-module.exports = {
+export default {
   distPath: path.join(process.cwd(), 'dist'),
-  staticPath: path.join(process.cwd(), 'ui', 'static')
+  staticPath: path.join(process.cwd(), 'app', 'ui', 'static')
 }

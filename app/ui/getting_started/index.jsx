@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
+import {trackAction} from 'app/acts/tracking_acts'
 
 const NPM_INSTALL_EXAMPLE = 'npm install date-fns --save'
 const NPM_SIMPLE_EXAMPLE = `var isToday = require('date-fns/is_today')
@@ -106,6 +107,7 @@ export default class GettingStarted extends React.Component {
   }
 
   _changeSource(source, e) {
+    trackAction('Changed Installation Source', {source})
     e.preventDefault()
     this.setState({source})
   }
