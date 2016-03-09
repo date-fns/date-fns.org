@@ -92,7 +92,7 @@ export default class Doc extends React.Component {
   }
 
   _renderExceptionsSection(exceptions) {
-    if (!exceptions) return
+    if (!exceptions) return null
 
     return <section className='doc-section'>
       <h3 className='doc-subheader'>
@@ -130,7 +130,7 @@ export default class Doc extends React.Component {
   }
 
   _renderExamplesSection(examples) {
-    if (!examples) return
+    if (!examples) return null
 
     return <section className='doc-section'>
       <h3 className='doc-subheader'>

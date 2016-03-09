@@ -6,7 +6,7 @@ export default class DocArguments extends React.Component {
   }
 
   render() {
-    if (!this.props.args) return
+    if (!this.props.args) return null
 
     return <section className='doc-section'>
       <h3 className='doc-subheader'>
