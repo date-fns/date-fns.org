@@ -2,8 +2,8 @@ import express from 'express'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from '../../config/webpack'
-import appConfig from '../../config/app'
+import webpackConfig from '../../../config/webpack'
+import appConfig from '../../../config/app'
 import ejs from 'ejs'
 import fs from 'fs'
 import path from 'path'
@@ -28,7 +28,9 @@ app
 
         entryPath(entryName, type = 'js') {
           return `/assets/${type}/${entryName}.${type}`
-        }
+        },
+
+        env: process.env.NODE_ENV
       })
       res.send(html)
     })

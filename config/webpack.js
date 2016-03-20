@@ -43,8 +43,7 @@ export default {
 
   resolve: {
     modulesDirectories: ['.', 'node_modules'],
-    extensions: ['', '.js', '.jsx'],
-    alias: {app: process.cwd()}
+    extensions: ['', '.js', '.jsx']
   },
 
   module: {

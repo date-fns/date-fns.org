@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
+import {trackAction} from 'app/acts/tracking_acts'
 
 export default class DocUsage extends React.Component {
   static propTypes = {
@@ -103,6 +104,7 @@ export default class DocUsage extends React.Component {
   }
 
   _changeSource(source, e) {
+    trackAction('Changed Usage Source', {source})
     e.preventDefault()
     this.setState({source})
     localStorage.setItem('usageSource', source)

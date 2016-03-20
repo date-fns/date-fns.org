@@ -2,6 +2,8 @@ import React from 'react'
 import classnames from 'classnames'
 import routes from 'app/routes'
 import docs from 'app/_lib/docs'
+import debounce from 'lodash/function/debounce'
+import {trackAction} from 'app/acts/tracking_acts'
 
 const logoPath = require('./img/logo.svg')
 
@@ -13,6 +15,11 @@ export default class Docs extends React.Component {
 
   state = {
     query: null
+  }
+
+  constructor() {
+    super()
+    this._trackSearch = debounce(this._trackSearch, 500)
   }
 
   render() {
@@ -33,7 +40,7 @@ export default class Docs extends React.Component {
             className='docs-search_field'
             placeholder='Search'
             value={this.state.query}
-            onChange={(e) => this.setState({query: e.currentTarget.value})}
+            onChange={this._performSearch.bind(this)}
           />
 
           {this.state.query ? this._renderCancelButton() : null}
@@ -135,7 +142,18 @@ export default class Docs extends React.Component {
   }
 
   _clearQuery() {
+    trackAction('Search Cleared')
     this.setState({query: null})
+  }
+
+  _performSearch(e) {
+    const query = e.currentTarget.value
+    this._trackSearch(query)
+    this.setState({query})
+  }
+
+  _trackSearch(query) {
+    trackAction('Search', {query})
   }
 
   _openHome() {

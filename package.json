@@ -4,7 +4,7 @@
   "description": "date-fns home page",
   "main": "index.jsx",
   "scripts": {
-    "start": "env NODE_ENV=development babel-node env/dev",
+    "start": "env NODE_ENV=development babel-node app/env/dev",
     "build": "npm run build-bundles && npm run build-html",
     "build-bundles": "rm -rf dist && env NODE_ENV=production babel-node ./node_modules/.bin/webpack --config ./config/webpack.js",
     "build-html": "babel-node scripts/build_html",
