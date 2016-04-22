@@ -1,6 +1,7 @@
 casper.test.begin('Getting Started', function(test) {
   casper
     .start('http://localhost:5001')
+    .then(clear)
     .then(function() {
       test.assertVisible('#qa-npm')
       test.assertSelectorHasText('.CodeMirror-lines', 'npm install date-fns --save')
@@ -23,26 +24,27 @@ casper.test.begin('Getting Started', function(test) {
 casper.test.begin('Docs', function(test) {
   casper
     .start('http://localhost:5001')
+    .then(clear)
     .then(function() {
-      this.click('li.docs-function')
+      this.click('.docs-category:nth-child(2) .docs-item:nth-child(1)')
       test.assertUrlMatch(/^http:\/\/localhost:5001\/docs\//)
       test.assertExists('.ui.is-collapsed')
     })
     .then(function() {
-      test.assertVisible('a.doc_usage-option_link.is-current')
-      test.assertSelectorHasText('a.doc_usage-option_link.is-current', 'CommonJS')
+      test.assertVisible('a.jsdoc_usage-option_link.is-current')
+      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'CommonJS')
     })
     .then(function() {
       this.clickLabel('UMD')
-      test.assertSelectorHasText('a.doc_usage-option_link.is-current', 'UMD')
+      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'UMD')
     })
     .then(function() {
       this.clickLabel('ES 2015')
-      test.assertSelectorHasText('a.doc_usage-option_link.is-current', 'ES 2015')
+      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'ES 2015')
     })
     .then(function() {
-      this.click('li.docs-function:nth-child(2)')
-      test.assertSelectorHasText('a.doc_usage-option_link.is-current', 'ES 2015')
+      this.click('.docs-category:nth-child(2) .docs-item:nth-child(2)')
+      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'ES 2015')
     })
     .then(function() {
       this.click('img.docs-logo_image')
@@ -57,22 +59,29 @@ casper.test.begin('Docs', function(test) {
 casper.test.begin('Search', function(test) {
   casper
     .start('http://localhost:5001')
+    .then(clear)
     .then(function() {
       this.fillSelectors('div.docs-search', {'input[class="docs-search_field"]': 'isAfter'})
-      test.assertElementCount('li.docs-function', 1)
+      test.assertElementCount('li.docs-item', 1)
     })
     .then(function() {
       test.assertVisible('div.docs-search_cancel')
       this.click('div.docs-search_cancel')
       test.assertNotVisible('div.docs-search_cancel')
-      test.assertElementCount('li.docs-function', 147)
+      test.assertElementCount('li.docs-item', 151)
     })
     .then(function() {
       this.fillSelectors('div.docs-search', {'input[class="docs-search_field"]': 'bla-bla'})
-      test.assertElementCount('li.docs-function', 0)
+      test.assertElementCount('li.docs-item', 0)
       test.assertTextExists("Your search didn't match any results.")
     })
     .run(function() {
       test.done()
     })
 })
+
+function clear() {
+  casper.evaluate(function() {
+    window.localStorage.clear()
+  }, {})
+}

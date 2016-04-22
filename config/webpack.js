@@ -3,16 +3,20 @@ import webpack from 'webpack'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import StaticFilesWebpackPlugin from 'static-files-webpack-plugin'
 import appConfig from './app'
+import CTagsWebpackPlugin from 'ctags-webpack-plugin'
 
 const env = process.env.NODE_ENV
 const isDevelopment = env == 'development'
 const isProduction = env == 'production'
-const isIntegrationTests = process.env.INTEGRATION_TESTS
+const isTest = env == 'test'
+const isSystemTests = process.env.SYSTEM_TESTS
+const enableDebuggingTools = isDevelopment && !isSystemTests
 
 const plugins = []
 
-if (isDevelopment && !isIntegrationTests) {
+if (enableDebuggingTools) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
+  plugins.push(new CTagsWebpackPlugin('tags'))
 }
 
 if (isProduction) {
@@ -29,7 +33,7 @@ export default {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
 
   entry: {
-    app: (isProduction || isIntegrationTests ? [] : ['webpack-hot-middleware/client']).concat('app/env/web')
+    app: (enableDebuggingTools ? ['webpack-hot-middleware/client'] : []).concat('app/env/web')
   },
 
   output: {
@@ -50,7 +54,12 @@ export default {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: (enableDebuggingTools ? ['ctags-webpack-plugin/loader', 'react-hot'] : []).concat(['babel']),
+        exclude: path.join(process.cwd(), 'node_modules')
+      },
+      {
+        test: /\.js$/,
+        loaders: (enableDebuggingTools ? ['ctags-webpack-plugin/loader'] : []).concat(['babel']),
         exclude: path.join(process.cwd(), 'node_modules')
       },
       {
@@ -92,6 +101,12 @@ export default {
         exclude: path.join(process.cwd(), 'node_modules')
       }
     ]
+  },
+
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
   },
 
   cssnext: {

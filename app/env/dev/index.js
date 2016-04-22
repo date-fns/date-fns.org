@@ -37,10 +37,10 @@ app
   })
 
 const server = app.listen(
-  process.env.INTEGRATION_TESTS ? 5001 : process.env.APP_PORT || DEFAULT_PORT
+  process.env.SYSTEM_TESTS ? 5001 : process.env.APP_PORT || DEFAULT_PORT
 )
 
-if (process.env.INTEGRATION_TESTS) {
+if (process.env.SYSTEM_TESTS) {
   process.title = 'INTEGRATION_TESTS_SERVER'
   process.on('SIGQUIT', () => {
     server.close()
