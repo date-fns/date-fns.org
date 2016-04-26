@@ -28,7 +28,7 @@ export default class Ui extends React.Component {
       <div className='ui-docs'>
         <Docs
           showLogo={isCollapsed}
-          currentDocId={this._currentDocId()}
+          currentId={this._currentDocId()}
         />
       </div>
 

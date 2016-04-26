@@ -1,8 +1,8 @@
-.doc_arguments-optional {
+.jsdoc_arguments-optional {
   font-style: italic;
 }
 
-.doc_arguments-props_label {
+.jsdoc_arguments-props_label {
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 5px;

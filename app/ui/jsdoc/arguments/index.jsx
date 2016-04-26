@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class DocArguments extends React.Component {
+export default class JSDocArguments extends React.Component {
   static propTypes = {
     args: React.PropTypes.array
   }
@@ -8,10 +8,10 @@ export default class DocArguments extends React.Component {
   render() {
     if (!this.props.args) return null
 
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
+    return <section>
+      <h2>
         Arguments
-      </h3>
+      </h2>
 
       <table>
         <thead>
@@ -56,7 +56,7 @@ export default class DocArguments extends React.Component {
   }
 
   _renderArgumentOptionalLabel(defaultValue) {
-    return <div className='doc_arguments-optional'>
+    return <div className='jsdoc_arguments-optional'>
       {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
     </div>
   }
@@ -72,7 +72,7 @@ export default class DocArguments extends React.Component {
 
   _renderArgumentPropsTable(props) {
     return <div>
-      <div className='doc_arguments-props_label'>
+      <div className='jsdoc_arguments-props_label'>
         Properties:
       </div>
 

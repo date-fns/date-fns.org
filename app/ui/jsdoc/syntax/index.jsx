@@ -1,7 +1,7 @@
 import React from 'react'
 import Code from 'app/ui/_lib/code'
 
-export default class DocSyntax extends React.Component {
+export default class JSDocSyntax extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
     args: React.PropTypes.array
@@ -12,10 +12,10 @@ export default class DocSyntax extends React.Component {
 
     const argsString = this._calculateArgsString(args)
 
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
+    return <section>
+      <h2>
         Syntax
-      </h3>
+      </h2>
 
       <Code
         value={`${name}(${argsString})`}

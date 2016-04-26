@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
 import {trackAction} from 'app/acts/tracking_acts'
 
-export default class DocUsage extends React.Component {
+export default class JSDocUsage extends React.Component {
   static propTypes = {
     name: React.PropTypes.string
   }
@@ -23,17 +23,17 @@ export default class DocUsage extends React.Component {
   }
 
   render() {
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
+    return <section>
+      <h2>
         Usage
-      </h3>
+      </h2>
 
-      <ul className='doc_usage-options'>
-        <li className='doc_usage-option'>
+      <ul className='jsdoc_usage-options'>
+        <li className='jsdoc_usage-option'>
           <a
             href='#'
             onClick={this._changeSource.bind(this, 'commonjs')}
-            className={classnames('doc_usage-option_link', {
+            className={classnames('jsdoc_usage-option_link', {
               'is-current': this.state.source == 'commonjs'
             })}
           >
@@ -41,11 +41,11 @@ export default class DocUsage extends React.Component {
           </a>
         </li>
 
-        <li className='doc_usage-option'>
+        <li className='jsdoc_usage-option'>
           <a
             href='#'
             onClick={this._changeSource.bind(this, 'umd')}
-            className={classnames('doc_usage-option_link', {
+            className={classnames('jsdoc_usage-option_link', {
               'is-current': this.state.source == 'umd'
             })}
           >
@@ -53,11 +53,11 @@ export default class DocUsage extends React.Component {
           </a>
         </li>
 
-        <li className='doc_usage-option'>
+        <li className='jsdoc_usage-option'>
           <a
             href='#'
             onClick={this._changeSource.bind(this, 'es2015')}
-            className={classnames('doc_usage-option_link', {
+            className={classnames('jsdoc_usage-option_link', {
               'is-current': this.state.source == 'es2015'
             })}
           >

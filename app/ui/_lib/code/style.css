@@ -3,8 +3,7 @@
   color: #FFF8C5;
   height: auto;
   border-radius: 2px;
-  font-size: 13px;
-  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 13px Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 .cm-s-wormhole pre {
@@ -39,9 +38,8 @@
   background-color: #FFFFFE;
   color: #5D583B;
   height: auto;
-  font-size: 13px;
   border: 1px solid #B9A2B2;
-  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 13px Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 .cm-s-milky pre {

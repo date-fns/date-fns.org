@@ -1,8 +1,6 @@
 import React from 'react'
 import GettingStarted from 'app/ui/getting_started'
-
-const logoPath = require('./img/logo.svg')
-const toptalLogoPath = require('./img/toptal_logo.svg')
+import logoPath from './img/logo.svg'
 
 export default class Promo extends React.Component {
   render() {
@@ -16,20 +14,17 @@ export default class Promo extends React.Component {
         </div>
 
         <h1 className='promo-header'>
-          Modern JavaScript Date Utility Library
+          Modern JavaScript date utility library
         </h1>
 
         <div className='promo-text'>
           date-fns provides the most comprehensive yet simple and consistent toolset
-          for manipulating JavaScript dates in <strong>browser & Node.js</strong>.
+          for manipulating <strong>JavaScript dates</strong> in
+          <strong>a browser</strong> & <strong>Node.js</strong>.
         </div>
 
         <div className='promo-getting_started'>
           <GettingStarted />
-        </div>
-
-        <div className='promo-sponsored'>
-          Sponsored by <img src={toptalLogoPath} className='promo-toptal_logo' />
         </div>
       </div>
     </div>

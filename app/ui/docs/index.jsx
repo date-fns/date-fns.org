@@ -10,7 +10,7 @@ const logoPath = require('./img/logo.svg')
 export default class Docs extends React.Component {
   static propTypes = {
     showLogo: React.PropTypes.bool,
-    currentDocId: React.PropTypes.string
+    currentId: React.PropTypes.string
   }
 
   state = {
@@ -23,12 +23,10 @@ export default class Docs extends React.Component {
   }
 
   render() {
-    const {showLogo} = this.props
-
     return <div className='docs'>
       <header className='docs-header'>
         <div className='docs-header_title_wrapper'>
-          {showLogo ? this._renderLogo() : null}
+          {this.props.showLogo ? this._renderLogo() : null}
 
           <h2 className='docs-header_title'>
             Docs
@@ -79,15 +77,15 @@ export default class Docs extends React.Component {
     } else {
       return <ul className='docs-categories'>
         {categoryNames.map((categoryName) => {
-          const fns = filteredDocs[categoryName]
+          const docs = filteredDocs[categoryName]
 
           return <li className='docs-category' key={categoryName}>
             <h3 className='docs-category_header'>
               {categoryName}
             </h3>
 
-            <ul className='docs-functions'>
-              {this._renderFunctions(fns)}
+            <ul className='docs-list'>
+              {this._renderDocs(docs)}
             </ul>
           </li>
         })}
@@ -95,27 +93,28 @@ export default class Docs extends React.Component {
     }
   }
 
-  _renderFunctions(fns) {
-    return fns.map((fn) => {
+  _renderDocs(docs) {
+    return docs.map((doc) => {
       return <li
         className={classnames(
-          'docs-function', {
-            'is-current': fn.name == this.props.currentDocId
+          'docs-item',
+          `is-${doc.type}`, {
+            'is-current': doc.urlId == this.props.currentId,
           }
         )}
-        onClick={this._openDoc.bind(this, fn.name)}
-        key={fn.name}
+        onClick={this._openDoc.bind(this, doc.urlId)}
+        key={doc.id}
       >
-        <div className='docs-function_content'>
-          <h4 className='docs-function_header'>
-            {fn.name}
+        <div className='docs-item_content'>
+          <h4 className='docs-item_header'>
+            {doc.title}
           </h4>
-          <p className='docs-function_text'>
-            {fn.summary}
+          <p className='docs-item_text'>
+            {doc.description}
           </p>
         </div>
 
-        <div className='docs-function_icon'/ >
+        <div className='docs-item_icon'/ >
       </li>
     })
   }
@@ -124,15 +123,14 @@ export default class Docs extends React.Component {
     const query = (this.state.query || '').toLowerCase()
     if (query) {
       return Object.keys(docs).reduce((acc, categoryName) => {
-        const fns = docs[categoryName]
-        const filteredFns = fns.filter((fn) => {
-          return categoryName.toLowerCase().indexOf(query) != -1
-            || fn.name.toLowerCase().indexOf(query) != -1
-            || fn.summary.toLowerCase().indexOf(query) != -1
-            || fn.description.toLowerCase().indexOf(query) != -1
+        const categoryDocs = docs[categoryName]
+        const filteredDocs = categoryDocs.filter((doc) => {
+          return categoryName.toLowerCase().indexOf(query) != -1 ||
+            doc.title.toLowerCase().indexOf(query) != -1 ||
+            doc.description.toLowerCase().indexOf(query) != -1
         })
-        if (filteredFns.length > 0) {
-          acc[categoryName] = filteredFns
+        if (filteredDocs.length > 0) {
+          acc[categoryName] = filteredDocs
         }
         return acc
       }, {})
