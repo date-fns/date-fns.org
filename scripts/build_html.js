@@ -7,6 +7,8 @@ import crypto from 'crypto'
 Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
   .then(([staticMap, entriesMap, template]) => {
     const html = template({
+      env: process.env.NODE_ENV || 'development',
+
       staticPath(staticName) {
         const pth = staticMap[path.join(appConfig.staticPath, staticName)]
         if (!pth) {
@@ -53,7 +55,7 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
 
 function getTemplate() {
   return new Promise((resolve, reject) => {
-    fs.readFile(path.join(process.cwd(), 'env', 'dev', 'template.ejs'), (err, contentStream) => {
+    fs.readFile(path.join(process.cwd(), 'app', 'env', 'dev', 'template.ejs'), (err, contentStream) => {
       if (err) reject(err)
       const template = ejs.compile(contentStream.toString())
       resolve(template)
