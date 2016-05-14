@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 import assert from 'power-assert'
 import Remarkable from 'remarkable'
 import remarkableTree from '.'
@@ -5,7 +7,7 @@ import {text, tag, softbreak, code} from './utils'
 import docs from 'app/_lib/docs'
 
 describe('remarkableTree', () => {
-  function parse(str) {
+  function parse (str) {
     return new Remarkable().parse(str, {})
   }
 
@@ -16,7 +18,7 @@ describe('remarkableTree', () => {
   })
 
   it('handles sequential paragraphs', () => {
-    assert.deepEqual(remarkableTree(parse("Hello,\n\nworld!")), [
+    assert.deepEqual(remarkableTree(parse('Hello,\n\nworld!')), [
       tag('p', {}, [text('Hello,')]),
       tag('p', {}, [text('world!')])
     ])
@@ -48,13 +50,13 @@ describe('remarkableTree', () => {
   })
 
   it('handles softbreaks', () => {
-    assert.deepEqual(remarkableTree(parse("Hey,\n there!")), [
+    assert.deepEqual(remarkableTree(parse('Hey,\n there!')), [
       tag('p', {}, [text('Hey,'), softbreak(), text('there!')])
     ])
   })
 
   it('handles code tokens', () => {
-    assert.deepEqual(remarkableTree(parse("`123`")), [
+    assert.deepEqual(remarkableTree(parse('`123`')), [
       tag('p', {}, [tag('code', {}, [text('123')])])
     ])
   })

@@ -17,7 +17,7 @@ export default class GettingStarted extends React.Component {
     source: 'npm'
   }
 
-  render() {
+  render () {
     return <div className='getting_started'>
       <ul className='getting_started-options'>
         <li className='getting_started-option'>
@@ -25,7 +25,7 @@ export default class GettingStarted extends React.Component {
             href='#'
             onClick={this._changeSource.bind(this, 'npm')}
             className={classnames('getting_started-option_link', {
-              'is-current': this.state.source == 'npm'
+              'is-current': this.state.source === 'npm'
             })}
           >
             npm
@@ -37,7 +37,7 @@ export default class GettingStarted extends React.Component {
             href='#'
             onClick={this._changeSource.bind(this, 'bower')}
             className={classnames('getting_started-option_link', {
-              'is-current': this.state.source == 'bower'
+              'is-current': this.state.source === 'bower'
             })}
           >
             Bower
@@ -49,7 +49,7 @@ export default class GettingStarted extends React.Component {
             href='#'
             onClick={this._changeSource.bind(this, 'cdn')}
             className={classnames('getting_started-option_link', {
-              'is-current': this.state.source == 'cdn'
+              'is-current': this.state.source === 'cdn'
             })}
           >
             CDN & Download
@@ -61,8 +61,8 @@ export default class GettingStarted extends React.Component {
     </div>
   }
 
-  _renderInstruction() {
-    switch(this.state.source) {
+  _renderInstruction () {
+    switch (this.state.source) {
       case 'npm':
         return <div className='getting_started-instruction' key='npm'>
           <h4 className='getting_started-instruction_header'>
@@ -106,7 +106,7 @@ export default class GettingStarted extends React.Component {
     }
   }
 
-  _changeSource(source, e) {
+  _changeSource (source, e) {
     trackAction('Changed Installation Source', {source})
     e.preventDefault()
     this.setState({source})

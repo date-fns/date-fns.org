@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class Features extends React.Component {
-  render() {
+  render () {
     return <div className='features'>
       <h2 className='features-header'>
         Why date-fns?

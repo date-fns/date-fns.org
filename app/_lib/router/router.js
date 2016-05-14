@@ -16,7 +16,7 @@ class Router {
    * Router constructor.
    * @param {routes} routes
    */
-  constructor(routes) {
+  constructor (routes) {
     this.routes = Matcher.flatten(routes)
   }
 
@@ -26,7 +26,7 @@ class Router {
    * @param {string} eventType, event caused route change (push, pop, replace
    * or synthetic)
    */
-  onChange(path, eventType) {
+  onChange (path, eventType) {
     const routeData = Matcher.matchPath(this.routes, path)
     if (isFunction(this.cb)) {
       this.cb(routeData, eventType)
@@ -37,7 +37,7 @@ class Router {
    * Starts history and watch for changes.
    * @param {Function} cb callback
    */
-  start(cb) {
+  start (cb) {
     this.cb = cb
     History.start(this.onChange.bind(this))
   }
@@ -45,7 +45,7 @@ class Router {
   /**
    * Stops history.
    */
-  stop() {
+  stop () {
     History.stop()
   }
 
@@ -53,7 +53,7 @@ class Router {
    * Navigates to given path.
    * @param {string} path
    */
-  navigateToPath(path) {
+  navigateToPath (path) {
     History.push(path)
   }
 
@@ -62,7 +62,7 @@ class Router {
    * @param {string} route name
    * @param {string} search params
    */
-  navigateToRoute(route, params, search) {
+  navigateToRoute (route, params, search) {
     this.navigateToPath(this.hrefTo(route, params, search))
   }
 
@@ -70,7 +70,7 @@ class Router {
    * Replaces history with given path.
    * @param {string} path
    */
-  replaceWithPath(path) {
+  replaceWithPath (path) {
     History.replace(path)
   }
 
@@ -79,11 +79,11 @@ class Router {
    * @param {string} route name
    * @param {string} search params
    */
-  replaceWithRoute(route, params, search) {
+  replaceWithRoute (route, params, search) {
     this.replaceWithPath(this.hrefTo(route, params, search))
   }
 
-  replaceSearchQuery(search) {
+  replaceSearchQuery (search) {
     const routeData = Matcher.matchPath(this.routes, this.currentPath())
     search = merge(this.currentSearch(), search)
     this.replaceWithPath(this.hrefTo(routeData.route.name, routeData.params, search))
@@ -95,7 +95,7 @@ class Router {
    * @param {Object*} search params
    * @returns {string} path
    */
-  hrefTo(name, params, search) {
+  hrefTo (name, params, search) {
     let route
 
     if (!name) {
@@ -113,7 +113,7 @@ class Router {
     let path = route.path
 
     if (params) {
-      path = path.replace(/:([^\/]+)/gi, function(param, paramName) {
+      path = path.replace(/:([^\/]+)/gi, function (param, paramName) {
         if (!params[paramName]) {
           throw new Error('Missing params in "' + path + '"')
         }
@@ -123,7 +123,7 @@ class Router {
 
     if (search) {
       const searchArr = []
-      forIn(search, function(value, key) {
+      forIn(search, function (value, key) {
         value && searchArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(value))
       })
       if (searchArr.length) {
@@ -139,7 +139,7 @@ class Router {
    * @param {Object} options
    * @returns {Boolen}
    */
-  isCurrentPath(options) {
+  isCurrentPath (options) {
     let path
     if (options.path) {
       path = options.path
@@ -147,28 +147,28 @@ class Router {
       path = this.hrefTo(options.route, options.params, options.search)
     }
 
-    return path == this.currentPath()
+    return path === this.currentPath()
   }
 
-  isPathMatchesRouteOrParents(path) {
+  isPathMatchesRouteOrParents (path) {
     const currentRoute = this.currentRoute()
     const matchingRoute = Matcher.matchPath(this.routes, path)
 
     if (currentRoute && currentRoute.route) {
       const paramsMatch = Object.keys(matchingRoute.params)
-        .every(function(key) {
+        .every(function (key) {
           return currentRoute.params[key] === matchingRoute.params[key]
         })
 
       if (!matchingRoute.route) return
 
-      if (currentRoute.route.name == matchingRoute.route.name && paramsMatch) {
+      if (currentRoute.route.name === matchingRoute.route.name && paramsMatch) {
         return true
       }
 
       let parentRouteName = currentRoute.route.parentRouteName
       while (parentRouteName) {
-        if (parentRouteName == matchingRoute.route.name && paramsMatch) {
+        if (parentRouteName === matchingRoute.route.name && paramsMatch) {
           return true
         }
         parentRouteName = this.routes[parentRouteName].parentRouteName
@@ -178,7 +178,7 @@ class Router {
     return false
   }
 
-  currentRoute() {
+  currentRoute () {
     const routeData = Matcher.matchPath(this.routes, this.currentPath())
     if (routeData) {
       return routeData
@@ -191,11 +191,11 @@ class Router {
    * Returns current path.
    * @returns {boolean}
    */
-  currentPath() {
+  currentPath () {
     return History.currentPath()
   }
 
-  currentSearch() {
+  currentSearch () {
     const routeData = Matcher.matchPath(this.routes, this.currentPath())
     return Matcher.parseSearch(routeData.search)
   }
@@ -204,10 +204,9 @@ class Router {
 // Small cache for isPathMatchesRouteOrParents
 Router.prototype.isPathMatchesRouteOrParents = memoize(
   Router.prototype.isPathMatchesRouteOrParents,
-  function(path) {
+  function (path) {
     return [this.currentPath(), path].join('|')
   }
 )
 
 module.exports = Router
-

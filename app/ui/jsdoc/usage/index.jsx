@@ -12,17 +12,17 @@ export default class JSDocUsage extends React.Component {
     source: 'commonjs'
   }
 
-  componentWillMount() {
-    const source = localStorage.getItem('usageSource')
+  componentWillMount () {
+    const source = window.localStorage.getItem('usageSource')
 
     if (source) {
       this.setState({source})
     } else {
-      localStorage.setItem('usageSource', 'commonjs')
+      window.localStorage.setItem('usageSource', 'commonjs')
     }
   }
 
-  render() {
+  render () {
     return <section>
       <h2>
         Usage
@@ -34,7 +34,7 @@ export default class JSDocUsage extends React.Component {
             href='#'
             onClick={this._changeSource.bind(this, 'commonjs')}
             className={classnames('jsdoc_usage-option_link', {
-              'is-current': this.state.source == 'commonjs'
+              'is-current': this.state.source === 'commonjs'
             })}
           >
             CommonJS
@@ -46,7 +46,7 @@ export default class JSDocUsage extends React.Component {
             href='#'
             onClick={this._changeSource.bind(this, 'umd')}
             className={classnames('jsdoc_usage-option_link', {
-              'is-current': this.state.source == 'umd'
+              'is-current': this.state.source === 'umd'
             })}
           >
             UMD
@@ -58,7 +58,7 @@ export default class JSDocUsage extends React.Component {
             href='#'
             onClick={this._changeSource.bind(this, 'es2015')}
             className={classnames('jsdoc_usage-option_link', {
-              'is-current': this.state.source == 'es2015'
+              'is-current': this.state.source === 'es2015'
             })}
           >
             ES 2015
@@ -70,10 +70,10 @@ export default class JSDocUsage extends React.Component {
     </section>
   }
 
-  _renderUsage() {
+  _renderUsage () {
     const {name} = this.props
 
-    switch(this.state.source) {
+    switch (this.state.source) {
       case 'commonjs':
         return <Code
           value={`var ${name} = require('date-fns/${this._convertToUnderscore(name)}')`}
@@ -103,14 +103,14 @@ export default class JSDocUsage extends React.Component {
     }
   }
 
-  _changeSource(source, e) {
+  _changeSource (source, e) {
     trackAction('Changed Usage Source', {source})
     e.preventDefault()
     this.setState({source})
-    localStorage.setItem('usageSource', source)
+    window.localStorage.setItem('usageSource', source)
   }
 
-  _convertToUnderscore(string) {
+  _convertToUnderscore (string) {
     return string.replace(/ISO|[A-Z]/g, (letter) => '_' + letter.toLowerCase())
   }
 }

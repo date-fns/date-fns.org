@@ -20,13 +20,18 @@ app
   .use('/assets', express.static(appConfig.staticPath))
   .get('*', (req, res) => {
     fs.readFile(path.join(__dirname, 'template.ejs'), (err, templateStream) => {
+      if (err) {
+        console.error(err)
+        process.exit(1)
+      }
+
       const template = ejs.compile(templateStream.toString())
       const html = template({
-        staticPath(staticName) {
+        staticPath (staticName) {
           return `/assets${staticName}`
         },
 
-        entryPath(entryName, type = 'js') {
+        entryPath (entryName, type = 'js') {
           return `/assets/${type}/${entryName}.${type}`
         },
 

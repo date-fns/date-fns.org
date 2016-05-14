@@ -1,6 +1,6 @@
 import {text, tag, softbreak, code, tagName, attrs} from './utils'
 
-export default function remarkableTree(tokens) {
+export default function remarkableTree (tokens) {
   var tree = []
   var pos = 0
   while (pos < tokens.length) {
@@ -47,6 +47,7 @@ export default function remarkableTree(tokens) {
       tree.push(tag('img', {alt, src, title}, []))
       pos++
 
+    // Fail
     } else {
       throw new Error(`Failed to convert Remarkable tokens stream to a tree: an unknown token type "${token.type}"`)
     }
@@ -54,22 +55,22 @@ export default function remarkableTree(tokens) {
   return tree
 }
 
-function getTagChildren(tokens, openingPos, closingPos) {
+function getTagChildren (tokens, openingPos, closingPos) {
   return remarkableTree(tokens.slice(openingPos + 1, closingPos))
 }
 
 const OPENING_TAG_TOKEN_TYPE_PATTERN = /(.+)_open$/
 
-function isOpeningTagToken(token) {
+function isOpeningTagToken (token) {
   return OPENING_TAG_TOKEN_TYPE_PATTERN.test(token.type)
 }
 
-function isClosingTagToken(token, openingToken) {
-  const [_, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)
+function isClosingTagToken (token, openingToken) {
+  const [, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)
   return token.type === `${tagName}_close` && token.level === openingToken.level
 }
 
-function getClosingPosFor(tokens, pos) {
+function getClosingPosFor (tokens, pos) {
   const openingToken = tokens[pos]
 
   let closingPos = pos + 1

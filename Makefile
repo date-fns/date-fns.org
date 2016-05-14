@@ -2,8 +2,7 @@ start:
 	env NODE_ENV=development node_modules/.bin/babel-node app/env/dev
 
 test-lint:
-	# TODO
-	# node_modules/.bin/standard --verbose | node_modules/.bin/snazzy
+	node_modules/.bin/standard --verbose | node_modules/.bin/snazzy
 
 test-unit:
 	env NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/karma start config/karma.js --single-run

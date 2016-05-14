@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 import Markdown from '.'
 import React from 'react'
 import {shallow} from 'enzyme'
@@ -12,7 +14,7 @@ describe('Markdown', () => {
   })
 
   it('wraps sequential blocks into div', () => {
-    const str = "Hello,\n\nworld!"
+    const str = 'Hello,\n\nworld!'
     const wrapper = shallow(<Markdown value={str} />)
     const result = wrapper.equals(<div>
       <p>Hello,</p>
@@ -22,7 +24,7 @@ describe('Markdown', () => {
   })
 
   it('assigns keys to sequential blocks', () => {
-    const str = "Hello,\n\nworld!"
+    const str = 'Hello,\n\nworld!'
     const wrapper = shallow(<Markdown value={str} />)
     const [p1, p2] = wrapper.children().nodes
     assert(p1.key === '0')
@@ -30,9 +32,9 @@ describe('Markdown', () => {
   })
 
   it('handles soft breakes', () => {
-    const str = "Hello,\nworld!"
+    const str = 'Hello,\nworld!'
     const wrapper = shallow(<Markdown value={str} />)
-    assert(wrapper.html() === "<p>Hello,\nworld!</p>")
+    assert(wrapper.html() === '<p>Hello,\nworld!</p>')
   })
 
   it('renders nested tags', () => {

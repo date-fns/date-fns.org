@@ -6,7 +6,7 @@ export default class MarkdownDoc extends React.Component {
     doc: React.PropTypes.object.isRequired
   }
 
-  render() {
+  render () {
     return <Markdown value={this.props.doc.content} />
   }
 }

@@ -17,12 +17,12 @@ export default class Docs extends React.Component {
     query: null
   }
 
-  constructor() {
+  constructor () {
     super()
     this._trackSearch = debounce(this._trackSearch, 500)
   }
 
-  render() {
+  render () {
     return <div className='docs'>
       <header className='docs-header'>
         <div className='docs-header_title_wrapper'>
@@ -49,7 +49,7 @@ export default class Docs extends React.Component {
     </div>
   }
 
-  _renderLogo() {
+  _renderLogo () {
     return <img
       src={logoPath}
       className='docs-logo_image'
@@ -57,14 +57,14 @@ export default class Docs extends React.Component {
     />
   }
 
-  _renderCancelButton() {
+  _renderCancelButton () {
     return <div
       className='docs-search_cancel'
       onClick={this._clearQuery.bind(this)}
     />
   }
 
-  _renderCategories() {
+  _renderCategories () {
     const filteredDocs = this._filteredDocs()
     const categoryNames = Object.keys(filteredDocs)
 
@@ -93,13 +93,13 @@ export default class Docs extends React.Component {
     }
   }
 
-  _renderDocs(docs) {
+  _renderDocs (docs) {
     return docs.map((doc) => {
       return <li
         className={classnames(
           'docs-item',
           `is-${doc.type}`, {
-            'is-current': doc.urlId == this.props.currentId,
+            'is-current': doc.urlId === this.props.currentId
           }
         )}
         onClick={this._openDoc.bind(this, doc.urlId)}
@@ -114,20 +114,20 @@ export default class Docs extends React.Component {
           </p>
         </div>
 
-        <div className='docs-item_icon'/ >
+        <div className='docs-item_icon' />
       </li>
     })
   }
 
-  _filteredDocs() {
+  _filteredDocs () {
     const query = (this.state.query || '').toLowerCase()
     if (query) {
       return Object.keys(docs).reduce((acc, categoryName) => {
         const categoryDocs = docs[categoryName]
         const filteredDocs = categoryDocs.filter((doc) => {
-          return categoryName.toLowerCase().indexOf(query) != -1 ||
-            doc.title.toLowerCase().indexOf(query) != -1 ||
-            doc.description.toLowerCase().indexOf(query) != -1
+          return categoryName.toLowerCase().indexOf(query) !== -1 ||
+            doc.title.toLowerCase().indexOf(query) !== -1 ||
+            doc.description.toLowerCase().indexOf(query) !== -1
         })
         if (filteredDocs.length > 0) {
           acc[categoryName] = filteredDocs
@@ -139,26 +139,26 @@ export default class Docs extends React.Component {
     }
   }
 
-  _clearQuery() {
+  _clearQuery () {
     trackAction('Search Cleared')
     this.setState({query: null})
   }
 
-  _performSearch(e) {
+  _performSearch (e) {
     const query = e.currentTarget.value
     this._trackSearch(query)
     this.setState({query})
   }
 
-  _trackSearch(query) {
+  _trackSearch (query) {
     trackAction('Search', {query})
   }
 
-  _openHome() {
+  _openHome () {
     routes.navigateToRoute('home')
   }
 
-  _openDoc(fnName) {
+  _openDoc (fnName) {
     routes.navigateToRoute('doc', {docId: fnName})
   }
 }

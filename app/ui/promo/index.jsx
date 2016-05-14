@@ -3,7 +3,7 @@ import GettingStarted from 'app/ui/getting_started'
 import logoPath from './img/logo.svg'
 
 export default class Promo extends React.Component {
-  render() {
+  render () {
     return <div className='promo'>
       <div className='promo-inner'>
         <div className='promo-logo'>

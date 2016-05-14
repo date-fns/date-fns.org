@@ -1,8 +1,7 @@
-import fs from 'fs'
 import webpackConfig from './webpack'
 import path from 'path'
 
-export default function(config) {
+export default function (config) {
   config.set({
     frameworks: ['mocha', 'sinon', 'es5-shim'],
     files: [path.join(process.cwd(), 'test', 'unit.js')],

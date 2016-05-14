@@ -7,7 +7,7 @@ export default class JSDocSyntax extends React.Component {
     args: React.PropTypes.array
   }
 
-  render() {
+  render () {
     const {name, args} = this.props
 
     const argsString = this._calculateArgsString(args)
@@ -27,7 +27,7 @@ export default class JSDocSyntax extends React.Component {
     </section>
   }
 
-  _calculateArgsString(args) {
+  _calculateArgsString (args) {
     if (!args) return ''
 
     return args
@@ -45,7 +45,7 @@ export default class JSDocSyntax extends React.Component {
       .result
   }
 
-  _addArgumentSyntax(argumentsString, arg, nesting, isLast) {
+  _addArgumentSyntax (argumentsString, arg, nesting, isLast) {
     if (!arg.optional && nesting > 0) {
       argumentsString += ']'.repeat(nesting) + ', '
     } else if (argumentsString !== '') {

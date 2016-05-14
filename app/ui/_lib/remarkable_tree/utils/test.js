@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 import {text, tag, softbreak, code, tagName, attrs} from '.'
 import assert from 'power-assert'
 
@@ -65,7 +67,6 @@ describe('Remarkable tree utils', () => {
       })
     })
   })
-
 
   describe('tagName', () => {
     it('returns p for paragraph_open', () => {

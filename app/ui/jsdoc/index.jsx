@@ -10,7 +10,7 @@ export default class JSDoc extends React.Component {
     doc: React.PropTypes.object.isRequired
   }
 
-  render() {
+  render () {
     const {doc} = this.props
     const docContent = doc.content
     const params = this._calculateParams(docContent.params)
@@ -44,7 +44,7 @@ export default class JSDoc extends React.Component {
     </div>
   }
 
-  _renderReturnsSection(returns) {
+  _renderReturnsSection (returns) {
     return <section>
       <h2>
         Returns
@@ -78,7 +78,7 @@ export default class JSDoc extends React.Component {
     </section>
   }
 
-  _renderExceptionsSection(exceptions) {
+  _renderExceptionsSection (exceptions) {
     if (!exceptions) return
 
     return <section>
@@ -116,7 +116,7 @@ export default class JSDoc extends React.Component {
     </section>
   }
 
-  _renderExamplesSection(examples) {
+  _renderExamplesSection (examples) {
     if (!examples) return
 
     return <section>
@@ -140,7 +140,7 @@ export default class JSDoc extends React.Component {
     </section>
   }
 
-  _calculateParams(params) {
+  _calculateParams (params) {
     if (!params) {
       return null
     }

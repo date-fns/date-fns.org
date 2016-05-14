@@ -6,9 +6,8 @@ import appConfig from './app'
 import CTagsWebpackPlugin from 'ctags-webpack-plugin'
 
 const env = process.env.NODE_ENV
-const isDevelopment = env == 'development'
-const isProduction = env == 'production'
-const isTest = env == 'test'
+const isDevelopment = env === 'development'
+const isProduction = env === 'production'
 const isSystemTests = process.env.SYSTEM_TESTS
 const enableDebuggingTools = isDevelopment && !isSystemTests
 
@@ -91,7 +90,7 @@ export default {
       {
         test: /\.svg/,
         loader: 'file'
-      },
+      }
     ],
 
     preLoaders: [

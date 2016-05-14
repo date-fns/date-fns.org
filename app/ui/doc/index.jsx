@@ -8,11 +8,11 @@ export default class Doc extends React.Component {
     docId: React.PropTypes.string
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate (nextProps) {
     return nextProps.docId !== undefined
   }
 
-  render() {
+  render () {
     if (!this.props.docId) return null
 
     return <div className='doc'>
@@ -20,10 +20,10 @@ export default class Doc extends React.Component {
     </div>
   }
 
-  _renderDoc() {
+  _renderDoc () {
     const doc = this._getDoc(this.props.docId)
 
-    switch(doc.type) {
+    switch (doc.type) {
       case 'jsdoc':
         return <JSDoc doc={doc} />
       case 'markdown':
@@ -31,12 +31,12 @@ export default class Doc extends React.Component {
     }
   }
 
-  _getDoc(currentDocId) {
+  _getDoc (currentDocId) {
     for (let categoryName in docs) {
       let categoryDocs = docs[categoryName]
       for (let docId in categoryDocs) {
         let doc = categoryDocs[docId]
-        if (doc.urlId == currentDocId) {
+        if (doc.urlId === currentDocId) {
           return doc
         }
       }

@@ -5,7 +5,7 @@ export default class JSDocArguments extends React.Component {
     args: React.PropTypes.array
   }
 
-  render() {
+  render () {
     if (!this.props.args) return null
 
     return <section>
@@ -35,7 +35,7 @@ export default class JSDocArguments extends React.Component {
     </section>
   }
 
-  _renderArguments(args, isProps) {
+  _renderArguments (args, isProps) {
     return args
       .filter((arg) => isProps || !arg.isProperty)
       .map((arg, index) => {
@@ -55,13 +55,13 @@ export default class JSDocArguments extends React.Component {
       })
   }
 
-  _renderArgumentOptionalLabel(defaultValue) {
+  _renderArgumentOptionalLabel (defaultValue) {
     return <div className='jsdoc_arguments-optional'>
       {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
     </div>
   }
 
-  _renderArgumentType(type, variable) {
+  _renderArgumentType (type, variable) {
     const types = type.names.join(' | ')
     if (variable) {
       return type.names.length > 1 ? `...(${types})` : `...${types}`
@@ -70,7 +70,7 @@ export default class JSDocArguments extends React.Component {
     }
   }
 
-  _renderArgumentPropsTable(props) {
+  _renderArgumentPropsTable (props) {
     return <div>
       <div className='jsdoc_arguments-props_label'>
         Properties:

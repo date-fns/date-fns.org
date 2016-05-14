@@ -1,11 +1,11 @@
-export function text(content) {
+export function text (content) {
   return {
     type: 'text',
     content
   }
 }
 
-export function tag(tagName, attrs = {}, children = []) {
+export function tag (tagName, attrs = {}, children = []) {
   return {
     type: 'tag',
     tagName,
@@ -14,13 +14,13 @@ export function tag(tagName, attrs = {}, children = []) {
   }
 }
 
-export function softbreak() {
+export function softbreak () {
   return {
     type: 'softbreak'
   }
 }
 
-export function code(content, language) {
+export function code (content, language) {
   return {
     type: 'code',
     language,
@@ -28,7 +28,7 @@ export function code(content, language) {
   }
 }
 
-export function tagName(token) {
+export function tagName (token) {
   switch (token.type) {
     case 'paragraph_open':
       return 'p'
@@ -65,7 +65,7 @@ export function tagName(token) {
   }
 }
 
-export function attrs(token) {
+export function attrs (token) {
   switch (token.type) {
     case 'link_open':
       return {href: token.href, title: token.title}

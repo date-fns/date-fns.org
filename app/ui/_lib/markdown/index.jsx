@@ -12,7 +12,7 @@ export default class Markdown extends React.Component {
     value: React.PropTypes.string
   }
 
-  render() {
+  render () {
     const tree = remarkableTree(md.parse(this.props.value, {}))
     const result = this._renderTree(tree)
 
@@ -25,11 +25,11 @@ export default class Markdown extends React.Component {
     }
   }
 
-  _renderTree(tokens) {
+  _renderTree (tokens) {
     return tokens.map(this._renderToken.bind(this))
   }
 
-  _renderToken(token, index) {
+  _renderToken (token, index) {
     switch (token.type) {
       case 'tag':
         return React.createElement(
@@ -42,7 +42,7 @@ export default class Markdown extends React.Component {
         return token.content
 
       case 'softbreak':
-        return "\n"
+        return '\n'
 
       case 'code':
         return <MarkdownCode
