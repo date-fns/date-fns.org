@@ -32,10 +32,24 @@ export default class Markdown extends React.Component {
   _renderToken (token, index) {
     switch (token.type) {
       case 'tag':
+        const extraAttrs = {}
+        const extraChildren = []
+
+        if (/^h[1-6]$/.test(token.tagName)) {
+          let headerLinkId = this._getUrlIdFromText(token)
+          extraAttrs.id = headerLinkId
+          extraChildren.push(<a
+            href={`#${headerLinkId}`}
+            className='doc-header_link'
+          >
+              #
+          </a>)
+        }
+
         return React.createElement(
           token.tagName,
-          Object.assign({key: index}, token.attrs),
-          this._renderTree(token.children)
+          Object.assign({key: index}, token.attrs, extraAttrs),
+          this._renderTree(token.children).concat(extraChildren)
         )
 
       case 'text':
@@ -50,5 +64,17 @@ export default class Markdown extends React.Component {
           language={token.language}
         />
     }
+  }
+
+  _getUrlIdFromText (token) {
+    const textContent = token.children.reduce((acc, token) => {
+      return acc.concat(token.type === 'text' ? token.content : [])
+    }, []).join(' ')
+
+    return textContent
+      .toLowerCase()
+      .replace(/[^\w\d\.]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/(^-|-$)/g, '')
   }
 }

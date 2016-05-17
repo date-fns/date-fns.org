@@ -84,3 +84,23 @@
 .doc ul ul, .doc ul ol, .doc ol ol, .doc ol ul {
   margin-bottom: 0;
 }
+
+.doc-header_link {
+  display: none;
+  margin-left: 7px;
+  text-decoration: none;
+  opacity: .3;
+}
+
+.doc-header_link:hover {
+  opacity: .6;
+}
+
+h1:hover .doc-header_link,
+h2:hover .doc-header_link,
+h3:hover .doc-header_link,
+h4:hover .doc-header_link,
+h5:hover .doc-header_link,
+h6:hover .doc-header_link {
+  display: inline;
+}
