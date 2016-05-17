@@ -35,7 +35,7 @@ export default class Markdown extends React.Component {
         const extraAttrs = {}
         const extraChildren = []
 
-        if (/^h[1-6]$/.test(token.tagName)) {
+        if (/^h[2-6]$/.test(token.tagName)) {
           let headerLinkId = this._getUrlIdFromText(token)
           extraAttrs.id = headerLinkId
           extraChildren.push(<a
