@@ -59,6 +59,7 @@ code:before, code:after {
 .ui-features,
 .ui-docs {
   flex-basis: 33.3%;
+  max-width: 33.3%;
   display: flex;
 }
 

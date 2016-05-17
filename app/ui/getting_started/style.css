@@ -1,6 +1,6 @@
 .getting_started {
   margin-top: 60px;
-  min-height: 250px;
+  min-height: 270px;
 }
 
 .getting_started-options {
@@ -54,4 +54,15 @@
   width: 100%;
   display: block;
   font-size: 13px;
+}
+
+.getting_started-download {
+  margin-top: 15px;
+  display: block;
+  background: #8C1B54;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFF;
+  border-radius: 3px;
 }
