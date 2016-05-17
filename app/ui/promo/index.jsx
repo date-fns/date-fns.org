@@ -1,6 +1,7 @@
 import React from 'react'
 import GettingStarted from 'app/ui/getting_started'
 import logoPath from './img/logo.svg'
+import gitHubLogoPath from './img/github_logo.svg'
 
 export default class Promo extends React.Component {
   render () {
@@ -25,6 +26,15 @@ export default class Promo extends React.Component {
 
         <div className='promo-getting_started'>
           <GettingStarted />
+        </div>
+
+        <div className='promo-links'>
+          <a
+            href='https://github.com/date-fns/date-fns'
+            className='promo-github_logo'
+          >
+            <img src={gitHubLogoPath} className='promo-github_logo_image' />
+          </a>
         </div>
       </div>
     </div>
