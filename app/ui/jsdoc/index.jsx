@@ -23,8 +23,9 @@ export default class JSDoc extends React.Component {
       </h1>
 
       <section>
-        <h2>
+        <h2 id='description'>
           Description
+          <a href='#description' className='doc-header_link'>#</a>
         </h2>
 
         <Markdown value={docContent.description} />
@@ -46,8 +47,9 @@ export default class JSDoc extends React.Component {
 
   _renderReturnsSection (returns) {
     return <section>
-      <h2>
+      <h2 id='returns'>
         Returns
+        <a href='#returns' className='doc-header_link'>#</a>
       </h2>
 
       <table>
@@ -82,8 +84,9 @@ export default class JSDoc extends React.Component {
     if (!exceptions) return
 
     return <section>
-      <h2>
+      <h2 id='exceptions'>
         Exceptions
+        <a href='#exceptions' className='doc-header_link'>#</a>
       </h2>
 
       <table>
@@ -120,8 +123,9 @@ export default class JSDoc extends React.Component {
     if (!examples) return
 
     return <section>
-      <h2>
+      <h2 id='examples'>
         Examples
+        <a href='#examples' className='doc-header_link'>#</a>
       </h2>
 
       <div>

@@ -13,8 +13,9 @@ export default class JSDocSyntax extends React.Component {
     const argsString = this._calculateArgsString(args)
 
     return <section>
-      <h2>
+      <h2 id='syntax'>
         Syntax
+        <a href='#syntax' className='doc-header_link'>#</a>
       </h2>
 
       <Code
