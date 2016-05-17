@@ -54,6 +54,10 @@
   list-style: disc;
 }
 
+.doc ol {
+  list-style: decimal;
+}
+
 .doc ul, .doc ol {
   max-width: 700px;
   margin-left: 25px;
