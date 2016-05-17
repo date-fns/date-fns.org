@@ -7,9 +7,9 @@ import {trackPageView} from 'app/acts/tracking_acts'
 
 routes.start((routeData, routeEvenType) => {
   // Ignore initial update event, since it's already handled by Segment
-  if (routeEvenType != 'synthetic') {
+  if (routeEvenType !== 'synthetic') {
     trackPageView()
   }
 
-  ReactDOM.render(<Ui routeData={routeData}/>, document.getElementById('canvas'))
+  ReactDOM.render(<Ui routeData={routeData} />, document.getElementById('canvas'))
 })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class Features extends React.Component {
-  render() {
+  render () {
     return <div className='features'>
       <h2 className='features-header'>
         Why date-fns?
@@ -106,8 +106,8 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              In addition to tiny size, date-fns is fast. You can be
-              sure that your users have the best user expirience.
+              In addition to tiny size, date-fns is fast. You can be sure that
+              your users have the best user experience.
             </p>
           </div>
         </li>

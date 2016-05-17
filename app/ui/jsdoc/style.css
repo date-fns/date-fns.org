@@ -1,0 +1,43 @@
+.jsdoc-header {
+  font-family: monospace;
+}
+
+.jsdoc table {
+  background-color: #FFFFFE;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.jsdoc table:last-child {
+  margin-bottom: 0;
+}
+
+.jsdoc table th,
+.jsdoc table td {
+  border: 1px solid #B9A2B2;
+  padding: 5px 10px;
+}
+
+.jsdoc table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: #FAF6F0;
+}
+
+.jsdoc table table {
+  font-size: 14px;
+}
+
+.jsdoc table table th {
+  background-color: #FDFDFD;
+}
+
+.jsdoc table table th,
+.jsdoc table table td {
+  border: 1px solid #D6CDD3;
+  padding: 3px 6px;
+}
+
+.jsdoc-code {
+  margin-bottom: 10px;
+}

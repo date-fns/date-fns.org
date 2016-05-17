@@ -1,21 +1,21 @@
 import React from 'react'
 import Code from 'app/ui/_lib/code'
 
-export default class DocSyntax extends React.Component {
+export default class JSDocSyntax extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
     args: React.PropTypes.array
   }
 
-  render() {
+  render () {
     const {name, args} = this.props
 
     const argsString = this._calculateArgsString(args)
 
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
+    return <section>
+      <h2>
         Syntax
-      </h3>
+      </h2>
 
       <Code
         value={`${name}(${argsString})`}
@@ -27,7 +27,7 @@ export default class DocSyntax extends React.Component {
     </section>
   }
 
-  _calculateArgsString(args) {
+  _calculateArgsString (args) {
     if (!args) return ''
 
     return args
@@ -45,7 +45,7 @@ export default class DocSyntax extends React.Component {
       .result
   }
 
-  _addArgumentSyntax(argumentsString, arg, nesting, isLast) {
+  _addArgumentSyntax (argumentsString, arg, nesting, isLast) {
     if (!arg.optional && nesting > 0) {
       argumentsString += ']'.repeat(nesting) + ', '
     } else if (argumentsString !== '') {

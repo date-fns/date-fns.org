@@ -42,55 +42,56 @@
 }
 
 .features-icon {
-  width: 50px;
-  height: 50px;
+  width: 38px;
+  height: 38px;
   background-size: 40px;
-  border: 1px solid #770C56;
+  border: 1px solid rgba(119, 12, 86, 0.6);
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .features-icon.is-modular {
   background-image: url('./img/modular.svg');
-  background-size: 26px;
+  background-size: 17px;
   background-position: center 6px;
 }
 
 .features-icon.is-immutable {
   background-image: url('./img/immutable.svg');
-  background-size: 24px;
+  background-size: 17px;
   background-position: center 6px;
 }
 
 .features-icon.is-consistent {
   background-image: url('./img/consistent.svg');
-  background-size: 32px;
-  background-position: center 8px;
+  background-size: 21px;
+  background-position: center 7px;
 }
 
 .features-icon.is-reliable {
   background-image: url('./img/reliable.svg');
-  background-size: 32px;
+  background-size: 21px;
   background-position: center 6px;
 }
 
 .features-icon.is-simple {
   background-image: url('./img/simple.svg');
-  background-size: 32px;
-  background-position: center 9px;
+  background-size: 20px;
+  background-position: center 8px;
 }
 
 .features-icon.is-safe {
   background-image: url('./img/safe.svg');
-  background-size: 27px;
+  background-size: 18px;
 }
 
 .features-icon.is-fast {
   background-image: url('./img/fast.svg');
-  background-size: 22px;
-  background-position: center 9px;
+  background-size: 15px;
+  background-position: center 8px;
 }
 
 .features-content {

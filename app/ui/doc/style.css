@@ -4,91 +4,83 @@
   color: #4A3142;
   background-color: #FFFDF9;
   height: 100vh;
-}
-
-.doc-header {
-  color: #770C56;
-  font-family: monospace;
-  font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-.doc-subheader {
-  color: #770C56;
-  font-weight: 600;
   font-size: 16px;
-  margin-bottom: 10px;
+  line-height: 1.6em;
 }
 
-.doc-section {
-  margin-bottom: 20px;
-  font-size: 15px;
+.doc h1 {
+  color: #770c56;
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgba(88, 68, 82, 0.1);
 }
 
-.doc-section:last-child {
-  margin-bottom: 0;
-}
-
-.doc-description {
+.doc h2 {
   color: #4A3142;
-  font-weight: 400;
-  line-height: 22px;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  border-bottom: 1px solid rgba(88, 68, 82, 0.1);
 }
 
-.doc-description p {
+.doc h3 {
+  color: #4A3142;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.doc a {
+  color: #5D3861;
+}
+
+.doc p {
   margin-bottom: 10px;
+  max-width: 700px;
 }
 
-.doc-description p:last-child {
+.doc p:last-child {
   margin-bottom: 0;
 }
 
-.doc-description a {
-  color: #770C56;
-}
-
-.doc table {
-  background-color: #FFFFFE;
-  border-radius: 2px;
-  margin-bottom: 10px;
-}
-
-.doc table:last-child {
-  margin-bottom: 0;
-}
-
-.doc table th,
-.doc table td {
-  border: 1px solid #B9A2B2;
-  padding: 5px 10px;
-}
-
-.doc table th {
-  font-weight: 600;
-  text-align: left;
-  background-color: #FAF6F0;
-}
-
-.doc table table {
-  font-size: 14px;
-}
-
-.doc table table th {
-  background-color: #FDFDFD;
-}
-
-.doc table table th,
-.doc table table td {
-  border: 1px solid #D6CDD3;
-  padding: 3px 6px;
+.doc p:empty {
+  display: none;
 }
 
 .doc ul {
   list-style: disc;
-  margin-left: 25px;
 }
 
-.doc-code {
+.doc ul, .doc ol {
+  max-width: 700px;
+  margin-left: 25px;
   margin-bottom: 10px;
+}
+
+.doc ul p + ul, .doc ol p + ul {
+  margin-top: -10px;
+}
+
+
+.doc ul:last-child, .doc ol:last-child {
+  margin-bottom: 0;
+}
+
+.doc .CodeMirror {
+  margin-bottom: 10px;
+}
+
+.doc .CodeMirror:last-child {
+  margin-bottom: 0;
+}
+
+.doc ul .CodeMirror:last-child, .doc ol .CodeMirror:last-child {
+  margin-bottom: 10px;
+}
+
+.doc ul ul, .doc ul ol, .doc ol ol, .doc ol ul {
+  margin-bottom: 0;
 }

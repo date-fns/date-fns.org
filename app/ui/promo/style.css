@@ -55,14 +55,6 @@
   color: #FFE9C9;
 }
 
-.promo-sponsored {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 60px;
-  opacity: .4;
-}
-
 .promo-toptal_logo {
   height: 20px;
   margin-left: 5px;

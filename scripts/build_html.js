@@ -7,7 +7,9 @@ import crypto from 'crypto'
 Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
   .then(([staticMap, entriesMap, template]) => {
     const html = template({
-      staticPath(staticName) {
+      env: process.env.NODE_ENV || 'development',
+
+      staticPath (staticName) {
         const pth = staticMap[path.join(appConfig.staticPath, staticName)]
         if (!pth) {
           throw new Error(`Static file "${staticName}" is not found`)
@@ -16,7 +18,7 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
         return pth
       },
 
-      entryPath(entryName, type = 'js') {
+      entryPath (entryName, type = 'js') {
         const entry = entriesMap[entryName]
         if (!entry) {
           throw new Error(`Entry "${entry}" is not found`)
@@ -51,9 +53,9 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
     process.exit(1)
   })
 
-function getTemplate() {
+function getTemplate () {
   return new Promise((resolve, reject) => {
-    fs.readFile(path.join(process.cwd(), 'env', 'dev', 'template.ejs'), (err, contentStream) => {
+    fs.readFile(path.join(process.cwd(), 'app', 'env', 'dev', 'template.ejs'), (err, contentStream) => {
       if (err) reject(err)
       const template = ejs.compile(contentStream.toString())
       resolve(template)
@@ -61,8 +63,7 @@ function getTemplate() {
   })
 }
 
-
-function getStaticResults() {
+function getStaticResults () {
   return new Promise((resolve, reject) => {
     fs.readFile(path.join(appConfig.distPath, 'static.json'), (err, contentStream) => {
       if (err) reject(err)
@@ -72,7 +73,7 @@ function getStaticResults() {
   })
 }
 
-function getEntriesResults() {
+function getEntriesResults () {
   return new Promise((resolve, reject) => {
     fs.readFile(path.join(appConfig.distPath, 'webpack-assets.json'), (err, contentStream) => {
       if (err) {
@@ -85,7 +86,7 @@ function getEntriesResults() {
   })
 }
 
-function writeFirebaseConfig(htmlFileName) {
+function writeFirebaseConfig (htmlFileName) {
   const content = JSON.stringify(getFirebaseConfig(htmlFileName))
   return new Promise((resolve, reject) => {
     fs.writeFile(path.join(appConfig.distPath, 'firebase.json'), content, (err) => {
@@ -98,13 +99,13 @@ function writeFirebaseConfig(htmlFileName) {
   })
 }
 
-function getFirebaseConfig(htmlFileName) {
+function getFirebaseConfig (htmlFileName) {
   return {
     firebase: 'date-fns',
     public: './',
     ignore: [
-      "static.json",
-      "webpack-assets.json"
+      'static.json',
+      'webpack-assets.json'
     ],
     headers: [
       {
@@ -124,7 +125,7 @@ function getFirebaseConfig(htmlFileName) {
   }
 }
 
-function getFingerprint(str) {
+function getFingerprint (str) {
   const hash = crypto.createHash('md5')
   hash.update(str)
   return hash.digest('hex')

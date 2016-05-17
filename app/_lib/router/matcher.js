@@ -20,8 +20,8 @@ const RouterMatcher = {
    *   RouterMatcher.normalize('/')
    *   //=> '/'
    */
-  normalize(pathname) {
-    if (pathname == '/') {
+  normalize (pathname) {
+    if (pathname === '/') {
       return pathname
     } else {
       return pathname.replace(/\/$/, '')
@@ -36,7 +36,7 @@ const RouterMatcher = {
    *   RouterMatcher.join(['/', 'app/', '/notifications/'])
    *   //=> '/app/notifications'
    */
-  join(pathnames) {
+  join (pathnames) {
     const pathname = pathnames.join('/').replace(/\/{2,}/g, '/')
     return RouterMatcher.normalize(pathname)
   },
@@ -45,11 +45,11 @@ const RouterMatcher = {
    * Makes routes object flat.
    * @param {Object} routes
    */
-  flatten(routes, basePath, baseProps, parentRouteName = null) {
+  flatten (routes, basePath, baseProps, parentRouteName = null) {
     basePath = basePath || ''
     baseProps = baseProps || {}
     const flattenRoutes = flatten(routes, true)
-    const resultRoutes = flattenRoutes.reduce(function(flatRoutes, routeObj) {
+    const resultRoutes = flattenRoutes.reduce(function (flatRoutes, routeObj) {
       let flatRoutesFragment
       const path = RouterMatcher.normalize(
         RouterMatcher.join([basePath, routeObj.path])
@@ -75,7 +75,7 @@ const RouterMatcher = {
     }, {})
 
     // Matching aliases
-    flattenRoutes.forEach(function(routeObj) {
+    flattenRoutes.forEach(function (routeObj) {
       if (routeObj.alias) {
         resultRoutes[routeObj.alias].aliasPath = routeObj.path
       }
@@ -89,16 +89,16 @@ const RouterMatcher = {
    * list of params.
    * @param {string} path
    */
-  pathTestObject(path) {
+  pathTestObject (path) {
     let paramsNames = []
     const paramsCaptures = path.match(/:([^\/|$]+)/g)
     if (paramsCaptures) {
-      paramsNames = paramsCaptures.map(function(paramName) {
+      paramsNames = paramsCaptures.map(function (paramName) {
         return paramName.replace(/^:/, '')
       })
     }
 
-    const regExp = new RegExp('^' + path.replace(/:[^\/]+/g, '([^\/]+)') + '$')
+    const regExp = new RegExp('^' + path.replace(/:[^\/]+/g, '([^/]+)') + '$')
 
     return {regExp, paramsNames}
   },
@@ -107,7 +107,7 @@ const RouterMatcher = {
    * @param {Object} route
    * @param {string} pathname
    */
-  testPathnameForMatch(route, pathname) {
+  testPathnameForMatch (route, pathname) {
     let testObj = RouterMatcher.pathTestObject(route.path)
     let paramsCaptures = pathname.match(testObj.regExp)
 
@@ -119,7 +119,7 @@ const RouterMatcher = {
     if (!paramsCaptures) return
 
     const params = {}
-    paramsCaptures.slice(1).forEach(function(paramValue, index) {
+    paramsCaptures.slice(1).forEach(function (paramValue, index) {
       const paramName = testObj.paramsNames[index]
       params[paramName] = paramValue
     })
@@ -130,7 +130,7 @@ const RouterMatcher = {
    * @param {Object} routes - flat ones
    * @param {string} pathname
    */
-  matchPathname(routes, pathname) {
+  matchPathname (routes, pathname) {
     const normalizedPathname = RouterMatcher.normalize(pathname)
     const routesNames = Object.keys(routes)
     const notFoundRoute = routes['not-found']
@@ -157,7 +157,7 @@ const RouterMatcher = {
    * @param {string} path
    * @returns {Object} route data
    */
-  matchPath(routes, path) {
+  matchPath (routes, path) {
     if (!path) return null
     const pathObj = RouterMatcher.parsePath(path)
     const routeData = RouterMatcher.matchPathname(routes, pathObj.pathname)
@@ -170,11 +170,11 @@ const RouterMatcher = {
    * @param {string} search string
    * @returns {Object}
    */
-  parseSearch(search) {
+  parseSearch (search) {
     const searchObj = {}
     const searchPairs = search.replace(/^\?/, '').split('&')
 
-    searchPairs.forEach(function(searchPop) {
+    searchPairs.forEach(function (searchPop) {
       const hasEqualSign = /=/.test(searchPop)
       const searchPopArr = searchPop.split('=')
       const key = decodeURIComponent(searchPopArr[0])
@@ -207,7 +207,7 @@ const RouterMatcher = {
    * @param {string} path
    * @returns {Object}
    */
-  parsePath(path = '') {
+  parsePath (path = '') {
     const pathArr = path.split('?')
     const pathname = RouterMatcher.normalize(pathArr[0])
     const search = pathArr[1] ? ('?' + pathArr[1]) : ''
@@ -218,4 +218,3 @@ const RouterMatcher = {
 }
 
 module.exports = RouterMatcher
-

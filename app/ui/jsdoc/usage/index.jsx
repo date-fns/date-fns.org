@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
 import {trackAction} from 'app/acts/tracking_acts'
 
-export default class DocUsage extends React.Component {
+export default class JSDocUsage extends React.Component {
   static propTypes = {
     name: React.PropTypes.string
   }
@@ -12,53 +12,53 @@ export default class DocUsage extends React.Component {
     source: 'commonjs'
   }
 
-  componentWillMount() {
-    const source = localStorage.getItem('usageSource')
+  componentWillMount () {
+    const source = window.localStorage.getItem('usageSource')
 
     if (source) {
       this.setState({source})
     } else {
-      localStorage.setItem('usageSource', 'commonjs')
+      window.localStorage.setItem('usageSource', 'commonjs')
     }
   }
 
-  render() {
-    return <section className='doc-section'>
-      <h3 className='doc-subheader'>
+  render () {
+    return <section>
+      <h2>
         Usage
-      </h3>
+      </h2>
 
-      <ul className='doc_usage-options'>
-        <li className='doc_usage-option'>
+      <ul className='jsdoc_usage-options'>
+        <li className='jsdoc_usage-option'>
           <a
             href='#'
             onClick={this._changeSource.bind(this, 'commonjs')}
-            className={classnames('doc_usage-option_link', {
-              'is-current': this.state.source == 'commonjs'
+            className={classnames('jsdoc_usage-option_link', {
+              'is-current': this.state.source === 'commonjs'
             })}
           >
             CommonJS
           </a>
         </li>
 
-        <li className='doc_usage-option'>
+        <li className='jsdoc_usage-option'>
           <a
             href='#'
             onClick={this._changeSource.bind(this, 'umd')}
-            className={classnames('doc_usage-option_link', {
-              'is-current': this.state.source == 'umd'
+            className={classnames('jsdoc_usage-option_link', {
+              'is-current': this.state.source === 'umd'
             })}
           >
             UMD
           </a>
         </li>
 
-        <li className='doc_usage-option'>
+        <li className='jsdoc_usage-option'>
           <a
             href='#'
             onClick={this._changeSource.bind(this, 'es2015')}
-            className={classnames('doc_usage-option_link', {
-              'is-current': this.state.source == 'es2015'
+            className={classnames('jsdoc_usage-option_link', {
+              'is-current': this.state.source === 'es2015'
             })}
           >
             ES 2015
@@ -70,10 +70,10 @@ export default class DocUsage extends React.Component {
     </section>
   }
 
-  _renderUsage() {
+  _renderUsage () {
     const {name} = this.props
 
-    switch(this.state.source) {
+    switch (this.state.source) {
       case 'commonjs':
         return <Code
           value={`var ${name} = require('date-fns/${this._convertToUnderscore(name)}')`}
@@ -103,14 +103,14 @@ export default class DocUsage extends React.Component {
     }
   }
 
-  _changeSource(source, e) {
+  _changeSource (source, e) {
     trackAction('Changed Usage Source', {source})
     e.preventDefault()
     this.setState({source})
-    localStorage.setItem('usageSource', source)
+    window.localStorage.setItem('usageSource', source)
   }
 
-  _convertToUnderscore(string) {
+  _convertToUnderscore (string) {
     return string.replace(/ISO|[A-Z]/g, (letter) => '_' + letter.toLowerCase())
   }
 }

@@ -1,5 +1,16 @@
 @import 'reset.css';
 
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+    background: #E6E0E6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #770C56;
+    border-radius: 5px;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -25,7 +36,7 @@ code {
   margin: 0;
   font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
   background-color: #FAF6F0;
-  border-radius: 3px
+  border-radius: 3px;
 }
 
 code:before, code:after {
@@ -59,8 +70,13 @@ code:before, code:after {
   border-right: 1px solid #E6E0E6;
 }
 
+.ui-docs {
+  flex-shrink: 0;
+}
+
 .ui-doc {
   margin-right: -66.6%;
   flex-basis: 66.6%;
   border-left: 1px solid #E6E0E6;
+  overflow: auto;
 }

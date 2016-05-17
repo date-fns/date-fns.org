@@ -1,15 +1,19 @@
 sudo: false
+
 language: node_js
 node_js:
   - 4.2
+
 script:
-  - npm test
+  - make test-ci
+
 deploy:
   provider: script
   skip_cleanup: true
   script: npm run deploy
   on:
     branch: master
+
 cache:
   directories:
     - node_modules

@@ -1,11 +1,11 @@
 #!/bin/sh
 
-env INTEGRATION_TESTS=true npm start > tmp/server.log &
+env SYSTEM_TESTS=true npm start > tmp/server.log &
 
 # Wait for server initialization
-sleep 2
+sleep 5
 
-npm run test-casper
+node_modules/.bin/casperjs test test/system.js
 RESULT=$?
 
 pkill -QUIT INTEGRATION_TESTS_SERVER

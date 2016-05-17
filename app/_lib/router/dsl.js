@@ -12,10 +12,10 @@ const RouterDSL = {
    * @param {Object} options
    * @param {Object[]} routes
    */
-  routes(options) {
+  routes (options) {
     const routesData = RouterDSL.extractProps(options)
     const routes = flatten(Array.prototype.slice.call(arguments, 1), true)
-    return routes.map(function(route) {
+    return routes.map(function (route) {
       return merge(cloneDeep(routesData), route)
     })
   },
@@ -24,7 +24,7 @@ const RouterDSL = {
    * @param {Object} options
    * @param {Object[]} nestedRoutes
    */
-  route(options) {
+  route (options) {
     options = options || {}
     const nestedRoutes = Array.prototype.slice.call(arguments, 1)
     return merge({nestedRoutes}, RouterDSL.extractProps(options))
@@ -33,7 +33,7 @@ const RouterDSL = {
   /**
    * @param {Object} options
    */
-  extractProps(options) {
+  extractProps (options) {
     const extracted = pick(options, ['name', 'path'])
     extracted.props = omit(options, ['name', 'path'])
     return extracted

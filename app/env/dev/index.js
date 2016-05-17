@@ -20,13 +20,18 @@ app
   .use('/assets', express.static(appConfig.staticPath))
   .get('*', (req, res) => {
     fs.readFile(path.join(__dirname, 'template.ejs'), (err, templateStream) => {
+      if (err) {
+        console.error(err)
+        process.exit(1)
+      }
+
       const template = ejs.compile(templateStream.toString())
       const html = template({
-        staticPath(staticName) {
+        staticPath (staticName) {
           return `/assets${staticName}`
         },
 
-        entryPath(entryName, type = 'js') {
+        entryPath (entryName, type = 'js') {
           return `/assets/${type}/${entryName}.${type}`
         },
 
@@ -37,10 +42,10 @@ app
   })
 
 const server = app.listen(
-  process.env.INTEGRATION_TESTS ? 5001 : process.env.APP_PORT || DEFAULT_PORT
+  process.env.SYSTEM_TESTS ? 5001 : process.env.APP_PORT || DEFAULT_PORT
 )
 
-if (process.env.INTEGRATION_TESTS) {
+if (process.env.SYSTEM_TESTS) {
   process.title = 'INTEGRATION_TESTS_SERVER'
   process.on('SIGQUIT', () => {
     server.close()

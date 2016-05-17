@@ -14,7 +14,7 @@ const RouterHistory = {
    * Push state with given path.
    * @param {string} path
    */
-  push(path) {
+  push (path) {
     pushState(null, null, path)
     onChange(path, 'push')
   },
@@ -23,7 +23,7 @@ const RouterHistory = {
    * Replace state with given path.
    * @param {string} path
    */
-  replace(path) {
+  replace (path) {
     replaceState(null, null, path)
     onChange(path, 'replace')
   },
@@ -31,15 +31,15 @@ const RouterHistory = {
   /**
    * popstate listener.
    */
-  onPopState(e) {
-    onChange(RouterHistory.currentPath(), typeof e == 'undefined' ? 'synthetic' : 'pop')
+  onPopState (e) {
+    onChange(RouterHistory.currentPath(), typeof e === 'undefined' ? 'synthetic' : 'pop')
   },
 
   /**
    * @param {Function} cb callback
    * @returns {Function} that removes event listener.
    */
-  start(cb) {
+  start (cb) {
     onChange = cb
     addEventListener('popstate', RouterHistory.onPopState)
     RouterHistory.onPopState()
@@ -48,7 +48,7 @@ const RouterHistory = {
   /**
    * Removes history listener
    */
-  stop() {
+  stop () {
     onChange = undefined
     removeEventListener('popstate', RouterHistory.onPopState)
   },
@@ -56,10 +56,9 @@ const RouterHistory = {
   /**
    * @returns {string} current path
    */
-  currentPath() {
+  currentPath () {
     return location.pathname + location.search
   }
 }
 
 module.exports = RouterHistory
-

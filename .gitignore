@@ -4,3 +4,5 @@ dist
 firebase-debug.log
 .envrc
 tmp
+tags
+.tern-port
