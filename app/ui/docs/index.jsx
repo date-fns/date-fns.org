@@ -103,7 +103,7 @@ export default class Docs extends React.Component {
           }
         )}
         onClick={this._openDoc.bind(this, doc.urlId)}
-        key={doc.id}
+        key={doc.urlId}
       >
         <div className='docs-item_content'>
           <h4 className='docs-item_header'>

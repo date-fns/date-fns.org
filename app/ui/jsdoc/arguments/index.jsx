@@ -9,8 +9,9 @@ export default class JSDocArguments extends React.Component {
     if (!this.props.args) return null
 
     return <section>
-      <h2>
+      <h2 id='arguments'>
         Arguments
+        <a href='#arguments' className='doc-header_link'>#</a>
       </h2>
 
       <table>

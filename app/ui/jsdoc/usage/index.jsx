@@ -24,8 +24,9 @@ export default class JSDocUsage extends React.Component {
 
   render () {
     return <section>
-      <h2>
+      <h2 id='usage'>
         Usage
+        <a href='#usage' className='doc-header_link'>#</a>
       </h2>
 
       <ul className='jsdoc_usage-options'>
