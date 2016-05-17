@@ -41,6 +41,7 @@ export default class Markdown extends React.Component {
           extraChildren.push(<a
             href={`#${headerLinkId}`}
             className='doc-header_link'
+            key={`${index}-2`}
           >
               #
           </a>)
@@ -62,6 +63,7 @@ export default class Markdown extends React.Component {
         return <MarkdownCode
           value={token.content.trim()}
           language={token.language}
+          key={index}
         />
     }
   }
