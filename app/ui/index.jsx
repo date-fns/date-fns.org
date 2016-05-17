@@ -54,7 +54,8 @@ export default class Ui extends React.Component {
   }
 
   _currentDocId () {
-    return this.props.routeData.params.docId
+    const {docId} = this.props.routeData.params
+    return docId ? decodeURI(docId) : undefined
   }
 
   _firstDocId () {
