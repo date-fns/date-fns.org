@@ -69,14 +69,25 @@ export default class Markdown extends React.Component {
   }
 
   _getUrlIdFromText (token) {
-    const textContent = token.children.reduce((acc, token) => {
-      return acc.concat(token.type === 'text' ? token.content : [])
-    }, []).join(' ')
-
-    return textContent
+    return this._getTextFromToken(token)
+      .join(' ')
       .toLowerCase()
       .replace(/[^\w\d\.]/g, '-')
       .replace(/-+/g, '-')
       .replace(/(^-|-$)/g, '')
+  }
+
+  _getTextFromToken (token) {
+    if (token.type === 'text') {
+      return [token.content]
+    } else {
+      return token.children.reduce((acc, token) => {
+        if (token.type === 'text') {
+          return acc.concat(token.content)
+        } else {
+          return acc.concat(token.children.map(this._getUrlIdFromText.bind(this)))
+        }
+      }, [])
+    }
   }
 }
