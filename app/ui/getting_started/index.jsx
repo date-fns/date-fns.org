@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
 import {trackAction} from 'app/acts/tracking_acts'
+import version from 'app/_lib/version'
 
 const NPM_INSTALL_EXAMPLE = 'npm install date-fns --save'
 const NPM_SIMPLE_EXAMPLE = `var isToday = require('date-fns/is_today')
@@ -11,6 +12,11 @@ isToday(new Date())
 const BOWER_INSTALL_EXAMPLE = 'bower install date-fns'
 const BOWER_SIMPLE_EXAMPLE = `dateFns.isToday(new Date())
 //=> true`
+
+const CDN_INSTALL_EXAMPLE = `<script src="http://cdn.date-fns.org/v${version}/date_fns.min.js"></script>`
+const CDN_SIMPLE_EXAMPLE = `dateFns.isToday(new Date())
+//=> true`
+const CDN_DOWNLOAD_LINK = `http://cdn.date-fns.org/v${version}/date_fns.min.js`
 
 export default class GettingStarted extends React.Component {
   state = {
@@ -98,10 +104,22 @@ export default class GettingStarted extends React.Component {
           <h4 className='getting_started-instruction_header'>
             Installation
           </h4>
+          <Code value={CDN_INSTALL_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
 
+          <h4 className='getting_started-instruction_header'>
+            Example
+          </h4>
           <div id='qa-cdn'>
-            CDN
+            <Code value={CDN_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
           </div>
+
+          <a
+            href={CDN_DOWNLOAD_LINK}
+            className='getting_started-download'
+            target='_blank'
+          >
+            Download Library
+          </a>
         </div>
     }
   }
