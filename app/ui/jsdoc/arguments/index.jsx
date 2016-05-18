@@ -6,7 +6,7 @@ export default class JSDocArguments extends React.Component {
   }
 
   render () {
-    if (!this.props.args) return null
+    if (!this.props.args || this.props.args.length === 0) return null
 
     return <section>
       <h2 id='arguments'>
