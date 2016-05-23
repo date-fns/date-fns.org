@@ -44,7 +44,7 @@
     "enzyme": "^2.1.0",
     "express": "^4.13.3",
     "file-loader": "^0.8.4",
-    "firebase-tools": "^2.2.0",
+    "firebase-tools": "^3.0.0",
     "jsctags": "^4.0.0",
     "json-loader": "^0.5.3",
     "karma": "^0.13.21",
