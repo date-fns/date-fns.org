@@ -7,7 +7,7 @@
     "start": "make start",
     "build": "npm run build-bundles && npm run build-html",
     "build-bundles": "rm -rf dist && env NODE_ENV=production babel-node ./node_modules/.bin/webpack --config ./config/webpack.js",
-    "build-html": "babel-node scripts/build_html",
+    "build-html": "env NODE_ENV=production babel-node scripts/build_html",
     "deploy": "./scripts/deploy.sh"
   },
   "repository": {
