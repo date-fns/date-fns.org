@@ -92,7 +92,7 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              It doesn't extend base classes.
+              It doesn't extend core objects.
             </p>
           </div>
         </li>
