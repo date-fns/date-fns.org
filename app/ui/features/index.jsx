@@ -33,7 +33,7 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              Build on pure functions, date-fns always returns a new date
+              Build using pure functions, as date-fns always returns a new date
               instead of changing the passed one.
             </p>
           </div>
