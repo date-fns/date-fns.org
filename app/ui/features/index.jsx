@@ -33,7 +33,7 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              Build on pure functions, date-fns always returns a new date
+              Build using pure functions, as date-fns always returns a new date
               instead of changing the passed one.
             </p>
           </div>
@@ -77,7 +77,7 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              The best API is API that doesn't exists. With date-fns you
+              The best API is an API that doesn't exists. With date-fns you
               always have one function that does one thing.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              It doesn't extend base classes.
+              It doesn't extend core objects.
             </p>
           </div>
         </li>
@@ -107,7 +107,7 @@ export default class Features extends React.Component {
 
             <p className='features-description'>
               In addition to tiny size, date-fns is fast. You can be sure that
-              your users have the best user experience.
+              your users will have the best user experience.
             </p>
           </div>
         </li>
