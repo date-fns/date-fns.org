@@ -13,6 +13,6 @@ routes.start((routeData, routeEvenType) => {
   }
 
   ReactDOM.render(<Ui routeData={routeData} />, document.getElementById('canvas'))
-
-  window.dateFns = dateFns
 })
+
+window.dateFns = dateFns
