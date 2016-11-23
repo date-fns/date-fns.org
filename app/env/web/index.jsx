@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import routes from 'app/routes'
 import Ui from 'app/ui'
 import {trackPageView} from 'app/acts/tracking_acts'
+import dateFns from 'date-fns'
 
 routes.start((routeData, routeEvenType) => {
   // Ignore initial update event, since it's already handled by Segment
@@ -12,4 +13,6 @@ routes.start((routeData, routeEvenType) => {
   }
 
   ReactDOM.render(<Ui routeData={routeData} />, document.getElementById('canvas'))
+
+  window.dateFns = dateFns
 })
