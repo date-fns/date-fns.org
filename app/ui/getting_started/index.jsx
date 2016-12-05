@@ -49,18 +49,6 @@ export default class GettingStarted extends React.Component {
             Bower
           </a>
         </li>
-
-        <li className='getting_started-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'cdn')}
-            className={classnames('getting_started-option_link', {
-              'is-current': this.state.source === 'cdn'
-            })}
-          >
-            CDN & Download
-          </a>
-        </li>
       </ul>
 
       {this._renderInstruction()}
