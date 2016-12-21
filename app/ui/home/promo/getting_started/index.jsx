@@ -9,6 +9,11 @@ const NPM_SIMPLE_EXAMPLE = `var isToday = require('date-fns/is_today')
 isToday(new Date())
 //=> true`
 
+const YARN_INSTALL_EXAMPLE = 'yarn add date-fns'
+const YARN_SIMPLE_EXAMPLE = `var isToday = require('date-fns/is_today')
+isToday(new Date())
+//=> true`
+
 const BOWER_INSTALL_EXAMPLE = 'bower install date-fns'
 const BOWER_SIMPLE_EXAMPLE = `dateFns.isToday(new Date())
 //=> true`
@@ -41,6 +46,18 @@ export default class GettingStarted extends React.Component {
         <li className='getting_started-option'>
           <a
             href='#'
+            onClick={this._changeSource.bind(this, 'yarn')}
+            className={classnames('getting_started-option_link', {
+              'is-current': this.state.source === 'yarn'
+            })}
+          >
+            Yarn
+          </a>
+        </li>
+
+        <li className='getting_started-option'>
+          <a
+            href='#'
             onClick={this._changeSource.bind(this, 'bower')}
             className={classnames('getting_started-option_link', {
               'is-current': this.state.source === 'bower'
@@ -49,9 +66,25 @@ export default class GettingStarted extends React.Component {
             Bower
           </a>
         </li>
+
+        <li className='getting_started-option'>
+          <a
+            href='#'
+            onClick={this._changeSource.bind(this, 'cdn')}
+            className={classnames('getting_started-option_link', {
+              'is-current': this.state.source === 'cdn'
+            })}
+          >
+            CDN & Download
+          </a>
+        </li>
       </ul>
 
       {this._renderInstruction()}
+
+      <div className='getting_started-link_wrapper'>
+        <a className='getting_started-link' href='#'>Documentation</a>
+      </div>
     </div>
   }
 
@@ -69,6 +102,21 @@ export default class GettingStarted extends React.Component {
           </h4>
           <div id='qa-npm'>
             <Code value={NPM_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+          </div>
+        </div>
+
+      case 'yarn':
+        return <div className='getting_started-instruction' key='yarn'>
+          <h4 className='getting_started-instruction_header'>
+            Installation
+          </h4>
+          <Code value={YARN_INSTALL_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+
+          <h4 className='getting_started-instruction_header'>
+            Example
+          </h4>
+          <div id='qa-yarn'>
+            <Code value={YARN_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
           </div>
         </div>
 

@@ -5,17 +5,17 @@
   background-image: url('./img/background.png');
   background-size: cover;
   background-position: top center;
-  height: 100vh;
   overflow-y: auto;
 }
 
 .promo-inner {
   background: linear-gradient(rgba(118, 10, 61, 0.7), #4c042b);
   padding: 30px;
+  align-items: center;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
 }
 
 .promo-logo {
@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   height: 33px;
+  margin-top: 50px;
 }
 
 .promo-logo_image {
@@ -53,22 +54,19 @@
   text-align: center;
   margin-top: 10px;
   color: #FFE9C9;
+  max-width: 500px;
 }
 
-.promo-toptal_logo {
-  height: 20px;
-  margin-left: 5px;
-}
-
-.promo-links {
+.promo-getting_started {
   display: flex;
+  width: 100%;
   justify-content: center;
 }
 
-.promo-github_logo {
-  opacity: .5;
+.promo-getting_started > :first-child {
+  flex-basis: 600px;
 }
 
-.promo-github_logo:hover {
-  opacity: .8;
+.promo-navigation {
+  margin: 10px 0 50px;
 }

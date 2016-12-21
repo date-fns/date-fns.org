@@ -1,6 +1,5 @@
 .getting_started {
   margin-top: 60px;
-  min-height: 300px;
 }
 
 .getting_started-options {
@@ -37,8 +36,9 @@
 
 .getting_started-instruction_header {
   color: #FFF8C5;
-  margin: 15px 0 5px;
+  margin: 15px 0 10px;
   font-size: 14px;
+  font-weight: 300;
 }
 
 .getting_started-instruction_header:first-child {
@@ -56,6 +56,7 @@
   font-size: 13px;
 }
 
+.getting_started-link,
 .getting_started-download {
   margin-top: 15px;
   display: block;
@@ -65,4 +66,16 @@
   text-decoration: none;
   color: #FFF;
   border-radius: 3px;
+}
+
+.getting_started-link_wrapper {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.getting_started-link {
+  width: 200px;
+  font-size: 16px;
+  padding: 15px;
 }

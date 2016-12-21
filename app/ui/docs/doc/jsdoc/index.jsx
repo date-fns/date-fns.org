@@ -1,9 +1,9 @@
 import React from 'react'
 import Code from 'app/ui/_lib/code'
 import Markdown from 'app/ui/_lib/markdown'
-import JSDocUsage from 'app/ui/jsdoc/usage'
-import JSDocSyntax from 'app/ui/jsdoc/syntax'
-import JSDocArguments from 'app/ui/jsdoc/arguments'
+import JSDocUsage from './usage'
+import JSDocSyntax from './syntax'
+import JSDocArguments from './arguments'
 
 export default class JSDoc extends React.Component {
   static propTypes = {

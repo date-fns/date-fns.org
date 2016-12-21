@@ -1,0 +1,35 @@
+.sponsorship {
+  width: 100%;
+  padding: 30px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.sponsorship-header {
+  color: #770C56;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.sponsorship-letter {
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #4C193C;
+  max-width: 500px;
+}
+
+.sponsorship-cta {
+  margin-top: 30px;
+  display: block;
+  background: #8C1B54;
+  text-align: center;
+  text-decoration: none;
+  color: #FFF;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 15px
+}
+

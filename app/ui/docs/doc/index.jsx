@@ -1,6 +1,6 @@
 import React from 'react'
-import JSDoc from 'app/ui/jsdoc'
-import MarkdownDoc from 'app/ui/markdown_doc'
+import JSDoc from './jsdoc'
+import MarkdownDoc from './markdown_doc'
 import docs from 'app/_lib/docs'
 
 export default class Doc extends React.Component {

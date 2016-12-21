@@ -1,0 +1,48 @@
+.home > *:nth-child(odd) {
+  background-color: #FFFBF5;
+}
+
+.home > *:nth-child(even) {
+  background-color: #fffdfa;
+}
+
+.home-promo,
+.home-features {
+  display: flex;
+}
+
+.home-promo,
+.home-features,
+.home-examples,
+.home-testimonials,
+.home-contributors,
+.home-sponsorship {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-features,
+.home-examples,
+.home-testimonials,
+.home-contributors {
+  border-bottom: 1px solid #e4e4dd;
+}
+
+.home-features {
+}
+
+.home-testimonials {
+}
+
+.home-contributors {
+}
+
+.home-features_inner,
+.home-examples_inner,
+.home-testimonials_inner,
+.home-contributors_inner,
+.home-sponsorship_inner {
+  max-width: 1200px;
+}
