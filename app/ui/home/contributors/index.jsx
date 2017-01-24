@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import HomeBlock, {Link} from '../_lib/block'
 import {fetchContributors} from 'app/acts/contributors'
 
 export default class Contributors extends React.Component {
@@ -11,13 +12,9 @@ export default class Contributors extends React.Component {
   }
 
   render () {
-    return <div className='contributors'>
-      <h2 className='contributors-header'>
-        Contributors
-      </h2>
-
+    return <HomeBlock header='Contributors'>
       {this._renderContent()}
-    </div>
+    </HomeBlock>
   }
 
   _renderContent () {
@@ -37,12 +34,14 @@ export default class Contributors extends React.Component {
     const {contributors} = this.props
     return <ol className='contributors-list'>
       {contributors.map(contributor => <li className='contributors-item' key={contributor.get('login')}>
-        <a className='contributors-item_link' href={contributor.get('url')} title={contributor.get('contributions')}>
-          <img className='contributors-avatar' src={contributor.get('avatar_url')} alt={`@${contributor.get('login')}'s avatar`} />
-          <span className='contributors-name'>
-            @{contributor.get('login')}
+        <Link href={contributor.get('url')} title={contributor.get('contributions')}>
+          <span className='contributors-link_content'>
+            <img className='contributors-avatar' src={contributor.get('avatar_url')} alt={`@${contributor.get('login')}'s avatar`} />
+            <span className='contributors-name'>
+              @{contributor.get('login')}
+            </span>
           </span>
-        </a>
+        </Link>
       </li>)}
     </ol>
   }

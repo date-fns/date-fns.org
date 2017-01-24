@@ -1,0 +1,30 @@
+.i18n-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -1.2rem;
+}
+
+.i18n-spinner {
+  font-size: 5rem;
+  height: 5rem;
+  line-height: 1.1;
+}
+
+.i18n-flags {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+}
+
+.i18n-locales {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 40rem;
+  margin: 1rem -.5rem -.5rem
+}
+
+.i18n-locale {
+  margin: 0 .5rem .5rem
+}

@@ -1,12 +1,9 @@
 import React from 'react'
+import HomeBlock from '../_lib/block'
 
 export default class Features extends React.Component {
   render () {
-    return <div className='features'>
-      <h2 className='features-header'>
-        Why date-fns?
-      </h2>
-
+    return <HomeBlock header='Why date-fns?'>
       <ol className='features-list'>
         <li className='features-item'>
           <div className='features-icon is-modular' />
@@ -112,6 +109,6 @@ export default class Features extends React.Component {
           </div>
         </li>
       </ol>
-    </div>
+    </HomeBlock>
   }
 }

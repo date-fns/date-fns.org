@@ -7,7 +7,7 @@ import Ui from 'app/ui'
 import {trackPageView} from 'app/acts/tracking_acts'
 import dateFns from 'date-fns'
 import {loop, act} from 'enso'
-
+import version from 'app/_lib/version'
 
 routes.start((routeData, routeEvenType) => {
   // Ignore initial update event, since it's already handled by Segment
@@ -18,7 +18,7 @@ routes.start((routeData, routeEvenType) => {
   act(state => state.set('routeData', I.fromJS(routeData)))
 })
 
-loop(I.Map(), (state, prevState) => {
+loop(I.fromJS({version, locales: I.Map()}), (state, prevState) => {
   ReactDOM.render(<Ui state={state} />, document.getElementById('canvas'))
 })
 

@@ -16,6 +16,10 @@ export default new Router([
             name: 'doc'
           }
         ]
+      },
+      {
+        path: '/perf',
+        name: 'perf'
       }
     ]
   }

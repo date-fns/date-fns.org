@@ -3,6 +3,7 @@ require.context('!!static-file!./static', true, /.+/)
 import React from 'react'
 import Home from 'app/ui/home'
 import Docs from 'app/ui/docs'
+import Perf from 'app/ui/perf'
 
 export default class Ui extends React.Component {
   static propTypes = {
@@ -26,6 +27,8 @@ export default class Ui extends React.Component {
       case 'docs':
       case 'doc':
         return <Docs docId={this._currentDocId()} />
+      case 'perf':
+        return <Perf />
     }
   }
 

@@ -1,18 +1,3 @@
-.contributors {
-  width: 100%;
-  padding: 30px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.contributors-header {
-  color: #770C56;
-  font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
 .contributors-list {
   color: #4A3142;
   margin-top: 15px;
@@ -29,12 +14,10 @@
   flex-shrink: 0;
 }
 
-.contributors-item_link {
+.contributors-link_content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: #4C193C;
 }
 
 .contributors-item:last-child {

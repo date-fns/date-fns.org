@@ -1,0 +1,28 @@
+.perf-row {
+  position: relative;
+  display: flex;
+  height: 20px;
+}
+
+.perf-fn {
+  flex-basis: 20%;
+  padding-right: .5rem;
+  text-align: right;
+}
+
+.perf-bars {
+  flex-basis: 80%;
+}
+
+.perf-bar {
+  position: absolute;
+  height: 20px;
+}
+
+.perf-bar.is-date_fns {
+  background-color: #9a0f7f;
+}
+
+.perf-bar.is-moment {
+  border-right: 2px solid #61b2a7;
+}
