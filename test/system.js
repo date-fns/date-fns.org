@@ -2,7 +2,7 @@
 
 casper.test.begin('Getting Started', function (test) {
   casper
-    .start('http://localhost:5001')
+    .start('http://localhost:6001')
     .then(clear)
     .then(function () {
       test.assertVisible('#qa-npm')
@@ -25,11 +25,11 @@ casper.test.begin('Getting Started', function (test) {
 
 casper.test.begin('Docs', function (test) {
   casper
-    .start('http://localhost:5001')
+    .start('http://localhost:6001')
     .then(clear)
     .then(function () {
       this.click('.docs-category:nth-child(2) .docs-item:nth-child(1)')
-      test.assertUrlMatch(/^http:\/\/localhost:5001\/docs\//)
+      test.assertUrlMatch(/^http:\/\/localhost:6001\/docs\//)
       test.assertExists('.ui.is-collapsed')
     })
     .then(function () {
@@ -50,7 +50,7 @@ casper.test.begin('Docs', function (test) {
     })
     .then(function () {
       this.click('img.docs-logo_image')
-      test.assertUrlMatch(/^http:\/\/localhost:5001\/$/)
+      test.assertUrlMatch(/^http:\/\/localhost:6001\/$/)
       test.assertDoesntExist('.ui.is-collapsed')
     })
     .run(function () {
@@ -60,7 +60,7 @@ casper.test.begin('Docs', function (test) {
 
 casper.test.begin('Search', function (test) {
   casper
-    .start('http://localhost:5001')
+    .start('http://localhost:6001')
     .then(clear)
     .then(function () {
       this.fillSelectors('div.docs-search', {'input[class="docs-search_field"]': 'isAfter'})

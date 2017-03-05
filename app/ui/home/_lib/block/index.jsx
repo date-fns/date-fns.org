@@ -16,13 +16,13 @@ export default class HomeBlock extends React.Component {
   }
 
   render () {
-    const {header, subHeader, children} = this.props
+    const {header, subHeader, action, actionHref, children} = this.props
 
     return <div className='home_block'>
       <div className='home_block-inner'>
-        <h2 className='home_block-header'>
+        {header && <h2 className='home_block-header'>
           {header}
-        </h2>
+        </h2>}
 
         {subHeader && <h3 className='home_block-sub_header'>
           {subHeader}
@@ -32,17 +32,11 @@ export default class HomeBlock extends React.Component {
           {children}
         </div>
 
-        {this._renderAction()}
+        {action && <a href={actionHref} className='home_block-action'>
+          {action}
+        </a>}
       </div>
     </div>
-  }
-
-  _renderAction () {
-    const {action, actionHref} = this.props
-    if (!action) return
-    return <a href={actionHref} className='home_block-action'>
-      {action}
-    </a>
   }
 }
 

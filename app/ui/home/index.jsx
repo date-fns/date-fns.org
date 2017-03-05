@@ -7,6 +7,7 @@ import Testimonials from './testimonials'
 import Contributors from './contributors'
 import Sponsorship from './sponsorship'
 import Users from './users'
+import Footer from './footer'
 
 export default class Home extends React.Component {
   static propTypes = {
@@ -24,6 +25,7 @@ export default class Home extends React.Component {
       <Contributors contributors={state.get('contributors')} />
       <Sponsorship />
       <Users />
+      <Footer />
     </div>
   }
 }
