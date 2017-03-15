@@ -8,6 +8,9 @@ import {trackPageView} from 'app/acts/tracking_acts'
 import dateFns from 'date-fns'
 import {loop, act} from 'enso'
 import version from 'app/_lib/version'
+import {subscribeToVersions} from '../../acts/versions'
+
+//subscribeToVersions()
 
 routes.start((routeData, routeEvenType) => {
   // Ignore initial update event, since it's already handled by Segment
@@ -22,4 +25,5 @@ loop(I.fromJS({version, locales: I.Map()}), (state, prevState) => {
   ReactDOM.render(<Ui state={state} />, document.getElementById('canvas'))
 })
 
+// TODO: Load it asynchronously
 window.dateFns = dateFns

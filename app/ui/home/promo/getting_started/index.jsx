@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
+import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
 import version from 'app/_lib/version'
 
@@ -24,68 +25,92 @@ const CDN_SIMPLE_EXAMPLE = `dateFns.isToday(new Date())
 const CDN_DOWNLOAD_LINK = `http://cdn.date-fns.org/v${version}/date_fns.min.js`
 
 export default class GettingStarted extends React.Component {
+  static propTypes = {
+    gettingStarted: PropTypes.object
+  }
+
   state = {
     source: 'npm'
   }
 
   render () {
+    const {gettingStarted} = this.props
+
     return <div className='getting_started'>
-      <ul className='getting_started-options'>
-        <li className='getting_started-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'npm')}
-            className={classnames('getting_started-option_link', {
-              'is-current': this.state.source === 'npm'
-            })}
-          >
-            npm
-          </a>
-        </li>
-
-        <li className='getting_started-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'yarn')}
-            className={classnames('getting_started-option_link', {
-              'is-current': this.state.source === 'yarn'
-            })}
-          >
-            Yarn
-          </a>
-        </li>
-
-        <li className='getting_started-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'bower')}
-            className={classnames('getting_started-option_link', {
-              'is-current': this.state.source === 'bower'
-            })}
-          >
-            Bower
-          </a>
-        </li>
-
-        <li className='getting_started-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'cdn')}
-            className={classnames('getting_started-option_link', {
-              'is-current': this.state.source === 'cdn'
-            })}
-          >
-            CDN & Download
-          </a>
-        </li>
-      </ul>
-
-      {this._renderInstruction()}
+      {this._renderContent()}
 
       <div className='getting_started-link_wrapper'>
-        <a className='getting_started-link' href='#'>Documentation</a>
+        <Link
+          name='doc'
+          params={{docId: 'Getting-Started'}}
+          className='getting_started-link'
+        >
+          Documentation
+        </Link>
       </div>
     </div>
+  }
+
+  _renderContent () {
+    const {gettingStarted} = this.props
+
+    if (gettingStarted) {
+      return <div>
+        <ul className='getting_started-options'>
+          <li className='getting_started-option'>
+            <a
+              href='#'
+              onClick={this._changeSource.bind(this, 'npm')}
+              className={classnames('getting_started-option_link', {
+                'is-current': this.state.source === 'npm'
+              })}
+            >
+              npm
+            </a>
+          </li>
+
+          <li className='getting_started-option'>
+            <a
+              href='#'
+              onClick={this._changeSource.bind(this, 'yarn')}
+              className={classnames('getting_started-option_link', {
+                'is-current': this.state.source === 'yarn'
+              })}
+            >
+              Yarn
+            </a>
+          </li>
+
+          <li className='getting_started-option'>
+            <a
+              href='#'
+              onClick={this._changeSource.bind(this, 'bower')}
+              className={classnames('getting_started-option_link', {
+                'is-current': this.state.source === 'bower'
+              })}
+            >
+              Bower
+            </a>
+          </li>
+
+          <li className='getting_started-option'>
+            <a
+              href='#'
+              onClick={this._changeSource.bind(this, 'cdn')}
+              className={classnames('getting_started-option_link', {
+                'is-current': this.state.source === 'cdn'
+              })}
+            >
+              CDN & Download
+            </a>
+          </li>
+        </ul>
+
+        {this._renderInstruction()}
+      </div>
+    } else {
+      return <div className='getting_started-loading'>Loading</div>
+    }
   }
 
   _renderInstruction () {

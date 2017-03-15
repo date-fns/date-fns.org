@@ -17,8 +17,9 @@
   top: 2px;
 }
 
-.navigation-icon.is-telegram {
+.navigation-icon.is-gitter {
   top: 1px;
+  width: 11px;
 }
 
 .navigation-link:hover {

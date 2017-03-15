@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
+import I from 'immutable'
 import Promo from './promo'
 import Features from './features'
 import I18n from './i18n'
@@ -6,26 +7,46 @@ import Examples from './examples'
 import Testimonials from './testimonials'
 import Contributors from './contributors'
 import Sponsorship from './sponsorship'
-import Users from './users'
 import Footer from './footer'
+import {fetchHomeContent} from 'app/acts/home'
 
 export default class Home extends React.Component {
   static propTypes = {
-    state: React.PropTypes.object
+    state: PropTypes.object.isRequired
+  }
+
+  componentWillMount () {
+    this._fetchContentIfRequired(this.props)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this._fetchContentIfRequired(this.props, nextProps)
+  }
+
+  _fetchContentIfRequired (props, nextProps) {
+    const {state} = nextProps || props
+    const selectedVersionTag = state.get('selectedVersionTag')
+    const firstCallOrChanged = !nextProps || selectedVersionTag !== props.state.get('selectedVersionTag')
+
+    if (selectedVersionTag && firstCallOrChanged) {
+      fetchHomeContent()
+    }
   }
 
   render () {
     const {state} = this.props
-    const version = state.get('version')
+    const selectedVersionTag = state.get('selectedVersionTag')
+    const homeContent = state.getIn(['homeContent', 'selectedVersionTag'], I.Map())
+    //const version = state.get('version')
+
     return <div className='home'>
-      <Promo />
-      <Features />
-      <I18n locales={state.getIn(['locales', version])} version={version} />
-      <Testimonials />
-      <Contributors contributors={state.get('contributors')} />
-      <Sponsorship />
-      <Users />
-      <Footer />
+      <Promo gettingStarted={homeContent.get('gettingStarted')} />
     </div>
   }
+      //<Features />
+      //<I18n locales={0[>state.getIn(['locales', version])*/} version={0/*version<]} />
+      //<Testimonials />
+      //<Contributors contributors={[][>state.get('contributors')<]} />
+      //<Sponsorship />
+      //<Footer />
 }

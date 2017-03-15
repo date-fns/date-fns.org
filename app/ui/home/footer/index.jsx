@@ -1,11 +1,14 @@
 import React from 'react'
-import HomeBlock, {Link} from '../_lib/block'
+import Link from 'app/ui/_lib/link'
+import HomeBlock from '../_lib/block'
 
 export default function Footer () {
   return <HomeBlock>
     <div className='footer'>
       <div className='footer-row'>
-        <a href='/docs'>Documentation</a>
+        <Link name='doc' params={{docId: 'Getting-Started'}}>
+          Documentation
+        </Link>
       </div>
       <div className='footer-row'>
         <a href='https://github.com/date-fns/date-fns'>GitHub</a>

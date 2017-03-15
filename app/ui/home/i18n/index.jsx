@@ -24,10 +24,9 @@ export default class I18n extends React.Component {
         ? locales.count()
         : '...'} locales available`}
       action='See documentation'
-      actionHref='https://date-fns.org/docs/I18n'
-    >
-      {this._renderContent()}
-    </HomeBlock>
+      actionLink='doc'
+      actionLinkParams={{docId: 'I18n'}}
+    >{this._renderContent()}</HomeBlock>
   }
 
   _renderContent () {

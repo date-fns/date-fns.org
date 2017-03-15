@@ -13,25 +13,25 @@ const client = new Lokka({
 
 client.query(`
   query PerformanceStats {
-    pipeline(slug: "thumbsupapp/date-fns-benchmark") {
-      builds(state: BUILD_STATE_PASSED) {
+    pipeline(slug: "date-fns/date-fns-benchmark") {
+      builds(state: PASSED) {
         edges {
           node {
-            number,
-            commit,
-            scheduledAt,
-            jobs, {
+            number
+            commit
+            scheduledAt
+            jobs {
               edges {
                 node {
+
                   ... on JobTypeCommand {
-                    uuid,
                     url,
+                    uuid,
                     artifacts {
                       edges {
                         node {
-                          id,
-                          uuid,
-                          path,
+                          uuid
+                          path
                           mimeType
                         }
                       }
@@ -61,7 +61,7 @@ client.query(`
           artifactId,
           path,
           mimeType,
-          apiUrl: `https://api.buildkite.com/v2/organizations/thumbsupapp/pipelines/date-fns-benchmark/builds/${buildNumber}/jobs/${jobId}/artifacts/${artifactId}/download/`
+          apiUrl: `https://api.buildkite.com/v2/organizations/date-fns/pipelines/date-fns-benchmark/builds/${buildNumber}/jobs/${jobId}/artifacts/${artifactId}/download/`
         })
       })
     })

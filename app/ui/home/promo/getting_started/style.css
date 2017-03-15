@@ -2,6 +2,12 @@
   margin-top: 60px;
 }
 
+.getting_started-loading {
+  text-align: center;
+  display: block;
+  opacity: .4;
+}
+
 .getting_started-options {
   display: flex;
   justify-content: center;

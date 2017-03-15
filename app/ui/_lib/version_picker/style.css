@@ -1,0 +1,12 @@
+.version_picker {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.2rem;
+  opacity: .8;
+  z-index: 1;
+}
+
+.version_picker:disabled {
+  opacity: .4;
+}

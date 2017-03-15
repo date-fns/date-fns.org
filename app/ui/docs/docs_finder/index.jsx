@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import routes from 'app/routes'
 import docs from 'app/_lib/docs'
 import debounce from 'lodash/function/debounce'
+import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
 
 const logoPath = require('./img/logo.svg')
@@ -49,11 +50,12 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderLogo () {
-    return <img
-      src={logoPath}
-      className='docs_finder-logo_image'
-      onClick={this._openHome.bind(this)}
-    />
+    return <Link name='home'>
+      <img
+        src={logoPath}
+        className='docs_finder-logo_image'
+      />
+    </Link>
   }
 
   _renderCancelButton () {
@@ -94,14 +96,15 @@ export default class DocsFinder extends React.Component {
 
   _renderDocs (docs) {
     return docs.map((doc) => {
-      return <li
+      return <Link
+        name='doc'
+        params={{docId: doc.urlId}}
         className={classnames(
           'docs_finder-item',
           `is-${doc.type}`, {
             'is-current': doc.urlId === this.props.currentId
           }
         )}
-        onClick={this._openDoc.bind(this, doc.urlId)}
         key={doc.urlId}
       >
         <div className='docs_finder-item_content'>
@@ -114,7 +117,7 @@ export default class DocsFinder extends React.Component {
         </div>
 
         <div className='docs_finder-item_icon' />
-      </li>
+      </Link>
     })
   }
 
@@ -153,11 +156,7 @@ export default class DocsFinder extends React.Component {
     trackAction('Search', {query})
   }
 
-  _openHome () {
-    routes.navigateToRoute('home')
-  }
-
   _openDoc (fnName) {
-    routes.navigateToRoute('doc', {docId: fnName})
+    routes.navigateToRoute('doc', )
   }
 }

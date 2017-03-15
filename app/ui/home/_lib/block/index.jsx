@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import RouterLink from 'app/ui/_lib/link'
 
 export default class HomeBlock extends React.Component {
   static Link = ({href, title, children}) => (
@@ -12,11 +13,13 @@ export default class HomeBlock extends React.Component {
     subHeader: PropTypes.node,
     children: PropTypes.node.isRequired,
     action: PropTypes.node,
-    actionHref: PropTypes.string
+    actionHref: PropTypes.string,
+    actionLink: PropTypes.string,
+    actionLinkParams: PropTypes.object
   }
 
   render () {
-    const {header, subHeader, action, actionHref, children} = this.props
+    const {header, subHeader, action, actionHref, actionLink, actionLinkParams, children} = this.props
 
     return <div className='home_block'>
       <div className='home_block-inner'>
@@ -32,9 +35,13 @@ export default class HomeBlock extends React.Component {
           {children}
         </div>
 
-        {action && <a href={actionHref} className='home_block-action'>
+        {action && actionHref && <a href={actionHref} className='home_block-action'>
           {action}
         </a>}
+
+        {action && actionLink && <RouterLink name={actionLink} params={actionLinkParams} className='home_block-action'>
+          {action}
+        </RouterLink>}
       </div>
     </div>
   }
