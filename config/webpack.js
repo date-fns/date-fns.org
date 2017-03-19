@@ -32,7 +32,7 @@ export default {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
 
   entry: {
-    app: (enableDebuggingTools ? ['webpack-hot-middleware/client'] : []).concat('app/env/web')
+    app: ['whatwg-fetch'].concat(enableDebuggingTools ? ['webpack-hot-middleware/client'] : []).concat('app/env/web')
   },
 
   output: {

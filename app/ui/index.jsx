@@ -5,7 +5,7 @@ import Home from 'app/ui/home'
 import Docs from 'app/ui/docs'
 import Perf from 'app/ui/perf'
 import VersionPicker from './_lib/version_picker'
-import {fetchVersions} from 'app/acts/versions'
+import {fetchVersionIndices, fetchVersion} from 'app/acts/versions'
 
 export default class Ui extends React.Component {
   static propTypes = {
@@ -13,7 +13,17 @@ export default class Ui extends React.Component {
   }
 
   componentWillMount () {
-    fetchVersions()
+    fetchVersionIndices()
+  }
+
+  componentWillUpdate ({state: nextState}) {
+    const {state} = this.props
+
+    if (state.get('selectedVersionTag') !== nextState.get('selectedVersionTag')) {
+      console.log('condition', state.get('selectedVersionTag'), nextState.get('selectedVersionTag'))
+      console.log('fetch', nextState.get('versionIndices'), nextState.get('selectedVersionTag'))
+      fetchVersion(nextState.get('versionIndices'), nextState.get('selectedVersionTag'))
+    }
   }
 
   render () {

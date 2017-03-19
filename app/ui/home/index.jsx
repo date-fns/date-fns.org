@@ -36,12 +36,16 @@ export default class Home extends React.Component {
   render () {
     const {state} = this.props
     const selectedVersionTag = state.get('selectedVersionTag')
-    const homeContent = state.getIn(['homeContent', 'selectedVersionTag'], I.Map())
-    //const version = state.get('version')
+    //const homeContent = state.getIn(['homeContent', 'selectedVersionTag'], I.Map())
+    const selectedVersion = state.get('selectedVersion')
 
-    return <div className='home'>
-      <Promo gettingStarted={homeContent.get('gettingStarted')} />
-    </div>
+    if (selectedVersion) {
+      return <div className='home'>
+        <Promo gettingStarted={selectedVersion.gettingStarted} />
+      </div>
+    } else {
+      return null
+    }
   }
       //<Features />
       //<I18n locales={0[>state.getIn(['locales', version])*/} version={0/*version<]} />
