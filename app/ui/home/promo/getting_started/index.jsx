@@ -5,32 +5,20 @@ import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
 import version from 'app/_lib/version'
 
-const NPM_INSTALL_EXAMPLE = 'npm install date-fns --save'
-const NPM_SIMPLE_EXAMPLE = `var isToday = require('date-fns/is_today')
-isToday(new Date())
-//=> true`
-
-const YARN_INSTALL_EXAMPLE = 'yarn add date-fns'
-const YARN_SIMPLE_EXAMPLE = `var isToday = require('date-fns/is_today')
-isToday(new Date())
-//=> true`
-
-const BOWER_INSTALL_EXAMPLE = 'bower install date-fns'
-const BOWER_SIMPLE_EXAMPLE = `dateFns.isToday(new Date())
-//=> true`
-
-const CDN_INSTALL_EXAMPLE = `<script src="http://cdn.date-fns.org/v${version}/date_fns.min.js"></script>`
-const CDN_SIMPLE_EXAMPLE = `dateFns.isToday(new Date())
-//=> true`
-const CDN_DOWNLOAD_LINK = `http://cdn.date-fns.org/v${version}/date_fns.min.js`
-
 export default class GettingStarted extends React.Component {
   static propTypes = {
+    gettingStartedTabs: PropTypes.object,
     gettingStarted: PropTypes.object
   }
 
   state = {
     source: 'npm'
+  }
+
+  componentWillReceiveProps ({gettingStartedTabs}) {
+    if (!gettingStartedTabs.includes(this.state.source)) {
+      this._resetSource(gettingStartedTabs)
+    }
   }
 
   render () {
@@ -52,58 +40,26 @@ export default class GettingStarted extends React.Component {
   }
 
   _renderContent () {
-    const {gettingStarted} = this.props
+    const {gettingStartedTabs, gettingStarted} = this.props
 
     if (gettingStarted) {
       return <div>
         <ul className='getting_started-options'>
-          <li className='getting_started-option'>
-            <a
-              href='#'
-              onClick={this._changeSource.bind(this, 'npm')}
-              className={classnames('getting_started-option_link', {
-                'is-current': this.state.source === 'npm'
-              })}
-            >
-              npm
-            </a>
-          </li>
-
-          <li className='getting_started-option'>
-            <a
-              href='#'
-              onClick={this._changeSource.bind(this, 'yarn')}
-              className={classnames('getting_started-option_link', {
-                'is-current': this.state.source === 'yarn'
-              })}
-            >
-              Yarn
-            </a>
-          </li>
-
-          <li className='getting_started-option'>
-            <a
-              href='#'
-              onClick={this._changeSource.bind(this, 'bower')}
-              className={classnames('getting_started-option_link', {
-                'is-current': this.state.source === 'bower'
-              })}
-            >
-              Bower
-            </a>
-          </li>
-
-          <li className='getting_started-option'>
-            <a
-              href='#'
-              onClick={this._changeSource.bind(this, 'cdn')}
-              className={classnames('getting_started-option_link', {
-                'is-current': this.state.source === 'cdn'
-              })}
-            >
-              CDN & Download
-            </a>
-          </li>
+          {
+            gettingStartedTabs.map((tab) => {
+              return <li className='getting_started-option' key={tab}>
+                <a
+                  href='#'
+                  onClick={this._changeSource.bind(this, tab)}
+                  className={classnames('getting_started-option_link', {
+                    'is-current': this.state.source === tab
+                  })}
+                >
+                  {gettingStarted.getIn([tab, 'title'])}
+                </a>
+              </li>
+            })
+          }
         </ul>
 
         {this._renderInstruction()}
@@ -114,74 +70,42 @@ export default class GettingStarted extends React.Component {
   }
 
   _renderInstruction () {
-    switch (this.state.source) {
-      case 'npm':
-        return <div className='getting_started-instruction' key='npm'>
-          <h4 className='getting_started-instruction_header'>
-            Installation
-          </h4>
-          <Code value={NPM_INSTALL_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+    const currentGettingStarted = this.props.gettingStarted.get(this.state.source)
 
-          <h4 className='getting_started-instruction_header'>
-            Example
-          </h4>
-          <div id='qa-npm'>
-            <Code value={NPM_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
-          </div>
-        </div>
+    const link = currentGettingStarted.get('link')
 
-      case 'yarn':
-        return <div className='getting_started-instruction' key='yarn'>
-          <h4 className='getting_started-instruction_header'>
-            Installation
-          </h4>
-          <Code value={YARN_INSTALL_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+    return <div className='getting_started-instruction'>
+      <h4 className='getting_started-instruction_header'>
+        Installation
+      </h4>
+      <Code value={currentGettingStarted.get('install')} options={{theme: 'wormhole', readOnly: true}} />
 
-          <h4 className='getting_started-instruction_header'>
-            Example
-          </h4>
-          <div id='qa-yarn'>
-            <Code value={YARN_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
-          </div>
-        </div>
+      <h4 className='getting_started-instruction_header'>
+        Example
+      </h4>
+      <div id='qa-npm'>
+        <Code value={currentGettingStarted.get('example')} options={{theme: 'wormhole', readOnly: true}} />
+      </div>
 
-      case 'bower':
-        return <div className='getting_started-instruction' key='bower'>
-          <h4 className='getting_started-instruction_header'>
-            Installation
-          </h4>
-          <Code value={BOWER_INSTALL_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
+      <div>
+        {this._renderDownloadLink(link)}
+      </div>
+    </div>
+  }
 
-          <h4 className='getting_started-instruction_header'>
-            Example
-          </h4>
-          <div id='qa-bower'>
-            <Code value={BOWER_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
-          </div>
-        </div>
+  _renderDownloadLink (link) {
+    if (link) {
+      return <a href={link} className='getting_started-download' target='_blank'>
+        Download Library
+      </a>
+    } else {
+      return null
+    }
+  }
 
-      case 'cdn':
-        return <div className='getting_started-instruction' key='cdn'>
-          <h4 className='getting_started-instruction_header'>
-            Installation
-          </h4>
-          <Code value={CDN_INSTALL_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
-
-          <h4 className='getting_started-instruction_header'>
-            Example
-          </h4>
-          <div id='qa-cdn'>
-            <Code value={CDN_SIMPLE_EXAMPLE} options={{theme: 'wormhole', readOnly: true}} />
-          </div>
-
-          <a
-            href={CDN_DOWNLOAD_LINK}
-            className='getting_started-download'
-            target='_blank'
-          >
-            Download Library
-          </a>
-        </div>
+  _resetSource (gettingStartedTabs) {
+    this.state = {
+      source: gettingStartedTabs.first()
     }
   }
 

@@ -3,7 +3,7 @@ import GettingStarted from './getting_started'
 import Navigation from './navigation'
 import logoPath from './img/logo.svg'
 
-export default function Promo ({gettingStarted}) {
+export default function Promo ({gettingStartedTabs, gettingStarted}) {
   return <div className='promo'>
     <div className='promo-inner'>
       <div className='promo-logo'>
@@ -24,7 +24,7 @@ export default function Promo ({gettingStarted}) {
       </div>
 
       <div className='promo-getting_started'>
-        <GettingStarted gettingStarted={gettingStarted} />
+        <GettingStarted gettingStartedTabs={gettingStartedTabs} gettingStarted={gettingStarted} />
       </div>
 
       <div className='promo-navigation'>

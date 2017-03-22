@@ -4,30 +4,58 @@ import {getItem} from '../_lib/localStorage'
 import {getJSON} from 'app/_lib/request'
 import {firebaseURL} from 'app/_lib/firebase'
 
-export function fetchVersionIndices () {
-  return getJSON(firebaseURL('versionIndices'))
-    .then(versionIndices => {
-      const indices = I.OrderedMap(I.fromJS(mapIndices(versionIndices)))
-      const latestVersionTag = indices.keySeq().first()
+export function fetchVersions () {
+  return getJSON(firebaseURL('versions'))
+    .then(versionsObject => {
+      const versions = I.OrderedMap(I.fromJS(mapVersions(versionsObject)))
+      const latestVersionTag = versions.keySeq().first()
       const selectedVersionTag = getItem('selectedVersionTag') || latestVersionTag
+      const selectedVersion = versions.get(selectedVersionTag)
 
       act(state => state
-        .set('versionIndices', indices)
+        .set('versions', versions)
         .set('latestVersionTag', latestVersionTag)
-        .set('selectedVersionTag', selectedVersionTag))
+        .set('selectedVersionTag', selectedVersionTag)
+        .set('selectedVersion', selectedVersion))
     })
     // TODO:
     //.catch(reason => act(state => state.set('contributors', Object.assign(new Error('Failed to fetch contributors'), {reason}))))
 }
 
-export function fetchVersion (versionIndices, tag) {
-  const index = versionIndices.find(versionIndex => versionIndex.tag === tag).index
-
-  return getJSON(firebaseURL(`versions/${index}`))
-    .then(version => {
-      act(state => state.set('selectedVersion', version))
-    })
+export function changeSelectedVersion (tag) {
+  act(state => state
+    .set('selectedVersionTag', tag)
+    .set('selectedVersion', state.getIn(['versions', tag], I.Map()))
+    .remove('docs'))
 }
+
+export function fetchDocs (versions, tag) {
+  const docsKey = versions.getIn([tag, 'docsKey'])
+
+  if (!docsKey) {
+    act(state => state.remove('docs'))
+  } else {
+    return getJSON(firebaseURL(`docs/${docsKey}`))
+      .then(docs => {
+        act(state => {
+          if (state.get('selectedVersionTag') === tag && !state.get('docs') && docs) {
+            return state.set('docs', I.fromJS(docs))
+          } else {
+            return state.remove('docs')
+          }
+        })
+      })
+  }
+}
+
+// export function fetchVersion (versionIndices, tag) {
+//   const index = versionIndices.get(tag).get('index')
+//
+//   return getJSON(firebaseURL(`versions/${index}`))
+//     .then(version => {
+//       act(state => state.set('selectedVersion', version))
+//     })
+// }
 
 //export function subVersions () {
   //const unsub = subGet('versionIndices', versionIndices =>
@@ -70,13 +98,13 @@ export function fetchVersion (versionIndices, tag) {
   //})
 //}
 
-function mapIndices (indices) {
-  return Object.values(indices)
-    .map(versionsToOrderedMap)
+function mapVersions (version) {
+  return Object.values(version)
+    .map(versionToOrderedMap)
     .sort(sort)
 }
 
-function versionsToOrderedMap ({tag, ...meta}) {
+function versionToOrderedMap ({tag, ...meta}) {
   return [tag, I.fromJS(meta)]
 }
 

@@ -21,9 +21,19 @@ export default class Doc extends React.Component {
   }
 
   _renderDoc () {
-    const doc = this._getDoc(this.props.docId)
+    const {pages, docId} = this.props
 
-    switch (doc.type) {
+    if (pages.size === 0) {
+      return 'Loading...'
+    }
+
+    const doc = pages.find((page) => page.get('urlId') === docId)
+
+    if (!doc) {
+      return 'This page is not available for this version'
+    }
+
+    switch (doc.get('type')) {
       case 'jsdoc':
         return <JSDoc doc={doc} />
       case 'markdown':

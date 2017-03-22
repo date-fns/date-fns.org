@@ -1,8 +1,9 @@
 import React from 'react'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 export default class JSDocArguments extends React.Component {
   static propTypes = {
-    args: React.PropTypes.array
+    args: ImmutablePropTypes.list
   }
 
   render () {
@@ -40,38 +41,47 @@ export default class JSDocArguments extends React.Component {
     return args
       .filter((arg) => isProps || !arg.isProperty)
       .map((arg, index) => {
+        const props = arg.get('props')
         return <tr key={index}>
           <td>
-            {arg.name}
-            {arg.optional ? this._renderArgumentOptionalLabel(arg.defaultvalue) : null}
+            {arg.get('name')}
+            {this._renderArgumentOptionalLabel(arg.get('optional'), arg.get('defaultvalue'))}
           </td>
           <td>
-            {this._renderArgumentType(arg.type, arg.variable)}
+            {this._renderArgumentType(arg.get('type'), arg.get('variable'))}
           </td>
           <td>
-            {arg.description}
-            {arg.props ? this._renderArgumentPropsTable(arg.props) : null}
+            {arg.get('description')}
+            {this._renderArgumentPropsTable(arg.get('props'))}
           </td>
         </tr>
       })
   }
 
-  _renderArgumentOptionalLabel (defaultValue) {
+  _renderArgumentOptionalLabel (optional, defaultValue) {
+    if (!optional) {
+      return null
+    }
+
     return <div className='jsdoc_arguments-optional'>
       {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
     </div>
   }
 
   _renderArgumentType (type, variable) {
-    const types = type.names.join(' | ')
+    const types = type.get('names').join(' | ')
     if (variable) {
-      return type.names.length > 1 ? `...(${types})` : `...${types}`
+      return type.get('names').length > 1 ? `...(${types})` : `...${types}`
     } else {
       return types
     }
   }
 
   _renderArgumentPropsTable (props) {
+    if (!props) {
+      return null
+    }
+
     return <div>
       <div className='jsdoc_arguments-props_label'>
         Properties:

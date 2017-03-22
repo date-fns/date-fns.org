@@ -1,21 +1,21 @@
 import React from 'react'
-import {act} from 'enso'
+import {changeSelectedVersion} from 'app/acts/versions'
 
-export default function VersionPicker ({versionIndices, selectedVersionTag}) {
-  const loading = !versionIndices
+export default function VersionPicker ({versions, selectedVersionTag}) {
+  const loading = !versions
   return <select
     disabled={loading}
     selected={selectedVersionTag}
     className='version_picker'
-    onChange={changeSelectedVersionTag}
+    onChange={onVersionChange}
   >
     {
       loading
         ? <option>Loading</option>
-        : versionIndices
-          .filter((versionIndex) => {
-            const hasDocs = versionIndex.get('features').get('docs')
-            const isPrerelease = versionIndex.get('prerelease')
+        : versions
+          .filter((version) => {
+            const hasDocs = version.getIn(['features', 'docs'])
+            const isPrerelease = version.get('prerelease')
             return hasDocs && !isPrerelease
           })
           .keySeq()
@@ -24,8 +24,8 @@ export default function VersionPicker ({versionIndices, selectedVersionTag}) {
   </select>
 }
 
-function changeSelectedVersionTag ({target: {value: tag}}) {
-  act(state => state.set('selectedVersionTag', selectedVersionTag))
+function onVersionChange ({target: {value: tag}}) {
+  changeSelectedVersion(tag)
 }
 
 function versionOption (tag) {

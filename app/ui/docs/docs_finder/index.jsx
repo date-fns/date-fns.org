@@ -5,6 +5,7 @@ import docs from 'app/_lib/docs'
 import debounce from 'lodash/function/debounce'
 import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
+import I from 'immutable'
 
 const logoPath = require('./img/logo.svg')
 
@@ -14,7 +15,7 @@ export default class DocsFinder extends React.Component {
   }
 
   state = {
-    query: null
+    query: ''
   }
 
   constructor () {
@@ -66,53 +67,94 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderCategories () {
-    const filteredDocs = this._filteredDocs()
-    const categoryNames = Object.keys(filteredDocs)
+    //const filteredDocs = this._filteredDocs()
+    //const categoryNames = Object.keys(filteredDocs)
+    const docs = this.props.docs
 
-    if (categoryNames.length === 0) {
+    if (docs.size === 0) {
+      return <div className='docs_finder-no_results'>
+        <p className='docs_finder-no_results_text'>
+          Loading...
+        </p>
+      </div>
+    }
+
+    const categories = docs.get('categories', I.List())
+    const pages = this._filterPages(docs.get('pages', I.List()), this.state.query)
+
+    if (pages.size === 0) {
       return <div className='docs_finder-no_results'>
         <p className='docs_finder-no_results_text'>
           Your search didn't match any results.
         </p>
       </div>
-    } else {
-      return <ul className='docs_finder-categories'>
-        {categoryNames.map((categoryName) => {
-          const docs = filteredDocs[categoryName]
+    }
 
-          return <li className='docs_finder-category' key={categoryName}>
+    return <ul className = 'docs_finder-categories'>
+      {categories.map((category) => {
+        const categoryPages = pages.filter((page) => page.get('category') === category)
+
+        if (categoryPages.size === 0) {
+          return null
+        }
+
+        return <li className='docs_finder-category' key={category}>
+          <ul className='docs_finder-list'>
             <h3 className='docs_finder-category_header'>
-              {categoryName}
+              {category}
             </h3>
 
-            <ul className='docs_finder-list'>
-              {this._renderDocs(docs)}
-            </ul>
-          </li>
-        })}
-      </ul>
-    }
+            {this._renderDocs(categoryPages)}
+          </ul>
+        </li>
+      })}
+    </ul>
+    // if (categoryNames.length === 0) {
+    //   return <div className='docs_finder-no_results'>
+    //     <p className='docs_finder-no_results_text'>
+    //       Your search didn't match any results.
+    //     </p>
+    //   </div>
+    // } else {
+    //   return <ul className='docs_finder-categories'>
+    //     {categoryNames.map((categoryName) => {
+    //       const docs = filteredDocs[categoryName]
+    //
+    //       return <li className='docs_finder-category' key={categoryName}>
+    //         <h3 className='docs_finder-category_header'>
+    //           {categoryName}
+    //         </h3>
+    //
+    //         <ul className='docs_finder-list'>
+    //           {this._renderDocs(docs)}
+    //         </ul>
+    //       </li>
+    //     })}
+    //   </ul>
+    // }
   }
 
   _renderDocs (docs) {
     return docs.map((doc) => {
+      const urlId = doc.get('urlId')
+
       return <Link
         name='doc'
-        params={{docId: doc.urlId}}
+        params={{docId: urlId}}
         className={classnames(
           'docs_finder-item',
-          `is-${doc.type}`, {
-            'is-current': doc.urlId === this.props.currentId
+          `is-${doc.get('type')}`, {
+            'is-current': urlId === this.props.currentId
           }
         )}
-        key={doc.urlId}
+        key={urlId}
       >
         <div className='docs_finder-item_content'>
           <h4 className='docs_finder-item_header'>
-            {doc.title}
+            {doc.get('title')}
           </h4>
           <p className='docs_finder-item_text'>
-            {doc.description}
+            {doc.get('description')}
           </p>
         </div>
 
@@ -121,29 +163,23 @@ export default class DocsFinder extends React.Component {
     })
   }
 
-  _filteredDocs () {
-    const query = (this.state.query || '').toLowerCase()
-    if (query) {
-      return Object.keys(docs).reduce((acc, categoryName) => {
-        const categoryDocs = docs[categoryName]
-        const filteredDocs = categoryDocs.filter((doc) => {
-          return categoryName.toLowerCase().indexOf(query) !== -1 ||
-            doc.title.toLowerCase().indexOf(query) !== -1 ||
-            doc.description.toLowerCase().indexOf(query) !== -1
-        })
-        if (filteredDocs.length > 0) {
-          acc[categoryName] = filteredDocs
-        }
-        return acc
-      }, {})
+  _filterPages (pages, dirtyQuery) {
+    if (dirtyQuery) {
+      const query = dirtyQuery.toLowerCase()
+
+      return pages.filter((page) =>
+        page.get('category').toLowerCase().includes(query) ||
+          page.get('title').toLowerCase().includes(query) ||
+          page.get('description').toLowerCase().includes(query)
+      )
     } else {
-      return docs
+      return pages
     }
   }
 
   _clearQuery () {
     trackAction('Search Cleared')
-    this.setState({query: null})
+    this.setState({query: ''})
   }
 
   _performSearch (e) {

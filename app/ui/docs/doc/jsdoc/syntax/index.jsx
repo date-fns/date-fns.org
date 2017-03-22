@@ -1,77 +1,74 @@
 import React from 'react'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import Code from 'app/ui/_lib/code'
 
-export default class JSDocSyntax extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-    args: React.PropTypes.array
+export default function JSDocSyntax ({name, args}) {
+  const argsString = calculateArgsString(args)
+
+  return <section>
+    <h2 id='syntax'>
+      Syntax
+      <a href='#syntax' className='doc-header_link'>#</a>
+    </h2>
+
+    <Code
+      value={`${name}(${argsString})`}
+      options={{
+        readOnly: true,
+        mode: 'javascript'
+      }}
+    />
+  </section>
+}
+
+JSDocSyntax.propTypes = {
+  name: React.PropTypes.string,
+  args: ImmutablePropTypes.list
+}
+
+function calculateArgsString (args) {
+  if (!args) return ''
+
+  return args
+    .filter((arg) => !arg.isProperty)
+    .reduce((acc, arg, index, array) => {
+      const isLast = index === array.length - 1
+      const {argumentsString, nesting} = addArgumentSyntax(
+        acc.result, arg, acc.nesting, isLast
+      )
+
+      acc.result = argumentsString
+      acc.nesting = nesting
+      return acc
+    }, {nesting: 0, result: ''})
+    .result
+}
+
+ function addArgumentSyntax (argumentsString, arg, nesting, isLast) {
+  if (!arg.optional && nesting > 0) {
+    argumentsString += ']'.repeat(nesting) + ', '
+  } else if (argumentsString !== '') {
+    argumentsString += ', '
   }
 
-  render () {
-    const {name, args} = this.props
-
-    const argsString = this._calculateArgsString(args)
-
-    return <section>
-      <h2 id='syntax'>
-        Syntax
-        <a href='#syntax' className='doc-header_link'>#</a>
-      </h2>
-
-      <Code
-        value={`${name}(${argsString})`}
-        options={{
-          readOnly: true,
-          mode: 'javascript'
-        }}
-      />
-    </section>
+  if (arg.optional) {
+    nesting += 1
+    argumentsString += '['
   }
 
-  _calculateArgsString (args) {
-    if (!args) return ''
-
-    return args
-      .filter((arg) => !arg.isProperty)
-      .reduce((acc, arg, index, array) => {
-        const isLast = index === array.length - 1
-        const {argumentsString, nesting} = this._addArgumentSyntax(
-          acc.result, arg, acc.nesting, isLast
-        )
-
-        acc.result = argumentsString
-        acc.nesting = nesting
-        return acc
-      }, {nesting: 0, result: ''})
-      .result
+  if (arg.variable) {
+    argumentsString += '...'
   }
 
-  _addArgumentSyntax (argumentsString, arg, nesting, isLast) {
-    if (!arg.optional && nesting > 0) {
-      argumentsString += ']'.repeat(nesting) + ', '
-    } else if (argumentsString !== '') {
-      argumentsString += ', '
-    }
+  argumentsString += arg.name
 
-    if (arg.optional) {
-      nesting += 1
-      argumentsString += '['
-    }
-
-    if (arg.variable) {
-      argumentsString += '...'
-    }
-
-    argumentsString += arg.name
-
-    if (arg.defaultvalue !== undefined) {
-      argumentsString += '=' + arg.defaultvalue
-    }
-
-    if (isLast) {
-      argumentsString += ']'.repeat(nesting)
-    }
-
-    return {argumentsString, nesting}
+  if (arg.defaultvalue !== undefined) {
+    argumentsString += '=' + arg.defaultvalue
   }
+
+  if (isLast) {
+    argumentsString += ']'.repeat(nesting)
+  }
+
+  return {argumentsString, nesting}
 }

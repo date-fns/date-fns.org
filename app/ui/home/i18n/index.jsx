@@ -8,13 +8,13 @@ import flag from 'emoji-flag'
 
 export default class I18n extends React.Component {
   static propTypes = {
-    locales: PropTypes.object,
-    version: PropTypes.string.isRequired
+    locales: PropTypes.object
+    // version: PropTypes.string.isRequired
   }
 
-  componentWillMount () {
-    fetchLocales(this.props.version)
-  }
+  // componentWillMount () {
+  //   fetchLocales(this.props.version)
+  // }
 
   render () {
     const {locales} = this.props

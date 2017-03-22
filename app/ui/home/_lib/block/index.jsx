@@ -9,7 +9,7 @@ export default class HomeBlock extends React.Component {
   )
 
   static propTypes = {
-    header: PropTypes.node.isRequired,
+    header: PropTypes.node,
     subHeader: PropTypes.node,
     children: PropTypes.node.isRequired,
     action: PropTypes.node,
@@ -46,4 +46,3 @@ export default class HomeBlock extends React.Component {
     </div>
   }
 }
-

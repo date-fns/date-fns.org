@@ -7,6 +7,7 @@ export default class MarkdownDoc extends React.Component {
   }
 
   render () {
-    return <Markdown value={this.props.doc.content} />
+    const {doc} = this.props
+    return <Markdown value={doc.get('content')} />
   }
 }
