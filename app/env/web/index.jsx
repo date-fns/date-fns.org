@@ -1,14 +1,14 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import I from 'immutable'
 import routes from 'app/routes'
 import Ui from 'app/ui'
 import {trackPageView} from 'app/acts/tracking_acts'
 import dateFns from 'date-fns'
 import {loop, act} from 'enso'
-import version from 'app/_lib/version'
 import {subscribeToVersions} from '../../acts/versions'
+import I from 'immutable'
+import State from 'app/types/state'
 
 //subscribeToVersions()
 
@@ -21,7 +21,7 @@ routes.start((routeData, routeEvenType) => {
   act(state => state.set('routeData', I.fromJS(routeData)))
 })
 
-loop(I.fromJS({version, locales: I.Map()}), (state, prevState) => {
+loop(State(), (state, prevState) => {
   ReactDOM.render(<Ui state={state} />, document.getElementById('canvas'))
 })
 

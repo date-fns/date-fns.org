@@ -7,10 +7,11 @@ import Docs from 'app/ui/docs'
 import Perf from 'app/ui/perf'
 import VersionPicker from './_lib/version_picker'
 import {fetchVersions, fetchDocs} from 'app/acts/versions'
+import {StatePropType} from 'app/types/state'
 
 export default class Ui extends React.Component {
   static propTypes = {
-    state: React.PropTypes.object
+    state: StatePropType.isRequired
   }
 
   componentWillMount () {
@@ -31,9 +32,8 @@ export default class Ui extends React.Component {
 
     return <div className='ui'>
       <VersionPicker
-        versions={state.get('versions')}
-        latestVersionTag={state.get('latestVersionTag')}
-        selectedVersionTag={state.get('selectedVersionTag')}
+        versions={state.versions}
+        selectedVersion={state.selectedVersion}
       />
 
       {this._renderContent()}
@@ -47,7 +47,7 @@ export default class Ui extends React.Component {
       case undefined:
         return 'Loading'
       case 'home':
-        return <Home selectedVersion={state.get('selectedVersion', I.Map())} />
+        return <Home selectedVersion={state.selectedVersion} />
       case 'docs':
       case 'doc':
         return <Docs docId={this._routeDocId()} docs={state.get('docs', I.Map())} />

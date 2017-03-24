@@ -8,13 +8,14 @@ import Testimonials from './testimonials'
 import Contributors from './contributors'
 import Sponsorship from './sponsorship'
 import Footer from './footer'
+import {VersionPropType} from 'app/types/version'
 //import {fetchHomeContent} from 'app/acts/home'
 
 export default function Home ({selectedVersion}) {
   return <div className='home'>
     <Promo
-      gettingStartedTabs={selectedVersion.get('gettingStartedTabs')}
-      gettingStarted={selectedVersion.get('gettingStarted')}
+      gettingStartedTabs={selectedVersion.gettingStartedTabs}
+      gettingStarted={selectedVersion.gettingStarted}
     />
     <Features />
     {/*<I18n locales={locales} />*/}
@@ -23,6 +24,10 @@ export default function Home ({selectedVersion}) {
     <Sponsorship />
     <Footer />
   </div>
+}
+
+Home.propTypes = {
+  selectedVersion: VersionPropType.isRequired
 }
 
 // export default class Home extends React.Component {

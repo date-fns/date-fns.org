@@ -2,6 +2,8 @@ import React from 'react'
 import GettingStarted from './getting_started'
 import Navigation from './navigation'
 import logoPath from './img/logo.svg'
+import ImmutablePropTypes from 'react-immutable-proptypes'
+import {GettingStartedPropType} from 'app/types/getting_started'
 
 export default function Promo ({gettingStartedTabs, gettingStarted}) {
   return <div className='promo'>
@@ -32,4 +34,9 @@ export default function Promo ({gettingStartedTabs, gettingStarted}) {
       </div>
     </div>
   </div>
+}
+
+Promo.propTypes = {
+  gettingStarted: GettingStartedPropType.isRequired,
+  gettingStartedTabs: ImmutablePropTypes.listOf(React.PropTypes.string.isRequired)
 }
