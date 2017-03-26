@@ -43,15 +43,15 @@ export default class JSDocArguments extends React.Component {
       .map((arg, index) => {
         return <tr key={index}>
           <td>
-            {arg.get('name')}
-            {this._renderArgumentOptionalLabel(arg.get('optional'), arg.get('defaultvalue'))}
+            {arg.name}
+            {this._renderArgumentOptionalLabel(arg.optional, arg.defaultvalue)}
           </td>
           <td>
-            {this._renderArgumentType(arg.get('type'), arg.get('variable'))}
+            {this._renderArgumentType(arg.type, arg.variable)}
           </td>
           <td>
-            {arg.get('description')}
-            {this._renderArgumentPropsTable(arg.get('props'))}
+            {arg.description}
+            {this._renderArgumentPropsTable(arg.props)}
           </td>
         </tr>
       })
@@ -68,9 +68,9 @@ export default class JSDocArguments extends React.Component {
   }
 
   _renderArgumentType (type, variable) {
-    const types = type.get('names').join(' | ')
+    const types = type.names.join(' | ')
     if (variable) {
-      return type.get('names').length > 1 ? `...(${types})` : `...${types}`
+      return type.names.length > 1 ? `...(${types})` : `...${types}`
     } else {
       return types
     }

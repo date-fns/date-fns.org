@@ -30,7 +30,7 @@ export default function JSDoc ({content}) {
 
     <JSDocUsage name={name} />
     <JSDocSyntax name={name} args={params} />
-    <JSDocArguments args={content.get('params')} />
+    <JSDocArguments args={params} />
     <JSDocReturns returns={content.get('returns')} />
     <JSDocExceptions exceptions={content.get('exceptions')} />
     <JSDocExamples examples={content.get('examples')} />
