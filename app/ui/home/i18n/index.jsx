@@ -47,7 +47,7 @@ export default class I18n extends React.Component {
     return <div className='i18n-content'>
       <div className='i18n-spinner'>
         <FlagSpinner countries={locales.reduce((acc, locale) => {
-            return acc.concat(locale.get('countries'))
+          return acc.concat(locale.get('countries'))
         }, I.List()).toSet()} />
       </div>
 

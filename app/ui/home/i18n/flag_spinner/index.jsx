@@ -4,7 +4,7 @@ import random from 'lodash/number/random'
 
 export default class FlagSpinner extends React.Component {
   static propTypes = {
-    countries: PropTypes.object.isRequired,
+    countries: PropTypes.object.isRequired
   }
 
   componentWillMount () {

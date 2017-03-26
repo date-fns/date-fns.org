@@ -16,9 +16,9 @@ export default function Home ({selectedVersion}) {
       gettingStarted={selectedVersion.gettingStarted}
     />
     <Features />
-    {/*<I18n locales={locales} />*/}
+    {/* <I18n locales={locales} /> */}
     <Testimonials />
-    {/*<Contributors contributors={[][>state.get('contributors')<]} />*/}
+    {/* <Contributors contributors={[][>state.get('contributors')<]} /> */}
     <Sponsorship />
     <Footer />
   </div>

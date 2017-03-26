@@ -44,7 +44,7 @@ function calculateArgsString (args) {
     .result
 }
 
- function addArgumentSyntax (argumentsString, arg, nesting, isLast) {
+function addArgumentSyntax (argumentsString, arg, nesting, isLast) {
   if (!arg.optional && nesting > 0) {
     argumentsString += ']'.repeat(nesting) + ', '
   } else if (argumentsString !== '') {

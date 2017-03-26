@@ -41,4 +41,3 @@ const RouterDSL = {
 }
 
 module.exports = RouterDSL
-

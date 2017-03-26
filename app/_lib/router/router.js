@@ -113,7 +113,7 @@ class Router {
     let path = route.path
 
     if (params) {
-      path = path.replace(/:([^\/]+)/gi, function (param, paramName) {
+      path = path.replace(/:([^/]+)/gi, function (param, paramName) {
         if (!params[paramName]) {
           throw new Error('Missing params in "' + path + '"')
         }

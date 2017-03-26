@@ -91,14 +91,14 @@ const RouterMatcher = {
    */
   pathTestObject (path) {
     let paramsNames = []
-    const paramsCaptures = path.match(/:([^\/|$]+)/g)
+    const paramsCaptures = path.match(/:([^/|$]+)/g)
     if (paramsCaptures) {
       paramsNames = paramsCaptures.map(function (paramName) {
         return paramName.replace(/^:/, '')
       })
     }
 
-    const regExp = new RegExp('^' + path.replace(/:[^\/]+/g, '([^/]+)') + '$')
+    const regExp = new RegExp('^' + path.replace(/:[^/]+/g, '([^/]+)') + '$')
 
     return {regExp, paramsNames}
   },
