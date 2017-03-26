@@ -1,55 +1,37 @@
 import React from 'react'
 import JSDoc from './jsdoc'
 import MarkdownDoc from './markdown_doc'
-import docs from 'app/_lib/docs'
+import ImmutablePropTypes from 'react-immutable-proptypes'
+import {PagePropType} from 'app/types/page'
 
-export default class Doc extends React.Component {
-  static propTypes = {
-    docId: React.PropTypes.string
+export default function Doc ({docId, pages}) {
+  if (!docId) return null
+
+  return <div className='doc'>
+    {renderDocContent(docId, pages)}
+  </div>
+}
+
+Doc.propTypes = {
+  docId: React.PropTypes.string,
+  pages: ImmutablePropTypes.listOf(PagePropType)
+}
+
+function renderDocContent (docId, pages) {
+  if (pages.size === 0) {
+    return 'Loading...'
   }
 
-  shouldComponentUpdate (nextProps) {
-    return nextProps.docId !== undefined
+  const doc = pages.find((page) => page.urlId === docId)
+
+  if (!doc) {
+    return 'This page is not available for this version'
   }
 
-  render () {
-    if (!this.props.docId) return null
-
-    return <div className='doc'>
-      {this._renderDoc()}
-    </div>
-  }
-
-  _renderDoc () {
-    const {pages, docId} = this.props
-
-    if (pages.size === 0) {
-      return 'Loading...'
-    }
-
-    const doc = pages.find((page) => page.get('urlId') === docId)
-
-    if (!doc) {
-      return 'This page is not available for this version'
-    }
-
-    switch (doc.get('type')) {
-      case 'jsdoc':
-        return <JSDoc doc={doc} />
-      case 'markdown':
-        return <MarkdownDoc doc={doc} />
-    }
-  }
-
-  _getDoc (currentDocId) {
-    for (let categoryName in docs) {
-      let categoryDocs = docs[categoryName]
-      for (let docId in categoryDocs) {
-        let doc = categoryDocs[docId]
-        if (doc.urlId === currentDocId) {
-          return doc
-        }
-      }
-    }
+  switch (doc.type) {
+    case 'jsdoc':
+      return <JSDoc content={doc.content} />
+    case 'markdown':
+      return <MarkdownDoc content={doc.content} />
   }
 }

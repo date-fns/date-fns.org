@@ -1,5 +1,4 @@
 import React from 'react'
-import Code from 'app/ui/_lib/code'
 import Markdown from 'app/ui/_lib/markdown'
 import JSDocUsage from './usage'
 import JSDocSyntax from './syntax'
@@ -7,11 +6,11 @@ import JSDocArguments from './arguments'
 import JSDocReturns from './returns'
 import JSDocExceptions from './exceptions'
 import JSDocExamples from './examples'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
-export default function JSDoc ({doc}) {
-  const docContent = doc.get('content')
-  const name = docContent.get('name')
-  const params = calculateParams(docContent.get('params'))
+export default function JSDoc ({content}) {
+  const name = content.get('name')
+  const params = calculateParams(content.get('params'))
 
   return <div className='jsdoc'>
     <h1>
@@ -26,20 +25,20 @@ export default function JSDoc ({doc}) {
         <a href='#description' className='doc-header_link'>#</a>
       </h2>
 
-      <Markdown value={docContent.get('description')} />
+      <Markdown value={content.get('description')} />
     </section>
 
     <JSDocUsage name={name} />
     <JSDocSyntax name={name} args={params} />
-    <JSDocArguments args={docContent.get('params')} />
-    <JSDocReturns returns={docContent.get('returns')}/>
-    <JSDocExceptions exceptions={docContent.get('exceptions')}/>
-    <JSDocExamples examples={docContent.get('examples')}/>
+    <JSDocArguments args={content.get('params')} />
+    <JSDocReturns returns={content.get('returns')} />
+    <JSDocExceptions exceptions={content.get('exceptions')} />
+    <JSDocExamples examples={content.get('examples')} />
   </div>
 }
 
 JSDoc.propTypes = {
-  doc: React.PropTypes.object.isRequired
+  doc: ImmutablePropTypes.map
 }
 
 function calculateParams (params) {
@@ -53,7 +52,6 @@ function calculateParams (params) {
     result[param.name] = index
     return result
   }, {})
-
 
   return paramsArray.map((param, index) => {
     const {name, isProperty} = param

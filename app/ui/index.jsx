@@ -20,10 +20,10 @@ export default class Ui extends React.Component {
 
   componentWillReceiveProps ({state}) {
     const {state: oldState} = this.props
-    const selectedVersionTag = state.get('selectedVersionTag')
+    const {selectedVersion} = state
 
-    if (selectedVersionTag && oldState.get('selectedVersionTag') !== selectedVersionTag) {
-      fetchDocs(state.get('versions'), selectedVersionTag)
+    if (selectedVersion && oldState.selectedVersion.tag !== selectedVersion.tag) {
+      fetchDocs(selectedVersion.tag, selectedVersion.docsKey)
     }
   }
 

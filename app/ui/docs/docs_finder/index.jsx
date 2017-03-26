@@ -1,17 +1,16 @@
 import React from 'react'
 import classnames from 'classnames'
-import routes from 'app/routes'
-import docs from 'app/_lib/docs'
 import debounce from 'lodash/function/debounce'
 import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
-import I from 'immutable'
+import {DocsPropType} from 'app/types/docs'
 
 const logoPath = require('./img/logo.svg')
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
-    currentId: React.PropTypes.string
+    currentId: React.PropTypes.string,
+    docs: DocsPropType.isRequired
   }
 
   state = {
@@ -67,11 +66,9 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderCategories () {
-    //const filteredDocs = this._filteredDocs()
-    //const categoryNames = Object.keys(filteredDocs)
     const docs = this.props.docs
 
-    if (docs.size === 0) {
+    if (docs.pages.size === 0) {
       return <div className='docs_finder-no_results'>
         <p className='docs_finder-no_results_text'>
           Loading...
@@ -79,8 +76,8 @@ export default class DocsFinder extends React.Component {
       </div>
     }
 
-    const categories = docs.get('categories', I.List())
-    const pages = this._filterPages(docs.get('pages', I.List()), this.state.query)
+    const categories = docs.categories
+    const pages = this._filterPages(docs.pages, this.state.query)
 
     if (pages.size === 0) {
       return <div className='docs_finder-no_results'>
@@ -90,9 +87,9 @@ export default class DocsFinder extends React.Component {
       </div>
     }
 
-    return <ul className = 'docs_finder-categories'>
+    return <ul className='docs_finder-categories'>
       {categories.map((category) => {
-        const categoryPages = pages.filter((page) => page.get('category') === category)
+        const categoryPages = pages.filter((page) => page.category === category)
 
         if (categoryPages.size === 0) {
           return null
@@ -109,29 +106,6 @@ export default class DocsFinder extends React.Component {
         </li>
       })}
     </ul>
-    // if (categoryNames.length === 0) {
-    //   return <div className='docs_finder-no_results'>
-    //     <p className='docs_finder-no_results_text'>
-    //       Your search didn't match any results.
-    //     </p>
-    //   </div>
-    // } else {
-    //   return <ul className='docs_finder-categories'>
-    //     {categoryNames.map((categoryName) => {
-    //       const docs = filteredDocs[categoryName]
-    //
-    //       return <li className='docs_finder-category' key={categoryName}>
-    //         <h3 className='docs_finder-category_header'>
-    //           {categoryName}
-    //         </h3>
-    //
-    //         <ul className='docs_finder-list'>
-    //           {this._renderDocs(docs)}
-    //         </ul>
-    //       </li>
-    //     })}
-    //   </ul>
-    // }
   }
 
   _renderDocs (docs) {
@@ -190,9 +164,5 @@ export default class DocsFinder extends React.Component {
 
   _trackSearch (query) {
     trackAction('Search', {query})
-  }
-
-  _openDoc (fnName) {
-    routes.navigateToRoute('doc', )
   }
 }

@@ -41,7 +41,6 @@ export default class JSDocArguments extends React.Component {
     return args
       .filter((arg) => isProps || !arg.isProperty)
       .map((arg, index) => {
-        const props = arg.get('props')
         return <tr key={index}>
           <td>
             {arg.get('name')}

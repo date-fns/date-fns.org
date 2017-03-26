@@ -70,7 +70,6 @@ export default class GettingStarted extends React.Component {
   }
 
   _renderInstruction () {
-    console.log('_renderInstruction', this.props, this.props.gettingStarted)
     const currentGettingStarted = this.props.gettingStarted.get(this.state.source, I.Map())
 
     const link = currentGettingStarted.get('link')

@@ -72,7 +72,7 @@ export default class Markdown extends React.Component {
     return this._getTextFromToken(token)
       .join(' ')
       .toLowerCase()
-      .replace(/[^\w\d\.]/g, '-')
+      .replace(/[^\w\d.]/g, '-')
       .replace(/-+/g, '-')
       .replace(/(^-|-$)/g, '')
   }
