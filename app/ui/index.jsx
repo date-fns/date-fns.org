@@ -1,13 +1,11 @@
 require.context('!!static-file!./static', true, /.+/)
 
 import React from 'react'
-import I from 'immutable'
 import Home from 'app/ui/home'
 import Docs from 'app/ui/docs'
 import Perf from 'app/ui/perf'
 import VersionPicker from './_lib/version_picker'
 import {fetchVersions, fetchDocs} from 'app/acts/versions'
-import {fetchContributors} from 'app/acts/contributors'
 import {StatePropType} from 'app/types/state'
 
 export default class Ui extends React.Component {
@@ -48,10 +46,14 @@ export default class Ui extends React.Component {
       case undefined:
         return 'Loading'
       case 'home':
-        return <Home selectedVersion={state.selectedVersion} contributors={state.contributors} />
+        return <Home
+          selectedVersion={state.selectedVersion}
+          locales={state.selectedVersion.locales}
+          contributors={state.contributors}
+        />
       case 'docs':
       case 'doc':
-        return <Docs docId={this._routeDocId()} docs={state.get('docs', I.Map())} />
+        return <Docs docId={this._routeDocId()} docs={state.docs} />
       case 'perf':
         return <Perf />
     }
