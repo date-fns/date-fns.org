@@ -1,10 +1,14 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import HomeBlock, {Link} from '../_lib/block'
 import {fetchContributors} from 'app/acts/contributors'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 export default class Contributors extends React.Component {
   static propTypes = {
-    contributors: PropTypes.object
+    contributors: React.PropTypes.oneOfType([
+      ImmutablePropTypes.list,
+      React.PropTypes.instanceOf(Error)
+    ])
   }
 
   componentWillMount () {

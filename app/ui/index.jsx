@@ -7,6 +7,7 @@ import Docs from 'app/ui/docs'
 import Perf from 'app/ui/perf'
 import VersionPicker from './_lib/version_picker'
 import {fetchVersions, fetchDocs} from 'app/acts/versions'
+import {fetchContributors} from 'app/acts/contributors'
 import {StatePropType} from 'app/types/state'
 
 export default class Ui extends React.Component {
@@ -47,7 +48,7 @@ export default class Ui extends React.Component {
       case undefined:
         return 'Loading'
       case 'home':
-        return <Home selectedVersion={state.selectedVersion} />
+        return <Home selectedVersion={state.selectedVersion} contributors={state.contributors} />
       case 'docs':
       case 'doc':
         return <Docs docId={this._routeDocId()} docs={state.get('docs', I.Map())} />
