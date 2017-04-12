@@ -2,6 +2,7 @@ import React from 'react'
 import Remarkable from 'remarkable'
 import remarkableTree from 'app/ui/_lib/remarkable_tree'
 import MarkdownCode from 'app/ui/_lib/markdown_code'
+import Link from 'app/ui/_lib/link'
 
 const md = new Remarkable({
   linkify: true
@@ -45,6 +46,18 @@ export default class Markdown extends React.Component {
           >
               #
           </a>)
+        }
+
+        // Replace internal links with Link component
+        if (token.tagName === 'a' && token.attrs.href.startsWith('https://date-fns.org/docs/')) {
+          const docId = token.attrs.href.replace('https://date-fns.org/docs/', '')
+          return <Link
+            name='doc'
+            params={{docId}}
+            key={index}
+          >
+            {this._renderTree(token.children)}
+          </Link>
         }
 
         return React.createElement(
