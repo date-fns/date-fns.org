@@ -17,7 +17,7 @@ export default class I18n extends React.Component {
     if (!localesAvailable) {
       return <HomeBlock
         header='I18n'
-      >Locales data isn't available for this version</HomeBlock>
+      >Locales data aren't available for this version</HomeBlock>
     }
 
     return <HomeBlock
