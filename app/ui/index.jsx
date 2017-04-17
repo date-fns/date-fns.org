@@ -69,6 +69,7 @@ export default class Ui extends React.Component {
           docId={this._routeDocId()}
           docs={state.docs}
           selectedVersionTag={this._selectedVersionTag(state)}
+          latestVersionTag={state.latestVersionTag}
         />
       case 'perf':
         return <Perf />
