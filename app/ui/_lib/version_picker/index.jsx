@@ -33,9 +33,19 @@ VersionPicker.propTypes = {
 }
 
 function onVersionChange (routeData, {target: {value: tag}}) {
-  const name = routeData.getIn(['route', 'name'])
+  let name = routeData.getIn(['route', 'name'])
+
+  if (name === 'home') {
+    name = 'versionHome'
+  } else if (name === 'doc') {
+    name = 'versionDoc'
+  } else if (name === 'docs') {
+    name = 'versionDocs'
+  }
+
   const params = routeData.get('params').toJS()
   params.versionTag = tag
+
   router.navigateToRoute(name, params)
 }
 
