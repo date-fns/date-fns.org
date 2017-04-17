@@ -8,7 +8,7 @@ import JSDocExceptions from './exceptions'
 import JSDocExamples from './examples'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-export default function JSDoc ({content}) {
+export default function JSDoc ({content, selectedVersionTag}) {
   const name = content.get('name')
   const params = calculateParams(content.get('params'))
 
@@ -25,7 +25,7 @@ export default function JSDoc ({content}) {
         <a href='#description' className='doc-header_link'>#</a>
       </h2>
 
-      <Markdown value={content.get('description')} />
+      <Markdown value={content.get('description')} selectedVersionTag={selectedVersionTag} />
     </section>
 
     <JSDocUsage name={name} />
@@ -38,7 +38,8 @@ export default function JSDoc ({content}) {
 }
 
 JSDoc.propTypes = {
-  doc: ImmutablePropTypes.map
+  doc: ImmutablePropTypes.map,
+  selectedVersionTag: React.PropTypes.any
 }
 
 function calculateParams (params) {

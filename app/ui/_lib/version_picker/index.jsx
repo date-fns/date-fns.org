@@ -1,16 +1,16 @@
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
-import {changeSelectedVersion} from 'app/acts/versions'
 
-export default function VersionPicker ({versions, selectedVersion}) {
+export default function VersionPicker ({versions, selectedVersion, routeData}) {
   const loading = versions.size === 0
 
   return <select
     disabled={loading}
-    selected={selectedVersion.tag}
+    value={selectedVersion.tag || ''}
     className='version_picker'
-    onChange={onVersionChange}
+    onChange={onVersionChange.bind(null, routeData)}
   >
     {
       loading
@@ -29,11 +29,14 @@ export default function VersionPicker ({versions, selectedVersion}) {
 
 VersionPicker.propTypes = {
   versions: ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired,
-  selectedVersion: VersionPropType.isRequired
+  selectedVersion: VersionPropType
 }
 
-function onVersionChange ({target: {value: tag}}) {
-  changeSelectedVersion(tag)
+function onVersionChange (routeData, {target: {value: tag}}) {
+  const name = routeData.getIn(['route', 'name'])
+  const params = routeData.get('params').toJS()
+  params.versionTag = tag
+  router.navigateToRoute(name, params)
 }
 
 function versionOption (tag) {

@@ -24,13 +24,15 @@ export default class GettingStarted extends React.Component {
   }
 
   render () {
+    const {selectedVersionTag} = this.props
+
     return <div className='getting_started'>
       {this._renderContent()}
 
       <div className='getting_started-link_wrapper'>
         <Link
           name='doc'
-          params={{docId: 'Getting-Started'}}
+          params={{docId: 'Getting-Started', versionTag: selectedVersionTag}}
           className='getting_started-link'
         >
           Documentation

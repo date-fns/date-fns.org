@@ -5,7 +5,7 @@ import logoPath from './img/logo.svg'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {GettingStartedPropType} from 'app/types/getting_started'
 
-export default function Promo ({gettingStartedTabs, gettingStarted}) {
+export default function Promo ({selectedVersionTag, gettingStartedTabs, gettingStarted}) {
   return <div className='promo'>
     <div className='promo-inner'>
       <div className='promo-logo'>
@@ -26,7 +26,11 @@ export default function Promo ({gettingStartedTabs, gettingStarted}) {
       </div>
 
       <div className='promo-getting_started'>
-        <GettingStarted gettingStartedTabs={gettingStartedTabs} gettingStarted={gettingStarted} />
+        <GettingStarted
+          selectedVersionTag={selectedVersionTag}
+          gettingStartedTabs={gettingStartedTabs}
+          gettingStarted={gettingStarted}
+        />
       </div>
 
       <div className='promo-navigation'>
@@ -37,6 +41,7 @@ export default function Promo ({gettingStartedTabs, gettingStarted}) {
 }
 
 Promo.propTypes = {
+  selectedVersionTag: React.PropTypes.any,
   gettingStarted: GettingStartedPropType.isRequired,
   gettingStartedTabs: ImmutablePropTypes.listOf(React.PropTypes.string.isRequired)
 }

@@ -8,11 +8,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 export default class I18n extends React.Component {
   static propTypes = {
     locales: ImmutablePropTypes.list,
-    localesAvailable: React.PropTypes.bool.isRequired
+    localesAvailable: React.PropTypes.bool.isRequired,
+    selectedVersionTag: React.PropTypes.any
   }
 
   render () {
-    const {locales, localesAvailable} = this.props
+    const {locales, localesAvailable, selectedVersionTag} = this.props
 
     if (!localesAvailable) {
       return <HomeBlock
@@ -27,7 +28,7 @@ export default class I18n extends React.Component {
         : '...'} locales available`}
       action='See documentation'
       actionLink='doc'
-      actionLinkParams={{docId: 'I18n'}}
+      actionLinkParams={{docId: 'I18n', versionTag: selectedVersionTag}}
     >{this._renderContent()}</HomeBlock>
   }
 
@@ -56,7 +57,7 @@ export default class I18n extends React.Component {
       </div>
 
       <div className='i18n-locales'>
-        {locales.map(locale => <div className='i18n-locale'>
+        {locales.map((locale, index) => <div className='i18n-locale' key={index}>
           <Link key={locale.get('name')} href={locale.get('url')}>
             <span title={locale.get('countries', []).map(country => flag(country)).join('')}>
               {locale.get('name') === 'Modern Greek (1453-)' ? 'Greek' : locale.get('name')}

@@ -6,7 +6,7 @@ import {Docs, DocsPropType} from 'app/types/docs'
 
 export const State = I.Record({
   versions: I.OrderedMap(),
-  selectedVersion: Version(),
+  latestVersionTag: null,
   routeData: null,
   docs: Docs(),
   contributors: I.List()
@@ -14,7 +14,7 @@ export const State = I.Record({
 
 export const StatePropType = ImmutablePropTypes.recordOf({
   versions: ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired,
-  selectedVersion: VersionPropType.isRequired,
+  latestVersionTag: React.PropTypes.any,
   routeData: ImmutablePropTypes.map,
   docs: DocsPropType.isRequired,
   contributors: React.PropTypes.oneOfType([

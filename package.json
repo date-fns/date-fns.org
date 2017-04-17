@@ -105,7 +105,6 @@
     "react-immutable-proptypes": "^2.1.0",
     "remarkable": "^1.6.2",
     "reset.css": "^2.0.2",
-    "whatwg-fetch": "^2.0.3",
     "world-countries": "^1.8.1"
   },
   "standard": {

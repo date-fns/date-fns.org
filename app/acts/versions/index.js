@@ -12,31 +12,27 @@ export function fetchVersions () {
   return getJSON(firebaseURL('versions'))
     .then(versionsObject => {
       const versions = versionsToOrderedMap(versionsObject)
-      const selectedVersionTag = getItem('selectedVersionTag') || versions.keySeq().first()
-      const selectedVersion = versions.get(selectedVersionTag)
+      const latestVersionTag = versions.keySeq().first()
 
       act(state => state
         .set('versions', versions)
-        .set('selectedVersion', selectedVersion))
+        .set('latestVersionTag', latestVersionTag))
     })
     // TODO:
     // .catch(reason => act(state => state.set('contributors', Object.assign(new Error('Failed to fetch contributors'), {reason}))))
 }
 
-export function changeSelectedVersion (tag) {
-  act(state => state
-    .set('selectedVersion', state.versions.get(tag))
-    .remove('docs'))
-}
-
 export function fetchDocs (tag, docsKey) {
-  if (!docsKey) {
-    act(state => state.remove('docs'))
-  } else {
+  act(state => state.remove('docs'))
+
+  if (docsKey) {
     return getJSON(firebaseURL(`docs/${docsKey}`))
       .then(docs => {
         act(state => {
-          if (docs && !state.docs.tag && docs.tag === tag) {
+          const versionTag = state.getIn(['routeData', 'params', 'versionTag'])
+          const selectedVersionTag = versionTag ? decodeURI(versionTag) : state.latestVersionTag
+
+          if (docs && tag === selectedVersionTag) {
             return state.set('docs', Docs(I.fromJS(docs)).update('pages', (pages) => pages.map(Page)))
           } else {
             return state.remove('docs')

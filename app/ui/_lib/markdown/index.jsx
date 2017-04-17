@@ -10,7 +10,8 @@ const md = new Remarkable({
 
 export default class Markdown extends React.Component {
   static propTypes = {
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    selectedVersionTag: React.PropTypes.any
   }
 
   render () {
@@ -51,13 +52,17 @@ export default class Markdown extends React.Component {
         // Replace internal links with Link component
         if (token.tagName === 'a' && token.attrs.href.startsWith('https://date-fns.org/docs/')) {
           const docId = token.attrs.href.replace('https://date-fns.org/docs/', '')
-          return <Link
-            name='doc'
-            params={{docId}}
-            key={index}
-          >
-            {this._renderTree(token.children)}
-          </Link>
+
+          // Check for the case if the link is exactly 'https://date-fns.org/docs/'
+          if (docId) {
+            return <Link
+              name='doc'
+              params={{docId, versionTag: this.props.selectedVersionTag}}
+              key={index}
+            >
+              {this._renderTree(token.children)}
+            </Link>
+          }
         }
 
         return React.createElement(

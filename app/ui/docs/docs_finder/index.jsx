@@ -10,7 +10,8 @@ const logoPath = require('./img/logo.svg')
 export default class DocsFinder extends React.Component {
   static propTypes = {
     currentId: React.PropTypes.string,
-    docs: DocsPropType.isRequired
+    docs: DocsPropType.isRequired,
+    selectedVersionTag: React.PropTypes.any
   }
 
   state = {
@@ -50,7 +51,7 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderLogo () {
-    return <Link name='home'>
+    return <Link name='home' params={{versionTag: this.props.selectedVersionTag}}>
       <img
         src={logoPath}
         className='docs_finder-logo_image'
@@ -114,7 +115,7 @@ export default class DocsFinder extends React.Component {
 
       return <Link
         name='doc'
-        params={{docId: urlId}}
+        params={{docId: urlId, versionTag: this.props.selectedVersionTag}}
         className={classnames(
           'docs_finder-item',
           `is-${doc.get('type')}`, {

@@ -14,7 +14,8 @@ export default function Doc ({docId, pages}) {
 
 Doc.propTypes = {
   docId: React.PropTypes.string,
-  pages: ImmutablePropTypes.listOf(PagePropType)
+  pages: ImmutablePropTypes.listOf(PagePropType),
+  selectedVersionTag: React.PropTypes.any
 }
 
 function renderDocContent (docId, pages) {

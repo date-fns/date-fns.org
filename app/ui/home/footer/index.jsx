@@ -2,11 +2,11 @@ import React from 'react'
 import Link from 'app/ui/_lib/link'
 import HomeBlock from '../_lib/block'
 
-export default function Footer () {
+export default function Footer ({selectedVersionTag}) {
   return <HomeBlock>
     <div className='footer'>
       <div className='footer-row'>
-        <Link name='doc' params={{docId: 'Getting-Started'}}>
+        <Link name='doc' params={{docId: 'Getting-Started', versionTag: selectedVersionTag}}>
           Documentation
         </Link>
       </div>
@@ -26,4 +26,8 @@ export default function Footer () {
       </div>
     </div>
   </HomeBlock>
+}
+
+Footer.propTypes = {
+  selectedVersionTag: React.PropTypes.any
 }

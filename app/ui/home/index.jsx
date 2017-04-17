@@ -13,15 +13,20 @@ import {VersionPropType} from 'app/types/version'
 export default function Home ({selectedVersion, locales, contributors}) {
   return <div className='home'>
     <Promo
+      selectedVersionTag={selectedVersion.tag}
       gettingStartedTabs={selectedVersion.gettingStartedTabs}
       gettingStarted={selectedVersion.gettingStarted}
     />
     <Features />
-    <I18n locales={locales} localesAvailable={(!selectedVersion.tag) || selectedVersion.features.i18n} />
+    <I18n
+      locales={locales}
+      localesAvailable={(!selectedVersion.tag) || selectedVersion.features.i18n}
+      selectedVersionTag={selectedVersion.tag} 
+    />
     <Testimonials />
     <Contributors contributors={contributors} />
     <Sponsorship />
-    <Footer />
+    <Footer selectedVersionTag={selectedVersion.tag} />
   </div>
 }
 
