@@ -5,7 +5,9 @@ import {trackAction} from 'app/acts/tracking_acts'
 
 export default class JSDocUsage extends React.Component {
   static propTypes = {
-    name: React.PropTypes.string
+    name: React.PropTypes.string,
+    usageAvailable: React.PropTypes.bool,
+    camelCase: React.PropTypes.bool
   }
 
   state = {
@@ -23,6 +25,10 @@ export default class JSDocUsage extends React.Component {
   }
 
   render () {
+    if (!this.props.usageAvailable) {
+      return null
+    }
+
     return <section>
       <h2 id='usage'>
         Usage
@@ -72,12 +78,13 @@ export default class JSDocUsage extends React.Component {
   }
 
   _renderUsage () {
-    const {name} = this.props
+    const {name, camelCase} = this.props
+    const caseCorrectedName = camelCase ? name : this._convertToUnderscore(name)
 
     switch (this.state.source) {
       case 'commonjs':
         return <Code
-          value={`var ${name} = require('date-fns/${this._convertToUnderscore(name)}')`}
+          value={`var ${name} = require('date-fns/${caseCorrectedName}')`}
           options={{
             readOnly: true,
             mode: 'javascript'
@@ -95,7 +102,7 @@ export default class JSDocUsage extends React.Component {
 
       case 'es2015':
         return <Code
-          value={`import ${name} from 'date-fns/${this._convertToUnderscore(name)}'`}
+          value={`import ${name} from 'date-fns/${caseCorrectedName}'`}
           options={{
             readOnly: true,
             mode: 'javascript'

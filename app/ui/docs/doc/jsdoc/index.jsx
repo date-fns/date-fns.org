@@ -3,14 +3,17 @@ import Markdown from 'app/ui/_lib/markdown'
 import JSDocUsage from './usage'
 import JSDocSyntax from './syntax'
 import JSDocArguments from './arguments'
+import JSDocProperties from './properties'
 import JSDocReturns from './returns'
 import JSDocExceptions from './exceptions'
 import JSDocExamples from './examples'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import {FeaturesPropType} from 'app/types/features'
 
-export default function JSDoc ({content, selectedVersionTag}) {
+export default function JSDoc ({content, features, selectedVersionTag}) {
   const name = content.get('name')
   const params = calculateParams(content.get('params'))
+  const properties = calculateParams(content.get('properties'))
 
   return <div className='jsdoc'>
     <h1>
@@ -28,17 +31,24 @@ export default function JSDoc ({content, selectedVersionTag}) {
       <Markdown value={content.get('description')} selectedVersionTag={selectedVersionTag} />
     </section>
 
-    <JSDocUsage name={name} />
+    <JSDocUsage
+      name={name}
+      usageAvailable={content.get('kind') !== 'typedef'}
+      camelCase={features.camelCase}
+    />
+
     <JSDocSyntax name={name} args={params} />
-    <JSDocArguments args={params} />
-    <JSDocReturns returns={content.get('returns')} />
-    <JSDocExceptions exceptions={content.get('exceptions')} />
+    <JSDocArguments args={params} selectedVersionTag={selectedVersionTag} />
+    <JSDocProperties properties={properties} selectedVersionTag={selectedVersionTag} />
+    <JSDocReturns returns={content.get('returns')} selectedVersionTag={selectedVersionTag} />
+    <JSDocExceptions exceptions={content.get('exceptions')} selectedVersionTag={selectedVersionTag} />
     <JSDocExamples examples={content.get('examples')} />
   </div>
 }
 
 JSDoc.propTypes = {
   doc: ImmutablePropTypes.map,
+  features: FeaturesPropType,
   selectedVersionTag: React.PropTypes.any
 }
 

@@ -4,23 +4,25 @@ import MarkdownDoc from './markdown_doc'
 import Link from 'app/ui/_lib/link'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {PagePropType} from 'app/types/page'
+import {FeaturesPropType} from 'app/types/features'
 
-export default function Doc ({docId, pages, selectedVersionTag, latestVersionTag}) {
+export default function Doc ({docId, pages, features, selectedVersionTag, latestVersionTag}) {
   if (!docId) return null
 
   return <div className='doc'>
-    {renderDocContainer(docId, pages, selectedVersionTag, latestVersionTag)}
+    {renderDocContainer(docId, pages, features, selectedVersionTag, latestVersionTag)}
   </div>
 }
 
 Doc.propTypes = {
   docId: React.PropTypes.string,
   pages: ImmutablePropTypes.listOf(PagePropType),
+  features: FeaturesPropType,
   selectedVersionTag: React.PropTypes.any,
   latestVersionTag: React.PropTypes.any
 }
 
-function renderDocContainer (docId, pages, selectedVersionTag, latestVersionTag) {
+function renderDocContainer (docId, pages, features, selectedVersionTag, latestVersionTag) {
   if (pages.size === 0) {
     return 'Loading...'
   }
@@ -31,7 +33,7 @@ function renderDocContainer (docId, pages, selectedVersionTag, latestVersionTag)
     return 'This page is not available for this version'
   }
 
-  const docContent = renderDocContent(doc.type, doc.content, selectedVersionTag)
+  const docContent = renderDocContent(doc.type, doc.content, features, selectedVersionTag)
 
   if (selectedVersionTag === latestVersionTag) {
     return docContent
@@ -49,10 +51,10 @@ function renderDocContainer (docId, pages, selectedVersionTag, latestVersionTag)
   }
 }
 
-function renderDocContent (type, content, selectedVersionTag) {
+function renderDocContent (type, content, features, selectedVersionTag) {
   switch (type) {
     case 'jsdoc':
-      return <JSDoc content={content} selectedVersionTag={selectedVersionTag} />
+      return <JSDoc content={content} features={features} selectedVersionTag={selectedVersionTag} />
     case 'markdown':
       return <MarkdownDoc content={content} selectedVersionTag={selectedVersionTag} />
   }

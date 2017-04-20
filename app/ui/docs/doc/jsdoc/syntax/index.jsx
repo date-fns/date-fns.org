@@ -3,6 +3,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import Code from 'app/ui/_lib/code'
 
 export default function JSDocSyntax ({name, args}) {
+  if (!args) {
+    return null
+  }
+
   const argsString = calculateArgsString(args)
 
   return <section>
@@ -32,7 +36,7 @@ function calculateArgsString (args) {
   return args
     .filter((arg) => !arg.isProperty)
     .reduce((acc, arg, index, array) => {
-      const isLast = index === array.length - 1
+      const isLast = index === array.size - 1
       const {argumentsString, nesting} = addArgumentSyntax(
         acc.result, arg, acc.nesting, isLast
       )

@@ -68,6 +68,7 @@ export default class Ui extends React.Component {
         return <Docs
           docId={this._routeDocId()}
           docs={state.docs}
+          features={selectedVersion.features}
           selectedVersionTag={this._selectedVersionTag(state)}
           latestVersionTag={state.latestVersionTag}
         />

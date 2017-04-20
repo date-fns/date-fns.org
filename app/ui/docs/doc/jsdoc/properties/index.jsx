@@ -2,19 +2,19 @@ import React from 'react'
 import Markdown from 'app/ui/_lib/markdown'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-export default class JSDocArguments extends React.Component {
+export default class JSDocProperties extends React.Component {
   static propTypes = {
-    args: ImmutablePropTypes.list,
+    properties: ImmutablePropTypes.list,
     selectedVersionTag: React.PropTypes.any
   }
 
   render () {
-    if (!this.props.args || this.props.args.length === 0) return null
+    if (!this.props.properties || this.props.properties.length === 0) return null
 
     return <section>
-      <h2 id='arguments'>
-        Arguments
-        <a href='#arguments' className='doc-header_link'>#</a>
+      <h2 id='properties'>
+        Properties
+        <a href='#properties' className='doc-header_link'>#</a>
       </h2>
 
       <table>
@@ -33,7 +33,7 @@ export default class JSDocArguments extends React.Component {
         </thead>
 
         <tbody>
-          {this._renderArguments(this.props.args, false, this.props.selectedVersionTag)}
+          {this._renderArguments(this.props.properties, false, this.props.selectedVersionTag)}
         </tbody>
       </table>
     </section>
@@ -64,7 +64,7 @@ export default class JSDocArguments extends React.Component {
       return null
     }
 
-    return <div className='jsdoc_arguments-optional'>
+    return <div className='jsdoc_properties-optional'>
       {defaultValue !== undefined ? `(optional, default=${defaultValue})` : '(optional)'}
     </div>
   }
@@ -84,7 +84,7 @@ export default class JSDocArguments extends React.Component {
     }
 
     return <div>
-      <div className='jsdoc_arguments-props_label'>
+      <div className='jsdoc_properties-props_label'>
         Properties:
       </div>
 

@@ -1,7 +1,8 @@
 import React from 'react'
+import Markdown from 'app/ui/_lib/markdown'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-export default function JSDocExceptions ({exceptions}) {
+export default function JSDocExceptions ({exceptions, selectedVersionTag}) {
   if (!exceptions) {
     return null
   }
@@ -26,12 +27,12 @@ export default function JSDocExceptions ({exceptions}) {
 
       <tbody>
         {exceptions.map((exceptionData, index) => {
-          return <tr key='index'>
+          return <tr key={index}>
             <td>
               {exceptionData.getIn(['type', 'names'], ['Error']).join(' | ')}
             </td>
             <td>
-              {exceptionData.get('description')}
+              <Markdown value={exceptionData.get('description')} selectedVersionTag={selectedVersionTag} />
             </td>
           </tr>
         })}
@@ -41,5 +42,6 @@ export default function JSDocExceptions ({exceptions}) {
 }
 
 JSDocExceptions.propTypes = {
-  exceptions: ImmutablePropTypes.list
+  exceptions: ImmutablePropTypes.list,
+  selectedVersionTag: React.PropTypes.any
 }

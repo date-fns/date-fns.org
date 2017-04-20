@@ -15,7 +15,10 @@ export default class Markdown extends React.Component {
   }
 
   render () {
-    const tree = remarkableTree(md.parse(this.props.value, {}))
+    // Replace JSDoc links with markdown links
+    const value = this.props.value ? this.props.value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)') : ''
+
+    const tree = remarkableTree(md.parse(value, {}))
     const result = this._renderTree(tree)
 
     // Render single node as is

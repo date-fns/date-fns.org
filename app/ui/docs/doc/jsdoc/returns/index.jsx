@@ -1,7 +1,12 @@
 import React from 'react'
+import Markdown from 'app/ui/_lib/markdown'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-export default function JSDocReturns ({returns}) {
+export default function JSDocReturns ({returns, selectedVersionTag}) {
+  if (!returns) {
+    return null
+  }
+
   return <section>
     <h2 id='returns'>
       Returns
@@ -27,7 +32,7 @@ export default function JSDocReturns ({returns}) {
               {returnsData.getIn(['type', 'names']).join(' | ')}
             </td>
             <td>
-              {returnsData.get('description')}
+              <Markdown value={returnsData.get('description')} selectedVersionTag={selectedVersionTag} />
             </td>
           </tr>
         })}
@@ -37,5 +42,6 @@ export default function JSDocReturns ({returns}) {
 }
 
 JSDocReturns.propTypes = {
-  returns: ImmutablePropTypes.list
+  returns: ImmutablePropTypes.list,
+  selectedVersionTag: React.PropTypes.any
 }
