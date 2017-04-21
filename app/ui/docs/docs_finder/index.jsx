@@ -11,7 +11,8 @@ export default class DocsFinder extends React.Component {
   static propTypes = {
     currentId: React.PropTypes.string,
     docs: DocsPropType.isRequired,
-    selectedVersionTag: React.PropTypes.any
+    selectedVersionTag: React.PropTypes.any,
+    submodule: React.PropTypes.string.isRequired
   }
 
   state = {
@@ -67,7 +68,7 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderCategories () {
-    const docs = this.props.docs
+    const {docs, submodule} = this.props
 
     if (docs.pages.size === 0) {
       return <div className='docs_finder-no_results'>
@@ -78,7 +79,7 @@ export default class DocsFinder extends React.Component {
     }
 
     const categories = docs.categories
-    const pages = this._filterPages(docs.pages, this.state.query)
+    const pages = this._filterPages(docs.pages, this.state.query, submodule)
 
     if (pages.size === 0) {
       return <div className='docs_finder-no_results'>
@@ -138,18 +139,26 @@ export default class DocsFinder extends React.Component {
     })
   }
 
-  _filterPages (pages, dirtyQuery) {
+  _filterPages (pages, dirtyQuery, submodule) {
     if (dirtyQuery) {
       const query = dirtyQuery.toLowerCase()
 
-      return pages.filter((page) =>
-        page.get('category').toLowerCase().includes(query) ||
-          page.get('title').toLowerCase().includes(query) ||
-          page.get('description').toLowerCase().includes(query)
+      pages = pages.filter((page) =>
+        page.category.toLowerCase().includes(query) ||
+          page.title.toLowerCase().includes(query) ||
+          page.description.toLowerCase().includes(query)
       )
-    } else {
-      return pages
     }
+
+    return pages.filter((page) => {
+      const {category, isFPFn} = page
+
+      if (category === 'General' || category === 'Types') {
+        return true
+      } else {
+        return (submodule === 'fp') === isFPFn
+      }
+    })
   }
 
   _clearQuery () {

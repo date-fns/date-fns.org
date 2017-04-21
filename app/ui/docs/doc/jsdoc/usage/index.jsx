@@ -7,7 +7,8 @@ export default class JSDocUsage extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
     usageAvailable: React.PropTypes.bool,
-    camelCase: React.PropTypes.bool
+    camelCase: React.PropTypes.bool,
+    isFPFn: React.PropTypes.bool
   }
 
   state = {
@@ -78,37 +79,16 @@ export default class JSDocUsage extends React.Component {
   }
 
   _renderUsage () {
-    const {name, camelCase} = this.props
-    const caseCorrectedName = camelCase ? name : this._convertToUnderscore(name)
+    const {name, camelCase, isFPFn} = this.props
+    const source = this.state.source
 
-    switch (this.state.source) {
-      case 'commonjs':
-        return <Code
-          value={`var ${name} = require('date-fns/${caseCorrectedName}')`}
-          options={{
-            readOnly: true,
-            mode: 'javascript'
-          }}
-        />
-
-      case 'umd':
-        return <Code
-          value={`var ${name} = dateFns.${name}`}
-          options={{
-            readOnly: true,
-            mode: 'javascript'
-          }}
-        />
-
-      case 'es2015':
-        return <Code
-          value={`import ${name} from 'date-fns/${caseCorrectedName}'`}
-          options={{
-            readOnly: true,
-            mode: 'javascript'
-          }}
-        />
-    }
+    return <Code
+      value={this._generateUsageString(source, name, camelCase, isFPFn)}
+      options={{
+        readOnly: true,
+        mode: 'javascript'
+      }}
+    />
   }
 
   _changeSource (source, e) {
@@ -116,6 +96,19 @@ export default class JSDocUsage extends React.Component {
     e.preventDefault()
     this.setState({source})
     window.localStorage.setItem('usageSource', source)
+  }
+
+  _generateUsageString (source, name, camelCase, isFPFn) {
+    const caseCorrectedName = camelCase ? name : this._convertToUnderscore(name)
+    const submoduleCorrectedName = isFPFn ? 'fp/' + caseCorrectedName : caseCorrectedName
+
+    if (source === 'commonjs') {
+      return `var ${name} = require('date-fns/${submoduleCorrectedName}')`
+    } else if (source === 'umd') {
+      return `var ${name} = dateFns.${name}`
+    } else if (source === 'es2015') {
+      return `import ${name} from 'date-fns/${submoduleCorrectedName}'`
+    }
   }
 
   _convertToUnderscore (string) {

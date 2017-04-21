@@ -16,9 +16,13 @@ export default new Router([
             name: 'versionDocs',
 
             routes: [
+              {path: '/:docId', name: 'versionDoc'},
+
               {
-                path: '/:docId',
-                name: 'versionDoc'
+                path: '/fp',
+                name: 'versionDocsFP',
+
+                routes: [{path: '/:docId', name: 'versionDocFP'}]
               }
             ]
           }
@@ -29,16 +33,18 @@ export default new Router([
         name: 'docs',
 
         routes: [
+          {path: '/:docId', name: 'doc'},
+
           {
-            path: '/:docId',
-            name: 'doc'
+            path: '/fp',
+            name: 'docsFP',
+
+            routes: [{path: '/:docId', name: 'docFP'}]
           }
         ]
       },
-      {
-        path: '/perf',
-        name: 'perf'
-      }
+
+      {path: '/perf', name: 'perf'}
     ]
   }
 ])

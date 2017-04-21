@@ -7,8 +7,12 @@ export default function Link ({name, params, component, className, children}) {
       name = 'versionHome'
     } else if (name === 'doc') {
       name = 'versionDoc'
+    } else if (name === 'docFP') {
+      name = 'versionDocFP'
     } else if (name === 'docs') {
       name = 'versionDocs'
+    } else if (name === 'docsFP') {
+      name = 'versionDocsFP'
     }
   }
 

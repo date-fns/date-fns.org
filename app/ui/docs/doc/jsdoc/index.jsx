@@ -10,7 +10,7 @@ import JSDocExamples from './examples'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {FeaturesPropType} from 'app/types/features'
 
-export default function JSDoc ({content, features, selectedVersionTag}) {
+export default function JSDoc ({content, isFPFn, features, selectedVersionTag}) {
   const name = content.get('name')
   const params = calculateParams(content.get('params'))
   const properties = calculateParams(content.get('properties'))
@@ -35,9 +35,10 @@ export default function JSDoc ({content, features, selectedVersionTag}) {
       name={name}
       usageAvailable={content.get('kind') !== 'typedef'}
       camelCase={features.camelCase}
+      isFPFn={isFPFn}
     />
 
-    <JSDocSyntax name={name} args={params} />
+    <JSDocSyntax name={name} args={params} isFPFn={isFPFn} />
     <JSDocArguments args={params} selectedVersionTag={selectedVersionTag} />
     <JSDocProperties properties={properties} selectedVersionTag={selectedVersionTag} />
     <JSDocReturns returns={content.get('returns')} selectedVersionTag={selectedVersionTag} />
@@ -47,7 +48,8 @@ export default function JSDoc ({content, features, selectedVersionTag}) {
 }
 
 JSDoc.propTypes = {
-  doc: ImmutablePropTypes.map,
+  content: ImmutablePropTypes.map,
+  isFPFn: React.PropTypes.bool,
   features: FeaturesPropType,
   selectedVersionTag: React.PropTypes.any
 }

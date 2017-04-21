@@ -33,7 +33,7 @@ function renderDocContainer (docId, pages, features, selectedVersionTag, latestV
     return 'This page is not available for this version'
   }
 
-  const docContent = renderDocContent(doc.type, doc.content, features, selectedVersionTag)
+  const docContent = renderDocContent(doc.type, doc.content, doc.isFPFn, features, selectedVersionTag)
 
   if (selectedVersionTag === latestVersionTag) {
     return docContent
@@ -51,10 +51,10 @@ function renderDocContainer (docId, pages, features, selectedVersionTag, latestV
   }
 }
 
-function renderDocContent (type, content, features, selectedVersionTag) {
+function renderDocContent (type, content, isFPFn, features, selectedVersionTag) {
   switch (type) {
     case 'jsdoc':
-      return <JSDoc content={content} features={features} selectedVersionTag={selectedVersionTag} />
+      return <JSDoc content={content} isFPFn={isFPFn} features={features} selectedVersionTag={selectedVersionTag} />
     case 'markdown':
       return <MarkdownDoc content={content} selectedVersionTag={selectedVersionTag} />
   }

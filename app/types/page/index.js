@@ -9,7 +9,8 @@ export const Page = I.Record({
   content: null,
   type: null,
   path: null,
-  urlId: null
+  urlId: null,
+  isFPFn: false
 })
 
 export const PagePropType = ImmutablePropTypes.recordOf({
@@ -22,7 +23,8 @@ export const PagePropType = ImmutablePropTypes.recordOf({
   ]),
   type: React.PropTypes.string.isRequired,
   path: React.PropTypes.string,
-  urlId: React.PropTypes.string.isRequired
+  urlId: React.PropTypes.string.isRequired,
+  isFPFn: React.PropTypes.bool.isRequired
 })
 
 export default Page

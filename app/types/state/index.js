@@ -9,7 +9,8 @@ export const State = I.Record({
   latestVersionTag: null,
   routeData: null,
   docs: Docs(),
-  contributors: I.List()
+  contributors: I.List(),
+  submodule: ''
 })
 
 export const StatePropType = ImmutablePropTypes.recordOf({
@@ -20,7 +21,8 @@ export const StatePropType = ImmutablePropTypes.recordOf({
   contributors: React.PropTypes.oneOfType([
     ImmutablePropTypes.list,
     React.PropTypes.instanceOf(Error)
-  ])
+  ]),
+  submodule: React.PropTypes.string.isRequired
 })
 
 export default State

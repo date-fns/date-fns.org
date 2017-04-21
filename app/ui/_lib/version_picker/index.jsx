@@ -2,34 +2,47 @@ import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
+import {changeSubmodule} from 'app/acts/submodule'
 
-export default function VersionPicker ({versions, selectedVersion, routeData}) {
+export default function VersionPicker ({versions, selectedVersion, routeData, submodule}) {
   const loading = versions.size === 0
 
-  return <select
-    disabled={loading}
-    value={selectedVersion.tag || ''}
-    className='version_picker'
-    onChange={onVersionChange.bind(null, routeData)}
-  >
-    {
-      loading
-        ? <option>Loading</option>
-        : versions
-          .filter((version) => {
-            const hasDocs = version.features.docs
-            const isPrerelease = version.prerelease
-            return hasDocs && !isPrerelease
-          })
-          .keySeq()
-          .map(versionOption)
-    }
-  </select>
+  return <div>
+    <select
+      disabled={loading}
+      value={selectedVersion.tag || ''}
+      className='version_picker'
+      onChange={onVersionChange.bind(null, routeData)}
+    >
+      {
+        loading
+          ? <option>Loading</option>
+          : versions
+            .filter((version) => {
+              const hasDocs = version.features.docs
+              const isPrerelease = version.prerelease
+              return hasDocs && !isPrerelease
+            })
+            .keySeq()
+            .map(versionOption)
+      }
+    </select>
+
+    <select
+      value={submodule}
+      className='submodule_picker'
+      onChange={onSubmoduleChange}
+    >
+      <option value={''}>non-FP</option>
+      <option value={'fp'}>FP</option>
+    </select>
+  </div>
 }
 
 VersionPicker.propTypes = {
   versions: ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired,
-  selectedVersion: VersionPropType
+  selectedVersion: VersionPropType,
+  submodule: React.PropTypes.string.isRequired
 }
 
 function onVersionChange (routeData, {target: {value: tag}}) {
@@ -39,14 +52,22 @@ function onVersionChange (routeData, {target: {value: tag}}) {
     name = 'versionHome'
   } else if (name === 'doc') {
     name = 'versionDoc'
+  } else if (name === 'docFP') {
+    name = 'versionDocFP'
   } else if (name === 'docs') {
     name = 'versionDocs'
+  } else if (name === 'docsFP') {
+    name = 'versionDocsFP'
   }
 
   const params = routeData.get('params').toJS()
   params.versionTag = tag
 
   router.navigateToRoute(name, params)
+}
+
+function onSubmoduleChange({target: {value}}) {
+  changeSubmodule(value)
 }
 
 function versionOption (tag) {

@@ -41,6 +41,7 @@ export default class Ui extends React.Component {
         versions={state.versions}
         selectedVersion={this._selectedVersion(state)}
         routeData={state.routeData}
+        submodule={state.submodule}
       />
 
       {this._renderContent()}
@@ -62,15 +63,20 @@ export default class Ui extends React.Component {
           contributors={state.contributors}
         />
       case 'docs':
+      case 'docsFP':
       case 'doc':
+      case 'docFP':
       case 'versionDocs':
+      case 'versionDocsFP':
       case 'versionDoc':
+      case 'versionDocFP':
         return <Docs
           docId={this._routeDocId()}
           docs={state.docs}
           features={selectedVersion.features}
           selectedVersionTag={this._selectedVersionTag(state)}
           latestVersionTag={state.latestVersionTag}
+          submodule={state.submodule}
         />
       case 'perf':
         return <Perf />
@@ -90,6 +96,19 @@ export default class Ui extends React.Component {
   _routeDocId () {
     const {state} = this.props
     const docId = state.getIn(['routeData', 'params', 'docId'])
-    return docId ? decodeURI(docId) : undefined
+
+    if (!docId) {
+      return undefined
+    }
+
+    const routeName = state.getIn(['routeData', 'route', 'name'])
+
+    if (routeName === 'docFP' || routeName === 'versionDocFP') {
+      return `fp/${decodeURI(docId)}`
+    } else if (routeName === 'docsFP' || routeName === 'versionDocsFP') {
+      return 'FP-Guide'
+    } else {
+      return decodeURI(docId)
+    }
   }
 }

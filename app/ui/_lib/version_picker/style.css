@@ -7,6 +7,15 @@
   z-index: 1;
 }
 
+.submodule_picker {
+  position: fixed;
+  top: 3rem;
+  right: 1.5rem;
+  font-size: 1.2rem;
+  opacity: .8;
+  z-index: 1;
+}
+
 .version_picker:disabled {
   opacity: .4;
 }
