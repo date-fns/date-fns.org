@@ -22,7 +22,20 @@ export function fetchVersions () {
     // .catch(reason => act(state => state.set('contributors', Object.assign(new Error('Failed to fetch contributors'), {reason}))))
 }
 
-export function fetchDocs (tag, docsKey) {
+export function fetchDocsIfNeeded (state, prevState) {
+  const prevSelectedVersionTag = getSelectedVersionTag(prevState)
+  const selectedVersionTag = getSelectedVersionTag(state)
+
+  const versionsLoaded = (prevState ? prevState.versions.size : 0) !== state.versions.size
+  const selectedVersionChanged = prevSelectedVersionTag !== selectedVersionTag
+
+  if (selectedVersionTag && (versionsLoaded || selectedVersionChanged)) {
+    const docsKey = state.getIn(['versions', selectedVersionTag, 'docsKey'])
+    return fetchDocs(selectedVersionTag, docsKey)
+  }
+}
+
+function fetchDocs (tag, docsKey) {
   act(state => state.remove('docs'))
 
   if (docsKey) {
@@ -40,6 +53,15 @@ export function fetchDocs (tag, docsKey) {
         })
       })
   }
+}
+
+export function getSelectedVersionTag (state) {
+  if (!state) {
+    return null
+  }
+
+  const versionTag = state.getIn(['routeData', 'params', 'versionTag'])
+  return versionTag ? decodeURI(versionTag) : state.latestVersionTag
 }
 
 function versionsToOrderedMap (versions) {

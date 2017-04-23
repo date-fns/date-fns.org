@@ -4,13 +4,13 @@ import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
 import {changeSubmodule} from 'app/acts/submodule'
 
-export default function VersionPicker ({versions, selectedVersion, routeData, submodule}) {
+export default function VersionPicker ({versions, selectedVersionTag, routeData, submodule}) {
   const loading = versions.size === 0
 
   return <div>
     <select
       disabled={loading}
-      value={selectedVersion.tag || ''}
+      value={selectedVersionTag || ''}
       className='version_picker'
       onChange={onVersionChange.bind(null, routeData)}
     >
@@ -41,7 +41,7 @@ export default function VersionPicker ({versions, selectedVersion, routeData, su
 
 VersionPicker.propTypes = {
   versions: ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired,
-  selectedVersion: VersionPropType,
+  selectedVersionTag: React.PropTypes.any,
   submodule: React.PropTypes.string.isRequired
 }
 
