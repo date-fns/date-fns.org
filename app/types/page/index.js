@@ -10,7 +10,12 @@ export const Page = I.Record({
   type: null,
   path: null,
   urlId: null,
-  isFPFn: false
+  isFPFn: false,
+  usage: null,
+  usageTabs: null,
+  args: null,
+  properties: null,
+  syntax: null
 })
 
 export const PagePropType = ImmutablePropTypes.recordOf({
@@ -24,7 +29,12 @@ export const PagePropType = ImmutablePropTypes.recordOf({
   type: React.PropTypes.string.isRequired,
   path: React.PropTypes.string,
   urlId: React.PropTypes.string.isRequired,
-  isFPFn: React.PropTypes.bool.isRequired
+  isFPFn: React.PropTypes.bool.isRequired,
+  usage: ImmutablePropTypes.map,
+  usageTabs: ImmutablePropTypes.list,
+  args: ImmutablePropTypes.list,
+  properties: ImmutablePropTypes.list,
+  syntax: React.PropTypes.string
 })
 
 export default Page

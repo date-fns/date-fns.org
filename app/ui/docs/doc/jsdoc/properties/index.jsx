@@ -41,19 +41,18 @@ export default class JSDocProperties extends React.Component {
 
   _renderArguments (args, isProps, selectedVersionTag) {
     return args
-      .filter((arg) => isProps || !arg.isProperty)
       .map((arg, index) => {
         return <tr key={index}>
           <td>
-            {arg.name}
-            {this._renderArgumentOptionalLabel(arg.optional, arg.defaultvalue)}
+            {arg.get('name')}
+            {this._renderArgumentOptionalLabel(arg.get('optional'), arg.get('defaultvalue'))}
           </td>
           <td>
-            {this._renderArgumentType(arg.type, arg.variable)}
+            {this._renderArgumentType(arg.get('type'), arg.get('variable'))}
           </td>
           <td>
-            <Markdown value={arg.description} selectedVersionTag={selectedVersionTag} />
-            {this._renderArgumentPropsTable(arg.props, selectedVersionTag)}
+            <Markdown value={arg.get('description')} selectedVersionTag={selectedVersionTag} />
+            {this._renderArgumentPropsTable(arg.get('props'), selectedVersionTag)}
           </td>
         </tr>
       })
@@ -70,9 +69,10 @@ export default class JSDocProperties extends React.Component {
   }
 
   _renderArgumentType (type, variable) {
-    const types = type.names.join(' | ')
+    const names = type.get('names')
+    const types = names.join(' | ')
     if (variable) {
-      return type.names.length > 1 ? `...(${types})` : `...${types}`
+      return names.size > 1 ? `...(${types})` : `...${types}`
     } else {
       return types
     }

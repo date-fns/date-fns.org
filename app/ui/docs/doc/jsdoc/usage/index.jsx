@@ -1,14 +1,13 @@
 import React from 'react'
 import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import {trackAction} from 'app/acts/tracking_acts'
 
 export default class JSDocUsage extends React.Component {
   static propTypes = {
-    name: React.PropTypes.string,
-    usageAvailable: React.PropTypes.bool,
-    camelCase: React.PropTypes.bool,
-    isFPFn: React.PropTypes.bool
+    usage: ImmutablePropTypes.map,
+    usageTabs: ImmutablePropTypes.list
   }
 
   state = {
@@ -26,9 +25,13 @@ export default class JSDocUsage extends React.Component {
   }
 
   render () {
-    if (!this.props.usageAvailable) {
+    const {usage, usageTabs} = this.props
+
+    if (!usage || !usageTabs) {
       return null
     }
+
+    const selectedTab = usageTabs.includes(this.state.source) ? this.state.source : usageTabs.get(0)
 
     return <section>
       <h2 id='usage'>
@@ -37,53 +40,30 @@ export default class JSDocUsage extends React.Component {
       </h2>
 
       <ul className='jsdoc_usage-options'>
-        <li className='jsdoc_usage-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'commonjs')}
-            className={classnames('jsdoc_usage-option_link', {
-              'is-current': this.state.source === 'commonjs'
-            })}
-          >
-            CommonJS
-          </a>
-        </li>
+        {usageTabs.map((usageTab, index) => {
+          const usageItem = usage.get(usageTab)
 
-        <li className='jsdoc_usage-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'umd')}
-            className={classnames('jsdoc_usage-option_link', {
-              'is-current': this.state.source === 'umd'
-            })}
-          >
-            UMD
-          </a>
-        </li>
-
-        <li className='jsdoc_usage-option'>
-          <a
-            href='#'
-            onClick={this._changeSource.bind(this, 'es2015')}
-            className={classnames('jsdoc_usage-option_link', {
-              'is-current': this.state.source === 'es2015'
-            })}
-          >
-            ES 2015
-          </a>
-        </li>
+          return <li className='jsdoc_usage-option' key={usageTab}>
+            <a
+              href='#'
+              onClick={this._changeSource.bind(this, usageTab)}
+              className={classnames('jsdoc_usage-option_link', {
+                'is-current': selectedTab === usageTab
+              })}
+            >
+              {usageItem.get('title')}
+            </a>
+          </li>
+        })}
       </ul>
 
-      {this._renderUsage()}
+      {this._renderUsage(usage.getIn([selectedTab, 'code']))}
     </section>
   }
 
-  _renderUsage () {
-    const {name, camelCase, isFPFn} = this.props
-    const source = this.state.source
-
+  _renderUsage (code) {
     return <Code
-      value={this._generateUsageString(source, name, camelCase, isFPFn)}
+      value={code}
       options={{
         readOnly: true,
         mode: 'javascript'
@@ -96,22 +76,5 @@ export default class JSDocUsage extends React.Component {
     e.preventDefault()
     this.setState({source})
     window.localStorage.setItem('usageSource', source)
-  }
-
-  _generateUsageString (source, name, camelCase, isFPFn) {
-    const caseCorrectedName = camelCase ? name : this._convertToUnderscore(name)
-    const submoduleCorrectedName = isFPFn ? 'fp/' + caseCorrectedName : caseCorrectedName
-
-    if (source === 'commonjs') {
-      return `var ${name} = require('date-fns/${submoduleCorrectedName}')`
-    } else if (source === 'umd') {
-      return `var ${name} = dateFns.${name}`
-    } else if (source === 'es2015') {
-      return `import ${name} from 'date-fns/${submoduleCorrectedName}'`
-    }
-  }
-
-  _convertToUnderscore (string) {
-    return string.replace(/ISO|[A-Z]/g, (letter) => '_' + letter.toLowerCase())
   }
 }
