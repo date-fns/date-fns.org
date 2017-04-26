@@ -9,6 +9,7 @@ import {getSelectedVersionTag} from 'app/acts/versions'
 import {getRouteDocId, getShownPage} from 'app/acts/routes'
 import {StatePropType} from 'app/types/state'
 import {Version} from 'app/types/version'
+import {Either} from 'app/types/either'
 
 export default function Ui ({state}) {
   const selectedVersionTag = getSelectedVersionTag(state)
@@ -21,7 +22,7 @@ export default function Ui ({state}) {
       submodule={state.submodule}
     />
 
-  {renderContent(state, selectedVersionTag)}
+    {renderContent(state, selectedVersionTag)}
   </div>
 }
 
@@ -30,7 +31,12 @@ Ui.propTypes = {
 }
 
 function renderContent (state, selectedVersionTag) {
-  const selectedVersion = state.versions.get(selectedVersionTag, Version())
+  const selectedVersion = selectedVersionTag.chain(tag =>
+    state.versions.chain(versions =>
+      Either.fromNullable(versions.get(tag))
+    )
+  )
+
   const page = getShownPage(state.routeData)
 
   switch (page) {
@@ -38,15 +44,13 @@ function renderContent (state, selectedVersionTag) {
       return 'Loading'
     case 'home':
       return <Home
-        selectedVersion={selectedVersion}
-        locales={selectedVersion.locales}
+        version={selectedVersion}
         contributors={state.contributors}
       />
     case 'docs':
       return <Docs
         docId={getRouteDocId(state.routeData)}
         docs={state.docs}
-        features={selectedVersion.features}
         selectedVersionTag={selectedVersionTag}
         latestVersionTag={state.latestVersionTag}
         submodule={state.submodule}

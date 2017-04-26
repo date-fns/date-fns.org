@@ -5,19 +5,17 @@ import {VersionPropType} from 'app/types/version'
 import {changeSubmodule} from 'app/acts/submodule'
 
 export default function VersionPicker ({versions, selectedVersionTag, routeData, submodule}) {
-  const loading = versions.size === 0
-
   return <div>
     <select
-      disabled={loading}
-      value={selectedVersionTag || ''}
+      disabled={versions.isLeft}
+      value={selectedVersionTag.getOrElse('')}
       className='version_picker'
       onChange={onVersionChange.bind(null, routeData)}
     >
       {
-        loading
-          ? <option>Loading</option>
-          : versions
+        versions.fold(
+          ({message}) => message,
+          versions => versions
             .filter((version) => {
               const hasDocs = version.features.docs
               const isPrerelease = version.prerelease
@@ -25,6 +23,7 @@ export default function VersionPicker ({versions, selectedVersionTag, routeData,
             })
             .keySeq()
             .map(versionOption)
+        )
       }
     </select>
 

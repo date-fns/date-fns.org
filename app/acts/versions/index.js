@@ -4,6 +4,7 @@ import Version from 'app/types/version'
 import Features from 'app/types/features'
 import Docs from 'app/types/docs'
 import Page from 'app/types/page'
+import Either from 'app/types/either'
 import {getItem} from '../_lib/localStorage'
 import {getJSON} from 'app/_lib/request'
 import {firebaseURL} from 'app/_lib/firebase'
@@ -14,54 +15,75 @@ export function fetchVersions () {
       const versions = versionsToOrderedMap(versionsObject)
       const latestVersionTag = versions.keySeq().first()
 
-      act(state => state
-        .set('versions', versions)
-        .set('latestVersionTag', latestVersionTag))
-    })
-    // TODO:
-    // .catch(reason => act(state => state.set('contributors', Object.assign(new Error('Failed to fetch contributors'), {reason}))))
-}
+      act(state => {
+        const newState = state
+          .set('versions', Either.Right(versions))
+          .set('latestVersionTag', Either.Right(latestVersionTag))
 
-export function fetchDocsIfNeeded (state, prevState) {
-  const prevSelectedVersionTag = getSelectedVersionTag(prevState)
-  const selectedVersionTag = getSelectedVersionTag(state)
+        fetchDocs(newState)
 
-  const versionsLoaded = (prevState ? prevState.versions.size : 0) !== state.versions.size
-  const selectedVersionChanged = prevSelectedVersionTag !== selectedVersionTag
-
-  if (selectedVersionTag && (versionsLoaded || selectedVersionChanged)) {
-    const docsKey = state.getIn(['versions', selectedVersionTag, 'docsKey'])
-    return fetchDocs(selectedVersionTag, docsKey)
-  }
-}
-
-function fetchDocs (tag, docsKey) {
-  act(state => state.remove('docs'))
-
-  if (docsKey) {
-    return getJSON(firebaseURL(`docs/${docsKey}`))
-      .then(docs => {
-        act(state => {
-          const versionTag = state.getIn(['routeData', 'params', 'versionTag'])
-          const selectedVersionTag = versionTag ? decodeURI(versionTag) : state.latestVersionTag
-
-          if (docs && tag === selectedVersionTag) {
-            return state.set('docs', Docs(I.fromJS(docs)).update('pages', (pages) => pages.map(Page)))
-          } else {
-            return state.remove('docs')
-          }
-        })
+        return newState
       })
+    })
+    .catch(reason => {
+      const err = {message: 'Failed to fetch version list', reason}
+      act(state => state
+        .set('versions', Either.Left(err))
+        .set('latestVersionTag', Either.Left(err))
+        .set('docs', Either.Left(err)))
+    })
+}
+
+export function fetchDocsIfSelectedVersionChanged (state, prevState) {
+  if (!state || !prevState) {
+    return null
   }
+
+  Either.of(a => b => a !== b)
+    .ap(getSelectedVersionTag(prevState))
+    .ap(getSelectedVersionTag(state))
+    .map(versionChanged => {
+      if (versionChanged) {
+        fetchDocs(state)
+      }
+    })
+}
+
+function fetchDocs (state) {
+  Either.of(tag => versions => ({tag, docsKey: versions.get(tag).docsKey}))
+    .ap(getSelectedVersionTag(state))
+    .ap(state.versions)
+    .map(({tag, docsKey}) => {
+      act(state => state.set('docs', Either.Left({message: 'Loading docs...'})))
+
+      getJSON(firebaseURL(`docs/${docsKey}`))
+        .then(docsJSON => {
+          act(state => getSelectedVersionTag(state)
+            .chain(selectedVersionTag => {
+              if (docsJSON && tag === selectedVersionTag) {
+                return Either.Right(Docs(I.fromJS(docsJSON)).update('pages', (pages) => pages.map(Page)))
+              } else {
+                return Either.Left()
+              }
+            })
+            .map(docs => state.set('docs', Either.Right(docs)))
+            .getOrElse(state)
+          )
+        })
+        .catch(reason => {
+          const err = {message: 'Failed to fetch documentation', reason}
+          act(state => state.set('docs', Either.Left(err)))
+        })
+    })
 }
 
 export function getSelectedVersionTag (state) {
   if (!state) {
-    return null
+    return Either.Left({message: 'Loading...'})
   }
 
   const versionTag = state.getIn(['routeData', 'params', 'versionTag'])
-  return versionTag ? decodeURI(versionTag) : state.latestVersionTag
+  return versionTag ? Either.Right(decodeURI(versionTag)) : state.latestVersionTag
 }
 
 function versionsToOrderedMap (versions) {

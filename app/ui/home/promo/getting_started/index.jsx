@@ -17,22 +17,24 @@ export default class GettingStarted extends React.Component {
     source: 'npm'
   }
 
-  componentWillReceiveProps ({gettingStartedTabs}) {
-    if (!gettingStartedTabs.includes(this.state.source)) {
-      this._resetSource(gettingStartedTabs)
-    }
+  componentWillReceiveProps ({version}) {
+    version.map(({gettingStartedTabs}) => {
+      if (!gettingStartedTabs.includes(this.state.source)) {
+        this._resetSource(gettingStartedTabs)
+      }
+    })
   }
 
   render () {
-    const {selectedVersionTag} = this.props
+    const {version} = this.props
 
     return <div className='getting_started'>
-      {this._renderContent()}
+      {this._renderContent(version)}
 
       <div className='getting_started-link_wrapper'>
         <Link
           name='doc'
-          params={{docId: 'Getting-Started', versionTag: selectedVersionTag}}
+          params={{docId: 'Getting-Started', versionTag: version.map(v => v.tag)}}
           className='getting_started-link'
         >
           Documentation
@@ -41,38 +43,35 @@ export default class GettingStarted extends React.Component {
     </div>
   }
 
-  _renderContent () {
-    const {gettingStartedTabs, gettingStarted} = this.props
+  _renderContent (version) {
+    return version.fold(
+      ({message}) => message,
+      ({tag, gettingStarted, gettingStartedTabs}) => <div>
+        <ul className='getting_started-options'>
+          {
+            gettingStartedTabs.map((tab) => {
+              return <li className='getting_started-option' key={tab}>
+                <a
+                  href='#'
+                  onClick={this._changeSource.bind(this, tab)}
+                  className={classnames('getting_started-option_link', {
+                    'is-current': this.state.source === tab
+                  })}
+                >
+                  {gettingStarted.getIn([tab, 'title'])}
+                </a>
+              </li>
+            })
+          }
+        </ul>
 
-    if (gettingStarted.size === 0) {
-      return <div className='getting_started-loading'>Loading</div>
-    }
-
-    return <div>
-      <ul className='getting_started-options'>
-        {
-          gettingStartedTabs.map((tab) => {
-            return <li className='getting_started-option' key={tab}>
-              <a
-                href='#'
-                onClick={this._changeSource.bind(this, tab)}
-                className={classnames('getting_started-option_link', {
-                  'is-current': this.state.source === tab
-                })}
-              >
-                {gettingStarted.getIn([tab, 'title'])}
-              </a>
-            </li>
-          })
-        }
-      </ul>
-
-      {this._renderInstruction()}
-    </div>
+        {this._renderInstruction(gettingStarted)}
+      </div>
+    )
   }
 
-  _renderInstruction () {
-    const currentGettingStarted = this.props.gettingStarted.get(this.state.source, I.Map())
+  _renderInstruction (gettingStarted) {
+    const currentGettingStarted = gettingStarted.get(this.state.source, I.Map())
 
     const link = currentGettingStarted.get('link')
 

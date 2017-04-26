@@ -9,7 +9,7 @@ const logoPath = require('./img/logo.svg')
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
-    currentId: React.PropTypes.string,
+    docId: React.PropTypes.string,
     docs: DocsPropType.isRequired,
     selectedVersionTag: React.PropTypes.any,
     submodule: React.PropTypes.string.isRequired
@@ -70,44 +70,47 @@ export default class DocsFinder extends React.Component {
   _renderCategories () {
     const {docs, submodule} = this.props
 
-    if (docs.pages.size === 0) {
-      return <div className='docs_finder-no_results'>
-        <p className='docs_finder-no_results_text'>
-          Loading...
-        </p>
-      </div>
-    }
+    return docs.fold(
+      ({message}) => {
+        return <div className='docs_finder-no_results'>
+          <p className='docs_finder-no_results_text'>
+            {message}
+          </p>
+        </div>
+      },
 
-    const categories = docs.categories
-    const pages = this._filterPages(docs.pages, this.state.query, submodule)
+      ({categories, pages}) => {
+        const filteredPages = this._filterPages(pages, this.state.query, submodule)
 
-    if (pages.size === 0) {
-      return <div className='docs_finder-no_results'>
-        <p className='docs_finder-no_results_text'>
-          Your search didn't match any results.
-        </p>
-      </div>
-    }
-
-    return <ul className='docs_finder-categories'>
-      {categories.map((category) => {
-        const categoryPages = pages.filter((page) => page.category === category)
-
-        if (categoryPages.size === 0) {
-          return null
+        if (filteredPages.size === 0) {
+          return <div className='docs_finder-no_results'>
+            <p className='docs_finder-no_results_text'>
+              Your search didn't match any results.
+            </p>
+          </div>
         }
 
-        return <li className='docs_finder-category' key={category}>
-          <ul className='docs_finder-list'>
-            <h3 className='docs_finder-category_header'>
-              {category}
-            </h3>
+        return <ul className='docs_finder-categories'>
+          {categories.map((category) => {
+            const categoryPages = filteredPages.filter((page) => page.category === category)
 
-            {this._renderDocs(categoryPages)}
-          </ul>
-        </li>
-      })}
-    </ul>
+            if (categoryPages.size === 0) {
+              return null
+            }
+
+            return <li className='docs_finder-category' key={category}>
+              <ul className='docs_finder-list'>
+                <h3 className='docs_finder-category_header'>
+                  {category}
+                </h3>
+
+                {this._renderDocs(categoryPages)}
+              </ul>
+            </li>
+          })}
+        </ul>
+      }
+    )
   }
 
   _renderDocs (docs) {
@@ -120,7 +123,7 @@ export default class DocsFinder extends React.Component {
         className={classnames(
           'docs_finder-item',
           `is-${doc.get('type')}`, {
-            'is-current': urlId === this.props.currentId
+            'is-current': urlId === this.props.docId
           }
         )}
         key={urlId}

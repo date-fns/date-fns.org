@@ -5,7 +5,7 @@ import logoPath from './img/logo.svg'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {GettingStartedPropType} from 'app/types/getting_started'
 
-export default function Promo ({selectedVersionTag, gettingStartedTabs, gettingStarted}) {
+export default function Promo ({version}) {
   return <div className='promo'>
     <div className='promo-inner'>
       <div className='promo-logo'>
@@ -26,11 +26,7 @@ export default function Promo ({selectedVersionTag, gettingStartedTabs, gettingS
       </div>
 
       <div className='promo-getting_started'>
-        <GettingStarted
-          selectedVersionTag={selectedVersionTag}
-          gettingStartedTabs={gettingStartedTabs}
-          gettingStarted={gettingStarted}
-        />
+        <GettingStarted version={version} />
       </div>
 
       <div className='promo-navigation'>

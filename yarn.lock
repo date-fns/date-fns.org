@@ -2232,6 +2232,9 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+data.either@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/data.either/-/data.either-1.5.0.tgz#b838ff92b65206c58baf48d48cc23a07f3859ce2"
 date-fns@^1.0.0-rc1:
   version "1.21.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.21.1.tgz#5f5de347a88d575c8a09958a884f91502b48d157"

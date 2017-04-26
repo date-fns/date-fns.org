@@ -5,23 +5,21 @@ import FlagSpinner from './flag_spinner'
 import flag from 'emoji-flag'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-export default function I18n ({locales, localesAvailable, selectedVersionTag}) {
-  if (!localesAvailable) {
-    return <HomeBlock
-      header='I18n'
-    >Locales data aren't available for this version</HomeBlock>
+export default function I18n ({version}) {
+  if (version.map(v => v.features.locales).getOrElse(false)) {
+    return <HomeBlock header='I18n'>
+      Locales data aren't available for this version
+    </HomeBlock>
   }
 
   return <HomeBlock
     header='I18n'
-    subHeader={`${locales && !(locales instanceof Error) && locales.size > 0
-      ? locales.size
-      : '...'} locales available`}
+    subHeader={`${version.map(v => v.locales.size).getOrElse('...')} locales available`}
     action='See documentation'
     actionLink='doc'
-    actionLinkParams={{docId: 'I18n', versionTag: selectedVersionTag}}
+    actionLinkParams={{docId: 'I18n', versionTag: version.map(v => v.tag)}}
   >
-    {renderContent(locales)}
+    {renderContent(version.map(v => v.locales))}
   </HomeBlock>
 }
 
@@ -32,17 +30,10 @@ I18n.propTypes = {
 }
 
 function renderContent (locales) {
-  if (locales) {
-    if (locales instanceof Error) {
-      return locales.message
-    } else if (locales.size === 0) {
-      return 'Loading'
-    } else {
-      return renderList(locales)
-    }
-  } else {
-    return 'Loading'
-  }
+  return locales.fold(
+    ({message}) => message,
+    renderList
+  )
 }
 
 function renderList (locales) {
@@ -57,7 +48,7 @@ function renderList (locales) {
       {locales.map((locale, index) => <div className='i18n-locale' key={index}>
         <Link key={locale.get('name')} href={locale.get('url')}>
           <span title={locale.get('countries', []).map(country => flag(country)).join('')}>
-            {locale.get('name') === 'Modern Greek (1453-)' ? 'Greek' : locale.get('name')}
+            {locale.get('name')}
           </span>
         </Link>
       </div>)}

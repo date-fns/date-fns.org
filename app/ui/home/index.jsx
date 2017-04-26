@@ -10,29 +10,20 @@ import Footer from './footer'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {VersionPropType} from 'app/types/version'
 
-export default function Home ({selectedVersion, locales, contributors}) {
+export default function Home ({version, contributors}) {
   return <div className='home'>
-    <Promo
-      selectedVersionTag={selectedVersion.tag}
-      gettingStartedTabs={selectedVersion.gettingStartedTabs}
-      gettingStarted={selectedVersion.gettingStarted}
-    />
+    <Promo version={version} />
     <Features />
-    <I18n
-      locales={locales}
-      localesAvailable={(!selectedVersion.tag) || selectedVersion.features.i18n}
-      selectedVersionTag={selectedVersion.tag} 
-    />
+    <I18n version={version} />
     <Testimonials />
     <Contributors contributors={contributors} />
     <Sponsorship />
-    <Footer selectedVersionTag={selectedVersion.tag} />
+    <Footer selectedVersionTag={version.map(v => v.tag)} />
   </div>
 }
 
 Home.propTypes = {
-  selectedVersion: VersionPropType.isRequired,
-  locales: ImmutablePropTypes.list,
+  version: VersionPropType.isRequired,
   contributors: React.PropTypes.oneOfType([
     ImmutablePropTypes.list,
     React.PropTypes.instanceOf(Error)

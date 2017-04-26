@@ -2,13 +2,12 @@ import React from 'react'
 import DocsFinder from './docs_finder'
 import Doc from './doc'
 import {DocsPropType} from 'app/types/docs'
-import {FeaturesPropType} from 'app/types/features'
 
-export default function Docs ({docId, docs, features, selectedVersionTag, latestVersionTag, submodule}) {
+export default function Docs ({docId, docs, selectedVersionTag, latestVersionTag, submodule}) {
   return <div className='docs'>
     <div className='docs-finder'>
       <DocsFinder
-        currentId={docId}
+        docId={docId}
         docs={docs}
         selectedVersionTag={selectedVersionTag}
         submodule={submodule}
@@ -18,8 +17,7 @@ export default function Docs ({docId, docs, features, selectedVersionTag, latest
     <div className='docs-content'>
       <Doc
         docId={docId}
-        pages={docs.pages}
-        features={features}
+        docs={docs}
         selectedVersionTag={selectedVersionTag}
         latestVersionTag={latestVersionTag}
       />
@@ -30,7 +28,6 @@ export default function Docs ({docId, docs, features, selectedVersionTag, latest
 Docs.propTypes = {
   docId: React.PropTypes.string.isRequired,
   docs: DocsPropType.isRequired,
-  features: FeaturesPropType,
   selectedVersionTag: React.PropTypes.any,
   latestVersionTag: React.PropTypes.any,
   submodule: React.PropTypes.string.isRequired

@@ -3,16 +3,19 @@ import router from 'app/routes'
 
 export default function Link ({name, params, component, className, children}) {
   if (params && params.versionTag) {
-    if (name === 'home') {
-      name = 'versionHome'
-    } else if (name === 'doc') {
-      name = 'versionDoc'
-    } else if (name === 'docFP') {
-      name = 'versionDocFP'
-    } else if (name === 'docs') {
-      name = 'versionDocs'
-    } else if (name === 'docsFP') {
-      name = 'versionDocsFP'
+    params.versionTag = params.versionTag.getOrElse(null)
+    if (params.versionTag) {
+      if (name === 'home') {
+        name = 'versionHome'
+      } else if (name === 'doc') {
+        name = 'versionDoc'
+      } else if (name === 'docFP') {
+        name = 'versionDocFP'
+      } else if (name === 'docs') {
+        name = 'versionDocs'
+      } else if (name === 'docsFP') {
+        name = 'versionDocsFP'
+      }
     }
   }
 

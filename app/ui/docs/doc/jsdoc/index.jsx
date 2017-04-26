@@ -9,10 +9,8 @@ import JSDocExceptions from './exceptions'
 import JSDocExamples from './examples'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {PagePropType} from 'app/types/page'
-import {FeaturesPropType} from 'app/types/features'
 
-// TODO: remove features
-export default function JSDoc ({doc, features, selectedVersionTag}) {
+export default function JSDoc ({doc, selectedVersionTag}) {
   return <div className='jsdoc'>
     <h1>
       <span className='jsdoc-header'>
@@ -45,6 +43,5 @@ export default function JSDoc ({doc, features, selectedVersionTag}) {
 
 JSDoc.propTypes = {
   doc: PagePropType,
-  features: FeaturesPropType,
   selectedVersionTag: React.PropTypes.any
 }
