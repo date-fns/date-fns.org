@@ -3,6 +3,7 @@ import Remarkable from 'remarkable'
 import remarkableTree from 'app/ui/_lib/remarkable_tree'
 import MarkdownCode from 'app/ui/_lib/markdown_code'
 import Link from 'app/ui/_lib/link'
+import {EitherPropType} from 'app/types/either'
 
 const md = new Remarkable({
   linkify: true
@@ -11,7 +12,7 @@ const md = new Remarkable({
 export default class Markdown extends React.Component {
   static propTypes = {
     value: React.PropTypes.string,
-    selectedVersionTag: React.PropTypes.any
+    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string)
   }
 
   render () {

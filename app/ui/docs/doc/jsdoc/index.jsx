@@ -28,11 +28,7 @@ export default function JSDoc ({doc, selectedVersionTag}) {
       <Markdown value={doc.content.get('description')} selectedVersionTag={selectedVersionTag} />
     </section>
 
-    <JSDocUsage
-      usage={doc.usage}
-      usageTabs={doc.usageTabs}
-    />
-
+    <JSDocUsage usage={doc.usage} usageTabs={doc.usageTabs} selectedVersionTag={selectedVersionTag} />
     <JSDocSyntax syntax={doc.syntax} />
     <JSDocArguments args={doc.args} selectedVersionTag={selectedVersionTag} />
     <JSDocProperties properties={doc.properties} selectedVersionTag={selectedVersionTag} />

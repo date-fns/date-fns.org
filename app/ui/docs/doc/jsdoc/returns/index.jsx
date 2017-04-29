@@ -44,5 +44,5 @@ export default function JSDocReturns ({returns, selectedVersionTag}) {
 
 JSDocReturns.propTypes = {
   returns: ImmutablePropTypes.list,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
 }

@@ -1,13 +1,16 @@
 import React from 'react'
 import classnames from 'classnames'
 import Code from 'app/ui/_lib/code'
+import Markdown from 'app/ui/_lib/markdown'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import {EitherPropType} from 'app/types/either'
 import {trackAction} from 'app/acts/tracking_acts'
 
 export default class JSDocUsage extends React.Component {
   static propTypes = {
     usage: ImmutablePropTypes.map,
-    usageTabs: ImmutablePropTypes.list
+    usageTabs: ImmutablePropTypes.list,
+    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
   }
 
   state = {
@@ -25,13 +28,14 @@ export default class JSDocUsage extends React.Component {
   }
 
   render () {
-    const {usage, usageTabs} = this.props
+    const {usage, usageTabs, selectedVersionTag} = this.props
 
     if (!usage || !usageTabs) {
       return null
     }
 
     const selectedTab = usageTabs.includes(this.state.source) ? this.state.source : usageTabs.get(0)
+    const selectedUsage = usage.get(selectedTab)
 
     return <section>
       <h2 id='usage'>
@@ -57,18 +61,29 @@ export default class JSDocUsage extends React.Component {
         })}
       </ul>
 
-      {this._renderUsage(usage.getIn([selectedTab, 'code']))}
+      {this._renderUsage(selectedUsage.get('code'), selectedUsage.get('text'), selectedVersionTag)}
     </section>
   }
 
-  _renderUsage (code) {
-    return <Code
+  _renderUsage (code, text, selectedVersionTag) {
+    const codeContent = <Code
       value={code}
       options={{
         readOnly: true,
         mode: 'javascript'
       }}
     />
+
+    if (text) {
+      return <div>
+        {codeContent}
+        <div>
+          <Markdown value={text} selectedVersionTag={selectedVersionTag} />
+        </div>
+      </div>
+    } else {
+      return codeContent
+    }
   }
 
   _changeSource (source, e) {
