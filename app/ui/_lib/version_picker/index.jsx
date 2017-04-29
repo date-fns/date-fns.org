@@ -1,9 +1,8 @@
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
 import {EitherPropType} from 'app/types/either'
-import {changeSubmodule} from 'app/acts/submodule'
+import {changeSubmodule, changeVersion} from 'app/acts/routes'
 
 export default function VersionPicker ({versions, selectedVersionTag, routeData, submodule}) {
   return <div>
@@ -17,11 +16,7 @@ export default function VersionPicker ({versions, selectedVersionTag, routeData,
         versions.fold(
           ({message}) => message,
           versions => versions
-            .filter((version) => {
-              const hasDocs = version.features.docs
-              const isPrerelease = version.prerelease
-              return hasDocs && !isPrerelease
-            })
+            .filter((version) => version.features.docs)
             .keySeq()
             .map(versionOption)
         )
@@ -31,7 +26,7 @@ export default function VersionPicker ({versions, selectedVersionTag, routeData,
     <select
       value={submodule}
       className='submodule_picker'
-      onChange={onSubmoduleChange}
+      onChange={onSubmoduleChange.bind(null, routeData)}
     >
       <option value={''}>non-FP</option>
       <option value={'fp'}>FP</option>
@@ -50,28 +45,11 @@ VersionPicker.propTypes = {
 }
 
 function onVersionChange (routeData, {target: {value: tag}}) {
-  let name = routeData.getIn(['route', 'name'])
-
-  if (name === 'home') {
-    name = 'versionHome'
-  } else if (name === 'doc') {
-    name = 'versionDoc'
-  } else if (name === 'docFP') {
-    name = 'versionDocFP'
-  } else if (name === 'docs') {
-    name = 'versionDocs'
-  } else if (name === 'docsFP') {
-    name = 'versionDocsFP'
-  }
-
-  const params = routeData.get('params').toJS()
-  params.versionTag = tag
-
-  router.navigateToRoute(name, params)
+  changeVersion(routeData, tag)
 }
 
-function onSubmoduleChange({target: {value}}) {
-  changeSubmodule(value)
+function onSubmoduleChange(routeData, {target: {value}}) {
+  changeSubmodule(routeData, value)
 }
 
 function versionOption (tag) {
