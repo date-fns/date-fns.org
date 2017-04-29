@@ -13,7 +13,7 @@ export function fetchVersions () {
   return getJSON(firebaseURL('versions'))
     .then(versionsObject => {
       const versions = versionsToOrderedMap(versionsObject)
-      const latestVersionTag = versions.keySeq().first()
+      const latestVersionTag = versions.findKey(version => !version.prerelease)
 
       act(state => {
         const newState = state

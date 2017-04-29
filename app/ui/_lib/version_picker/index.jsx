@@ -16,7 +16,7 @@ export default function VersionPicker ({versions, selectedVersionTag, routeData,
         versions.fold(
           ({message}) => message,
           versions => versions
-            .filter((version) => version.features.docs)
+            .filter((version) => version.features.docs && !version.debug)
             .keySeq()
             .map(versionOption)
         )
