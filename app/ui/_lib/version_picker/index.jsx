@@ -2,6 +2,7 @@ import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
+import {EitherPropType} from 'app/types/either'
 import {changeSubmodule} from 'app/acts/submodule'
 
 export default function VersionPicker ({versions, selectedVersionTag, routeData, submodule}) {
@@ -39,8 +40,12 @@ export default function VersionPicker ({versions, selectedVersionTag, routeData,
 }
 
 VersionPicker.propTypes = {
-  versions: ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired,
+  versions: EitherPropType(
+    React.PropTypes.object,
+    ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
+  ).isRequired,
   selectedVersionTag: React.PropTypes.any,
+  routeData: ImmutablePropTypes.map,
   submodule: React.PropTypes.string.isRequired
 }
 

@@ -9,6 +9,7 @@ import JSDocExceptions from './exceptions'
 import JSDocExamples from './examples'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {PagePropType} from 'app/types/page'
+import {EitherPropType} from 'app/types/either'
 
 export default function JSDoc ({doc, selectedVersionTag}) {
   return <div className='jsdoc'>
@@ -43,5 +44,5 @@ export default function JSDoc ({doc, selectedVersionTag}) {
 
 JSDoc.propTypes = {
   doc: PagePropType,
-  selectedVersionTag: React.PropTypes.any
+  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
 }

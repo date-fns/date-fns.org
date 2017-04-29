@@ -9,6 +9,7 @@ import Sponsorship from './sponsorship'
 import Footer from './footer'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {VersionPropType} from 'app/types/version'
+import {EitherPropType} from 'app/types/either'
 
 export default function Home ({version, contributors}) {
   return <div className='home'>
@@ -23,9 +24,6 @@ export default function Home ({version, contributors}) {
 }
 
 Home.propTypes = {
-  version: VersionPropType.isRequired,
-  contributors: React.PropTypes.oneOfType([
-    ImmutablePropTypes.list,
-    React.PropTypes.instanceOf(Error)
-  ])
+  version: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired,
+  contributors: EitherPropType(React.PropTypes.object, ImmutablePropTypes.list.isRequired).isRequired,
 }

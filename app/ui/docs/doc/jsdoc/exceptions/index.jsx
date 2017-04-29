@@ -1,6 +1,7 @@
 import React from 'react'
 import Markdown from 'app/ui/_lib/markdown'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import {EitherPropType} from 'app/types/either'
 
 export default function JSDocExceptions ({exceptions, selectedVersionTag}) {
   if (!exceptions) {
@@ -43,5 +44,5 @@ export default function JSDocExceptions ({exceptions, selectedVersionTag}) {
 
 JSDocExceptions.propTypes = {
   exceptions: ImmutablePropTypes.list,
-  selectedVersionTag: React.PropTypes.any
+  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
 }

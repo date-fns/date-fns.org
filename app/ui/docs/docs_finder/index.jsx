@@ -4,14 +4,15 @@ import debounce from 'lodash/function/debounce'
 import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
 import {DocsPropType} from 'app/types/docs'
+import {EitherPropType} from 'app/types/either'
 
 const logoPath = require('./img/logo.svg')
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
     docId: React.PropTypes.string,
-    docs: DocsPropType.isRequired,
-    selectedVersionTag: React.PropTypes.any,
+    docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
+    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
     submodule: React.PropTypes.string.isRequired
   }
 

@@ -3,7 +3,8 @@ import I from 'immutable'
 import HomeBlock, {Link} from '../_lib/block'
 import FlagSpinner from './flag_spinner'
 import flag from 'emoji-flag'
-import ImmutablePropTypes from 'react-immutable-proptypes'
+import {EitherPropType} from 'app/types/either'
+import {VersionPropType} from 'app/types/version'
 
 export default function I18n ({version}) {
   if (version.map(v => v.features.locales).getOrElse(false)) {
@@ -24,9 +25,7 @@ export default function I18n ({version}) {
 }
 
 I18n.propTypes = {
-  locales: ImmutablePropTypes.list,
-  localesAvailable: React.PropTypes.bool.isRequired,
-  selectedVersionTag: React.PropTypes.any
+  version: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
 }
 
 function renderContent (locales) {

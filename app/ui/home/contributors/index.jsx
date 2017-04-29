@@ -2,6 +2,7 @@ import React from 'react'
 import HomeBlock, {Link} from '../_lib/block'
 import {fetchContributors} from 'app/acts/contributors'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import {EitherPropType} from 'app/types/either'
 
 export default function Contributors ({contributors}) {
   return <HomeBlock header='Contributors'>
@@ -10,10 +11,7 @@ export default function Contributors ({contributors}) {
 }
 
 Contributors.propTypes = {
-  contributors: React.PropTypes.oneOfType([
-    ImmutablePropTypes.list,
-    React.PropTypes.instanceOf(Error)
-  ])
+  contributors: EitherPropType(React.PropTypes.object, ImmutablePropTypes.list.isRequired).isRequired
 }
 
 function renderContent (contributors) {

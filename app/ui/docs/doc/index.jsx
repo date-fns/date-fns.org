@@ -3,7 +3,8 @@ import JSDoc from './jsdoc'
 import MarkdownDoc from './markdown_doc'
 import Link from 'app/ui/_lib/link'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import {PagePropType} from 'app/types/page'
+import {DocsPropType} from 'app/types/docs'
+import {EitherPropType} from 'app/types/either'
 
 export default function Doc ({docId, docs, selectedVersionTag, latestVersionTag}) {
   if (!docId) return null
@@ -18,9 +19,9 @@ export default function Doc ({docId, docs, selectedVersionTag, latestVersionTag}
 
 Doc.propTypes = {
   docId: React.PropTypes.string,
-  pages: ImmutablePropTypes.listOf(PagePropType),
-  selectedVersionTag: React.PropTypes.any,
-  latestVersionTag: React.PropTypes.any
+  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
+  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
 }
 
 function renderDocContainer (docId, selectedVersionTag, latestVersionTag, docs) {

@@ -3,7 +3,8 @@ import GettingStarted from './getting_started'
 import Navigation from './navigation'
 import logoPath from './img/logo.svg'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import {GettingStartedPropType} from 'app/types/getting_started'
+import {VersionPropType} from 'app/types/version'
+import {EitherPropType} from 'app/types/either'
 
 export default function Promo ({version}) {
   return <div className='promo'>
@@ -37,7 +38,5 @@ export default function Promo ({version}) {
 }
 
 Promo.propTypes = {
-  selectedVersionTag: React.PropTypes.any,
-  gettingStarted: GettingStartedPropType.isRequired,
-  gettingStartedTabs: ImmutablePropTypes.listOf(React.PropTypes.string.isRequired)
+  version: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
 }

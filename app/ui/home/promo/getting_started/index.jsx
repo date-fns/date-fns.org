@@ -4,13 +4,12 @@ import Code from 'app/ui/_lib/code'
 import Link from 'app/ui/_lib/link'
 import {trackAction} from 'app/acts/tracking_acts'
 import I from 'immutable'
-import ImmutablePropTypes from 'react-immutable-proptypes'
-import {GettingStartedPropType} from 'app/types/getting_started'
+import {VersionPropType} from 'app/types/version'
+import {EitherPropType} from 'app/types/either'
 
 export default class GettingStarted extends React.Component {
   static propTypes = {
-    gettingStarted: GettingStartedPropType.isRequired,
-    gettingStartedTabs: ImmutablePropTypes.listOf(React.PropTypes.string.isRequired)
+    version: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
   }
 
   state = {
