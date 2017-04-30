@@ -53,22 +53,47 @@ export function changeSubmodule (routeData, value) {
 }
 
 export function changeVersion (routeData, tag) {
-  let name = routeData.getIn(['route', 'name'])
-
-  if (name === 'home') {
-    name = 'versionHome'
-  } else if (name === 'doc') {
-    name = 'versionDoc'
-  } else if (name === 'docFP') {
-    name = 'versionDocFP'
-  } else if (name === 'docs') {
-    name = 'versionDocs'
-  } else if (name === 'docsFP') {
-    name = 'versionDocsFP'
-  }
-
+  const name = routeNameToVersionCounterpart(routeData.getIn(['route', 'name']))
   const params = routeData.get('params').toJS()
   params.versionTag = tag
-
   router.navigateToRoute(name, params)
+}
+
+export function calculateLinkRouteName (name, params) {
+  if (params && params.versionTag) {
+    params.versionTag = params.versionTag.getOrElse(null)
+    if (params.versionTag) {
+      name = routeNameToVersionCounterpart(name)
+    }
+  }
+
+  return name
+}
+
+function routeNameToVersionCounterpart (name) {
+  if (name === 'home') {
+    return 'versionHome'
+  } else if (name === 'doc') {
+    return 'versionDoc'
+  } else if (name === 'docFP') {
+    return 'versionDocFP'
+  } else if (name === 'docs') {
+    return 'versionDocs'
+  } else if (name === 'docsFP') {
+    return 'versionDocsFP'
+  }
+
+  return name
+}
+
+function routeNameToNonFPCounterpart (name) {
+  if (name === 'docsFP') {
+    return 'docs'
+  } else if (name === 'docFP') {
+    return 'doc'
+  } else if (name === 'versionDocsFP') {
+    return 'versionDocs'
+  } else if (name === 'docFP') {
+    return 'doc'
+  }
 }
