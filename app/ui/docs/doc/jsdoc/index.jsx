@@ -34,11 +34,11 @@ export default function JSDoc ({doc, selectedVersionTag}) {
     <JSDocProperties properties={doc.properties} selectedVersionTag={selectedVersionTag} />
     <JSDocReturns returns={doc.content.get('returns')} selectedVersionTag={selectedVersionTag} />
     <JSDocExceptions exceptions={doc.content.get('exceptions')} selectedVersionTag={selectedVersionTag} />
-    <JSDocExamples examples={doc.content.get('examples')} />
+    <JSDocExamples examples={doc.content.get('examples')} selectedVersionTag={selectedVersionTag} />
   </div>
 }
 
 JSDoc.propTypes = {
   doc: PagePropType,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
 }

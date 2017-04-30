@@ -44,5 +44,5 @@ export default function JSDocExceptions ({exceptions, selectedVersionTag}) {
 
 JSDocExceptions.propTypes = {
   exceptions: ImmutablePropTypes.list,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
 }
