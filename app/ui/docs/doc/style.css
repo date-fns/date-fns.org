@@ -1,9 +1,7 @@
 .doc {
   padding: 30px;
-  overflow-y: auto;
   color: #4A3142;
   background-color: #FFFDF9;
-  height: 100vh;
   font-size: 16px;
   line-height: 1.6em;
 }

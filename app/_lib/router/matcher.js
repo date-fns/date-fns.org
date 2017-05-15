@@ -143,12 +143,14 @@ const RouterMatcher = {
       )
 
       if (matchedRoute) {
+        debugger
         return merge(matchedRoute, {
           route: merge(clone(route), {name: routeName})
         })
       }
     }
 
+    debugger
     return {pathname, params: {}, route: notFoundRoute}
   },
 
