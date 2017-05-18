@@ -6,14 +6,12 @@ import {trackAction} from 'app/acts/tracking_acts'
 import {DocsPropType} from 'app/types/docs'
 import {EitherPropType} from 'app/types/either'
 
-const logoPath = require('./img/logo.svg')
-
 export default class DocsFinder extends React.Component {
   static propTypes = {
     docId: React.PropTypes.string,
     docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
     selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
-    submodule: React.PropTypes.string.isRequired
+    selectedSubmodule: React.PropTypes.string.isRequired
   }
 
   state = {
@@ -27,38 +25,22 @@ export default class DocsFinder extends React.Component {
 
   render () {
     return <div className='docs_finder'>
-      <header className='docs_finder-header'>
-        <div className='docs_finder-header_title_wrapper'>
-          {this._renderLogo()}
+      <header className='docs_finder-search'>
+        <input
+          className='docs_finder-search_field'
+          autoFocus
+          type='text'
+          name='search'
+          placeholder='Search'
+          value={this.state.query}
+          onChange={this._performSearch.bind(this)}
+        />
 
-          <h2 className='docs_finder-header_title'>
-            Docs
-          </h2>
-        </div>
-
-        <div className='docs_finder-search'>
-          <input
-            className='docs_finder-search_field'
-            placeholder='Search'
-            value={this.state.query}
-            onChange={this._performSearch.bind(this)}
-          />
-
-          {this.state.query ? this._renderCancelButton() : null}
-        </div>
+        {this.state.query ? this._renderCancelButton() : null}
       </header>
 
       {this._renderCategories()}
     </div>
-  }
-
-  _renderLogo () {
-    return <Link name='home' params={{versionTag: this.props.selectedVersionTag}}>
-      <img
-        src={logoPath}
-        className='docs_finder-logo_image'
-      />
-    </Link>
   }
 
   _renderCancelButton () {
@@ -69,7 +51,7 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderCategories () {
-    const {docs, submodule} = this.props
+    const {docs, selectedSubmodule} = this.props
 
     return docs.fold(
       ({message}) => {
@@ -81,7 +63,7 @@ export default class DocsFinder extends React.Component {
       },
 
       ({categories, pages}) => {
-        const filteredPages = this._filterPages(pages, this.state.query, submodule)
+        const filteredPages = this._filterPages(pages, this.state.query, selectedSubmodule)
 
         if (filteredPages.size === 0) {
           return <div className='docs_finder-no_results'>
@@ -143,7 +125,7 @@ export default class DocsFinder extends React.Component {
     })
   }
 
-  _filterPages (pages, dirtyQuery, submodule) {
+  _filterPages (pages, dirtyQuery, selectedSubmodule) {
     if (dirtyQuery) {
       const query = dirtyQuery.toLowerCase()
 
@@ -160,7 +142,7 @@ export default class DocsFinder extends React.Component {
       if (category === 'General' || category === 'Types') {
         return true
       } else {
-        return (submodule === 'fp') === isFPFn
+        return (selectedSubmodule === 'fp') === isFPFn
       }
     })
   }

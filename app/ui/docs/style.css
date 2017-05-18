@@ -1,11 +1,12 @@
 .docs {
   display: flex;
+  padding-top: 2.5rem;
 }
 
 .docs-finder {
-  flex-basis: 30%;
 }
 
 .docs-content {
-  flex-basis: 70%;
+  width: 100%;
+  padding-left: 25rem;
 }

@@ -1,35 +1,54 @@
 import React from 'react'
 import DocsFinder from './docs_finder'
 import Doc from './doc'
+import {StatePropType} from 'app/types/state'
+import {getSelectedVersionTag} from 'app/acts/versions'
+import {getRouteDocId} from 'app/acts/routes'
 import {DocsPropType} from 'app/types/docs'
-import {EitherPropType} from 'app/types/either'
+import DocsNavBar from './nav_bar'
 
-export default function Docs ({docId, docs, selectedVersionTag, latestVersionTag, submodule}) {
-  return <div className='docs'>
-    <div className='docs-finder'>
-      <DocsFinder
-        docId={docId}
-        docs={docs}
-        selectedVersionTag={selectedVersionTag}
-        submodule={submodule}
-      />
-    </div>
+export default function Docs ({state}) {
+  const {
+    docs,
+    versions,
+    routeData,
+    latestVersionTag,
+    submodule
+  } = state
+  const docId = getRouteDocId(routeData)
+  const selectedVersionTag = getSelectedVersionTag(state)
 
-    <div className='docs-content'>
-      <Doc
+  return (
+    <div className="docs">
+      <DocsNavBar
         docId={docId}
-        docs={docs}
-        selectedVersionTag={selectedVersionTag}
         latestVersionTag={latestVersionTag}
+        versions={versions}
+        selectedVersionTag={selectedVersionTag}
+        routeData={routeData}
+        selectedSubmodule={submodule}
       />
+
+      <div className="docs-finder">
+        <DocsFinder
+          docId={docId}
+          docs={docs}
+          selectedVersionTag={selectedVersionTag}
+          selectedSubmodule={submodule}
+        />
+      </div>
+
+      <div className="docs-content">
+        <Doc
+          docId={docId}
+          docs={docs}
+          selectedVersionTag={selectedVersionTag}
+        />
+      </div>
     </div>
-  </div>
+  )
 }
 
 Docs.propTypes = {
-  docId: React.PropTypes.string.isRequired,
-  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
-  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
-  submodule: React.PropTypes.string.isRequired
+  state: StatePropType.isRequired
 }

@@ -4,15 +4,15 @@ import MarkdownDoc from './markdown_doc'
 import Link from 'app/ui/_lib/link'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import {DocsPropType} from 'app/types/docs'
-import {Either, EitherPropType} from 'app/types/either'
+import {EitherPropType} from 'app/types/either'
 
-export default function Doc ({docId, docs, selectedVersionTag, latestVersionTag}) {
+export default function Doc ({docId, docs, selectedVersionTag}) {
   if (!docId) return null
 
   return <div className='doc'>
     {docs.fold(
       ({message}) => message,
-      renderDocContainer.bind(null, docId, selectedVersionTag, latestVersionTag)
+      renderDocContent.bind(null, docId, selectedVersionTag)
     )}
   </div>
 }
@@ -21,50 +21,16 @@ Doc.propTypes = {
   docId: React.PropTypes.string,
   docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
   selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
-  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
 }
 
-function renderDocContainer (docId, selectedVersionTag, latestVersionTag, docs) {
+function renderDocContent (docId, selectedVersionTag, docs) {
   const doc = docs.pages.find((page) => page.urlId === docId)
 
   if (!doc) {
     return 'This page is not available for this version'
   }
 
-  const docContent = renderDocContent(doc, doc.type, selectedVersionTag)
-
-  if (selectedVersionTag === latestVersionTag) {
-    return docContent
-  } else {
-
-  }
-  return <div>
-    {
-      Either.of(x => y => x !== y)
-        .ap(selectedVersionTag)
-        .ap(latestVersionTag)
-        .map(notSelectedLatestVersion => {
-          if (notSelectedLatestVersion) {
-            return <Link
-              name='doc'
-              params={{docId, versionTag: latestVersionTag}}
-            >
-              Latest stable version of this page
-            </Link>
-          }
-
-          return null
-        })
-        .getOrElse(null)
-    }
-
-
-    {docContent}
-  </div>
-}
-
-function renderDocContent (doc, type, selectedVersionTag) {
-  switch (type) {
+  switch (doc.type) {
     case 'jsdoc':
       return <JSDoc doc={doc} selectedVersionTag={selectedVersionTag} />
     case 'markdown':
