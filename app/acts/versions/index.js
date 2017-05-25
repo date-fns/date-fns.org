@@ -102,3 +102,8 @@ function versionsMapFn (versionObject) {
   const {tag} = versionObject
   return [tag, Version(I.fromJS(versionObject).update('features', features => Features(features)))]
 }
+
+export function areSubmodulesAvailable (version) {
+  const {features} = version
+  return features.fp || features.utc
+}

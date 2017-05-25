@@ -5,9 +5,11 @@ import {StatePropType} from 'app/types/state'
 import {getSelectedVersionTag} from 'app/acts/versions'
 import {getRouteDocId} from 'app/acts/routes'
 import {DocsPropType} from 'app/types/docs'
+import {EitherPropType} from 'app/types/either'
+import {VersionPropType} from 'app/types/version'
 import DocsNavBar from './nav_bar'
 
-export default function Docs ({state}) {
+export default function Docs ({state, selectedVersion}) {
   const {
     docs,
     versions,
@@ -27,6 +29,7 @@ export default function Docs ({state}) {
         selectedVersionTag={selectedVersionTag}
         routeData={routeData}
         selectedSubmodule={submodule}
+        selectedVersion={selectedVersion}
       />
 
       <div className="docs-finder">
@@ -50,5 +53,6 @@ export default function Docs ({state}) {
 }
 
 Docs.propTypes = {
-  state: StatePropType.isRequired
+  state: StatePropType.isRequired,
+  selectedVersion: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
 }
