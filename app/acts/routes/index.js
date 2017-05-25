@@ -95,24 +95,19 @@ function routeNameToNonFPCounterpart (name) {
 }
 
 export function hrefTo (name, params) {
-  const {name: routeName, params: routeParams} = calculateRoute(name, params)
-  return router.hrefTo(routeName, routeParams)
+  const routeName = calculateRouteName(name, params)
+  return router.hrefTo(routeName, params)
 }
 
 export function navigateToRoute (name, params) {
-  const {name: routeName, params: routeParams} = calculateRoute(name, params)
-  return router.navigateToRoute(routeName, routeParams)
+  const routeName = calculateRouteName(name, params)
+  return router.navigateToRoute(routeName, params)
 }
 
-function calculateRoute (name, params) {
-  let versionTag = null
-
+function calculateRouteName (name, params) {
   if (params && params.versionTag) {
-    versionTag = params.versionTag.getOrElse(null)
-    if (versionTag) {
-      name = routeNameToVersionCounterpart(name)
-    }
+    return routeNameToVersionCounterpart(name)
   }
 
-  return {name, params: params && Object.assign({}, params, {versionTag})}
+  return name
 }

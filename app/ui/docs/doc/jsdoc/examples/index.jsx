@@ -25,7 +25,7 @@ JSDocExamples.propTypes = {
     ImmutablePropTypes.list,
     React.PropTypes.string
   ]),
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
+  selectedVersionTag: React.PropTypes.string
 }
 
 function renderExamples (examples, selectedVersionTag) {

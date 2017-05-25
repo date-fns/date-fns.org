@@ -10,7 +10,7 @@ export default class DocsFinder extends React.Component {
   static propTypes = {
     docId: React.PropTypes.string,
     docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
-    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+    selectedVersionTag: React.PropTypes.string,
     selectedSubmodule: React.PropTypes.string.isRequired
   }
 
@@ -99,6 +99,7 @@ export default class DocsFinder extends React.Component {
   _renderDocs (docs) {
     return docs.map((doc) => {
       const urlId = doc.get('urlId')
+      const isCurrent = urlId === this.props.docId
 
       return <Link
         name='doc'
@@ -106,10 +107,10 @@ export default class DocsFinder extends React.Component {
         className={classnames(
           'docs_finder-item',
           `is-${doc.get('type')}`, {
-            'is-current': urlId === this.props.docId
+            'is-current': isCurrent
           }
         )}
-        key={urlId}
+        key={urlId + isCurrent}
       >
         <div className='docs_finder-item_content'>
           <h4 className='docs_finder-item_header'>

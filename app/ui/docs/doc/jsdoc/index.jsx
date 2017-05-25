@@ -40,5 +40,5 @@ export default function JSDoc ({doc, selectedVersionTag}) {
 
 JSDoc.propTypes = {
   doc: PagePropType,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
+  selectedVersionTag: React.PropTypes.string
 }

@@ -22,7 +22,7 @@ export default function Home ({selectedVersion, contributors}) {
     <HireLesha />
     <Contributors contributors={contributors} />
     <Sponsorship />
-    <Footer selectedVersionTag={selectedVersion.map(v => v.tag)} />
+    <Footer />
   </div>
 }
 

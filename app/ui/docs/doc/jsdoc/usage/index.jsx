@@ -10,7 +10,7 @@ export default class JSDocUsage extends React.Component {
   static propTypes = {
     usage: ImmutablePropTypes.map,
     usageTabs: ImmutablePropTypes.list,
-    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
+    selectedVersionTag: React.PropTypes.string
   }
 
   state = {

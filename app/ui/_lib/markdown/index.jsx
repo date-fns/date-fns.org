@@ -12,7 +12,7 @@ const md = new Remarkable({
 export default class Markdown extends React.Component {
   static propTypes = {
     value: React.PropTypes.string,
-    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string)
+    selectedVersionTag: React.PropTypes.string
   }
 
   render () {
