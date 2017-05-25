@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import JSDoc from './jsdoc'
 import MarkdownDoc from './markdown_doc'
 import Link from 'app/ui/_lib/link'
@@ -6,15 +7,26 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import {DocsPropType} from 'app/types/docs'
 import {EitherPropType} from 'app/types/either'
 
-export default function Doc ({docId, docs, selectedVersionTag}) {
-  if (!docId) return null
+export default class Doc extends React.Component {
+  componentDidUpdate ({docId: prevDocId}) {
+    const {docId} = this.props
+    if (docId !== prevDocId) {
+      window.scrollTo(0, 0)
+    }
+  }
 
-  return <div className='doc'>
-    {docs.fold(
-      ({message}) => message,
-      renderDocContent.bind(null, docId, selectedVersionTag)
-    )}
-  </div>
+  render () {
+    const {docId, docs, selectedVersionTag} = this.props
+
+    if (!docId) return null
+
+    return <div className='doc'>
+      {docs.fold(
+        ({message}) => message,
+        renderDocContent.bind(null, docId, selectedVersionTag)
+      )}
+    </div>
+  }
 }
 
 Doc.propTypes = {
