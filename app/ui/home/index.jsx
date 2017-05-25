@@ -5,6 +5,7 @@ import I18n from './i18n'
 // import Examples from './examples'
 import Testimonials from './testimonials'
 import Contributors from './contributors'
+import HireLesha from './hire_lesha'
 import Sponsorship from './sponsorship'
 import Footer from './footer'
 import ImmutablePropTypes from 'react-immutable-proptypes'
@@ -17,6 +18,7 @@ export default function Home ({version, contributors}) {
     <Features />
     <I18n version={version} />
     <Testimonials />
+    <HireLesha />
     <Contributors contributors={contributors} />
     <Sponsorship />
     <Footer selectedVersionTag={version.map(v => v.tag)} />

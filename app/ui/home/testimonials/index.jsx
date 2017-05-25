@@ -67,7 +67,7 @@ export default function Testimonials () {
           </div>
 
           <div className='testimonials-text'>
-            Sasha Koss made what anyone dealing with dates in JS ever wanted,
+            Sasha and Lesha Koss made what anyone dealing with dates in JS ever wanted,
             but didn’t got the time, the knowledge or the courage! Because of stars like date-fns
             the dev community is becoming an amazing universe. Thank you!
           </div>

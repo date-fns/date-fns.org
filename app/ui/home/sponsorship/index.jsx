@@ -1,14 +1,14 @@
 import React from 'react'
-import HomeBlock from '../_lib/block'
+import HomeBlock, {Text} from '../_lib/block'
 
 export default function Sponsorship () {
   return <HomeBlock header='Sponsorship'>
-    <div className='sponsorship-letter'>
+    <Text>
       Want to become a project sponsor, add your (company) name to the hall of fame
       and support developers?
-    </div>
+    </Text>
 
-    <a href='#' className='sponsorship-cta'>
+    <a href='mailto:kossnocorp@gmail.com' className='sponsorship-cta'>
       Sponsor date-fns
     </a>
   </HomeBlock>

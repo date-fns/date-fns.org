@@ -8,8 +8,8 @@
 
 .features-item {
   display: flex;
-  flex-basis: calc(33.3% - 20px);
-  margin: 0 20px 20px 0;
+  flex-basis: calc(33.3% - 2rem);
+  margin: 0 1rem 3rem;
 }
 
 .features-item:last-child {
@@ -27,6 +27,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
+}
+
+.features-description p {
+  padding-bottom: .5rem;
+}
+
+.features-description p:last-child {
+  padding-bottom: 0;
 }
 
 .features-icon {

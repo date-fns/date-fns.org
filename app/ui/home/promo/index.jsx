@@ -2,11 +2,8 @@ import React from 'react'
 import GettingStarted from './getting_started'
 import Navigation from './navigation'
 import logoPath from './img/logo.svg'
-import ImmutablePropTypes from 'react-immutable-proptypes'
-import {VersionPropType} from 'app/types/version'
-import {EitherPropType} from 'app/types/either'
 
-export default function Promo ({version}) {
+export default function Promo () {
   return <div className='promo'>
     <div className='promo-inner'>
       <div className='promo-logo'>
@@ -27,7 +24,7 @@ export default function Promo ({version}) {
       </div>
 
       <div className='promo-getting_started'>
-        <GettingStarted version={version} />
+        <GettingStarted />
       </div>
 
       <div className='promo-navigation'>
@@ -35,8 +32,4 @@ export default function Promo ({version}) {
       </div>
     </div>
   </div>
-}
-
-Promo.propTypes = {
-  version: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
 }

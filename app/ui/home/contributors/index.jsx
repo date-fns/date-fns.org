@@ -5,7 +5,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import {EitherPropType} from 'app/types/either'
 
 export default function Contributors ({contributors}) {
-  return <HomeBlock header='Contributors'>
+  return <HomeBlock
+    header='Contributors'
+    action='Contribute to date-fns'
+    actionHref='http://localhost:5000/docs/Contributing'
+  >
     {renderContent(contributors)}
   </HomeBlock>
 }

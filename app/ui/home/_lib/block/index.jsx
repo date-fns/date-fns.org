@@ -2,12 +2,6 @@ import React, {PropTypes} from 'react'
 import RouterLink from 'app/ui/_lib/link'
 
 export default class HomeBlock extends React.Component {
-  static Link = ({href, title, children}) => (
-    <a href={href} title={title} className='home_block-link'>
-      {children}
-    </a>
-  )
-
   static propTypes = {
     header: PropTypes.node,
     subHeader: PropTypes.node,
@@ -45,4 +39,16 @@ export default class HomeBlock extends React.Component {
       </div>
     </div>
   }
+}
+
+export function Link ({href, title, children}) {
+  return <a href={href} title={title} className='home_block-link'>
+    {children}
+  </a>
+}
+
+export function Text ({children}) {
+  return <div className='home_block-text'>
+    {children}
+  </div>
 }

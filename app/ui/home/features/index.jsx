@@ -2,7 +2,7 @@ import React from 'react'
 import HomeBlock from '../_lib/block'
 
 export default function Features () {
-  return <HomeBlock header='Why date-fns?' subHeader={<SubHeader />}>
+  return <HomeBlock header='Why date-fns?'>
     <ol className='features-list'>
       <li className='features-item'>
         <div className='features-icon is-modular' />
@@ -12,11 +12,36 @@ export default function Features () {
             Modular
           </h3>
 
-          <p className='features-description'>
-            It is the perfect companion for <strong>webpack</strong> and <strong>Browserify</strong>.
-            With the function-per-file style you can pick just what you need
-            and stop bloating your project with useless functionality.
-          </p>
+          <div className='features-description'>
+            <p>
+              With the function-per-file style you can pick just what you need
+              and stop bloating your project with useless functionality.
+            </p>
+
+            <p>
+              It works well with <strong>webpack</strong> and <strong>Browserify</strong>. You can utilize power of <strong>tree-shaking</strong> and stop worring about the build size.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li className='features-item'>
+        <div className='features-icon is-consistent' />
+
+        <div className='features-content'>
+          <h3 className='features-title'>
+            Native Date
+          </h3>
+
+          <div className='features-description'>
+            <p>
+              date-fns doesn't reinvent the wheel and uses the existing native type. Also it doesn't extend core objects for safety sake.
+            </p>
+
+            <p>
+              Functions in date-fns work predictable and stick to ECMAScript behavior in edge cases.
+            </p>
+          </div>
         </div>
       </li>
 
@@ -25,12 +50,64 @@ export default function Features () {
 
         <div className='features-content'>
           <h3 className='features-title'>
-            Immutable
+            Immutable & Pure
+          </h3>
+
+          <div className='features-description'>
+            <p>
+              date-fns is built using pure functions and
+              always returns a new date instance
+              instead of changing the passed one.
+            </p>
+
+            <p>
+              It allows to prevent bugs and skip long debugging sessions.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li className='features-item'>
+        <div className='features-icon is-consistent' />
+
+        <div className='features-content'>
+          <h3 className='features-title'>
+            TypeScript & Flow
+          </h3>
+
+          <div className='features-description'>
+            <p>
+              date-fns supports both <strong>Flow</strong> and <strong>TypeScript</strong>.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li className='features-item'>
+        <div className='features-icon is-fast' />
+
+        <div className='features-content'>
+          <h3 className='features-title'>
+            FP
           </h3>
 
           <p className='features-description'>
-            Build using pure functions, as date-fns always returns a new date
-            instead of changing the passed one.
+            The functional programming submodule replaces chaining with composition,
+            and makes your code clean and safe.
+          </p>
+        </div>
+      </li>
+
+      <li className='features-item'>
+        <div className='features-icon is-fast' />
+
+        <div className='features-content'>
+          <h3 className='features-title'>
+            I18n
+          </h3>
+
+          <p className='features-description'>
+            With support of community date-fns now have TODO
           </p>
         </div>
       </li>
@@ -43,10 +120,16 @@ export default function Features () {
             Consistent
           </h3>
 
-          <p className='features-description'>
-            It always returns a date in the local timezone, no matter what
-            you passed: a timestamp, a string or a date object.
-          </p>
+          <div className='features-description'>
+            <p>
+              It always returns a date in the same time zone, no matter what's passed,
+              a timestamp, a string or a date object.
+            </p>
+
+            <p>
+              The API is tailored to have predictable names and arguments order.
+            </p>
+          </div>
         </div>
       </li>
 
@@ -58,9 +141,19 @@ export default function Features () {
             Reliable
           </h3>
 
-          <p className='features-description'>
-            It respects timezones & DST.
-          </p>
+          <div className='features-description'>
+            <p>
+              date-fns respects timezones & DST.
+            </p>
+
+            <p>
+              It follows semantic versioning so, always backward compatible.
+            </p>
+
+            <p>
+              Each build CI checks more than 75&nbsp;000 examples in about 400&nbsp;time&nbsp;zones.
+            </p>
+          </div>
         </div>
       </li>
 
@@ -72,23 +165,40 @@ export default function Features () {
             Simple
           </h3>
 
+          <div className='features-description'>
+            <p>
+              The best API is an API that doesn't exists. With date-fns you
+              always have one function that does one thing in a single way.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li className='features-item'>
+        <div className='features-icon is-fast' />
+
+        <div className='features-content'>
+          <h3 className='features-title'>
+            More Coming!
+          </h3>
+
           <p className='features-description'>
-            The best API is an API that doesn't exists. With date-fns you
-            always have one function that does one thing.
+            date-fns is an active development and we have plans to add more features.
           </p>
         </div>
       </li>
 
       <li className='features-item'>
-        <div className='features-icon is-safe' />
+        <div className='features-icon is-simple' />
 
         <div className='features-content'>
           <h3 className='features-title'>
-            Safe
+            Docs
           </h3>
 
           <p className='features-description'>
-            It doesn't extend core objects.
+            The best API is an API that doesn't exists. With date-fns you
+            always have one function that does one thing.
           </p>
         </div>
       </li>
@@ -98,7 +208,7 @@ export default function Features () {
 
         <div className='features-content'>
           <h3 className='features-title'>
-            Fast
+            ???
           </h3>
 
           <p className='features-description'>
@@ -109,10 +219,4 @@ export default function Features () {
       </li>
     </ol>
   </HomeBlock>
-}
-
-function SubHeader () {
-  return <div>
-    date-fns core values are: consistency, blah blah blah.
-  </div>
 }

@@ -51,3 +51,20 @@
 .home_block-content {
   margin-top: 30px;
 }
+
+.home_block-text {
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #4C193C;
+  max-width: 500px;
+}
+
+.home_block-text p,
+.home_block-text img {
+  margin-bottom: 1rem;
+}
+
+.home_block-text p:last-child {
+  margin-bottom: 0;
+}
