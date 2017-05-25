@@ -34,18 +34,27 @@ export function fetchVersions () {
     })
 }
 
-export function fetchDocsIfSelectedVersionChanged (state, prevState) {
+export function onVersionChange (state, prevState) {
   if (!state || !prevState) {
     return null
   }
 
-  Either.of(a => b => a !== b)
-    .ap(getSelectedVersionTag(prevState))
-    .ap(getSelectedVersionTag(state))
-    .map(versionChanged => {
-      if (versionChanged) {
-        fetchDocs(state)
-      }
+  getSelectedVersionTag(state)
+    .map(tag => {
+      getSelectedVersionTag(prevState)
+        .chain(prevTag => tag === prevTag ? Either.Left(/* version not changed */) : Either.Right())
+        .chain(() => {
+          // Fetch docs if version changed
+          fetchDocs(state)
+          return state.versions
+        })
+        .map(versions => versions.get(tag))
+        .map(version => !areSubmodulesAvailable(version))
+        .map(submodulesUnavailable => {
+          if (submodulesUnavailable) {
+            act(state => state.set('submodule', ''))
+          }
+        })
     })
 }
 
