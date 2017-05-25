@@ -135,9 +135,8 @@ function LatestVersionLink ({docId, selectedVersionTag, latestVersionTag, routeD
 
 function SubmoduleSelector ({docId, docs, selectedSubmodule, selectedVersion, selectedVersionTag, routeData}) {
   const relatedDocs = docs
-    .map(docs => docs.pages.find(page => page.urlId === docId))
-    .map(page => page.relatedDocs)
-    .chain(Either.fromNullable)
+    .chain(docs => Either.fromNullable(docs.pages.find(page => page.urlId === docId)))
+    .chain(page => Either.fromNullable(page.relatedDocs))
 
   return selectedVersion
     .chain(version => areSubmodulesAvailable(version) ? Either.Right() : Either.Left())
