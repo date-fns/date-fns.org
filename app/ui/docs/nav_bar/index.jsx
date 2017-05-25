@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import Link from 'app/ui/_lib/link'
 import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
+import {DocsPropType} from 'app/types/docs'
 import {Either, EitherPropType} from 'app/types/either'
 import {changeVersion, changeSubmodule} from 'app/acts/routes'
 import {areSubmodulesAvailable} from 'app/acts/versions'
@@ -10,6 +11,7 @@ import logoPath from './img/logo.svg'
 
 DocsNavBar.propTypes = {
   docId: React.PropTypes.string,
+  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
   versions: EitherPropType(
     React.PropTypes.object,
     ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
@@ -21,9 +23,16 @@ DocsNavBar.propTypes = {
   latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
 }
 
-export default function DocsNavBar (
-  {docId, versions, selectedVersionTag, selectedSubmodule, selectedVersion, routeData, latestVersionTag}
-) {
+export default function DocsNavBar ({
+  docId,
+  docs,
+  versions,
+  selectedVersionTag,
+  selectedSubmodule,
+  selectedVersion,
+  routeData,
+  latestVersionTag
+}) {
   return (
     <div className="docs_nav_bar">
       <div className="docs_nav_bar-inner">
@@ -62,8 +71,11 @@ export default function DocsNavBar (
           />
 
           <SubmoduleSelector
+            docId={docId}
+            docs={docs}
             selectedSubmodule={selectedSubmodule}
             selectedVersion={selectedVersion}
+            selectedVersionTag={selectedVersionTag}
             routeData={routeData}
           />
         </div>
@@ -121,7 +133,12 @@ function LatestVersionLink ({docId, selectedVersionTag, latestVersionTag, routeD
     )
 }
 
-function SubmoduleSelector ({selectedSubmodule, selectedVersion, routeData}) {
+function SubmoduleSelector ({docId, docs, selectedSubmodule, selectedVersion, selectedVersionTag, routeData}) {
+  const relatedDocs = docs
+    .map(docs => docs.pages.find(page => page.urlId === docId))
+    .map(page => page.relatedDocs)
+    .chain(Either.fromNullable)
+
   return selectedVersion
     .chain(version => areSubmodulesAvailable(version) ? Either.Right() : Either.Left())
     .fold(
@@ -135,7 +152,7 @@ function SubmoduleSelector ({selectedSubmodule, selectedVersion, routeData}) {
           <select
             value={selectedSubmodule}
             className="docs_nav_bar-select"
-            onChange={onSubmoduleChange.bind(null, routeData)}
+            onChange={onSubmoduleChange.bind(null, selectedVersionTag, relatedDocs, routeData)}
           >
             <option value={''}>Default</option>
             <option value={'fp'}>FP</option>
@@ -148,8 +165,8 @@ function onVersionChange (routeData, {target: {value: tag}}) {
   changeVersion(routeData, tag)
 }
 
-function onSubmoduleChange(routeData, {target: {value}}) {
-  changeSubmodule(routeData, value)
+function onSubmoduleChange(selectedVersionTag, relatedDocs, routeData, {target: {value}}) {
+  changeSubmodule(selectedVersionTag, relatedDocs, routeData, value)
 }
 
 function versionOption (tag) {

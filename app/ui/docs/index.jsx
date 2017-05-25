@@ -24,6 +24,7 @@ export default function Docs ({state, selectedVersion}) {
     <div className="docs">
       <DocsNavBar
         docId={docId}
+        docs={docs}
         latestVersionTag={latestVersionTag}
         versions={versions}
         selectedVersionTag={selectedVersionTag}

@@ -48,8 +48,15 @@ export function getShownPage (routeData) {
   return routeName
 }
 
-export function changeSubmodule (routeData, value) {
+export function changeSubmodule (versionTag, relatedDocs, routeData, value) {
   act(state => state.set('submodule', value))
+
+  relatedDocs
+    .map(relatedDocs => {
+      const relatedDocKey = value === 'fp' ? 'fp' : 'default'
+      const docId = relatedDocs.get(relatedDocKey)
+      navigateToRoute('doc', {docId, versionTag})
+    })
 }
 
 export function changeVersion (routeData, tag) {
@@ -57,17 +64,6 @@ export function changeVersion (routeData, tag) {
   const params = routeData.get('params').toJS()
   params.versionTag = tag
   router.navigateToRoute(name, params)
-}
-
-export function calculateLinkRouteName (name, params) {
-  if (params && params.versionTag) {
-    params.versionTag = params.versionTag.getOrElse(null)
-    if (params.versionTag) {
-      name = routeNameToVersionCounterpart(name)
-    }
-  }
-
-  return name
 }
 
 function routeNameToVersionCounterpart (name) {
@@ -96,4 +92,28 @@ function routeNameToNonFPCounterpart (name) {
   } else if (name === 'docFP') {
     return 'doc'
   }
+}
+
+export function hrefTo (name, params) {
+  const {name: routeName, params: routeParams} = calculateRoute(name, params)
+  return router.hrefTo(routeName, routeParams)
+}
+
+export function navigateToRoute (name, params) {
+  const {name: routeName, params: routeParams} = calculateRoute(name, params)
+  return router.navigateToRoute(routeName, routeParams)
+}
+
+function calculateRoute (name, params) {
+  console.log(name, params)
+  let versionTag = null
+
+  if (params && params.versionTag) {
+    versionTag = params.versionTag.getOrElse(null)
+    if (versionTag) {
+      name = routeNameToVersionCounterpart(name)
+    }
+  }
+
+  return {name, params: params && Object.assign({}, params, {versionTag})}
 }
