@@ -2,7 +2,7 @@ import React from 'react'
 import Promo from './promo'
 import Features from './features'
 import I18n from './i18n'
-// import Examples from './examples'
+import Examples from './examples'
 import Testimonials from './testimonials'
 import Contributors from './contributors'
 import HireLesha from './hire_lesha'
@@ -15,6 +15,7 @@ import {EitherPropType} from 'app/types/either'
 export default function Home ({selectedVersion, contributors}) {
   return <div className='home'>
     <Promo />
+    <Examples />
     <Features />
     <I18n selectedVersion={selectedVersion} />
     <Testimonials />
