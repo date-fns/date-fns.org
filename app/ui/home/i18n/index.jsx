@@ -6,8 +6,8 @@ import flag from 'emoji-flag'
 import {EitherPropType} from 'app/types/either'
 import {VersionPropType} from 'app/types/version'
 
-export default function I18n ({version}) {
-  if (version.map(v => v.features.locales).getOrElse(false)) {
+export default function I18n ({selectedVersion}) {
+  if (selectedVersion.map(v => v.features.locales).getOrElse(false)) {
     return <HomeBlock header='I18n'>
       Locales data aren't available for this version
     </HomeBlock>
@@ -15,17 +15,17 @@ export default function I18n ({version}) {
 
   return <HomeBlock
     header='I18n'
-    subHeader={`${version.map(v => v.locales.size).getOrElse('...')} locales available`}
+    subHeader={`${selectedVersion.map(v => v.locales.size).getOrElse('...')} locales available`}
     action='See documentation'
     actionLink='doc'
-    actionLinkParams={{docId: 'I18n', versionTag: version.map(v => v.tag)}}
+    actionLinkParams={{docId: 'I18n', versionTag: selectedVersion.map(v => v.tag)}}
   >
-    {renderContent(version.map(v => v.locales))}
+    {renderContent(selectedVersion.map(v => v.locales))}
   </HomeBlock>
 }
 
 I18n.propTypes = {
-  version: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
+  selectedVersion: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
 }
 
 function renderContent (locales) {
