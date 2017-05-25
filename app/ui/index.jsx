@@ -35,10 +35,10 @@ function renderContent (state, selectedVersionTag) {
       return 'Loading'
     case 'home':
       return (
-        <Home version={selectedVersion} contributors={state.contributors} />
+        <Home selectedVersion={selectedVersion} contributors={state.contributors} />
       )
     case 'docs':
-      return <Docs state={state} />
+      return <Docs state={state} selectedVersion={selectedVersion} />
     case 'perf':
       return <Perf />
   }

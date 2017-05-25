@@ -15,7 +15,8 @@ export const Page = I.Record({
   usageTabs: null,
   args: null,
   properties: null,
-  syntax: null
+  syntax: null,
+  relatedDocs: null
 })
 
 export const PagePropType = ImmutablePropTypes.recordOf({
@@ -34,7 +35,8 @@ export const PagePropType = ImmutablePropTypes.recordOf({
   usageTabs: ImmutablePropTypes.list,
   args: ImmutablePropTypes.list,
   properties: ImmutablePropTypes.list,
-  syntax: React.PropTypes.string
+  syntax: React.PropTypes.string,
+  relatedDocs: ImmutablePropTypes.map
 })
 
 export default Page

@@ -3,25 +3,36 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import Link from 'app/ui/_lib/link'
 import router from 'app/routes'
 import {VersionPropType} from 'app/types/version'
+import {DocsPropType} from 'app/types/docs'
 import {Either, EitherPropType} from 'app/types/either'
 import {changeVersion, changeSubmodule} from 'app/acts/routes'
+import {areSubmodulesAvailable} from 'app/acts/versions'
 import logoPath from './img/logo.svg'
 
 DocsNavBar.propTypes = {
   docId: React.PropTypes.string,
+  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
   versions: EitherPropType(
     React.PropTypes.object,
     ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
   ).isRequired,
   selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
   selectedSubmodule: React.PropTypes.string.isRequired,
+  selectedVersion: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired,
   routeData: React.PropTypes.object.isRequired,
-  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
 }
 
-export default function DocsNavBar (
-  {docId, versions, selectedVersionTag, selectedSubmodule, routeData, latestVersionTag}
-) {
+export default function DocsNavBar ({
+  docId,
+  docs,
+  versions,
+  selectedVersionTag,
+  selectedSubmodule,
+  selectedVersion,
+  routeData,
+  latestVersionTag
+}) {
   return (
     <div className="docs_nav_bar">
       <div className="docs_nav_bar-inner">
@@ -51,78 +62,111 @@ export default function DocsNavBar (
         </div>
 
         <div className="docs_nav_bar-version_selector">
-          <label className="docs_nav_bar-selector">
-            <span className="docs_nav_bar-label">
-              Version:
-            </span>
+          <VersionSelector
+            docId={docId}
+            versions={versions}
+            selectedVersionTag={selectedVersionTag}
+            latestVersionTag={latestVersionTag}
+            routeData={routeData}
+          />
 
-            <select
-              disabled={versions.isLeft}
-              value={selectedVersionTag.getOrElse('')}
-              className="docs_nav_bar-select"
-              onChange={onVersionChange.bind(null, routeData)}
-            >
-              {versions.fold(
-                ({message}) => message,
-                versions =>
-                  versions
-                    .filter(version => {
-                      const hasDocs = version.features.docs
-                      const isPrerelease = version.prerelease
-                      return hasDocs && !isPrerelease
-                    })
-                    .keySeq()
-                    .map(versionOption)
-              )}
-            </select>
-
-            {
-              Either.of(x => y => x !== y)
-                .ap(selectedVersionTag)
-                .ap(latestVersionTag)
-                .map(notSelectedLatestVersion => {
-                  if (notSelectedLatestVersion) {
-                    return <Link
-                      className='docs_nav_bar-latest_link'
-                      name='doc'
-                      params={{docId, versionTag: latestVersionTag}}
-                    >
-                      Switch to latest
-                    </Link>
-                  }
-
-                  return null
-                })
-                .getOrElse(null)
-            }
-          </label>
-
-          <label className="docs_nav_bar-selector">
-            <span className="docs_nav_bar-label">
-              Submodule:
-            </span>
-
-            <select
-              value={selectedSubmodule}
-              className="docs_nav_bar-select"
-              onChange={onSubmoduleChange.bind(null, routeData)}
-            >
-              <option value={''}>Default</option>
-              <option value={'fp'}>FP</option>
-            </select>
-          </label>
+          <SubmoduleSelector
+            docId={docId}
+            docs={docs}
+            selectedSubmodule={selectedSubmodule}
+            selectedVersion={selectedVersion}
+            selectedVersionTag={selectedVersionTag}
+            routeData={routeData}
+          />
         </div>
       </div>
     </div>
   )
 }
 
+function VersionSelector ({docId, versions, selectedVersionTag, latestVersionTag, routeData}) {
+  return <label className="docs_nav_bar-selector">
+    <span className="docs_nav_bar-label">
+      Version:
+    </span>
+
+    <select
+      disabled={versions.isLeft}
+      value={selectedVersionTag.getOrElse('')}
+      className="docs_nav_bar-select"
+      onChange={onVersionChange.bind(null, routeData)}
+    >
+      {versions.fold(
+        ({message}) => message,
+        versions =>
+          versions
+            .filter(version => version.features.docs)
+            .keySeq()
+            .map(versionOption)
+      )}
+    </select>
+
+    <LatestVersionLink
+      docId={docId}
+      selectedVersionTag={selectedVersionTag}
+      latestVersionTag={latestVersionTag}
+      routeData={routeData}
+    />
+  </label>
+}
+
+function LatestVersionLink ({docId, selectedVersionTag, latestVersionTag, routeData}) {
+  return Either.of(x => y => x === y)
+    .ap(selectedVersionTag)
+    .ap(latestVersionTag)
+    .chain(isSelectedLatestVersion => isSelectedLatestVersion ? Either.Left() : Either.Right())
+    .fold(
+      () => null,
+      () =>
+        <Link
+          className='docs_nav_bar-latest_link'
+          name='doc'
+          params={{docId, versionTag: latestVersionTag}}
+        >
+          Switch to latest
+        </Link>
+    )
+}
+
+function SubmoduleSelector ({docId, docs, selectedSubmodule, selectedVersion, selectedVersionTag, routeData}) {
+  const relatedDocs = docs
+    .map(docs => docs.pages.find(page => page.urlId === docId))
+    .map(page => page.relatedDocs)
+    .chain(Either.fromNullable)
+
+  return selectedVersion
+    .chain(version => areSubmodulesAvailable(version) ? Either.Right() : Either.Left())
+    .fold(
+      () => null,
+      () =>
+        <label className="docs_nav_bar-selector">
+          <span className="docs_nav_bar-label">
+            Submodule:
+          </span>
+
+          <select
+            value={selectedSubmodule}
+            className="docs_nav_bar-select"
+            onChange={onSubmoduleChange.bind(null, selectedVersionTag, relatedDocs, routeData)}
+          >
+            <option value={''}>Default</option>
+            <option value={'fp'}>FP</option>
+          </select>
+        </label>
+    )
+}
+
 function onVersionChange (routeData, {target: {value: tag}}) {
   changeVersion(routeData, tag)
 }
 
-function onSubmoduleChange(routeData, {target: {value}}) {
-  changeSubmodule(routeData, value)
+function onSubmoduleChange(selectedVersionTag, relatedDocs, routeData, {target: {value}}) {
+  changeSubmodule(selectedVersionTag, relatedDocs, routeData, value)
 }
 
 function versionOption (tag) {

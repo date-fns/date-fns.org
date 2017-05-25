@@ -8,7 +8,7 @@ import dateFns from 'date-fns'
 import {loop, act} from 'enso'
 import I from 'immutable'
 import State from 'app/types/state'
-import {fetchVersions, fetchDocsIfSelectedVersionChanged} from 'app/acts/versions'
+import {fetchVersions, onVersionChange} from 'app/acts/versions'
 import {fetchContributors} from 'app/acts/contributors'
 
 routes.start((routeData, routeEvenType) => {
@@ -24,7 +24,7 @@ fetchVersions()
 fetchContributors()
 
 loop(State(), (state, prevState) => {
-  fetchDocsIfSelectedVersionChanged(state, prevState)
+  onVersionChange(state, prevState)
   ReactDOM.render(<Ui state={state} />, document.getElementById('canvas'))
 })
 
