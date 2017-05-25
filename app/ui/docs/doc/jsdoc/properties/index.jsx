@@ -6,7 +6,7 @@ import {EitherPropType} from 'app/types/either'
 export default class JSDocProperties extends React.Component {
   static propTypes = {
     properties: ImmutablePropTypes.list,
-    selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
+    selectedVersionTag: React.PropTypes.string
   }
 
   render () {

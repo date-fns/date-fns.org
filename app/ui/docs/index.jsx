@@ -18,7 +18,7 @@ export default function Docs ({state, selectedVersion}) {
     submodule
   } = state
   const docId = getRouteDocId(routeData)
-  const selectedVersionTag = getSelectedVersionTag(state)
+  const selectedVersionTag = getSelectedVersionTag(state).getOrElse(null)
 
   return (
     <div className="docs">

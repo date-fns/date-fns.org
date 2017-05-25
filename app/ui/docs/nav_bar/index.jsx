@@ -16,7 +16,7 @@ DocsNavBar.propTypes = {
     React.PropTypes.object,
     ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
   ).isRequired,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  selectedVersionTag: React.PropTypes.string,
   selectedSubmodule: React.PropTypes.string.isRequired,
   selectedVersion: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired,
   routeData: React.PropTypes.object.isRequired,
@@ -92,7 +92,7 @@ function VersionSelector ({docId, versions, selectedVersionTag, latestVersionTag
 
     <select
       disabled={versions.isLeft}
-      value={selectedVersionTag.getOrElse('')}
+      value={selectedVersionTag || ''}
       className="docs_nav_bar-select"
       onChange={onVersionChange.bind(null, routeData)}
     >
@@ -117,7 +117,7 @@ function VersionSelector ({docId, versions, selectedVersionTag, latestVersionTag
 
 function LatestVersionLink ({docId, selectedVersionTag, latestVersionTag, routeData}) {
   return Either.of(x => y => x === y)
-    .ap(selectedVersionTag)
+    .ap(Either.fromNullable(selectedVersionTag))
     .ap(latestVersionTag)
     .chain(isSelectedLatestVersion => isSelectedLatestVersion ? Either.Left() : Either.Right())
     .fold(

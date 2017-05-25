@@ -7,5 +7,5 @@ export default function MarkdownDoc ({content, selectedVersionTag}) {
 
 MarkdownDoc.propTypes = {
   content: React.PropTypes.string,
-  selectedVersionTag: React.PropTypes.any
+  selectedVersionTag: React.PropTypes.string
 }

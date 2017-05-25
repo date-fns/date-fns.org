@@ -32,7 +32,7 @@ export default class Doc extends React.Component {
 Doc.propTypes = {
   docId: React.PropTypes.string,
   docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  selectedVersionTag: React.PropTypes.string,
 }
 
 function renderDocContent (docId, selectedVersionTag, docs) {
