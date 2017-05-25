@@ -66,11 +66,7 @@ export default function DocsNavBar (
                 ({message}) => message,
                 versions =>
                   versions
-                    .filter(version => {
-                      const hasDocs = version.features.docs
-                      const isPrerelease = version.prerelease
-                      return hasDocs && !isPrerelease
-                    })
+                    .filter(version => version.features.docs)
                     .keySeq()
                     .map(versionOption)
               )}
