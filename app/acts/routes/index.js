@@ -105,7 +105,6 @@ export function navigateToRoute (name, params) {
 }
 
 function calculateRoute (name, params) {
-  console.log(name, params)
   let versionTag = null
 
   if (params && params.versionTag) {
