@@ -23,7 +23,7 @@ if (isProduction) {
     'process.env': {
       NODE_ENV: JSON.stringify('production') 
     }
-  });
+  }))
   plugins.push(new AssetsWebpackPlugin({
     path: appConfig.distPath
   }))
