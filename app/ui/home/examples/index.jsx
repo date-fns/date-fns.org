@@ -10,7 +10,7 @@ const examples = [
     label: 'Format date',
     code:
 `
-import {format, formatDistance, formatRelative, subDays} from 'date-fns/esm'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 format(new Date(), '[Today is a] dddd')
 //=> "Today is a ${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]}"
@@ -26,16 +26,16 @@ formatRelative(subDays(new Date(), 3), new Date())
     label: 'I18n',
     code:
 `
-import {formatRelative, subDays} from 'date-fns/esm'
-import {es, ru} from 'date-fns/esm/locale'
+import { formatRelative, subDays } from 'date-fns'
+import { es, ru } from 'date-fns/esm/locale'
 
 formatRelative(subDays(new Date(), 3), new Date())
 //=> "last Friday at 7:26 p.m."
 
-formatRelative(subDays(new Date(), 3), new Date(), {locale: es})
+formatRelative(subDays(new Date(), 3), new Date(), { locale: es })
 //=> "el viernes pasado a las 19:26"
 
-formatRelative(subDays(new Date(), 3), new Date(), {locale: ru})
+formatRelative(subDays(new Date(), 3), new Date(), { locale: ru })
 //=> "в прошлую пятницу в 19:26"
 `.trim()
   },
@@ -43,12 +43,12 @@ formatRelative(subDays(new Date(), 3), new Date(), {locale: ru})
     label: 'Composition & FP',
     code:
 `
-import {addYears, formatWithOptions, toUpper} from 'date-fns/esm/fp'
-import {eo} from 'date-fns/locale'
+import { addYears, formatWithOptions, toUpper } from 'date-fns/esm/fp'
+import { eo } from 'date-fns/esm/locale'
 
 const addFiveYears = addYears(5)
 
-const dateToString = formatWithOptions({locale: eo}, 'D MMMM YYYY')
+const dateToString = formatWithOptions({ locale: eo }, 'D MMMM YYYY')
 
 const dates = [
   new Date(2017, 0, 1),
