@@ -14,12 +14,13 @@ export default function Features () {
 
           <div className='features-description'>
             <p>
-              With the function-per-file style you can pick just what you need
+              With the function-per-file style, you can pick just what you need
               and stop bloating your project with useless functionality.
             </p>
 
             <p>
-              It works well with <strong>webpack</strong> and <strong>Browserify</strong>. You can utilize power of <strong>tree-shaking</strong> and stop worring about the build size.
+              It works well with modern module bundlers such as <strong>webpack</strong>, <strong>Browserify</strong>,{' '}
+              or <strong>Rollup</strong> and also supports tree-shaking.
             </p>
           </div>
         </div>
@@ -35,7 +36,7 @@ export default function Features () {
 
           <div className='features-description'>
             <p>
-              date-fns doesn't reinvent the wheel and uses the existing native type. Also it doesn't extend core objects for safety sake.
+              date-fns doesn't reinvent the wheel and uses the existing native type. Also, it doesn't extend core objects for safety sake.
             </p>
 
             <p>
@@ -151,7 +152,7 @@ export default function Features () {
             </p>
 
             <p>
-              Each build CI checks more than 75&nbsp;000 examples in about 400&nbsp;time&nbsp;zones.
+              Each build CI checks more than 650&nbsp;000 examples in about 400&nbsp;time&nbsp;zones.
             </p>
           </div>
         </div>

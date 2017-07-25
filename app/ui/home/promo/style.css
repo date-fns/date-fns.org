@@ -10,7 +10,7 @@
 
 .promo-inner {
   background: linear-gradient(rgba(118, 10, 61, 0.7), #4c042b);
-  padding: 30px;
+  padding: 1rem;
   align-items: center;
   display: flex;
   align-items: center;
@@ -23,7 +23,6 @@
   align-items: center;
   justify-content: center;
   height: 33px;
-  margin-top: 50px;
 }
 
 .promo-logo_image {
@@ -43,7 +42,7 @@
   text-align: center;
   color: #FBD7A1;
   font-size: 20px;
-  margin-top: 30px;
+  margin-top: 2rem;
   font-weight: 300;
 }
 
@@ -52,7 +51,7 @@
   line-height: 22px;
   font-weight: 200;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 1rem;
   color: #FFE9C9;
   max-width: 500px;
 }
@@ -65,8 +64,4 @@
 
 .promo-getting_started > :first-child {
   flex-basis: 600px;
-}
-
-.promo-navigation {
-  margin: 10px 0 50px;
 }

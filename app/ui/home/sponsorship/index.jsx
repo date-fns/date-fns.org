@@ -5,7 +5,7 @@ export default function Sponsorship () {
   return <HomeBlock header='Sponsorship'>
     <Text>
       Want to become a project sponsor, add your (company) name to the hall of fame
-      and support developers?
+      and support the developers?
     </Text>
 
     <a href='mailto:kossnocorp@gmail.com' className='sponsorship-cta'>

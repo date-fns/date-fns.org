@@ -10,7 +10,7 @@ export default function HireLesha () {
       <p>
         Want to see one of the date-fns authors in your team?
         <br />
-        Lesha Koss is looking for JavaScript job, so it's your chance 😎
+        Lesha Koss is available for hire, so it's your chance 😎
       </p>
     </Text>
 

@@ -1,9 +1,8 @@
 .examples {
   width: 100%;
-  padding: 30px;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   display: flex;
-  flex-direction: column;
 }
 
 .examples-options {
@@ -17,17 +16,21 @@
 }
 
 .examples-option_link {
-  color: #FFE9C9;
+  color: #770c56;
   text-decoration: none;
   font-size: 14px;
   padding: 10px 15px;
   display: block;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  background-color: rgba(255, 148, 197, .1);
+  background-color: #efe8df;
 }
 
 .examples-option_link.is-current {
-  color: #FFF6E8;
-  background-color: rgba(41, 2, 23, 0.3);
+  color: white;
+  background-color: #770C56;
+}
+
+.examples-code_wrapper {
+  flex-basis: 700px;
 }

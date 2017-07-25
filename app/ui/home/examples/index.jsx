@@ -43,9 +43,8 @@ formatRelative(subDays(new Date(), 3), new Date(), {locale: ru})
     label: 'Composition & FP',
     code:
 `
-import {addYears, formatWithOptions} from 'date-fns/esm/fp'
+import {addYears, formatWithOptions, toUpper} from 'date-fns/esm/fp'
 import {eo} from 'date-fns/locale'
-import toUpper from 'lodash/fp/toUpper'
 
 const addFiveYears = addYears(5)
 
@@ -98,7 +97,9 @@ export default class Examples extends React.Component {
   }
 
   _renderExample (example) {
-    return <Code value={example.code} options={{theme: 'wormhole', readOnly: true}} />
+    return <div className='examples-code_wrapper'>
+      <Code value={example.code} options={{readOnly: true}} />
+    </div>
   }
 
   _changeExampleIndex (exampleIndex, e) {

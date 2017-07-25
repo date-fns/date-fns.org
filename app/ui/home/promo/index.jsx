@@ -1,7 +1,7 @@
 import React from 'react'
-import GettingStarted from './getting_started'
 import Navigation from './navigation'
 import logoPath from './img/logo.svg'
+import Link from 'app/ui/_lib/link'
 
 export default function Promo () {
   return <div className='promo'>
@@ -24,7 +24,13 @@ export default function Promo () {
       </div>
 
       <div className='promo-getting_started'>
-        <GettingStarted />
+        <Link
+          name='doc'
+          params={{docId: 'Getting-Started'}}
+          className='getting_started-link'
+        >
+          Documentation
+        </Link>
       </div>
 
       <div className='promo-navigation'>
