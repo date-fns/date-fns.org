@@ -27,7 +27,7 @@ export default function Promo () {
         <Link
           name='doc'
           params={{docId: 'Getting-Started'}}
-          className='getting_started-link'
+          className='promo-getting_started_link'
         >
           Documentation
         </Link>
