@@ -1,7 +1,8 @@
 import webpack from 'webpack'
 import Koa from 'koa'
 import koaWebpack from 'koa-webpack'
-import koaStaticCache from 'koa-static-cache'
+import koaStatic from 'koa-static'
+import koaMount from 'koa-mount'
 import webpackConfig from '../../../config/webpack'
 import appConfig from '../../../config/app'
 import ejs from 'ejs'
@@ -15,11 +16,8 @@ const port = process.env.SYSTEM_TESTS
   : process.env.APP_PORT || 5000
 
 app
+  .use(koaMount('/assets', koaStatic(appConfig.staticPath)))
   .use(koaWebpack({compiler: webpackCompiler}))
-  .use(koaStaticCache(appConfig.publicPath, {
-    prefix: '/assets',
-    preload: false
-  }))
   .use(async ctx => {
     const templateContent = await fsp.readFile(path.join(__dirname, 'template.ejs'))
     const template = ejs.compile(templateContent.toString())
