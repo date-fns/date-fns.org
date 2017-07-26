@@ -1,6 +1,7 @@
 .docs {
   display: flex;
-  padding-top: 2.5rem;
+  padding-top: 2rem;
+  min-height: 100vh;
 }
 
 .docs-finder {
@@ -9,4 +10,5 @@
 .docs-content {
   width: 100%;
   padding-left: 25rem;
+  display: flex;
 }
