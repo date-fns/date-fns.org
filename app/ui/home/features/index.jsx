@@ -27,7 +27,7 @@ export default function Features () {
         </li>
 
         <li className='features-item'>
-          <div className='features-icon is-consistent' />
+          <div className='features-icon is-native' />
 
           <div className='features-content'>
             <h3 className='features-title'>Native Date</h3>
@@ -64,7 +64,7 @@ export default function Features () {
         </li>
 
         <li className='features-item'>
-          <div className='features-icon is-consistent' />
+          <div className='features-icon is-types' />
 
           <div className='features-content'>
             <h3 className='features-title'>TypeScript & Flow</h3>
@@ -84,7 +84,7 @@ export default function Features () {
         </li>
 
         <li className='features-item'>
-          <div className='features-icon is-fast' />
+          <div className='features-icon is-fp' />
 
           <div className='features-content'>
             <h3 className='features-title'>FP</h3>
@@ -98,7 +98,7 @@ export default function Features () {
         </li>
 
         <li className='features-item'>
-          <div className='features-icon is-fast' />
+          <div className='features-icon is-i18n' />
 
           <div className='features-content'>
             <h3 className='features-title'>I18n</h3>
@@ -186,7 +186,7 @@ export default function Features () {
         </li>
 
         <li className='features-item'>
-          <div className='features-icon is-simple' />
+          <div className='features-icon is-docs' />
 
           <div className='features-content'>
             <h3 className='features-title'>Docs</h3>
@@ -200,7 +200,7 @@ export default function Features () {
         </li>
 
         <li className='features-item'>
-          <div className='features-icon is-fast' />
+          <div className='features-icon is-coming' />
 
           <div className='features-content'>
             <h3 className='features-title'>More Coming!</h3>

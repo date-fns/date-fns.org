@@ -90,6 +90,42 @@
   background-position: center 8px;
 }
 
+.features-icon.is-docs {
+  background-image: url('./img/docs.svg');
+  background-size: 19px;
+  background-position: center 7px;
+}
+
+.features-icon.is-types {
+  background-image: url('./img/types.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.features-icon.is-fp {
+  background-image: url('./img/fp.svg');
+  background-size: 16px;
+  background-position: center 8px;
+}
+
+.features-icon.is-i18n {
+  background-image: url('./img/i18n.svg');
+  background-size: 16px;
+  background-position: center 9px;
+}
+
+.features-icon.is-native {
+  background-image: url('./img/native.svg');
+  background-size: 24px;
+  background-position: center 6px;
+}
+
+.features-icon.is-coming {
+  background-image: url('./img/coming.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
 .features-content {
   margin-left: 15px;
 }
