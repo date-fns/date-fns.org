@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.footer-row {
+.footer-row:not(:last-child) {
   margin-bottom: .5rem;
 }
 

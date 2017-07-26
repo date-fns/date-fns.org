@@ -4,21 +4,17 @@ import React from 'react'
 import Home from 'app/ui/home'
 import Docs from 'app/ui/docs'
 import Perf from 'app/ui/perf'
-import {getSelectedVersionTag} from 'app/acts/versions'
-import {getShownPage} from 'app/acts/routes'
-import {StatePropType} from 'app/types/state'
-import {Version} from 'app/types/version'
-import {Either} from 'app/types/either'
+import { getSelectedVersionTag } from 'app/acts/versions'
+import { getShownPage } from 'app/acts/routes'
+import { StatePropType } from 'app/types/state'
+import { Version } from 'app/types/version'
+import { Either } from 'app/types/either'
 
-Ui.propTypes = {
-  state: StatePropType.isRequired
-}
-
-export default function Ui ({state}) {
+export default function UI ({ state }) {
   const selectedVersionTag = getSelectedVersionTag(state)
 
   return (
-    <div className="ui">
+    <div className='ui'>
       {renderContent(state, selectedVersionTag)}
     </div>
   )
@@ -26,20 +22,23 @@ export default function Ui ({state}) {
 
 function renderContent (state, selectedVersionTag) {
   const selectedVersion = getSelectedVersionTag(state).chain(tag =>
-    state.versions.chain(versions => Either.fromNullable(versions.get(tag))))
-
+    state.versions.chain(versions => Either.fromNullable(versions.get(tag)))
+  )
   const page = getShownPage(state.routeData)
 
+  const locales = Either.of(versions => tag => versions.getIn([tag, 'locales']))
+    .ap(state.get('versions'))
+    .ap(state.get('latestVersionTag'))
+    .getOrElse()
+
   switch (page) {
-    case undefined:
-      return 'Loading'
     case 'home':
-      return (
-        <Home selectedVersion={selectedVersion} contributors={state.contributors} />
-      )
+      return <Home locales={locales} contributors={state.contributors} />
     case 'docs':
       return <Docs state={state} selectedVersion={selectedVersion} />
     case 'perf':
       return <Perf />
+    default:
+      return 'Loading'
   }
 }

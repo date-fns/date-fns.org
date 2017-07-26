@@ -48,7 +48,7 @@
   color: #8C1B54;
 }
 
-.home_block-content {
+.home_block-content:not(:first-child) {
   margin-top: 30px;
 }
 
