@@ -1,0 +1,109 @@
+.doc {
+  padding: 30px;
+  color: #4A3142;
+  background-color: #FFFDF9;
+  font-size: 16px;
+  line-height: 1.6em;
+  width: 100%;
+}
+
+.doc h1 {
+  color: #770c56;
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgba(88, 68, 82, 0.1);
+}
+
+.doc h2 {
+  color: #4A3142;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  border-bottom: 1px solid rgba(88, 68, 82, 0.1);
+}
+
+.doc h3 {
+  color: #4A3142;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.doc a {
+  color: #5D3861;
+}
+
+.doc p {
+  margin-bottom: 10px;
+  max-width: 700px;
+}
+
+.doc p:last-child {
+  margin-bottom: 0;
+}
+
+.doc p:empty {
+  display: none;
+}
+
+.doc ul {
+  list-style: disc;
+}
+
+.doc ol {
+  list-style: decimal;
+}
+
+.doc ul, .doc ol {
+  max-width: 700px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.doc ul p + ul, .doc ol p + ul {
+  margin-top: -10px;
+}
+
+
+.doc ul:last-child, .doc ol:last-child {
+  margin-bottom: 0;
+}
+
+.doc .CodeMirror {
+  margin-bottom: 10px;
+}
+
+.doc .CodeMirror:last-child {
+  margin-bottom: 0;
+}
+
+.doc ul .CodeMirror:last-child, .doc ol .CodeMirror:last-child {
+  margin-bottom: 10px;
+}
+
+.doc ul ul, .doc ul ol, .doc ol ol, .doc ol ul {
+  margin-bottom: 0;
+}
+
+.doc-header_link {
+  display: none;
+  margin-left: 7px;
+  text-decoration: none;
+  opacity: .3;
+}
+
+.doc-header_link:hover {
+  opacity: .6;
+}
+
+h1:hover .doc-header_link,
+h2:hover .doc-header_link,
+h3:hover .doc-header_link,
+h4:hover .doc-header_link,
+h5:hover .doc-header_link,
+h6:hover .doc-header_link {
+  display: inline;
+}

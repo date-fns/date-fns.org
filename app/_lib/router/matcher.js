@@ -58,14 +58,17 @@ const RouterMatcher = {
 
       if (routeObj.routes && !isEmpty(routeObj.routes)) {
         flatRoutesFragment = RouterMatcher.flatten(
-          routeObj.routes, path, props, routeObj.name
+          routeObj.routes,
+          path,
+          props,
+          routeObj.name
         )
       } else {
         flatRoutesFragment = {}
       }
 
       if (routeObj.name) {
-        flatRoutesFragment[routeObj.name] = {path, props}
+        flatRoutesFragment[routeObj.name] = { path, props }
         if (parentRouteName) {
           flatRoutesFragment[routeObj.name].parentRouteName = parentRouteName
         }
@@ -91,16 +94,16 @@ const RouterMatcher = {
    */
   pathTestObject (path) {
     let paramsNames = []
-    const paramsCaptures = path.match(/:([^\/|$]+)/g)
+    const paramsCaptures = path.match(/:([^/|$]+)/g)
     if (paramsCaptures) {
       paramsNames = paramsCaptures.map(function (paramName) {
         return paramName.replace(/^:/, '')
       })
     }
 
-    const regExp = new RegExp('^' + path.replace(/:[^\/]+/g, '([^/]+)') + '$')
+    const regExp = new RegExp('^' + path.replace(/:[^/]+/g, '([^/]+)') + '$')
 
-    return {regExp, paramsNames}
+    return { regExp, paramsNames }
   },
 
   /**
@@ -123,7 +126,7 @@ const RouterMatcher = {
       const paramName = testObj.paramsNames[index]
       params[paramName] = paramValue
     })
-    return {pathname, params}
+    return { pathname, params }
   },
 
   /**
@@ -139,17 +142,18 @@ const RouterMatcher = {
       const routeName = routesNames[index]
       const route = routes[routeName]
       const matchedRoute = RouterMatcher.testPathnameForMatch(
-        route, normalizedPathname
+        route,
+        normalizedPathname
       )
 
       if (matchedRoute) {
         return merge(matchedRoute, {
-          route: merge(clone(route), {name: routeName})
+          route: merge(clone(route), { name: routeName })
         })
       }
     }
 
-    return {pathname, params: {}, route: notFoundRoute}
+    return { pathname, params: {}, route: notFoundRoute }
   },
 
   /**
@@ -161,7 +165,7 @@ const RouterMatcher = {
     if (!path) return null
     const pathObj = RouterMatcher.parsePath(path)
     const routeData = RouterMatcher.matchPathname(routes, pathObj.pathname)
-    merge(routeData, pathObj, {searchParams: pathObj.params})
+    merge(routeData, pathObj, { searchParams: pathObj.params })
     return routeData
   },
 
@@ -210,10 +214,10 @@ const RouterMatcher = {
   parsePath (path = '') {
     const pathArr = path.split('?')
     const pathname = RouterMatcher.normalize(pathArr[0])
-    const search = pathArr[1] ? ('?' + pathArr[1]) : ''
+    const search = pathArr[1] ? '?' + pathArr[1] : ''
     const params = RouterMatcher.parseSearch(search)
 
-    return {path, pathname, search, params}
+    return { path, pathname, search, params }
   }
 }
 

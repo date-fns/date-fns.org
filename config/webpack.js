@@ -19,17 +19,23 @@ if (enableDebuggingTools) {
 }
 
 if (isProduction) {
-  plugins.push(new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify('production') 
-    }
-  }))
-  plugins.push(new AssetsWebpackPlugin({
-    path: appConfig.distPath
-  }))
-  plugins.push(new StaticFilesWebpackPlugin({
-    outputPath: path.join(appConfig.distPath, 'static.json')
-  }))
+  plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  )
+  plugins.push(
+    new AssetsWebpackPlugin({
+      path: appConfig.distPath
+    })
+  )
+  plugins.push(
+    new StaticFilesWebpackPlugin({
+      outputPath: path.join(appConfig.distPath, 'static.json')
+    })
+  )
 }
 
 export default {
@@ -37,14 +43,16 @@ export default {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
 
   entry: {
-    app: (enableDebuggingTools ? ['webpack-hot-middleware/client'] : []).concat('app/env/web')
+    app: []
+      .concat(enableDebuggingTools ? ['webpack-hot-middleware/client'] : [])
+      .concat('app/env/web')
   },
 
   output: {
     path: path.join(appConfig.distPath, 'assets'),
     publicPath: '/assets/',
-    filename: (isProduction ? 'js/[name]-[hash].js' : 'js/[name].js'),
-    chunkFilename: (isProduction ? 'js/[id]-[chunkhash].js' : 'js/[id].js')
+    filename: isProduction ? 'js/[name]-[hash].js' : 'js/[name].js',
+    chunkFilename: isProduction ? 'js/[id]-[chunkhash].js' : 'js/[id].js'
   },
 
   plugins,
@@ -58,12 +66,16 @@ export default {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: (enableDebuggingTools ? ['ctags-webpack-plugin/loader', 'react-hot'] : []).concat(['babel']),
+        loaders: (enableDebuggingTools
+          ? ['ctags-webpack-plugin/loader', 'react-hot']
+          : []).concat(['babel']),
         exclude: path.join(process.cwd(), 'node_modules')
       },
       {
         test: /\.js$/,
-        loaders: (enableDebuggingTools ? ['ctags-webpack-plugin/loader'] : []).concat(['babel']),
+        loaders: (enableDebuggingTools
+          ? ['ctags-webpack-plugin/loader']
+          : []).concat(['babel']),
         exclude: path.join(process.cwd(), 'node_modules')
       },
       {
@@ -108,7 +120,7 @@ export default {
   },
 
   externals: {
-    'cheerio': 'window',
+    cheerio: 'window',
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true
   },

@@ -2,7 +2,7 @@
 
 import Markdown from '.'
 import React from 'react'
-import {shallow} from 'enzyme'
+import { shallow } from 'enzyme'
 import assert from 'power-assert'
 import MarkdownCode from 'app/ui/_lib/markdown_code'
 
@@ -16,10 +16,12 @@ describe('Markdown', () => {
   it('wraps sequential blocks into div', () => {
     const str = 'Hello,\n\nworld!'
     const wrapper = shallow(<Markdown value={str} />)
-    const result = wrapper.equals(<div>
-      <p>Hello,</p>
-      <p>world!</p>
-    </div>)
+    const result = wrapper.equals(
+      <div>
+        <p>Hello,</p>
+        <p>world!</p>
+      </div>
+    )
     assert(result)
   })
 
@@ -39,14 +41,21 @@ describe('Markdown', () => {
 
   it('renders nested tags', () => {
     const wrapper = shallow(<Markdown value='Hey, **there**!' />)
-    const result = wrapper.equals(<p>Hey, <strong>there</strong>!</p>)
+    const result = wrapper.equals(
+      <p>
+        Hey, <strong>there</strong>!
+      </p>
+    )
     assert(result)
   })
 
   it('renders code tag as MarkdownCode', () => {
     const str = "```\nconsole.log('Hello, world!')\n```"
     const wrapper = shallow(<Markdown value={str} />)
-    assert(wrapper.find(MarkdownCode).prop('value') === "console.log('Hello, world!')")
+    assert(
+      wrapper.find(MarkdownCode).prop('value') ===
+        "console.log('Hello, world!')"
+    )
   })
 
   it('passes code language to MarkdownCode', () => {

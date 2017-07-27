@@ -27,7 +27,7 @@ const RouterDSL = {
   route (options) {
     options = options || {}
     const nestedRoutes = Array.prototype.slice.call(arguments, 1)
-    return merge({nestedRoutes}, RouterDSL.extractProps(options))
+    return merge({ nestedRoutes }, RouterDSL.extractProps(options))
   },
 
   /**
@@ -41,4 +41,3 @@ const RouterDSL = {
 }
 
 module.exports = RouterDSL
-

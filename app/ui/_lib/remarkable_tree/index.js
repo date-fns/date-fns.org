@@ -1,4 +1,4 @@
-import {text, tag, softbreak, code, tagName, attrs} from './utils'
+import { text, tag, softbreak, code, tagName, attrs } from './utils'
 
 export default function remarkableTree (tokens) {
   var tree = []
@@ -9,47 +9,51 @@ export default function remarkableTree (tokens) {
     // Process tag token
     if (isOpeningTagToken(token)) {
       let closingPos = getClosingPosFor(tokens, pos)
-      tree.push(tag(
-        tagName(token),
-        attrs(token),
-        getTagChildren(tokens, pos, closingPos)
-      ))
+      tree.push(
+        tag(
+          tagName(token),
+          attrs(token),
+          getTagChildren(tokens, pos, closingPos)
+        )
+      )
       pos = closingPos + 1
 
-    // Process "inline" token
+      // Process "inline" token
     } else if (token.type === 'inline') {
       tree = tree.concat(remarkableTree(token.children))
       pos++
 
-    // Process text token
+      // Process text token
     } else if (token.type === 'text') {
       tree.push(text(token.content))
       pos++
 
-    // Process softbreak token
+      // Process softbreak token
     } else if (token.type === 'softbreak') {
       tree.push(softbreak())
       pos++
 
-    // Process code token
+      // Process code token
     } else if (token.type === 'code') {
       tree.push(tag('code', {}, [text(token.content)]))
       pos++
 
-    // Process fence token
+      // Process fence token
     } else if (token.type === 'fence') {
       tree.push(code(token.content, token.params))
       pos++
 
-    // Process image token
+      // Process image token
     } else if (token.type === 'image') {
-      const {alt, src, title} = token
-      tree.push(tag('img', {alt, src, title}, []))
+      const { alt, src, title } = token
+      tree.push(tag('img', { alt, src, title }, []))
       pos++
 
-    // Fail
+      // Fail
     } else {
-      throw new Error(`Failed to convert Remarkable tokens stream to a tree: an unknown token type "${token.type}"`)
+      throw new Error(
+        `Failed to convert Remarkable tokens stream to a tree: an unknown token type "${token.type}"`
+      )
     }
   }
   return tree
@@ -77,7 +81,9 @@ function getClosingPosFor (tokens, pos) {
   while (!isClosingTagToken(tokens[closingPos], openingToken)) {
     closingPos++
     if (closingPos >= tokens.length) {
-      throw new Error(`Failed to convert Remarkable tokens stream to a tree: can't find the closing token for "${openingToken.type}"`)
+      throw new Error(
+        `Failed to convert Remarkable tokens stream to a tree: can't find the closing token for "${openingToken.type}"`
+      )
     }
   }
 

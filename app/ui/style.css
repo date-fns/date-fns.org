@@ -1,16 +1,5 @@
 @import 'reset.css';
 
-::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
-  background: #E6E0E6;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #AE84A1;
-  border-radius: 5px;
-}
-
 html {
   box-sizing: border-box;
 }
@@ -47,28 +36,9 @@ code:before, code:after {
 .ui {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   width: 100%;
   overflow: hidden;
-}
-
-.ui.is-collapsed .ui-promo {
-  margin-left: -66.6%;
-}
-
-.ui-promo,
-.ui-features,
-.ui-docs {
-  flex-basis: 33.3%;
-  max-width: 33.3%;
-  display: flex;
-}
-
-.ui-promo {
-  transition: margin 300ms;
-}
-
-.ui-features {
-  border-right: 1px solid #E6E0E6;
 }
 
 .ui-docs {

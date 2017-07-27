@@ -3,13 +3,25 @@
 import assert from 'power-assert'
 import Remarkable from 'remarkable'
 import remarkableTree from '.'
-import {text, tag, softbreak, code} from './utils'
-import docs from 'app/_lib/docs'
+import { text, tag, softbreak, code } from './utils'
+import { getJSON } from 'app/_lib/request'
+import { firebaseURL } from 'app/_lib/firebase'
+import { versionsSortFn } from 'app/acts/versions'
 
 describe('remarkableTree', () => {
   function parse (str) {
     return new Remarkable().parse(str, {})
   }
+
+  let pages
+  before(function () {
+    this.timeout(10000)
+
+    return getJSON(firebaseURL('versions'))
+      .then(data => Object.values(data).sort(versionsSortFn)[0])
+      .then(({ docsKey }) => getJSON(firebaseURL(`docs/${docsKey}`)))
+      .then(({ pages: docPages }) => (pages = docPages))
+  })
 
   it('converts a pair of open/close tokens', () => {
     assert.deepEqual(remarkableTree(parse('Hello!')), [
@@ -62,44 +74,57 @@ describe('remarkableTree', () => {
   })
 
   it('handles fence tokens', () => {
-    assert.deepEqual(remarkableTree(parse("```javascript\nconsole.log('Hello, world!')\n```")), [
-      code("console.log('Hello, world!')\n", 'javascript')
-    ])
+    assert.deepEqual(
+      remarkableTree(parse("```javascript\nconsole.log('Hello, world!')\n```")),
+      [code("console.log('Hello, world!')\n", 'javascript')]
+    )
   })
 
   it('handles links', () => {
-    assert.deepEqual(remarkableTree(parse('[date-fns](https://date-fns.org)')), [
-      tag('p', {}, [
-        tag('a', {href: 'https://date-fns.org', title: ''}, [text('date-fns')])
-      ])
-    ])
+    assert.deepEqual(
+      remarkableTree(parse('[date-fns](https://date-fns.org)')),
+      [
+        tag('p', {}, [
+          tag('a', { href: 'https://date-fns.org', title: '' }, [
+            text('date-fns')
+          ])
+        ])
+      ]
+    )
   })
 
   it('capable to handle markdown documents from date-fns', () => {
-    const mdDocs = Object.keys(docs).reduce((mdDocs, categoryName) =>
-      mdDocs.concat(docs[categoryName].filter(d => d.type === 'markdown'))
-    , [])
-    mdDocs.forEach((doc) => remarkableTree(parse(doc.content)))
+    const mdDocs = pages.filter(({ type }) => type === 'markdown')
+    mdDocs.forEach(doc => remarkableTree(parse(doc.content)))
   })
 
   it('capable to handle markdown content of JSDoc documents from date-fns', () => {
-    const jsDocs = Object.keys(docs).reduce((jsDocs, categoryName) =>
-      jsDocs.concat(docs[categoryName].filter(d => d.type === 'jsdoc'))
-    , [])
-    jsDocs.forEach((doc) => {
+    const jsDocs = pages.filter(({ type }) => type === 'jsdoc')
+    jsDocs.forEach(doc => {
       remarkableTree(parse(doc.content.description))
     })
   })
 
   it('handles images', () => {
-    assert.deepEqual(remarkableTree(parse('![logo](http://i.ncrp.co/3H1w312O373M/date-fns-github.svg "Logotype")')), [
-      tag('p', {}, [
-        tag('img', {
-          alt: 'logo',
-          src: 'http://i.ncrp.co/3H1w312O373M/date-fns-github.svg',
-          title: 'Logotype'
-        }, [])
-      ])
-    ])
+    assert.deepEqual(
+      remarkableTree(
+        parse(
+          '![logo](http://i.ncrp.co/3H1w312O373M/date-fns-github.svg "Logotype")'
+        )
+      ),
+      [
+        tag('p', {}, [
+          tag(
+            'img',
+            {
+              alt: 'logo',
+              src: 'http://i.ncrp.co/3H1w312O373M/date-fns-github.svg',
+              title: 'Logotype'
+            },
+            []
+          )
+        ])
+      ]
+    )
   })
 })

@@ -1,0 +1,131 @@
+.features-list {
+  color: #4A3142;
+  margin-top: 15px;
+  font-size: 17px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.features-item {
+  display: flex;
+  flex-basis: calc(33.3% - 2rem);
+  margin: 0 1rem 3rem;
+}
+
+.features-item:last-child {
+  margin-bottom: 0;
+}
+
+.features-title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.features-description {
+  color: #4C193C;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.features-description p {
+  padding-bottom: .5rem;
+}
+
+.features-description p:last-child {
+  padding-bottom: 0;
+}
+
+.features-icon {
+  width: 38px;
+  height: 38px;
+  background-size: 40px;
+  border: 1px solid rgba(119, 12, 86, 0.6);
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.features-icon.is-modular {
+  background-image: url('./img/modular.svg');
+  background-size: 17px;
+  background-position: center 6px;
+}
+
+.features-icon.is-immutable {
+  background-image: url('./img/immutable.svg');
+  background-size: 17px;
+  background-position: center 6px;
+}
+
+.features-icon.is-consistent {
+  background-image: url('./img/consistent.svg');
+  background-size: 21px;
+  background-position: center 7px;
+}
+
+.features-icon.is-reliable {
+  background-image: url('./img/reliable.svg');
+  background-size: 21px;
+  background-position: center 6px;
+}
+
+.features-icon.is-simple {
+  background-image: url('./img/simple.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.features-icon.is-safe {
+  background-image: url('./img/safe.svg');
+  background-size: 18px;
+}
+
+.features-icon.is-fast {
+  background-image: url('./img/fast.svg');
+  background-size: 15px;
+  background-position: center 8px;
+}
+
+.features-icon.is-docs {
+  background-image: url('./img/docs.svg');
+  background-size: 19px;
+  background-position: center 7px;
+}
+
+.features-icon.is-types {
+  background-image: url('./img/types.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.features-icon.is-fp {
+  background-image: url('./img/fp.svg');
+  background-size: 16px;
+  background-position: center 8px;
+}
+
+.features-icon.is-i18n {
+  background-image: url('./img/i18n.svg');
+  background-size: 16px;
+  background-position: center 9px;
+}
+
+.features-icon.is-native {
+  background-image: url('./img/native.svg');
+  background-size: 24px;
+  background-position: center 6px;
+}
+
+.features-icon.is-coming {
+  background-image: url('./img/coming.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.features-content {
+  margin-left: 15px;
+}

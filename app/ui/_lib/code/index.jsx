@@ -10,9 +10,15 @@ export default class Code extends React.Component {
   }
 
   componentDidMount () {
-    this._codeMirror = CodeMirror.fromTextArea(this.refs.textarea, Object.assign({
-      theme: 'milky'
-    }, this.props.options))
+    this._codeMirror = CodeMirror.fromTextArea(
+      this.refs.textarea,
+      Object.assign(
+        {
+          theme: 'milky'
+        },
+        this.props.options
+      )
+    )
   }
 
   componentWillReceiveProps (nextProps) {
@@ -26,9 +32,6 @@ export default class Code extends React.Component {
   }
 
   render () {
-    return <textarea
-      defaultValue={this.props.value}
-      ref='textarea'
-    />
+    return <textarea defaultValue={this.props.value} ref='textarea' />
   }
 }

@@ -8,12 +8,9 @@ export default class MarkdownCode extends React.Component {
   }
 
   render () {
-    var {language, value} = this.props
+    var { language, value } = this.props
     if (!language || language === 'js') language = 'javascript'
 
-    return <Code
-      value={value}
-      options={{readOnly: true, mode: language}}
-    />
+    return <Code value={value} options={{ readOnly: true, mode: language }} />
   }
 }

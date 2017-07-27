@@ -32,7 +32,10 @@ const RouterHistory = {
    * popstate listener.
    */
   onPopState (e) {
-    onChange(RouterHistory.currentPath(), typeof e === 'undefined' ? 'synthetic' : 'pop')
+    onChange(
+      RouterHistory.currentPath(),
+      typeof e === 'undefined' ? 'synthetic' : 'pop'
+    )
   },
 
   /**

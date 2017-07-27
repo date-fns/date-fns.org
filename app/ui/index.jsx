@@ -1,68 +1,42 @@
+import React from 'react'
+import Home from 'app/ui/home'
+import Docs from 'app/ui/docs'
+import Perf from 'app/ui/perf'
+import { getSelectedVersionTag } from 'app/acts/versions'
+import { getShownPage } from 'app/acts/routes'
+import { Either } from 'app/types/either'
+
 require.context('!!static-file!./static', true, /.+/)
 
-import React from 'react'
-import Promo from 'app/ui/promo'
-import classnames from 'classnames'
-import Features from 'app/ui/features'
-import Docs from 'app/ui/docs'
-import Doc from 'app/ui/doc'
-import docs from 'app/_lib/docs'
+export default function UI ({ state }) {
+  const selectedVersionTag = getSelectedVersionTag(state)
 
-export default class Ui extends React.Component {
-  static propTypes = {
-    routeData: React.PropTypes.object
-  }
-
-  render () {
-    const isCollapsed = this._isCollapsed()
-    const className = classnames('ui', {'is-collapsed': isCollapsed})
-
-    return <div className={className}>
-      <div className='ui-promo'>
-        <Promo />
-      </div>
-
-      <div className='ui-features'>
-        <Features />
-      </div>
-
-      <div className='ui-docs'>
-        <Docs
-          showLogo={isCollapsed}
-          currentId={this._currentDocsItemId()}
-        />
-      </div>
-
-      <div className='ui-doc'>
-        <Doc docId={this._currentDocContentId()} />
-      </div>
+  return (
+    <div className='ui'>
+      {renderContent(state, selectedVersionTag)}
     </div>
-  }
+  )
+}
 
-  _currentDocContentId () {
-    return this._currentDocId() || this._firstDocId()
-  }
+function renderContent (state, selectedVersionTag) {
+  const selectedVersion = getSelectedVersionTag(state).chain(tag =>
+    state.versions.chain(versions => Either.fromNullable(versions.get(tag)))
+  )
+  const page = getShownPage(state.routeData)
 
-  _currentDocsItemId () {
-    const currentDocId = this._currentDocId()
+  const locales = Either.of(versions => tag => versions.getIn([tag, 'locales']))
+    .ap(state.get('versions'))
+    .ap(state.get('latestVersionTag'))
+    .getOrElse()
 
-    if (currentDocId) {
-      return currentDocId
-    } else if (this._isCollapsed()) {
-      return this._firstDocId()
-    }
-  }
-
-  _currentDocId () {
-    const {docId} = this.props.routeData.params
-    return docId ? decodeURI(docId) : undefined
-  }
-
-  _firstDocId () {
-    return docs[Object.keys(docs)[0]][0].urlId
-  }
-
-  _isCollapsed () {
-    return this.props.routeData.route.name !== 'home'
+  switch (page) {
+    case 'home':
+      return <Home locales={locales} contributors={state.contributors} />
+    case 'docs':
+      return <Docs state={state} selectedVersion={selectedVersion} />
+    case 'perf':
+      return <Perf />
+    default:
+      return 'Loading'
   }
 }

@@ -1,0 +1,36 @@
+.examples {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.examples-options {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.examples-option {
+  margin: 0 5px;
+}
+
+.examples-option_link {
+  color: #770c56;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  display: block;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #efe8df;
+}
+
+.examples-option_link.is-current {
+  color: white;
+  background-color: #770C56;
+}
+
+.examples-code_wrapper {
+  flex-basis: 700px;
+}
