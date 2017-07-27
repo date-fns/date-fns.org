@@ -6,7 +6,10 @@ casper.test.begin('Getting Started', function (test) {
     .then(clear)
     .then(function () {
       test.assertVisible('#qa-npm')
-      test.assertSelectorHasText('.CodeMirror-lines', 'npm install date-fns --save')
+      test.assertSelectorHasText(
+        '.CodeMirror-lines',
+        'npm install date-fns --save'
+      )
     })
     .then(function () {
       this.clickLabel('Bower')
@@ -34,7 +37,10 @@ casper.test.begin('Docs', function (test) {
     })
     .then(function () {
       test.assertVisible('a.jsdoc_usage-option_link.is-current')
-      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'CommonJS')
+      test.assertSelectorHasText(
+        'a.jsdoc_usage-option_link.is-current',
+        'CommonJS'
+      )
     })
     .then(function () {
       this.clickLabel('UMD')
@@ -42,11 +48,17 @@ casper.test.begin('Docs', function (test) {
     })
     .then(function () {
       this.clickLabel('ES 2015')
-      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'ES 2015')
+      test.assertSelectorHasText(
+        'a.jsdoc_usage-option_link.is-current',
+        'ES 2015'
+      )
     })
     .then(function () {
       this.click('.docs-category:nth-child(2) .docs-item:nth-child(2)')
-      test.assertSelectorHasText('a.jsdoc_usage-option_link.is-current', 'ES 2015')
+      test.assertSelectorHasText(
+        'a.jsdoc_usage-option_link.is-current',
+        'ES 2015'
+      )
     })
     .then(function () {
       this.click('img.docs-logo_image')
@@ -63,7 +75,9 @@ casper.test.begin('Search', function (test) {
     .start('http://localhost:6001')
     .then(clear)
     .then(function () {
-      this.fillSelectors('div.docs-search', {'input[class="docs-search_field"]': 'isAfter'})
+      this.fillSelectors('div.docs-search', {
+        'input[class="docs-search_field"]': 'isAfter'
+      })
       test.assertElementCount('li.docs-item', 1)
     })
     .then(function () {
@@ -73,7 +87,9 @@ casper.test.begin('Search', function (test) {
       test.assertElementCount('li.docs-item', 151)
     })
     .then(function () {
-      this.fillSelectors('div.docs-search', {'input[class="docs-search_field"]': 'bla-bla'})
+      this.fillSelectors('div.docs-search', {
+        'input[class="docs-search_field"]': 'bla-bla'
+      })
       test.assertElementCount('li.docs-item', 0)
       test.assertTextExists("Your search didn't match any results.")
     })

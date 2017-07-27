@@ -18,12 +18,14 @@ export default class FlagSpinner extends React.Component {
   }
 
   render () {
-    return <span>
-      {flag(this.props.countries.toList().get(this.state.index))}
-    </span>
+    return (
+      <span>
+        {flag(this.props.countries.toList().get(this.state.index))}
+      </span>
+    )
   }
 
   _shuffle () {
-    this.setState({index: random(0, this.props.countries.count() - 1)})
+    this.setState({ index: random(0, this.props.countries.count() - 1) })
   }
 }

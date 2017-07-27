@@ -1,10 +1,10 @@
 const builtinFetch = window.fetch
 
 export function request (url, options = {}) {
-  const {method = 'GET', data, headers} = options
+  const { method = 'GET', data, headers } = options
   const _headers = Object.assign({}, headers)
 
-  let fetchOptions = {mode: 'cors'}
+  let fetchOptions = { mode: 'cors' }
 
   if (data) {
     if (method === 'GET') {
@@ -12,7 +12,7 @@ export function request (url, options = {}) {
       // url += `?${qs.stringify(data, {arrayFormat: 'brackets'})}`
     } else {
       fetchOptions.body = JSON.stringify(data)
-      Object.assign(_headers, {'Content-Type': 'application/json'})
+      Object.assign(_headers, { 'Content-Type': 'application/json' })
     }
   }
 
@@ -21,7 +21,7 @@ export function request (url, options = {}) {
     method,
     headers: new Headers(_headers)
   }).then(resp => {
-    const {status} = resp
+    const { status } = resp
 
     if (status === 500) {
       // TODO: Process 500 when it will be required.
@@ -36,11 +36,15 @@ export function request (url, options = {}) {
 }
 
 export function requestJSON (url, options = {}) {
-  const headers = Object.assign({}, options.headers || {}, {'Accept': 'application/json'})
-  return request(url, Object.assign({}, Object.assign({}, options, {headers})))
-    .then(resp => resp.json())
+  const headers = Object.assign({}, options.headers || {}, {
+    Accept: 'application/json'
+  })
+  return request(
+    url,
+    Object.assign({}, Object.assign({}, options, { headers }))
+  ).then(resp => resp.json())
 }
 
 export function getJSON (url, options = {}) {
-  return requestJSON(url, Object.assign({}, options, {method: 'GET'}))
+  return requestJSON(url, Object.assign({}, options, { method: 'GET' }))
 }

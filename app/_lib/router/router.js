@@ -86,7 +86,9 @@ class Router {
   replaceSearchQuery (search) {
     const routeData = Matcher.matchPath(this.routes, this.currentPath())
     search = merge(this.currentSearch(), search)
-    this.replaceWithPath(this.hrefTo(routeData.route.name, routeData.params, search))
+    this.replaceWithPath(
+      this.hrefTo(routeData.route.name, routeData.params, search)
+    )
   }
 
   /**
@@ -124,7 +126,10 @@ class Router {
     if (search) {
       const searchArr = []
       forIn(search, function (value, key) {
-        value && searchArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(value))
+        value &&
+          searchArr.push(
+            encodeURIComponent(key) + '=' + encodeURIComponent(value)
+          )
       })
       if (searchArr.length) {
         path += '?' + searchArr.join('&')
@@ -155,10 +160,11 @@ class Router {
     const matchingRoute = Matcher.matchPath(this.routes, path)
 
     if (currentRoute && currentRoute.route) {
-      const paramsMatch = Object.keys(matchingRoute.params)
-        .every(function (key) {
-          return currentRoute.params[key] === matchingRoute.params[key]
-        })
+      const paramsMatch = Object.keys(matchingRoute.params).every(function (
+        key
+      ) {
+        return currentRoute.params[key] === matchingRoute.params[key]
+      })
 
       if (!matchingRoute.route) return
 

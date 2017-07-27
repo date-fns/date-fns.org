@@ -61,14 +61,16 @@ export function tagName (token) {
     case 'td_open':
       return 'td'
     default:
-      throw new Error(`Can't retrieve the tag name from a token: an unknown token type "${token.type}"`)
+      throw new Error(
+        `Can't retrieve the tag name from a token: an unknown token type "${token.type}"`
+      )
   }
 }
 
 export function attrs (token) {
   switch (token.type) {
     case 'link_open':
-      return {href: token.href, title: token.title}
+      return { href: token.href, title: token.title }
     default:
       return {}
   }

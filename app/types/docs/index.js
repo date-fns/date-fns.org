@@ -1,7 +1,7 @@
 import I from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import React from 'react'
-import {PagePropType} from 'app/types/page'
+import { PagePropType } from 'app/types/page'
 
 export const Docs = I.Record({
   tag: null,

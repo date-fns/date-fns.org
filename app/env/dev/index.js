@@ -11,20 +11,21 @@ import path from 'path'
 
 const app = new Koa()
 const webpackCompiler = webpack(webpackConfig)
-const port = process.env.SYSTEM_TESTS
-  ? 5001
-  : process.env.APP_PORT || 5000
+const port = process.env.SYSTEM_TESTS ? 5001 : process.env.APP_PORT || 5000
 
 app
   .use(koaMount('/assets', koaStatic(appConfig.staticPath)))
-  .use(koaWebpack({compiler: webpackCompiler}))
+  .use(koaWebpack({ compiler: webpackCompiler }))
   .use(async ctx => {
-    const templateContent = await fsp.readFile(path.join(__dirname, 'template.ejs'))
+    const templateContent = await fsp.readFile(
+      path.join(__dirname, 'template.ejs')
+    )
     const template = ejs.compile(templateContent.toString())
 
     ctx.body = template({
       staticPath: staticName => `/assets${staticName}`,
-      entryPath: (entryName, type = 'js') => `/assets/${type}/${entryName}.${type}`,
+      entryPath: (entryName, type = 'js') =>
+        `/assets/${type}/${entryName}.${type}`,
       env: process.env.NODE_ENV
     })
   })

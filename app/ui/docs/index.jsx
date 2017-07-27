@@ -1,27 +1,21 @@
 import React from 'react'
 import DocsFinder from './docs_finder'
 import Doc from './doc'
-import {StatePropType} from 'app/types/state'
-import {getSelectedVersionTag} from 'app/acts/versions'
-import {getRouteDocId} from 'app/acts/routes'
-import {DocsPropType} from 'app/types/docs'
-import {EitherPropType} from 'app/types/either'
-import {VersionPropType} from 'app/types/version'
+import { StatePropType } from 'app/types/state'
+import { getSelectedVersionTag } from 'app/acts/versions'
+import { getRouteDocId } from 'app/acts/routes'
+import { DocsPropType } from 'app/types/docs'
+import { EitherPropType } from 'app/types/either'
+import { VersionPropType } from 'app/types/version'
 import DocsNavBar from './nav_bar'
 
-export default function Docs ({state, selectedVersion}) {
-  const {
-    docs,
-    versions,
-    routeData,
-    latestVersionTag,
-    submodule
-  } = state
+export default function Docs ({ state, selectedVersion }) {
+  const { docs, versions, routeData, latestVersionTag, submodule } = state
   const docId = getRouteDocId(routeData)
   const selectedVersionTag = getSelectedVersionTag(state)
 
   return (
-    <div className="docs">
+    <div className='docs'>
       <DocsNavBar
         docId={docId}
         docs={docs}
@@ -33,7 +27,7 @@ export default function Docs ({state, selectedVersion}) {
         selectedVersion={selectedVersion}
       />
 
-      <div className="docs-finder">
+      <div className='docs-finder'>
         <DocsFinder
           docId={docId}
           docs={docs}
@@ -42,7 +36,7 @@ export default function Docs ({state, selectedVersion}) {
         />
       </div>
 
-      <div className="docs-content">
+      <div className='docs-content'>
         <Doc
           docId={docId}
           docs={docs}
@@ -55,5 +49,8 @@ export default function Docs ({state, selectedVersion}) {
 
 Docs.propTypes = {
   state: StatePropType.isRequired,
-  selectedVersion: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired
+  selectedVersion: EitherPropType(
+    React.PropTypes.object,
+    VersionPropType.isRequired
+  ).isRequired
 }

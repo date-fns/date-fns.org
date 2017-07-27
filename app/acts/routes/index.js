@@ -1,4 +1,4 @@
-import {act} from 'enso'
+import { act } from 'enso'
 import router from 'app/routes'
 
 export function getRouteDocId (routeData) {
@@ -51,12 +51,11 @@ export function getShownPage (routeData) {
 export function changeSubmodule (versionTag, relatedDocs, routeData, value) {
   act(state => state.set('submodule', value))
 
-  relatedDocs
-    .map(relatedDocs => {
-      const relatedDocKey = value === 'fp' ? 'fp' : 'default'
-      const docId = relatedDocs.get(relatedDocKey)
-      navigateToRoute('doc', {docId, versionTag})
-    })
+  relatedDocs.map(relatedDocs => {
+    const relatedDocKey = value === 'fp' ? 'fp' : 'default'
+    const docId = relatedDocs.get(relatedDocKey)
+    navigateToRoute('doc', { docId, versionTag })
+  })
 }
 
 export function changeVersion (routeData, tag) {
@@ -95,12 +94,12 @@ function routeNameToNonFPCounterpart (name) {
 }
 
 export function hrefTo (name, params) {
-  const {name: routeName, params: routeParams} = calculateRoute(name, params)
+  const { name: routeName, params: routeParams } = calculateRoute(name, params)
   return router.hrefTo(routeName, routeParams)
 }
 
 export function navigateToRoute (name, params) {
-  const {name: routeName, params: routeParams} = calculateRoute(name, params)
+  const { name: routeName, params: routeParams } = calculateRoute(name, params)
   return router.navigateToRoute(routeName, routeParams)
 }
 
@@ -114,5 +113,5 @@ function calculateRoute (name, params) {
     }
   }
 
-  return {name, params: params && Object.assign({}, params, {versionTag})}
+  return { name, params: params && Object.assign({}, params, { versionTag }) }
 }

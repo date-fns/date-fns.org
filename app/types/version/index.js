@@ -1,8 +1,8 @@
 import I from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import React from 'react'
-import {Features, FeaturesPropType} from 'app/types/features'
-import {GettingStartedPropType} from 'app/types/getting_started'
+import { Features, FeaturesPropType } from 'app/types/features'
+import { GettingStartedPropType } from 'app/types/getting_started'
 
 export const Version = I.Record({
   tag: null,
@@ -23,7 +23,9 @@ export const VersionPropType = ImmutablePropTypes.recordOf({
   commit: React.PropTypes.string,
   prerelease: React.PropTypes.bool,
   gettingStarted: GettingStartedPropType.isRequired,
-  gettingStartedTabs: ImmutablePropTypes.listOf(React.PropTypes.string.isRequired),
+  gettingStartedTabs: ImmutablePropTypes.listOf(
+    React.PropTypes.string.isRequired
+  ),
   features: FeaturesPropType.isRequired,
   locales: ImmutablePropTypes.list,
   docsKey: React.PropTypes.any,

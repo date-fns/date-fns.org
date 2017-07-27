@@ -1,7 +1,7 @@
-import {act} from 'enso'
+import { act } from 'enso'
 import I from 'immutable'
 import Either from 'app/types/either'
-import {getJSON} from 'app/_lib/request'
+import { getJSON } from 'app/_lib/request'
 
 export function fetchContributors () {
   return getJSON('https://api.github.com/repos/date-fns/date-fns/contributors')
@@ -12,7 +12,10 @@ export function fetchContributors () {
     )
     .catch(reason =>
       act(state =>
-        state.set('contributors', Either.Left({message: 'Failed to fetch contributors', reason}))
+        state.set(
+          'contributors',
+          Either.Left({ message: 'Failed to fetch contributors', reason })
+        )
       )
     )
 }

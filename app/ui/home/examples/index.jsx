@@ -1,19 +1,26 @@
 import React from 'react'
 import Code from 'app/ui/_lib/code'
 import HomeBlock from 'app/ui/home/_lib/block'
-import {trackAction} from 'app/acts/tracking_acts'
+import { trackAction } from 'app/acts/tracking_acts'
 import classnames from 'classnames'
 
 // TODO: Generate example results with date-fns v2
 const examples = [
   {
     label: 'Format date',
-    code:
-`
+    code: `
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 format(new Date(), '[Today is a] dddd')
-//=> "Today is a ${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]}"
+//=> "Today is a ${[
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday'
+][new Date().getDay()]}"
 
 formatDistance(subDays(new Date(), 3), new Date())
 //=> "3 days ago"
@@ -24,8 +31,7 @@ formatRelative(subDays(new Date(), 3), new Date())
   },
   {
     label: 'I18n',
-    code:
-`
+    code: `
 import { formatRelative, subDays } from 'date-fns'
 import { es, ru } from 'date-fns/esm/locale'
 
@@ -41,8 +47,7 @@ formatRelative(subDays(new Date(), 3), new Date(), { locale: ru })
   },
   {
     label: 'Composition & FP',
-    code:
-`
+    code: `
 import { addYears, formatWithOptions, toUpper } from 'date-fns/esm/fp'
 import { eo } from 'date-fns/esm/locale'
 
@@ -68,43 +73,47 @@ export default class Examples extends React.Component {
   }
 
   render () {
-    const {exampleIndex} = this.state
+    const { exampleIndex } = this.state
     const currentExample = examples[exampleIndex]
 
-    return <HomeBlock header='Examples'>
-      <div className='examples'>
-        <ul className='examples-options'>
-          {
-            examples.map((example, index) => {
-              return <li className='examples-option' key={index}>
-                <a
-                  href='#'
-                  onClick={this._changeExampleIndex.bind(this, index)}
-                  className={classnames('examples-option_link', {
-                    'is-current': index === exampleIndex
-                  })}
-                >
-                  {example.label}
-                </a>
-              </li>
-            })
-          }
-        </ul>
+    return (
+      <HomeBlock header='Examples'>
+        <div className='examples'>
+          <ul className='examples-options'>
+            {examples.map((example, index) => {
+              return (
+                <li className='examples-option' key={index}>
+                  <a
+                    href='#'
+                    onClick={this._changeExampleIndex.bind(this, index)}
+                    className={classnames('examples-option_link', {
+                      'is-current': index === exampleIndex
+                    })}
+                  >
+                    {example.label}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
 
-        {this._renderExample(currentExample)}
-      </div>
-    </HomeBlock>
+          {this._renderExample(currentExample)}
+        </div>
+      </HomeBlock>
+    )
   }
 
   _renderExample (example) {
-    return <div className='examples-code_wrapper'>
-      <Code value={example.code} options={{readOnly: true}} />
-    </div>
+    return (
+      <div className='examples-code_wrapper'>
+        <Code value={example.code} options={{ readOnly: true }} />
+      </div>
+    )
   }
 
   _changeExampleIndex (exampleIndex, e) {
-    trackAction('Changed Example', {exampleIndex})
+    trackAction('Changed Example', { exampleIndex })
     e.preventDefault()
-    this.setState({exampleIndex})
+    this.setState({ exampleIndex })
   }
 }

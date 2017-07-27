@@ -5,13 +5,13 @@ function EitherPropType (leftPropType, rightPropType) {
   function validate (props, propName, componentName, ...rest) {
     const prop = props[propName]
 
-    if (!(prop && (prop instanceof Either))) {
+    if (!(prop && prop instanceof Either)) {
       throw new Error(props, propName, componentName, rest)
     }
 
     prop.fold(
-      (left) => leftPropType({left}, 'left', componentName, ...rest),
-      (right) => rightPropType({right}, 'right', componentName, ...rest)
+      left => leftPropType({ left }, 'left', componentName, ...rest),
+      right => rightPropType({ right }, 'right', componentName, ...rest)
     )
   }
 
@@ -20,5 +20,5 @@ function EitherPropType (leftPropType, rightPropType) {
   return validate
 }
 
-export {Either, EitherPropType}
+export { Either, EitherPropType }
 export default Either

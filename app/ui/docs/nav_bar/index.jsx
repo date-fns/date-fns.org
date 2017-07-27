@@ -2,25 +2,35 @@ import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import Link from 'app/ui/_lib/link'
 import router from 'app/routes'
-import {VersionPropType} from 'app/types/version'
-import {DocsPropType} from 'app/types/docs'
-import {Either, EitherPropType} from 'app/types/either'
-import {changeVersion, changeSubmodule} from 'app/acts/routes'
-import {areSubmodulesAvailable} from 'app/acts/versions'
+import { VersionPropType } from 'app/types/version'
+import { DocsPropType } from 'app/types/docs'
+import { Either, EitherPropType } from 'app/types/either'
+import { changeVersion, changeSubmodule } from 'app/acts/routes'
+import { areSubmodulesAvailable } from 'app/acts/versions'
 import logoPath from './img/logo.svg'
 
 DocsNavBar.propTypes = {
   docId: React.PropTypes.string,
-  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired).isRequired,
+  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired)
+    .isRequired,
   versions: EitherPropType(
     React.PropTypes.object,
     ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
   ).isRequired,
-  selectedVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired,
+  selectedVersionTag: EitherPropType(
+    React.PropTypes.object,
+    React.PropTypes.string
+  ).isRequired,
   selectedSubmodule: React.PropTypes.string.isRequired,
-  selectedVersion: EitherPropType(React.PropTypes.object, VersionPropType.isRequired).isRequired,
+  selectedVersion: EitherPropType(
+    React.PropTypes.object,
+    VersionPropType.isRequired
+  ).isRequired,
   routeData: React.PropTypes.object.isRequired,
-  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.string).isRequired
+  latestVersionTag: EitherPropType(
+    React.PropTypes.object,
+    React.PropTypes.string
+  ).isRequired
 }
 
 export default function DocsNavBar ({
@@ -34,34 +44,34 @@ export default function DocsNavBar ({
   latestVersionTag
 }) {
   return (
-    <div className="docs_nav_bar">
-      <div className="docs_nav_bar-inner">
-        <div className="docs_nav_bar-links">
-          <Link name="home" className="docs_nav_bar-logotype">
-            <img src={logoPath} className="docs_nav_bar-logotype_image" />
+    <div className='docs_nav_bar'>
+      <div className='docs_nav_bar-inner'>
+        <div className='docs_nav_bar-links'>
+          <Link name='home' className='docs_nav_bar-logotype'>
+            <img src={logoPath} className='docs_nav_bar-logotype_image' />
             date-fns
           </Link>
 
           <a
-            href="https://github.com/date-fns/date-fns"
-            className="docs_nav_bar-link"
+            href='https://github.com/date-fns/date-fns'
+            className='docs_nav_bar-link'
           >
             GitHub
           </a>
 
-          <a href="https://twitter.com/date_fns" className="docs_nav_bar-link">
+          <a href='https://twitter.com/date_fns' className='docs_nav_bar-link'>
             Twitter
           </a>
 
           <a
-            href="https://gitter.im/date-fns/support"
-            className="docs_nav_bar-link"
+            href='https://gitter.im/date-fns/support'
+            className='docs_nav_bar-link'
           >
             Support
           </a>
         </div>
 
-        <div className="docs_nav_bar-version_selector">
+        <div className='docs_nav_bar-version_selector'>
           <VersionSelector
             docId={docId}
             versions={versions}
@@ -84,74 +94,103 @@ export default function DocsNavBar ({
   )
 }
 
-function VersionSelector ({docId, versions, selectedVersionTag, latestVersionTag, routeData}) {
-  return <label className="docs_nav_bar-selector">
-    <span className="docs_nav_bar-label">
-      Version:
-    </span>
+function VersionSelector ({
+  docId,
+  versions,
+  selectedVersionTag,
+  latestVersionTag,
+  routeData
+}) {
+  return (
+    <label className='docs_nav_bar-selector'>
+      <span className='docs_nav_bar-label'>Version:</span>
 
-    <select
-      disabled={versions.isLeft}
-      value={selectedVersionTag.getOrElse('')}
-      className="docs_nav_bar-select"
-      onChange={onVersionChange.bind(null, routeData)}
-    >
-      {versions.fold(
-        ({message}) => message,
-        versions =>
-          versions
-            .filter(version => version.features.docs)
-            .keySeq()
-            .map(versionOption)
-      )}
-    </select>
+      <select
+        disabled={versions.isLeft}
+        value={selectedVersionTag.getOrElse('')}
+        className='docs_nav_bar-select'
+        onChange={onVersionChange.bind(null, routeData)}
+      >
+        {versions.fold(
+          ({ message }) => message,
+          versions =>
+            versions
+              .filter(version => version.features.docs)
+              .keySeq()
+              .map(versionOption)
+        )}
+      </select>
 
-    <LatestVersionLink
-      docId={docId}
-      selectedVersionTag={selectedVersionTag}
-      latestVersionTag={latestVersionTag}
-      routeData={routeData}
-    />
-  </label>
+      <LatestVersionLink
+        docId={docId}
+        selectedVersionTag={selectedVersionTag}
+        latestVersionTag={latestVersionTag}
+        routeData={routeData}
+      />
+    </label>
+  )
 }
 
-function LatestVersionLink ({docId, selectedVersionTag, latestVersionTag, routeData}) {
+function LatestVersionLink ({
+  docId,
+  selectedVersionTag,
+  latestVersionTag,
+  routeData
+}) {
   return Either.of(x => y => x === y)
     .ap(selectedVersionTag)
     .ap(latestVersionTag)
-    .chain(isSelectedLatestVersion => isSelectedLatestVersion ? Either.Left() : Either.Right())
+    .chain(
+      isSelectedLatestVersion =>
+        isSelectedLatestVersion ? Either.Left() : Either.Right()
+    )
     .fold(
       () => null,
       () =>
         <Link
           className='docs_nav_bar-latest_link'
           name='doc'
-          params={{docId, versionTag: latestVersionTag}}
+          params={{ docId, versionTag: latestVersionTag }}
         >
           Switch to latest
         </Link>
     )
 }
 
-function SubmoduleSelector ({docId, docs, selectedSubmodule, selectedVersion, selectedVersionTag, routeData}) {
+function SubmoduleSelector ({
+  docId,
+  docs,
+  selectedSubmodule,
+  selectedVersion,
+  selectedVersionTag,
+  routeData
+}) {
   const relatedDocs = docs
-    .chain(docs => Either.fromNullable(docs.pages.find(page => page.urlId === docId)))
+    .chain(docs =>
+      Either.fromNullable(docs.pages.find(page => page.urlId === docId))
+    )
     .chain(page => Either.fromNullable(page.relatedDocs))
 
   return selectedVersion
-    .chain(version => areSubmodulesAvailable(version) ? Either.Right() : Either.Left())
+    .chain(
+      version =>
+        areSubmodulesAvailable(version) ? Either.Right() : Either.Left()
+    )
     .fold(
       () => null,
       () =>
-        <label className="docs_nav_bar-selector">
-          <span className="docs_nav_bar-label">
-            Submodule:
-          </span>
+        <label className='docs_nav_bar-selector'>
+          <span className='docs_nav_bar-label'>Submodule:</span>
 
           <select
             value={selectedSubmodule}
-            className="docs_nav_bar-select"
-            onChange={onSubmoduleChange.bind(null, selectedVersionTag, relatedDocs, routeData)}
+            className='docs_nav_bar-select'
+            onChange={onSubmoduleChange.bind(
+              null,
+              selectedVersionTag,
+              relatedDocs,
+              routeData
+            )}
           >
             <option value={''}>Default</option>
             <option value={'fp'}>FP</option>
@@ -160,14 +199,23 @@ function SubmoduleSelector ({docId, docs, selectedSubmodule, selectedVersion, se
     )
 }
 
-function onVersionChange (routeData, {target: {value: tag}}) {
+function onVersionChange (routeData, { target: { value: tag } }) {
   changeVersion(routeData, tag)
 }
 
-function onSubmoduleChange(selectedVersionTag, relatedDocs, routeData, {target: {value}}) {
+function onSubmoduleChange (
+  selectedVersionTag,
+  relatedDocs,
+  routeData,
+  { target: { value } }
+) {
   changeSubmodule(selectedVersionTag, relatedDocs, routeData, value)
 }
 
 function versionOption (tag) {
-  return <option value={tag} key={tag}>{tag}</option>
+  return (
+    <option value={tag} key={tag}>
+      {tag}
+    </option>
+  )
 }

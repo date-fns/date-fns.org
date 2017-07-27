@@ -1,16 +1,16 @@
 import I from 'immutable'
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import {Version, VersionPropType} from 'app/types/version'
-import {Docs, DocsPropType} from 'app/types/docs'
-import {Either, EitherPropType} from 'app/types/either'
+import { Version, VersionPropType } from 'app/types/version'
+import { Docs, DocsPropType } from 'app/types/docs'
+import { Either, EitherPropType } from 'app/types/either'
 
 export const State = I.Record({
-  versions: Either.Left({message: 'Loading versions...'}),
-  latestVersionTag: Either.Left({message: 'Loading versions...'}),
+  versions: Either.Left({ message: 'Loading versions...' }),
+  latestVersionTag: Either.Left({ message: 'Loading versions...' }),
   routeData: null,
-  docs: Either.Left({message: 'Loading versions...'}),
-  contributors: Either.Left({message: 'Loading contributors...'}),
+  docs: Either.Left({ message: 'Loading versions...' }),
+  contributors: Either.Left({ message: 'Loading contributors...' }),
   submodule: ''
 })
 
@@ -19,15 +19,11 @@ export const StatePropType = ImmutablePropTypes.recordOf({
     React.PropTypes.object,
     ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
   ).isRequired,
-  latestVersionTag: EitherPropType(
-    React.PropTypes.object,
-    React.PropTypes.any
-  ).isRequired,
+  latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.any)
+    .isRequired,
   routeData: ImmutablePropTypes.map,
-  docs: EitherPropType(
-    React.PropTypes.object,
-    DocsPropType.isRequired
-  ).isRequired,
+  docs: EitherPropType(React.PropTypes.object, DocsPropType.isRequired)
+    .isRequired,
   contributors: EitherPropType(
     React.PropTypes.object,
     ImmutablePropTypes.list.isRequired

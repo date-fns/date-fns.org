@@ -2,25 +2,29 @@ import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import Code from 'app/ui/_lib/code'
 
-export default function JSDocSyntax ({syntax}) {
+export default function JSDocSyntax ({ syntax }) {
   if (!syntax) {
     return null
   }
 
-  return <section>
-    <h2 id='syntax'>
-      Syntax
-      <a href='#syntax' className='doc-header_link'>#</a>
-    </h2>
+  return (
+    <section>
+      <h2 id='syntax'>
+        Syntax
+        <a href='#syntax' className='doc-header_link'>
+          #
+        </a>
+      </h2>
 
-    <Code
-      value={syntax}
-      options={{
-        readOnly: true,
-        mode: 'javascript'
-      }}
-    />
-  </section>
+      <Code
+        value={syntax}
+        options={{
+          readOnly: true,
+          mode: 'javascript'
+        }}
+      />
+    </section>
+  )
 }
 
 JSDocSyntax.propTypes = {
