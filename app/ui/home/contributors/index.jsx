@@ -1,6 +1,5 @@
 import React from 'react'
 import HomeBlock, { Link } from '../_lib/block'
-import { fetchContributors } from 'app/acts/contributors'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { EitherPropType } from 'app/types/either'
 

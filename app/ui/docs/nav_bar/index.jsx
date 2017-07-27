@@ -1,7 +1,6 @@
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import Link from 'app/ui/_lib/link'
-import router from 'app/routes'
 import { VersionPropType } from 'app/types/version'
 import { DocsPropType } from 'app/types/docs'
 import { Either, EitherPropType } from 'app/types/either'

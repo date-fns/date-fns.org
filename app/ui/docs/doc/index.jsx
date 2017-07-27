@@ -1,9 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import JSDoc from './jsdoc'
 import MarkdownDoc from './markdown_doc'
-import Link from 'app/ui/_lib/link'
-import ImmutablePropTypes from 'react-immutable-proptypes'
 import { DocsPropType } from 'app/types/docs'
 import { EitherPropType } from 'app/types/either'
 

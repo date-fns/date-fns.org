@@ -5,7 +5,6 @@ import Features from 'app/types/features'
 import Docs from 'app/types/docs'
 import Page from 'app/types/page'
 import Either from 'app/types/either'
-import { getItem } from '../_lib/localStorage'
 import { getJSON } from 'app/_lib/request'
 import { firebaseURL } from 'app/_lib/firebase'
 

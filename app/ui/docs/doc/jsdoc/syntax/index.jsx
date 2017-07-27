@@ -1,5 +1,4 @@
 import React from 'react'
-import ImmutablePropTypes from 'react-immutable-proptypes'
 import Code from 'app/ui/_lib/code'
 
 export default function JSDocSyntax ({ syntax }) {

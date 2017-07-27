@@ -1,5 +1,4 @@
 import React from 'react'
-import { Bar } from 'react-chartjs'
 import perfStats from '../../../performance-stats.json'
 import max from 'lodash/math/max'
 
@@ -50,12 +49,12 @@ export default class Perf extends React.Component {
             >
               {dateFns} ops/sec
             </div>
-            {typeof moment === 'number'
-              ? <div
-                  className='perf-bar is-moment'
-                  style={{ width: `${moment / biggestNumber * 100}%` }}
-                />
-              : null}
+            {(typeof moment === 'number' &&
+              <div
+                className='perf-bar is-moment'
+                style={{ width: `${moment / biggestNumber * 100}%` }}
+              />) ||
+              null}
           </div>
         </div>
       )

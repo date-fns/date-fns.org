@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import {writeFileSync, readFileSync} from 'fs'
+import {writeFileSync} from 'fs'
 import {Lokka} from 'lokka'
 import {Transport} from 'lokka-transport-http'
 

@@ -1,8 +1,8 @@
 import I from 'immutable'
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import { Version, VersionPropType } from 'app/types/version'
-import { Docs, DocsPropType } from 'app/types/docs'
+import { VersionPropType } from 'app/types/version'
+import { DocsPropType } from 'app/types/docs'
 import { Either, EitherPropType } from 'app/types/either'
 
 export const State = I.Record({

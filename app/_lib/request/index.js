@@ -1,3 +1,5 @@
+/* global Headers */
+
 const builtinFetch = window.fetch
 
 export function request (url, options = {}) {

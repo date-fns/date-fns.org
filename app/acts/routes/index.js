@@ -81,18 +81,6 @@ function routeNameToVersionCounterpart (name) {
   return name
 }
 
-function routeNameToNonFPCounterpart (name) {
-  if (name === 'docsFP') {
-    return 'docs'
-  } else if (name === 'docFP') {
-    return 'doc'
-  } else if (name === 'versionDocsFP') {
-    return 'versionDocs'
-  } else if (name === 'docFP') {
-    return 'doc'
-  }
-}
-
 export function hrefTo (name, params) {
   const { name: routeName, params: routeParams } = calculateRoute(name, params)
   return router.hrefTo(routeName, routeParams)

@@ -7,7 +7,6 @@ import JSDocProperties from './properties'
 import JSDocReturns from './returns'
 import JSDocExceptions from './exceptions'
 import JSDocExamples from './examples'
-import ImmutablePropTypes from 'react-immutable-proptypes'
 import { PagePropType } from 'app/types/page'
 import { EitherPropType } from 'app/types/either'
 
