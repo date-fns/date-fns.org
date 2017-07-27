@@ -77,7 +77,7 @@ export default class Features extends React.Component {
             </h3>
 
             <p className='features-description'>
-              The best API is an API that doesn't exists. With date-fns you
+              The best API is an API that doesn't exist. With date-fns you
               always have one function that does one thing.
             </p>
           </div>
