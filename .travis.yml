@@ -14,6 +14,4 @@ deploy:
   on:
     branch: master
 
-cache:
-  directories:
-    - node_modules
+cache: yarn
