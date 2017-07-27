@@ -10,7 +10,7 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: npm run deploy
+  script: yarn deploy
   on:
     branch: master
 

@@ -1,16 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-# Fail on non-zero exit code
-set -e
+# The deployment script
 
-echo '~ Fetching the latest date-fns'
-npm install date-fns@latest
+set -ex
 
-echo '~ Building the application'
-npm run build
+export PATH="$(yarn bin):$PATH"
 
-echo '~ Running Firebase deploy'
+yarn build
 cd dist
-../node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
-
-echo '+ Done!'
+firebase deploy --token "$FIREBASE_TOKEN"
