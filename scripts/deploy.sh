@@ -8,4 +8,4 @@ export PATH="$(yarn bin):$PATH"
 
 yarn build
 cd dist
-firebase deploy --token "$FIREBASE_TOKEN"
+firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
