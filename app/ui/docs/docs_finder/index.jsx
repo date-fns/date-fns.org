@@ -101,13 +101,13 @@ export default class DocsFinder extends React.Component {
 
               return (
                 <li className='docs_finder-category' key={category}>
-                  <ul className='docs_finder-list'>
-                    <h3 className='docs_finder-category_header'>
-                      {category}
-                    </h3>
+                  <h3 className='docs_finder-category_header'>
+                    {category}
+                  </h3>
 
+                  <div className='docs_finder-list'>
                     {this._renderDocs(categoryPages)}
-                  </ul>
+                  </div>
                 </li>
               )
             })}
