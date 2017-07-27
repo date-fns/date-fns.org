@@ -117,7 +117,7 @@ function versionsToOrderedMap (versions) {
   return I.OrderedMap(orderedObject)
 }
 
-function versionsSortFn ({ date: dateA }, { date: dateB }) {
+export function versionsSortFn ({ date: dateA }, { date: dateB }) {
   return dateB - dateA
 }
 

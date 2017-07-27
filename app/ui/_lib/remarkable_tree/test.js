@@ -4,12 +4,24 @@ import assert from 'power-assert'
 import Remarkable from 'remarkable'
 import remarkableTree from '.'
 import { text, tag, softbreak, code } from './utils'
-import docs from 'app/_lib/docs'
+import { getJSON } from 'app/_lib/request'
+import { firebaseURL } from 'app/_lib/firebase'
+import { versionsSortFn } from 'app/acts/versions'
 
 describe('remarkableTree', () => {
   function parse (str) {
     return new Remarkable().parse(str, {})
   }
+
+  let pages
+  before(function () {
+    this.timeout(10000)
+
+    return getJSON(firebaseURL('versions'))
+      .then(data => Object.values(data).sort(versionsSortFn)[0])
+      .then(({ docsKey }) => getJSON(firebaseURL(`docs/${docsKey}`)))
+      .then(({ pages: docPages }) => (pages = docPages))
+  })
 
   it('converts a pair of open/close tokens', () => {
     assert.deepEqual(remarkableTree(parse('Hello!')), [
@@ -82,20 +94,12 @@ describe('remarkableTree', () => {
   })
 
   it('capable to handle markdown documents from date-fns', () => {
-    const mdDocs = Object.keys(docs).reduce(
-      (mdDocs, categoryName) =>
-        mdDocs.concat(docs[categoryName].filter(d => d.type === 'markdown')),
-      []
-    )
+    const mdDocs = pages.filter(({ type }) => type === 'markdown')
     mdDocs.forEach(doc => remarkableTree(parse(doc.content)))
   })
 
   it('capable to handle markdown content of JSDoc documents from date-fns', () => {
-    const jsDocs = Object.keys(docs).reduce(
-      (jsDocs, categoryName) =>
-        jsDocs.concat(docs[categoryName].filter(d => d.type === 'jsdoc')),
-      []
-    )
+    const jsDocs = pages.filter(({ type }) => type === 'jsdoc')
     jsDocs.forEach(doc => {
       remarkableTree(parse(doc.content.description))
     })
