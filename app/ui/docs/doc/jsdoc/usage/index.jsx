@@ -55,6 +55,9 @@ export default class JSDocUsage extends React.Component {
           {usageTabs.map((usageTab, index) => {
             const usageItem = usage.get(usageTab)
 
+            // TODO: Instead of relying on `usageTabs` prop, simply use `usage`
+            if (!usageItem) return
+
             return (
               <li className='jsdoc_usage-option' key={usageTab}>
                 <a
