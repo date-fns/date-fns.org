@@ -5,7 +5,6 @@ import StaticFilesWebpackPlugin from 'static-files-webpack-plugin'
 import appConfig from './app'
 import CTagsWebpackPlugin from 'ctags-webpack-plugin'
 
-
 const appEnv = process.env.APP_ENV || 'development'
 const nodeEnv = process.env.NODE_ENV || 'development'
 
