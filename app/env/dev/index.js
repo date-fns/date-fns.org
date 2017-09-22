@@ -9,6 +9,8 @@ import ejs from 'ejs'
 import fsp from 'fs-promise'
 import path from 'path'
 
+process.env.APP_ENV = process.env.APP_ENV || 'development'
+
 const app = new Koa()
 const webpackCompiler = webpack(webpackConfig)
 const port = process.env.SYSTEM_TESTS ? 5001 : process.env.APP_PORT || 5000

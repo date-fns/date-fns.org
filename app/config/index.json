@@ -1,0 +1,13 @@
+{
+  "development": {
+    "db": "https://date-fns-org-staging.firebaseio.com"
+  },
+
+  "production": {
+    "db": "https://date-fns.firebaseio.com"
+  },
+
+  "staging": {
+    "db": "https://date-fns-org-staging.firebaseio.com"
+  }
+}

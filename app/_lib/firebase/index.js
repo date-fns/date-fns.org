@@ -1,3 +1,5 @@
+import { db } from 'app/config'
+
 export function firebaseURL (path) {
-  return `https://date-fns.firebaseio.com/${path}.json`
+  return `${db}/${path}.json`
 }

@@ -5,13 +5,21 @@ import StaticFilesWebpackPlugin from 'static-files-webpack-plugin'
 import appConfig from './app'
 import CTagsWebpackPlugin from 'ctags-webpack-plugin'
 
-const env = process.env.NODE_ENV
-const isDevelopment = env === 'development'
-const isProduction = env === 'production'
+
+const appEnv = process.env.APP_ENV || 'development'
+const nodeEnv = process.env.NODE_ENV || 'development'
+
+const isDevelopment = nodeEnv === 'development'
+const isProduction = nodeEnv === 'production'
 const isSystemTests = process.env.SYSTEM_TESTS
 const enableDebuggingTools = isDevelopment && !isSystemTests
 
-const plugins = []
+const plugins = [
+  new webpack.DefinePlugin({
+    'process.env.APP_ENV': JSON.stringify(appEnv),
+    'process.env.NODE_ENV': JSON.stringify(nodeEnv)
+  })
+]
 
 if (enableDebuggingTools) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -19,13 +27,6 @@ if (enableDebuggingTools) {
 }
 
 if (isProduction) {
-  plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
-  )
   plugins.push(
     new AssetsWebpackPlugin({
       path: appConfig.distPath
