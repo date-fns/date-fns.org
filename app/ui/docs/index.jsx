@@ -9,7 +9,7 @@ import { VersionPropType } from 'app/types/version'
 import DocsNavBar from './nav_bar'
 
 export default function Docs ({ state, selectedVersion }) {
-  const { docs, versions, routeData, latestVersionTag, submodule } = state
+  const { docs, versions, routeData, latestStableVersionTag, submodule } = state
   const docId = getRouteDocId(routeData)
   const selectedVersionTag = getSelectedVersionTag(state)
 
@@ -18,7 +18,7 @@ export default function Docs ({ state, selectedVersion }) {
       <DocsNavBar
         docId={docId}
         docs={docs}
-        latestVersionTag={latestVersionTag}
+        latestStableVersionTag={latestStableVersionTag}
         versions={versions}
         selectedVersionTag={selectedVersionTag}
         routeData={routeData}

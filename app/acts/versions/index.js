@@ -12,11 +12,13 @@ export function fetchVersions () {
   return getJSON(firebaseURL('versions'))
     .then(versionsObject => {
       const versions = versionsToOrderedMap(versionsObject)
-      const latestVersionTag = versions.findKey(version => !version.prerelease)
+      const latestStableVersionTag = versions.findKey(version => !version.prerelease)
+      const latestVersionTag = versions.first().get('tag')
 
       act(state => {
         const newState = state
           .set('versions', Either.Right(versions))
+          .set('latestStableVersionTag', Either.Right(latestStableVersionTag))
           .set('latestVersionTag', Either.Right(latestVersionTag))
 
         fetchDocs(newState)
@@ -29,6 +31,7 @@ export function fetchVersions () {
       act(state =>
         state
           .set('versions', Either.Left(err))
+          .set('latestStableVersionTag', Either.Left(err))
           .set('latestVersionTag', Either.Left(err))
           .set('docs', Either.Left(err))
       )
@@ -106,7 +109,7 @@ export function getSelectedVersionTag (state) {
   const versionTag = state.getIn(['routeData', 'params', 'versionTag'])
   return versionTag
     ? Either.Right(decodeURI(versionTag))
-    : state.latestVersionTag
+    : state.latestStableVersionTag
 }
 
 function versionsToOrderedMap (versions) {
@@ -117,8 +120,8 @@ function versionsToOrderedMap (versions) {
   return I.OrderedMap(orderedObject)
 }
 
-export function versionsSortFn ({ date: dateA }, { date: dateB }) {
-  return dateB - dateA
+export function versionsSortFn ({ tag: tagA }, { tag: tagB }) {
+  return versionToSortableNumber(tagB) - versionToSortableNumber(tagA)
 }
 
 function versionsMapFn (versionObject) {
@@ -134,4 +137,18 @@ function versionsMapFn (versionObject) {
 export function areSubmodulesAvailable (version) {
   const { features } = version
   return features.fp || features.utc
+}
+
+function versionToSortableNumber(version) {
+  return version
+    .replace('v', '')
+    .replace('alpha', 1)
+    .replace('beta', 2)
+    .replace('rc', 3)
+    .split(/[\.-]/g)
+    .reduce(
+      (acc, numStr, index) =>
+        acc + parseInt(numStr) * Math.pow(1000, 5 - index),
+      Math.pow(10, 20)
+    )
 }

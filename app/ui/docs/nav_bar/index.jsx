@@ -26,7 +26,7 @@ DocsNavBar.propTypes = {
     VersionPropType.isRequired
   ).isRequired,
   routeData: React.PropTypes.object.isRequired,
-  latestVersionTag: EitherPropType(
+  latestStableVersionTag: EitherPropType(
     React.PropTypes.object,
     React.PropTypes.string
   ).isRequired
@@ -40,7 +40,7 @@ export default function DocsNavBar ({
   selectedSubmodule,
   selectedVersion,
   routeData,
-  latestVersionTag
+  latestStableVersionTag
 }) {
   return (
     <div className='docs_nav_bar'>
@@ -75,7 +75,7 @@ export default function DocsNavBar ({
             docId={docId}
             versions={versions}
             selectedVersionTag={selectedVersionTag}
-            latestVersionTag={latestVersionTag}
+            latestStableVersionTag={latestStableVersionTag}
             routeData={routeData}
           />
 
@@ -97,7 +97,7 @@ function VersionSelector ({
   docId,
   versions,
   selectedVersionTag,
-  latestVersionTag,
+  latestStableVersionTag,
   routeData
 }) {
   return (
@@ -123,7 +123,7 @@ function VersionSelector ({
       <LatestVersionLink
         docId={docId}
         selectedVersionTag={selectedVersionTag}
-        latestVersionTag={latestVersionTag}
+        latestStableVersionTag={latestStableVersionTag}
         routeData={routeData}
       />
     </label>
@@ -133,12 +133,12 @@ function VersionSelector ({
 function LatestVersionLink ({
   docId,
   selectedVersionTag,
-  latestVersionTag,
+  latestStableVersionTag,
   routeData
 }) {
   return Either.of(x => y => x === y)
     .ap(selectedVersionTag)
-    .ap(latestVersionTag)
+    .ap(latestStableVersionTag)
     .chain(
       isSelectedLatestVersion =>
         isSelectedLatestVersion ? Either.Left() : Either.Right()
@@ -149,7 +149,7 @@ function LatestVersionLink ({
         <Link
           className='docs_nav_bar-latest_link'
           name='doc'
-          params={{ docId, versionTag: latestVersionTag }}
+          params={{ docId, versionTag: latestStableVersionTag }}
         >
           Switch to latest
         </Link>

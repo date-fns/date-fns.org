@@ -7,6 +7,7 @@ import { Either, EitherPropType } from 'app/types/either'
 
 export const State = I.Record({
   versions: Either.Left({ message: 'Loading versions...' }),
+  latestStableVersionTag: Either.Left({ message: 'Loading versions...' }),
   latestVersionTag: Either.Left({ message: 'Loading versions...' }),
   routeData: null,
   docs: Either.Left({ message: 'Loading versions...' }),
@@ -19,6 +20,8 @@ export const StatePropType = ImmutablePropTypes.recordOf({
     React.PropTypes.object,
     ImmutablePropTypes.orderedMapOf(VersionPropType).isRequired
   ).isRequired,
+  latestStableVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.any)
+    .isRequired,
   latestVersionTag: EitherPropType(React.PropTypes.object, React.PropTypes.any)
     .isRequired,
   routeData: ImmutablePropTypes.map,
