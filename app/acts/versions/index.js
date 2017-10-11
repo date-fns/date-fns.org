@@ -139,13 +139,13 @@ export function areSubmodulesAvailable (version) {
   return features.fp || features.utc
 }
 
-function versionToSortableNumber(version) {
+function versionToSortableNumber (version) {
   return version
     .replace('v', '')
     .replace('alpha', 1)
     .replace('beta', 2)
     .replace('rc', 3)
-    .split(/[\.-]/g)
+    .split(/[.-]/g)
     .reduce(
       (acc, numStr, index) =>
         acc + parseInt(numStr) * Math.pow(1000, 5 - index),
