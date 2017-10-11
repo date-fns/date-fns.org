@@ -13,7 +13,7 @@ process.env.APP_ENV = process.env.APP_ENV || 'development'
 
 const app = new Koa()
 const webpackCompiler = webpack(webpackConfig)
-const port = process.env.SYSTEM_TESTS ? 5001 : process.env.APP_PORT || 5000
+const port = process.env.SYSTEM_TESTS ? 8999 : process.env.APP_PORT || 4999
 
 app
   .use(koaMount('/assets', koaStatic(appConfig.staticPath)))

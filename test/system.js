@@ -4,7 +4,7 @@ casper.options.waitTimeout = 20000
 
 casper.test.begin('Docs', function (test) {
   casper
-    .start('http://localhost:5001')
+    .start('http://localhost:8999')
     .then(clear)
     .then(function () {
       test.assertVisible('a.promo-getting_started_link')
@@ -35,7 +35,7 @@ casper.test.begin('Docs', function (test) {
     })
     .then(function () {
       this.click('a.docs_nav_bar-logotype')
-      test.assertUrlMatch(/^http:\/\/localhost:5001\/$/)
+      test.assertUrlMatch(/^http:\/\/localhost:8999\/$/)
       test.assertTextDoesntExist('closestIndexTo')
     })
     .run(function () {
@@ -45,7 +45,7 @@ casper.test.begin('Docs', function (test) {
 
 casper.test.begin('Search', function (test) {
   casper
-    .start('http://localhost:5001')
+    .start('http://localhost:8999')
     .then(clear)
     .then(function () {
       test.assertVisible('a.promo-getting_started_link')
