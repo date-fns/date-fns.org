@@ -6,7 +6,7 @@ import remarkableTree from '.'
 import { text, tag, softbreak, code } from './utils'
 import { getJSON } from 'app/_lib/request'
 import { firebaseURL } from 'app/_lib/firebase'
-import { versionsSortFn } from 'app/acts/versions'
+import { sortVersions } from 'app/acts/versions'
 
 describe('remarkableTree', () => {
   function parse (str) {
@@ -18,7 +18,7 @@ describe('remarkableTree', () => {
     this.timeout(10000)
 
     return getJSON(firebaseURL('versions'))
-      .then(data => Object.values(data).sort(versionsSortFn)[0])
+      .then(data => sortVersions(Object.values(data))[0])
       .then(({ docsKey }) => getJSON(firebaseURL(`docs/${docsKey}`)))
       .then(({ pages: docPages }) => (pages = docPages))
   })
