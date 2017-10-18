@@ -7,6 +7,7 @@ import Page from 'app/types/page'
 import Either from 'app/types/either'
 import { getJSON } from 'app/_lib/request'
 import { firebaseURL } from 'app/_lib/firebase'
+import { sortByAll } from 'lodash'
 
 export function fetchVersions () {
   return getJSON(firebaseURL('versions'))
@@ -113,15 +114,39 @@ export function getSelectedVersionTag (state) {
 }
 
 function versionsToOrderedMap (versions) {
-  const orderedObject = Object.values(versions)
-    .sort(versionsSortFn)
-    .map(versionsMapFn)
-
+  const orderedObject = sortVersions(Object.values(versions)).map(versionsMapFn)
   return I.OrderedMap(orderedObject)
 }
 
-export function versionsSortFn ({ tag: tagA }, { tag: tagB }) {
-  return versionToSortableNumber(tagB) - versionToSortableNumber(tagA)
+export function sortVersions (versions) {
+  return sortByAll(versions, [
+    // Major version number
+    ({ tag }) => -parseInt(tag.match(/v(\d+)/)[1]),
+    // Minor version number
+    ({ tag }) => -parseInt(tag.match(/v\d+\.(\d+)/)[1]),
+    // Path version number
+    ({ tag }) => -parseInt(tag.match(/v\d+\.(\d+)/)[1]),
+    // Version stage
+    ({ tag }) => {
+      if (tag.includes('alpha')) {
+        return 0
+      } else if (tag.includes('beta')) {
+        return -1
+      } else if (tag.includes('rc')) {
+        return -2
+      } else {
+        return -3
+      }
+    },
+    // Version stage number
+    ({ tag }) => {
+      const result = tag.match(/v\d+\.\d+\.\d+-\w+\.?(\d)/)
+      if (result) {
+        return -parseInt(result[1])
+      }
+      return 0
+    }
+  ])
 }
 
 function versionsMapFn (versionObject) {
@@ -137,18 +162,4 @@ function versionsMapFn (versionObject) {
 export function areSubmodulesAvailable (version) {
   const { features } = version
   return features.fp || features.utc
-}
-
-function versionToSortableNumber (version) {
-  return version
-    .replace('v', '')
-    .replace('alpha', 1)
-    .replace('beta', 2)
-    .replace('rc', 3)
-    .split(/[.-]/g)
-    .reduce(
-      (acc, numStr, index) =>
-        acc + parseInt(numStr) * Math.pow(1000, 5 - index),
-      Math.pow(10, 20)
-    )
 }
