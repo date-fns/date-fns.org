@@ -77,7 +77,7 @@ export default function Features () {
 
               <p>
                 The typings are generated from the source code and bundled with
-                the package, so they always up-to-date.
+                the package, so they always stay up-to-date.
               </p>
             </div>
           </div>
