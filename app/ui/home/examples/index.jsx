@@ -61,6 +61,8 @@ const dates = [
   new Date(2017, 6, 2)
 ]
 
+const toUpper = arg => String(arg).toUpperCase()
+
 const formattedDates = dates.map(addFiveYears).map(dateToString).map(toUpper)
 //=> ['1 JANUARO 2022', '11 FEBRUARO 2022', '2 JULIO 2022']
 `.trim()
