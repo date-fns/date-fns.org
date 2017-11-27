@@ -59,5 +59,11 @@
   <body>
     <div id='canvas'></div>
     <script src='<%= entryPath('app') %>'></script>
+
+    <% if (env == 'production') { %>
+      <!-- Ask User -->
+      <script>window.askUser={show:function(){window.askUser.triggered=!0}}</script>
+      <script async src='https://askuser.xyz/widget.js' data-site-id='-Ky0da7VyG5MkbK_S6_r'></script>
+    <% } %>
   </body>
 </html>
