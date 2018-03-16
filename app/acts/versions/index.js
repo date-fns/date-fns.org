@@ -68,7 +68,14 @@ export function onVersionChange (state, prevState) {
 }
 
 function fetchDocs (state) {
-  Either.of(tag => versions => ({ tag, docsKey: versions.get(tag).docsKey }))
+  Either.of(tag => versions => {
+    const versionsTag = versions.get(tag)
+    const docsKey = versionsTag ? versionsTag.docsKey : ''
+    return {
+      tag,
+      docsKey
+    }
+  })
     .ap(getSelectedVersionTag(state))
     .ap(state.versions)
     .map(({ tag, docsKey }) => {
