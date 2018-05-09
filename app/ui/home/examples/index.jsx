@@ -12,15 +12,17 @@ const examples = [
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 format(new Date(), '[Today is a] dddd')
-//=> "Today is a ${[
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday'
-][new Date().getDay()]}"
+//=> "Today is a ${
+      [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+      ][new Date().getDay()]
+    }"
 
 formatDistance(subDays(new Date(), 3), new Date())
 //=> "3 days ago"
@@ -74,19 +76,19 @@ export default class Examples extends React.Component {
     exampleIndex: 0
   }
 
-  render () {
+  render() {
     const { exampleIndex } = this.state
     const currentExample = examples[exampleIndex]
 
     return (
-      <HomeBlock header='Examples'>
-        <div className='examples'>
-          <ul className='examples-options'>
+      <HomeBlock header="Examples">
+        <div className="examples">
+          <ul className="examples-options">
             {examples.map((example, index) => {
               return (
-                <li className='examples-option' key={index}>
+                <li className="examples-option" key={index}>
                   <a
-                    href='#'
+                    href="#"
                     onClick={this._changeExampleIndex.bind(this, index)}
                     className={classnames('examples-option_link', {
                       'is-current': index === exampleIndex
@@ -101,19 +103,25 @@ export default class Examples extends React.Component {
 
           {this._renderExample(currentExample)}
         </div>
+
+        <div className="examples-warning">
+          ⚠️ The provided examples are for v2 which is in pre-release right now.
+          If you want to give it a try, install the latest version: npm install
+          date-fns@next
+        </div>
       </HomeBlock>
     )
   }
 
-  _renderExample (example) {
+  _renderExample(example) {
     return (
-      <div className='examples-code_wrapper'>
+      <div className="examples-code_wrapper">
         <Code value={example.code} options={{ readOnly: true }} />
       </div>
     )
   }
 
-  _changeExampleIndex (exampleIndex, e) {
+  _changeExampleIndex(exampleIndex, e) {
     trackAction('Changed Example', { exampleIndex })
     e.preventDefault()
     this.setState({ exampleIndex })
