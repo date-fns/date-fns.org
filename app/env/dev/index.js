@@ -1,3 +1,6 @@
+/*eslint-disable no-console*/
+/*eslint-env node*/
+
 import webpack from 'webpack'
 import Koa from 'koa'
 import koaWebpack from 'koa-webpack'

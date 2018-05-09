@@ -1,0 +1,12 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1
+  },
+  "plugins": ["react"]
+}

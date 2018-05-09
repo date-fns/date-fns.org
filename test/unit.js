@@ -1,3 +1,5 @@
+/*global require*/
+
 import 'babel-polyfill'
 import 'whatwg-fetch'
 
