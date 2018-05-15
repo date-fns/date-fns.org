@@ -8,16 +8,16 @@ import Contributors from './contributors'
 import Sponsorship from './sponsorship'
 import Footer from './footer'
 
-export default function Home ({ locales, contributors }) {
+export default function Home({ locales, contributors }) {
   return (
-    <div className='home'>
+    <div className="home">
       <Promo />
       <Examples />
       <Features />
       <I18n locales={locales} />
       <Testimonials />
-      <Contributors contributors={contributors} />
       <Sponsorship />
+      <Contributors contributors={contributors} />
       <Footer />
     </div>
   )
