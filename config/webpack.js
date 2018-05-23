@@ -36,6 +36,7 @@ if (isProduction) {
       outputPath: path.join(appConfig.distPath, 'static.json')
     })
   )
+  plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
 
 export default {
