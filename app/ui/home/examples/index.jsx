@@ -35,7 +35,7 @@ formatRelative(subDays(new Date(), 3), new Date())
     label: 'I18n',
     code: `
 import { formatRelative, subDays } from 'date-fns'
-import { es, ru } from 'date-fns/esm/locale'
+import { es, ru } from 'date-fns/locale'
 
 formatRelative(subDays(new Date(), 3), new Date())
 //=> "last Friday at 7:26 p.m."
@@ -50,8 +50,8 @@ formatRelative(subDays(new Date(), 3), new Date(), { locale: ru })
   {
     label: 'Composition & FP',
     code: `
-import { addYears, formatWithOptions, toUpper } from 'date-fns/esm/fp'
-import { eo } from 'date-fns/esm/locale'
+import { addYears, formatWithOptions, toUpper } from 'date-fns/fp'
+import { eo } from 'date-fns/locale'
 
 const addFiveYears = addYears(5)
 
