@@ -125,7 +125,7 @@ export function sortVersions (versions) {
     // Minor version number
     ({ tag }) => -parseInt(tag.match(/v\d+\.(\d+)/)[1]),
     // Path version number
-    ({ tag }) => -parseInt(tag.match(/v\d+\.(\d+)/)[1]),
+    ({ tag }) => -parseInt(tag.match(/v\d+\.\d+\.(\d+)/)[1]),
     // Version stage
     ({ tag }) => {
       if (tag.includes('alpha')) {
@@ -140,7 +140,7 @@ export function sortVersions (versions) {
     },
     // Version stage number
     ({ tag }) => {
-      const result = tag.match(/v\d+\.\d+\.\d+-\w+\.?(\d)/)
+      const result = tag.match(/v\d+\.\d+\.\d+-\w+\.?(\d+)/);
       if (result) {
         return -parseInt(result[1])
       }
