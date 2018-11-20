@@ -1,7 +1,7 @@
 .doc {
   padding: 30px;
-  color: #4A3142;
-  background-color: #FFFDF9;
+  color: #4a3142;
+  background-color: #fffdf9;
   font-size: 16px;
   line-height: 1.6em;
   width: 100%;
@@ -16,7 +16,7 @@
 }
 
 .doc h2 {
-  color: #4A3142;
+  color: #4a3142;
   font-size: 1.3rem;
   margin-bottom: 15px;
   padding-bottom: 10px;
@@ -25,7 +25,7 @@
 }
 
 .doc h3 {
-  color: #4A3142;
+  color: #4a3142;
   font-weight: 500;
   font-size: 1.2rem;
   margin-bottom: 20px;
@@ -33,7 +33,7 @@
 }
 
 .doc a {
-  color: #5D3861;
+  color: #5d3861;
 }
 
 .doc p {
@@ -57,18 +57,20 @@
   list-style: decimal;
 }
 
-.doc ul, .doc ol {
+.doc ul,
+.doc ol {
   max-width: 700px;
   margin-left: 25px;
   margin-bottom: 10px;
 }
 
-.doc ul p + ul, .doc ol p + ul {
+.doc ul p + ul,
+.doc ol p + ul {
   margin-top: -10px;
 }
 
-
-.doc ul:last-child, .doc ol:last-child {
+.doc ul:last-child,
+.doc ol:last-child {
   margin-bottom: 0;
 }
 
@@ -80,11 +82,15 @@
   margin-bottom: 0;
 }
 
-.doc ul .CodeMirror:last-child, .doc ol .CodeMirror:last-child {
+.doc ul .CodeMirror:last-child,
+.doc ol .CodeMirror:last-child {
   margin-bottom: 10px;
 }
 
-.doc ul ul, .doc ul ol, .doc ol ol, .doc ol ul {
+.doc ul ul,
+.doc ul ol,
+.doc ol ol,
+.doc ol ul {
   margin-bottom: 0;
 }
 
@@ -92,11 +98,11 @@
   display: none;
   margin-left: 7px;
   text-decoration: none;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .doc-header_link:hover {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 h1:hover .doc-header_link,
@@ -106,4 +112,40 @@ h4:hover .doc-header_link,
 h5:hover .doc-header_link,
 h6:hover .doc-header_link {
   display: inline;
+}
+
+.doc table {
+  background-color: #fffffe;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.doc table:last-child {
+  margin-bottom: 0;
+}
+
+.doc table th,
+.doc table td {
+  border: 1px solid #b9a2b2;
+  padding: 5px 10px;
+}
+
+.doc table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: #faf6f0;
+}
+
+.doc table table {
+  font-size: 14px;
+}
+
+.doc table table th {
+  background-color: #fdfdfd;
+}
+
+.doc table table th,
+.doc table table td {
+  border: 1px solid #d6cdd3;
+  padding: 3px 6px;
 }
