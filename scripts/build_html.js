@@ -9,7 +9,7 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
     const html = template({
       env: process.env.NODE_ENV || 'development',
 
-      staticPath (staticName) {
+      staticPath(staticName) {
         const pth = staticMap[path.join(appConfig.staticPath, staticName)]
         if (!pth) {
           throw new Error(`Static file "${staticName}" is not found`)
@@ -18,7 +18,7 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
         return pth
       },
 
-      entryPath (entryName, type = 'js') {
+      entryPath(entryName, type = 'js') {
         const entry = entriesMap[entryName]
         if (!entry) {
           throw new Error(`Entry "${entry}" is not found`)
@@ -55,7 +55,7 @@ Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
     process.exit(1)
   })
 
-function getTemplate () {
+function getTemplate() {
   return new Promise((resolve, reject) => {
     fs.readFile(
       path.join(process.cwd(), 'app', 'env', 'dev', 'template.ejs'),
@@ -68,7 +68,7 @@ function getTemplate () {
   })
 }
 
-function getStaticResults () {
+function getStaticResults() {
   return new Promise((resolve, reject) => {
     fs.readFile(
       path.join(appConfig.distPath, 'static.json'),
@@ -81,7 +81,7 @@ function getStaticResults () {
   })
 }
 
-function getEntriesResults () {
+function getEntriesResults() {
   return new Promise((resolve, reject) => {
     fs.readFile(
       path.join(appConfig.distPath, 'webpack-assets.json'),
@@ -97,7 +97,7 @@ function getEntriesResults () {
   })
 }
 
-function writeFirebaseConfig (htmlFileName) {
+function writeFirebaseConfig(htmlFileName) {
   const content = JSON.stringify(getFirebaseConfig(htmlFileName))
   return new Promise((resolve, reject) => {
     fs.writeFile(
@@ -114,27 +114,30 @@ function writeFirebaseConfig (htmlFileName) {
   })
 }
 
-function getFirebaseConfig (htmlFileName) {
+function getFirebaseConfig(htmlFileName) {
   return {
-    firebase: 'date-fns',
-    public: './',
-    ignore: ['static.json', 'webpack-assets.json'],
-    headers: [
-      {
-        source: '**/*',
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=3122064000' }]
-      }
-    ],
-    rewrites: [
-      {
-        source: '**',
-        destination: `/${htmlFileName}`
-      }
-    ]
+    hosting: {
+      public: './',
+      ignore: ['static.json', 'webpack-assets.json'],
+      headers: [
+        {
+          source: '**/*',
+          headers: [
+            { key: 'Cache-Control', value: 'public, max-age=3122064000' }
+          ]
+        }
+      ],
+      rewrites: [
+        {
+          source: '**',
+          destination: `/${htmlFileName}`
+        }
+      ]
+    }
   }
 }
 
-function getFingerprint (str) {
+function getFingerprint(str) {
   const hash = crypto.createHash('md5')
   hash.update(str)
   return hash.digest('hex')
