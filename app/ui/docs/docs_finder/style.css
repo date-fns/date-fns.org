@@ -6,7 +6,7 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #E6E0E6;
+  border-right: 1px solid #e6e0e6;
 }
 
 .docs_finder-logo_image {
@@ -16,21 +16,21 @@
 }
 
 .docs_finder-search {
-  color: #770C56;
+  color: #770c56;
   font-weight: 600;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FAF6F0;
+  background-color: #faf6f0;
   flex-shrink: 0;
-  border-bottom: 1px solid #E6E0E6;
+  border-bottom: 1px solid #e6e0e6;
   word-break: break-all;
   position: relative;
 }
 
 .docs_finder-search_field {
-  padding: .75rem 1rem;
+  padding: 0.75rem 1rem;
   border: 0;
   width: 100%;
   font-size: 1rem;
@@ -52,6 +52,7 @@
 .docs_finder-categories {
   overflow-y: auto;
   overflow-x: hidden;
+  flex-grow: 1;
 }
 
 .docs_finder-category:first-child {
@@ -62,9 +63,9 @@
   font-weight: 600;
   font-size: 1rem;
   line-height: 1;
-  color: #4A3142;
-  padding: .5rem 1rem;
-  border-bottom: 1px solid #E6E0E6;
+  color: #4a3142;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e6e0e6;
 }
 
 .docs_finder-item {
@@ -72,18 +73,18 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.65);
-  padding: .5rem 1rem;
-  border-bottom: 1px solid #E6E0E6;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e6e0e6;
   text-decoration: none;
 }
 
 .docs_finder-item.is-current,
 .docs_finder-item.is-current:hover {
-  background-color: #FFF0F3;
+  background-color: #fff0f3;
 }
 
 .docs_finder-item:hover {
-  background: #FDF6F9;
+  background: #fdf6f9;
 }
 
 .docs_finder-item.is-jsdoc .docs_finder-item_header {
@@ -92,15 +93,15 @@
 
 .docs_finder-item_header {
   font-size: 1rem;
-  margin-bottom: .4px;
+  margin-bottom: 0.4px;
   word-break: break-all;
-  color: #4C193C;
+  color: #4c193c;
 }
 
 .docs_finder-item_text {
   font-weight: 400;
-  font-size: .9rem;
-  color: #7B6D77;
+  font-size: 0.9rem;
+  color: #7b6d77;
 }
 
 .docs_finder-item_icon {
@@ -123,5 +124,5 @@
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
-  color: #7B6D77;
+  color: #7b6d77;
 }
