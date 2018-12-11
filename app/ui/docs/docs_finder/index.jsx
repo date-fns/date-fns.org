@@ -5,6 +5,7 @@ import Link from 'app/ui/_lib/link'
 import { trackAction } from 'app/acts/tracking_acts'
 import { DocsPropType } from 'app/types/docs'
 import { EitherPropType } from 'app/types/either'
+import OpenCollectiveBanner from 'app/ui/_lib/open_collective_banner'
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
@@ -22,21 +23,21 @@ export default class DocsFinder extends React.Component {
     query: ''
   }
 
-  constructor () {
+  constructor() {
     super()
     this._trackSearch = debounce(this._trackSearch, 500)
   }
 
-  render () {
+  render() {
     return (
-      <div className='docs_finder'>
-        <header className='docs_finder-search'>
+      <div className="docs_finder">
+        <header className="docs_finder-search">
           <input
-            className='docs_finder-search_field'
+            className="docs_finder-search_field"
             autoFocus
-            type='text'
-            name='search'
-            placeholder='Search'
+            type="text"
+            name="search"
+            placeholder="Search"
             value={this.state.query}
             onChange={this._performSearch.bind(this)}
           />
@@ -45,29 +46,29 @@ export default class DocsFinder extends React.Component {
         </header>
 
         {this._renderCategories()}
+
+        <OpenCollectiveBanner size="small" sticky />
       </div>
     )
   }
 
-  _renderCancelButton () {
+  _renderCancelButton() {
     return (
       <div
-        className='docs_finder-search_cancel'
+        className="docs_finder-search_cancel"
         onClick={this._clearQuery.bind(this)}
       />
     )
   }
 
-  _renderCategories () {
+  _renderCategories() {
     const { docs, selectedSubmodule } = this.props
 
     return docs.fold(
       ({ message }) => {
         return (
-          <div className='docs_finder-no_results'>
-            <p className='docs_finder-no_results_text'>
-              {message}
-            </p>
+          <div className="docs_finder-no_results">
+            <p className="docs_finder-no_results_text">{message}</p>
           </div>
         )
       },
@@ -80,8 +81,8 @@ export default class DocsFinder extends React.Component {
 
         if (filteredPages.size === 0) {
           return (
-            <div className='docs_finder-no_results'>
-              <p className='docs_finder-no_results_text'>
+            <div className="docs_finder-no_results">
+              <p className="docs_finder-no_results_text">
                 Your search didn't match any results.
               </p>
             </div>
@@ -89,7 +90,7 @@ export default class DocsFinder extends React.Component {
         }
 
         return (
-          <ul className='docs_finder-categories'>
+          <ul className="docs_finder-categories">
             {categories.map(category => {
               const categoryPages = filteredPages.filter(
                 page => page.category === category
@@ -100,12 +101,10 @@ export default class DocsFinder extends React.Component {
               }
 
               return (
-                <li className='docs_finder-category' key={category}>
-                  <h3 className='docs_finder-category_header'>
-                    {category}
-                  </h3>
+                <li className="docs_finder-category" key={category}>
+                  <h3 className="docs_finder-category_header">{category}</h3>
 
-                  <div className='docs_finder-list'>
+                  <div className="docs_finder-list">
                     {this._renderDocs(categoryPages)}
                   </div>
                 </li>
@@ -117,35 +116,31 @@ export default class DocsFinder extends React.Component {
     )
   }
 
-  _renderDocs (docs) {
+  _renderDocs(docs) {
     return docs.map(doc => {
       const urlId = doc.get('urlId')
 
       return (
         <Link
-          name='doc'
+          name="doc"
           params={{ docId: urlId, versionTag: this.props.selectedVersionTag }}
           className={classnames('docs_finder-item', `is-${doc.get('type')}`, {
             'is-current': urlId === this.props.docId
           })}
           key={urlId}
         >
-          <div className='docs_finder-item_content'>
-            <h4 className='docs_finder-item_header'>
-              {doc.get('title')}
-            </h4>
-            <p className='docs_finder-item_text'>
-              {doc.get('description')}
-            </p>
+          <div className="docs_finder-item_content">
+            <h4 className="docs_finder-item_header">{doc.get('title')}</h4>
+            <p className="docs_finder-item_text">{doc.get('description')}</p>
           </div>
 
-          <div className='docs_finder-item_icon' />
+          <div className="docs_finder-item_icon" />
         </Link>
       )
     })
   }
 
-  _filterPages (pages, dirtyQuery, selectedSubmodule) {
+  _filterPages(pages, dirtyQuery, selectedSubmodule) {
     if (dirtyQuery) {
       const query = dirtyQuery.toLowerCase()
 
@@ -163,23 +158,23 @@ export default class DocsFinder extends React.Component {
       if (category === 'General' || category === 'Types') {
         return true
       } else {
-        return selectedSubmodule === 'fp' === isFPFn
+        return (selectedSubmodule === 'fp') === isFPFn
       }
     })
   }
 
-  _clearQuery () {
+  _clearQuery() {
     trackAction('Search Cleared')
     this.setState({ query: '' })
   }
 
-  _performSearch (e) {
+  _performSearch(e) {
     const query = e.currentTarget.value
     this._trackSearch(query)
     this.setState({ query })
   }
 
-  _trackSearch (query) {
+  _trackSearch(query) {
     trackAction('Search', { query })
   }
 }

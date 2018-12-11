@@ -8,13 +8,13 @@ import { EitherPropType } from 'app/types/either'
 import { VersionPropType } from 'app/types/version'
 import DocsNavBar from './nav_bar'
 
-export default function Docs ({ state, selectedVersion }) {
+export default function Docs({ state, selectedVersion }) {
   const { docs, versions, routeData, latestStableVersionTag, submodule } = state
   const docId = getRouteDocId(routeData)
   const selectedVersionTag = getSelectedVersionTag(state)
 
   return (
-    <div className='docs'>
+    <div className="docs">
       <DocsNavBar
         docId={docId}
         docs={docs}
@@ -26,7 +26,7 @@ export default function Docs ({ state, selectedVersion }) {
         selectedVersion={selectedVersion}
       />
 
-      <div className='docs-finder'>
+      <div className="docs-finder">
         <DocsFinder
           docId={docId}
           docs={docs}
@@ -35,7 +35,7 @@ export default function Docs ({ state, selectedVersion }) {
         />
       </div>
 
-      <div className='docs-content'>
+      <div className="docs-content">
         <Doc
           docId={docId}
           docs={docs}

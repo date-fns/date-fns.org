@@ -8,17 +8,13 @@ import { Either } from 'app/types/either'
 
 require.context('!!static-file!./static', true, /.+/)
 
-export default function UI ({ state }) {
+export default function UI({ state }) {
   const selectedVersionTag = getSelectedVersionTag(state)
 
-  return (
-    <div className='ui'>
-      {renderContent(state, selectedVersionTag)}
-    </div>
-  )
+  return <div className="ui">{renderContent(state, selectedVersionTag)}</div>
 }
 
-function renderContent (state, selectedVersionTag) {
+function renderContent(state, selectedVersionTag) {
   const selectedVersion = getSelectedVersionTag(state).chain(tag =>
     state.versions.chain(versions => Either.fromNullable(versions.get(tag)))
   )
