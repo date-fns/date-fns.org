@@ -48,6 +48,12 @@
   color: #8C1B54;
 }
 
+.home_block-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .home_block-content:not(:first-child) {
   margin-top: 30px;
 }

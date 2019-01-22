@@ -7,19 +7,59 @@
   color: #fff;
   border-radius: 3px;
   font-size: 16px;
-  padding: 15px;
+  padding: 15px 30px;
+}
+
+.sponsorship-subheader {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #4C193C;
+  margin-bottom: 25px;
 }
 
 .sponsorship-list {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  margin-right: -20px;
 }
 
 .sponsorship-item {
-  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px 20px 0;
 }
 
-.sponsorship-item img {
-  height: 100%;
+.sponsorship-item-image-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sponsorship-item-image-container-bronze {
+  height: 120px;
+  width: 120px;
+}
+
+.sponsorship-item-image {
+  width: 100%;
+}
+
+.sponsorship-item-image-default {
+  background-color: grey;
+  height: 7rem;
+  width: 7rem;
+}
+
+
+.sponsorship-item-name {
+  font-size: 14px;
+  margin: 5px 0 5px 0;
 }

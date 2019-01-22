@@ -61,9 +61,15 @@ export default class HomeBlock extends React.Component {
   }
 }
 
-export function Link ({ href, title, children }) {
+export function Link ({ href, title, children, newTab }) {
   return (
-    <a href={href} title={title} className='home_block-link'>
+    <a
+      href={href}
+      title={title}
+      className='home_block-link'
+      target={newTab ? "_blank" : undefined}
+      rel={newTab ? "noopener noreferrer" : undefined}
+    >
       {children}
     </a>
   )
