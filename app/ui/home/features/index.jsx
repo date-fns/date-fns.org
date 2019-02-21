@@ -39,7 +39,7 @@ export default function Features () {
               </p>
 
               <p>
-                Functions in date-fns work predictable and stick to ECMAScript
+                Functions in date-fns work predictably and stick to ECMAScript
                 behavior in edge cases.
               </p>
             </div>
