@@ -10,8 +10,8 @@ export function cacheURL(path, age) {
   return `${cache}?${stringifyQuery(query)}`
 }
 
-function stringifyQuery(obj) {
+function stringifyQuery(query) {
   return Object.keys(query)
-    .map(key => `${key}=${encodeURIComponent(obj[key])}`)
+    .map(key => `${key}=${encodeURIComponent(query[key])}`)
     .join('&')
 }
