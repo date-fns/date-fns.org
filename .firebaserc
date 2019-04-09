@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "production": "date-fns",
+    "staging": "date-fns-staging"
+  }
+}

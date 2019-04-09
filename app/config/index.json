@@ -1,13 +1,16 @@
 {
   "development": {
-    "db": "https://date-fns-org-staging.firebaseio.com"
+    "db": "https://date-fns-org-staging.firebaseio.com",
+    "cache": "https://staging.date-fns.org/cache"
   },
 
   "production": {
-    "db": "https://date-fns.firebaseio.com"
+    "db": "https://date-fns.firebaseio.com",
+    "cache": "https://date-fns.org/cache"
   },
 
   "staging": {
-    "db": "https://date-fns-org-staging.firebaseio.com"
+    "db": "https://date-fns-org-staging.firebaseio.com",
+    "cache": "https://staging.date-fns.org/cache"
   }
 }

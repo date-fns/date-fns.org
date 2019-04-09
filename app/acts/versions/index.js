@@ -1,19 +1,21 @@
+import Docs from 'app/types/docs'
+import Either from 'app/types/either'
+import Features from 'app/types/features'
+import Page from 'app/types/page'
+import Version from 'app/types/version'
+import { cacheURL } from 'app/_lib/firebase'
+import { getJSON } from 'app/_lib/request'
 import { act } from 'enso'
 import I from 'immutable'
-import Version from 'app/types/version'
-import Features from 'app/types/features'
-import Docs from 'app/types/docs'
-import Page from 'app/types/page'
-import Either from 'app/types/either'
-import { getJSON } from 'app/_lib/request'
-import { firebaseURL } from 'app/_lib/firebase'
 import { sortByAll } from 'lodash'
 
-export function fetchVersions () {
-  return getJSON(firebaseURL('versions'))
+export function fetchVersions() {
+  return getJSON(cacheURL('versions', 3600000 /* cache for hour */))
     .then(versionsObject => {
       const versions = versionsToOrderedMap(versionsObject)
-      const latestStableVersionTag = versions.findKey(version => !version.prerelease)
+      const latestStableVersionTag = versions.findKey(
+        version => !version.prerelease
+      )
       const latestVersionTag = versions.first().get('tag')
 
       act(state => {
@@ -39,18 +41,17 @@ export function fetchVersions () {
     })
 }
 
-export function onVersionChange (state, prevState) {
+export function onVersionChange(state, prevState) {
   if (!state || !prevState) {
     return null
   }
 
   getSelectedVersionTag(state).map(tag => {
     getSelectedVersionTag(prevState)
-      .chain(
-        prevTag =>
-          tag === prevTag
-            ? Either.Left(/* version not changed */)
-            : Either.Right()
+      .chain(prevTag =>
+        tag === prevTag
+          ? Either.Left(/* version not changed */)
+          : Either.Right()
       )
       .chain(() => {
         // Fetch docs if version changed
@@ -67,7 +68,7 @@ export function onVersionChange (state, prevState) {
   })
 }
 
-function fetchDocs (state) {
+function fetchDocs(state) {
   Either.of(tag => versions => ({ tag, docsKey: versions.get(tag).docsKey }))
     .ap(getSelectedVersionTag(state))
     .ap(state.versions)
@@ -76,7 +77,7 @@ function fetchDocs (state) {
         state.set('docs', Either.Left({ message: 'Loading docs...' }))
       )
 
-      getJSON(firebaseURL(`docs/${docsKey}`))
+      getJSON(cacheURL(`docs/${docsKey}`))
         .then(docsJSON => {
           act(state =>
             getSelectedVersionTag(state)
@@ -102,7 +103,7 @@ function fetchDocs (state) {
     })
 }
 
-export function getSelectedVersionTag (state) {
+export function getSelectedVersionTag(state) {
   if (!state) {
     return Either.Left({ message: 'Loading...' })
   }
@@ -113,12 +114,12 @@ export function getSelectedVersionTag (state) {
     : state.latestStableVersionTag
 }
 
-function versionsToOrderedMap (versions) {
+function versionsToOrderedMap(versions) {
   const orderedObject = sortVersions(Object.values(versions)).map(versionsMapFn)
   return I.OrderedMap(orderedObject)
 }
 
-export function sortVersions (versions) {
+export function sortVersions(versions) {
   return sortByAll(versions, [
     // Major version number
     ({ tag }) => -parseInt(tag.match(/v(\d+)/)[1]),
@@ -140,7 +141,7 @@ export function sortVersions (versions) {
     },
     // Version stage number
     ({ tag }) => {
-      const result = tag.match(/v\d+\.\d+\.\d+-\w+\.?(\d+)/);
+      const result = tag.match(/v\d+\.\d+\.\d+-\w+\.?(\d+)/)
       if (result) {
         return -parseInt(result[1])
       }
@@ -149,7 +150,7 @@ export function sortVersions (versions) {
   ])
 }
 
-function versionsMapFn (versionObject) {
+function versionsMapFn(versionObject) {
   const { tag } = versionObject
   return [
     tag,
@@ -159,7 +160,7 @@ function versionsMapFn (versionObject) {
   ]
 }
 
-export function areSubmodulesAvailable (version) {
+export function areSubmodulesAvailable(version) {
   const { features } = version
   return features.fp || features.utc
 }

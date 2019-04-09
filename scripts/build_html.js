@@ -1,8 +1,8 @@
+import crypto from 'crypto'
+import ejs from 'ejs'
 import fs from 'fs'
 import path from 'path'
-import ejs from 'ejs'
 import appConfig from '../config/app'
-import crypto from 'crypto'
 
 Promise.all([getStaticResults(), getEntriesResults(), getTemplate()])
   .then(([staticMap, entriesMap, template]) => {
@@ -128,6 +128,7 @@ function getFirebaseConfig(htmlFileName) {
         }
       ],
       rewrites: [
+        { source: '/cache', function: 'cache' },
         {
           source: '**',
           destination: `/${htmlFileName}`
