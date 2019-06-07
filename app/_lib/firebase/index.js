@@ -5,7 +5,7 @@ export function firebaseURL(path) {
 }
 
 export function cacheURL(path, age) {
-  const query = { url: firebaseURL(path) }
+  const query = { url: firebaseURL(path), v: '1.1' }
   if (age) query.age = age
   return `${cache}?${stringifyQuery(query)}`
 }

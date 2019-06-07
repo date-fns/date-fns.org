@@ -119,15 +119,13 @@ function getFirebaseConfig(htmlFileName) {
     hosting: {
       public: './',
       ignore: ['static.json', 'webpack-assets.json'],
-      headers: [
-        {
-          source: '**/*',
-          headers: [
-            { key: 'Cache-Control', value: 'public, max-age=3122064000' }
-          ]
-        }
-      ],
       rewrites: [
+        {
+          source: '/assets/**/*',
+          headers: [
+            { key: 'cache-control', value: 'public, max-age=31556952000' }
+          ]
+        },
         { source: '/cache', function: 'cache' },
         {
           source: '**',
