@@ -10,7 +10,7 @@ import I from 'immutable'
 import { sortByAll } from 'lodash'
 
 export function fetchVersions() {
-  return getJSON(cacheURL('versions', 3600000 /* cache for hour */))
+  return getJSON(cacheURL('versions', 3600 /* cache for hour */))
     .then(versionsObject => {
       const versions = versionsToOrderedMap(versionsObject)
       const latestStableVersionTag = versions.findKey(
