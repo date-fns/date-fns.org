@@ -1,11 +1,11 @@
-import React from 'react'
-import ImmutablePropTypes from 'react-immutable-proptypes'
-import Link from 'app/ui/_lib/link'
-import { VersionPropType } from 'app/types/version'
+import { changeSubmodule, changeVersion } from 'app/acts/routes'
+import { areSubmodulesAvailable } from 'app/acts/versions'
 import { DocsPropType } from 'app/types/docs'
 import { Either, EitherPropType } from 'app/types/either'
-import { changeVersion, changeSubmodule } from 'app/acts/routes'
-import { areSubmodulesAvailable } from 'app/acts/versions'
+import { VersionPropType } from 'app/types/version'
+import Link from 'app/ui/_lib/link'
+import React from 'react'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import logoPath from './img/logo.svg'
 
 DocsNavBar.propTypes = {
@@ -32,7 +32,7 @@ DocsNavBar.propTypes = {
   ).isRequired
 }
 
-export default function DocsNavBar ({
+export default function DocsNavBar({
   docId,
   docs,
   versions,
@@ -43,34 +43,34 @@ export default function DocsNavBar ({
   latestStableVersionTag
 }) {
   return (
-    <div className='docs_nav_bar'>
-      <div className='docs_nav_bar-inner'>
-        <div className='docs_nav_bar-links'>
-          <Link name='home' className='docs_nav_bar-logotype'>
-            <img src={logoPath} className='docs_nav_bar-logotype_image' />
+    <div className="docs_nav_bar">
+      <div className="docs_nav_bar-inner">
+        <div className="docs_nav_bar-links">
+          <Link name="home" className="docs_nav_bar-logotype">
+            <img src={logoPath} className="docs_nav_bar-logotype_image" />
             date-fns
           </Link>
 
           <a
-            href='https://github.com/date-fns/date-fns'
-            className='docs_nav_bar-link'
+            href="https://github.com/date-fns/date-fns"
+            className="docs_nav_bar-link"
           >
             GitHub
           </a>
 
-          <a href='https://twitter.com/date_fns' className='docs_nav_bar-link'>
+          <a href="https://twitter.com/date_fns" className="docs_nav_bar-link">
             Twitter
           </a>
 
           <a
-            href='https://gitter.im/date-fns/support'
-            className='docs_nav_bar-link'
+            href="https://spectrum.chat/date-fns"
+            className="docs_nav_bar-link"
           >
-            Support
+            Community
           </a>
         </div>
 
-        <div className='docs_nav_bar-version_selector'>
+        <div className="docs_nav_bar-version_selector">
           <VersionSelector
             docId={docId}
             versions={versions}
@@ -93,7 +93,7 @@ export default function DocsNavBar ({
   )
 }
 
-function VersionSelector ({
+function VersionSelector({
   docId,
   versions,
   selectedVersionTag,
@@ -101,13 +101,13 @@ function VersionSelector ({
   routeData
 }) {
   return (
-    <label className='docs_nav_bar-selector'>
-      <span className='docs_nav_bar-label'>Version:</span>
+    <label className="docs_nav_bar-selector">
+      <span className="docs_nav_bar-label">Version:</span>
 
       <select
         disabled={versions.isLeft}
         value={selectedVersionTag.getOrElse('')}
-        className='docs_nav_bar-select'
+        className="docs_nav_bar-select"
         onChange={onVersionChange.bind(null, routeData)}
       >
         {versions.fold(
@@ -130,7 +130,7 @@ function VersionSelector ({
   )
 }
 
-function LatestVersionLink ({
+function LatestVersionLink({
   docId,
   selectedVersionTag,
   latestStableVersionTag,
@@ -139,24 +139,24 @@ function LatestVersionLink ({
   return Either.of(x => y => x === y)
     .ap(selectedVersionTag)
     .ap(latestStableVersionTag)
-    .chain(
-      isSelectedLatestVersion =>
-        isSelectedLatestVersion ? Either.Left() : Either.Right()
+    .chain(isSelectedLatestVersion =>
+      isSelectedLatestVersion ? Either.Left() : Either.Right()
     )
     .fold(
       () => null,
-      () =>
+      () => (
         <Link
-          className='docs_nav_bar-latest_link'
-          name='doc'
+          className="docs_nav_bar-latest_link"
+          name="doc"
           params={{ docId, versionTag: latestStableVersionTag }}
         >
           Switch to latest
         </Link>
+      )
     )
 }
 
-function SubmoduleSelector ({
+function SubmoduleSelector({
   docId,
   docs,
   selectedSubmodule,
@@ -171,19 +171,18 @@ function SubmoduleSelector ({
     .chain(page => Either.fromNullable(page.relatedDocs))
 
   return selectedVersion
-    .chain(
-      version =>
-        areSubmodulesAvailable(version) ? Either.Right() : Either.Left()
+    .chain(version =>
+      areSubmodulesAvailable(version) ? Either.Right() : Either.Left()
     )
     .fold(
       () => null,
-      () =>
-        <label className='docs_nav_bar-selector'>
-          <span className='docs_nav_bar-label'>Submodule:</span>
+      () => (
+        <label className="docs_nav_bar-selector">
+          <span className="docs_nav_bar-label">Submodule:</span>
 
           <select
             value={selectedSubmodule}
-            className='docs_nav_bar-select'
+            className="docs_nav_bar-select"
             onChange={onSubmoduleChange.bind(
               null,
               selectedVersionTag,
@@ -195,14 +194,15 @@ function SubmoduleSelector ({
             <option value={'fp'}>FP</option>
           </select>
         </label>
+      )
     )
 }
 
-function onVersionChange (routeData, { target: { value: tag } }) {
+function onVersionChange(routeData, { target: { value: tag } }) {
   changeVersion(routeData, tag)
 }
 
-function onSubmoduleChange (
+function onSubmoduleChange(
   selectedVersionTag,
   relatedDocs,
   routeData,
@@ -211,7 +211,7 @@ function onSubmoduleChange (
   changeSubmodule(selectedVersionTag, relatedDocs, routeData, value)
 }
 
-function versionOption (tag) {
+function versionOption(tag) {
   return (
     <option value={tag} key={tag}>
       {tag}
