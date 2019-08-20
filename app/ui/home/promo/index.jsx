@@ -3,34 +3,43 @@ import Navigation from './navigation'
 import logoPath from './img/logo.svg'
 import Link from 'app/ui/_lib/link'
 
-export default function Promo () {
+export default function Promo() {
   return (
-    <div className='promo'>
-      <div className='promo-inner'>
-        <div className='promo-logo'>
-          <img src={logoPath} className='promo-logo_image' />
-          <div className='promo-logo_name'>date-fns</div>
+    <div className="promo">
+      <div className="promo-inner">
+        <div className="promo-logo">
+          <img src={logoPath} className="promo-logo_image" />
+          <div className="promo-logo_name">date-fns</div>
         </div>
 
-        <h1 className='promo-header'>Modern JavaScript date utility library</h1>
+        <h1 className="promo-header">Modern JavaScript date utility library</h1>
 
-        <div className='promo-text'>
+        <div className="promo-text">
           date-fns provides the most comprehensive, yet simple and consistent
           toolset for manipulating <strong>JavaScript dates</strong> in{' '}
           <strong>a&nbsp;browser</strong> & <strong>Node.js</strong>.
         </div>
 
-        <div className='promo-getting_started'>
+        <a
+          href="https://github.com/date-fns/date-fns/releases/tag/v2.0.0"
+          className="promo-text"
+        >
+          🔥🔥🔥{' '}
+          <span className="promo-text_decorated">date-fns v2 is out!</span>{' '}
+          🔥🔥🔥
+        </a>
+
+        <div className="promo-getting_started">
           <Link
-            name='doc'
+            name="doc"
             params={{ docId: 'Getting-Started' }}
-            className='promo-getting_started_link'
+            className="promo-getting_started_link"
           >
             Documentation
           </Link>
         </div>
 
-        <div className='promo-navigation'>
+        <div className="promo-navigation">
           <Navigation />
         </div>
       </div>

@@ -34,12 +34,3 @@
 .examples-code_wrapper {
   flex-basis: 700px;
 }
-
-.examples-warning {
-  background: #fff8b9;
-  border-radius: 0.2rem;
-  padding: 1rem;
-  color: #4c2f01;
-  margin: 1rem auto 0;
-  max-width: 44rem;
-}

@@ -71,6 +71,16 @@ export default function DocsNavBar({
         </div>
 
         <div className="docs_nav_bar-version_selector">
+          <a
+            href="https://github.com/date-fns/date-fns/releases/tag/v2.0.0"
+            className="promo-text"
+          >
+            🔥
+            <span className="promo-text_decorated">
+              date-fns v2 is out!
+            </span>{' '}
+          </a>
+
           <VersionSelector
             docId={docId}
             versions={versions}

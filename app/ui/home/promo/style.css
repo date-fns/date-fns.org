@@ -31,7 +31,7 @@
 
 .promo-logo_name {
   font-size: 35px;
-  color: #FFF;
+  color: #fff;
   font-weight: 400;
   margin-left: 10px;
   position: relative;
@@ -40,7 +40,7 @@
 
 .promo-header {
   text-align: center;
-  color: #FBD7A1;
+  color: #fbd7a1;
   font-size: 20px;
   margin-top: 2rem;
   font-weight: 300;
@@ -52,8 +52,13 @@
   font-weight: 200;
   text-align: center;
   margin-top: 1rem;
-  color: #FFE9C9;
+  color: #ffe9c9;
   max-width: 500px;
+  text-decoration: none;
+}
+
+.promo-text_decorated {
+  text-decoration: underline;
 }
 
 .promo-getting_started {
@@ -65,10 +70,10 @@
 
 .promo-getting_started_link {
   display: block;
-  background: #8C1B54;
+  background: #8c1b54;
   text-align: center;
   text-decoration: none;
-  color: #FFF;
+  color: #fff;
   border-radius: 3px;
   font-size: 1rem;
   padding: 1rem;

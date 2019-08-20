@@ -103,12 +103,6 @@ export default class Examples extends React.Component {
 
           {this._renderExample(currentExample)}
         </div>
-
-        <div className="examples-warning">
-          ⚠️ The provided examples are for v2 which is in pre-release right now.
-          If you want to give it a try, install the latest version: npm install
-          date-fns@next
-        </div>
       </HomeBlock>
     )
   }
