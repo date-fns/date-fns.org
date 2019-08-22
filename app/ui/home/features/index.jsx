@@ -35,11 +35,11 @@ export default function Features () {
             <div className='features-description'>
               <p>
                 date-fns doesn't reinvent the wheel and uses the existing native
-                type. Also, it doesn't extend core objects for safety sake.
+                type. Also, it doesn't extend core objects for safety's sake.
               </p>
 
               <p>
-                Functions in date-fns work predictable and stick to ECMAScript
+                Functions in date-fns work predictably and stick to ECMAScript
                 behavior in edge cases.
               </p>
             </div>
@@ -58,7 +58,7 @@ export default function Features () {
                 date instance instead of changing the passed one.
               </p>
 
-              <p>It allows to prevent bugs and skip long debugging sessions.</p>
+              <p>This helps prevent bugs and avoid long debugging sessions.</p>
             </div>
           </div>
         </li>
@@ -77,7 +77,7 @@ export default function Features () {
 
               <p>
                 The typings are generated from the source code and bundled with
-                the package, so they always up-to-date.
+                the package, so they are always up-to-date.
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function Features () {
 
             <p className='features-description'>
               The functional programming submodule provides a better alternative
-              to chaining — composition, which makes your code clean, safe and
+              to chaining—composition—which makes your code clean, safe, and
               doesn't bloat your build.
             </p>
           </div>
@@ -104,9 +104,9 @@ export default function Features () {
             <h3 className='features-title'>I18n</h3>
 
             <p className='features-description'>
-              With the support of an amazing community, date-fns have dozens of
+              With the support of an amazing community, date-fns has dozens of
               locales. But none of them will be included in your build unless
-              you use that.
+              you use them.
             </p>
           </div>
         </li>
@@ -120,7 +120,7 @@ export default function Features () {
             <div className='features-description'>
               <p>
                 It always returns a date in the same time zone, no matter what's
-                passed, a timestamp, a string or a date object.
+                passed, a timestamp, a string, or a date object.
               </p>
 
               <p>
@@ -146,7 +146,7 @@ export default function Features () {
 
               <p>
                 Each build CI checks more than 650&nbsp;000 examples in about
-                400&nbsp;time&nbsp;zones.
+                400 time zones.
               </p>
             </div>
           </div>
@@ -179,7 +179,7 @@ export default function Features () {
             <h3 className='features-title'>Fast</h3>
 
             <p className='features-description'>
-              In addition to tiny size, date-fns is fast. You can be sure that
+              In addition to its tiny size, date-fns is fast. You can be sure that
               your users will have the best user experience.
             </p>
           </div>
@@ -192,9 +192,9 @@ export default function Features () {
             <h3 className='features-title'>Docs</h3>
 
             <p className='features-description'>
-              Every date-fns has detailed description with examples. The
-              documentation is accessible both online, at the website, and
-              offline thank to JSDoc annotations.
+              Every function has a detailed description with examples. The
+              documentation is accessible both online (at the website) and
+              offline thanks to JSDoc annotations.
             </p>
           </div>
         </li>
@@ -206,7 +206,7 @@ export default function Features () {
             <h3 className='features-title'>More Coming!</h3>
 
             <p className='features-description'>
-              date-fns is an active development and we have plans to add more
+              date-fns is in active development and we have plans to add more
               features.
             </p>
           </div>
