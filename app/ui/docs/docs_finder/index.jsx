@@ -5,7 +5,7 @@ import Link from 'app/ui/_lib/link'
 import { trackAction } from 'app/acts/tracking_acts'
 import { DocsPropType } from 'app/types/docs'
 import { EitherPropType } from 'app/types/either'
-import OpenCollectiveBanner from 'app/ui/_lib/open_collective_banner'
+import Banner from 'app/ui/_lib/banner'
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
@@ -47,7 +47,7 @@ export default class DocsFinder extends React.Component {
 
         {this._renderCategories()}
 
-        <OpenCollectiveBanner size="small" sticky />
+        <Banner size="small" sticky />
       </div>
     )
   }

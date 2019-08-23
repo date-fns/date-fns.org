@@ -1,40 +1,40 @@
-.oc_banner {
+.banner {
   display: block;
   font-size: 1.2rem;
   line-height: 1.3;
   padding: 1rem;
-  background: #3e0020;
+  background: #af045c;
   color: #fff;
   text-decoration: none;
 }
 
-.oc_banner.is-small {
+.banner.is-small {
   font-size: 1rem;
   padding: 1rem 0.5rem;
 }
 
-.oc_banner.is-small .oc_banner-icon {
+.banner.is-small .banner-icon {
   height: 1rem;
   top: 3px;
 }
 
-.oc_banner:hover {
+.banner:hover {
   background: #8c1a54;
 }
 
-.oc_banner-inner {
+.banner-inner {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.oc_banner-emoji_wrapper {
+.banner-emoji_wrapper {
   flex-basis: 2rem;
   margin-right: 0.5rem;
   flex-shrink: 0;
 }
 
-.oc_banner-icon {
+.banner-icon {
   display: inline-block;
   fill: #fff;
   position: relative;

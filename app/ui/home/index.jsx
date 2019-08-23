@@ -7,12 +7,12 @@ import Testimonials from './testimonials'
 import Contributors from './contributors'
 import Sponsorship from './sponsorship'
 import Footer from './footer'
-import OpenCollectiveBanner from 'app/ui/_lib/open_collective_banner'
+import Banner from 'app/ui/_lib/banner'
 
 export default function Home({ locales, contributors }) {
   return (
     <div className="home">
-      <OpenCollectiveBanner />
+      <Banner />
       <Promo />
       <Examples />
       <Features />
