@@ -24,11 +24,11 @@ format(new Date(), "'Today is a' iiii")
       ][new Date().getDay()]
     }"
 
-formatDistance(subDays(new Date(), 3), new Date())
+formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true })
 //=> "3 days ago"
 
 formatRelative(subDays(new Date(), 3), new Date())
-//=> "last Friday at 7:26 p.m."
+//=> "last Friday at 7:26 PM"
 `.trim()
   },
   {
