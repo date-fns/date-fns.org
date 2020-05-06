@@ -1,3 +1,17 @@
+.sponsorship-contributors {
+  margin-top: 30px;
+  display: block;
+  background: transparent;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 15px 30px;
+  color: #8c1b54;
+  border: 1px solid #8c1b54;
+}
+
 .sponsorship-cta {
   margin-top: 30px;
   display: block;
@@ -14,7 +28,7 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  color: #4C193C;
+  color: #4c193c;
   margin-bottom: 25px;
 }
 
@@ -43,9 +57,14 @@
   justify-content: center;
 }
 
-.sponsorship-item-image-container-bronze {
+.sponsorship-item-image-container-silver {
   height: 120px;
   width: 120px;
+}
+
+.sponsorship-item-image-container-bronze {
+  height: 80px;
+  width: 80px;
 }
 
 .sponsorship-item-image {
@@ -58,8 +77,13 @@
   width: 7rem;
 }
 
-
 .sponsorship-item-name {
   font-size: 14px;
   margin: 5px 0 5px 0;
+}
+
+.sponsorship-actions {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
 }
