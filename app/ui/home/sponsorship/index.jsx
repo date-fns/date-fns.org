@@ -1,22 +1,16 @@
 import React from 'react'
 import HomeBlock, { Link, Text } from '../_lib/block'
 import members from './members.json'
+import subMonths from 'date-fns/sub_months'
 
-const silverSponsors = members.filter(
-  ({ tier, isActive, lastTransactionAmount }) =>
-    isActive && (tier === 'Silver Sponsors' || lastTransactionAmount >= 100)
-)
-const bronzeSponsors = members.filter(
-  ({ tier, isActive, lastTransactionAmount }) =>
-    isActive &&
-    (tier === 'Bronze Sponsors' ||
-      (lastTransactionAmount >= 50 && lastTransactionAmount < 100))
-)
+const silverSponsors = members.filter(isSilver)
+const bronzeSponsors = members.filter(isBronze)
 const backers = members.filter(
   ({ tier, lastTransactionAmount, createdAt, isActive }) =>
     isActive &&
     tier === 'Backers' &&
     lastTransactionAmount >= 10 &&
+    lastTransactionAmount < 50 &&
     new Date(createdAt).getTime() < new Date(2020, 4, 5).getTime()
 )
 
@@ -84,9 +78,9 @@ function Sponsor({ sponsor, compact }) {
       <div className="sponsorship-item">
         <div
           className={`sponsorship-item-image-container ${
-            sponsor.tier === 'Silver Sponsors'
+            isSilver(sponsor)
               ? 'sponsorship-item-image-container-silver'
-              : sponsor.tier === 'Bronze Sponsors'
+              : isBronze(sponsor)
               ? 'sponsorship-item-image-container-bronze'
               : ''
           }`}
@@ -107,5 +101,32 @@ function Sponsor({ sponsor, compact }) {
         )}
       </div>
     </Link>
+  )
+}
+
+function isSilver({
+  tier,
+  isActive,
+  lastTransactionAt,
+  lastTransactionAmount
+}) {
+  return (
+    isActive &&
+    new Date(lastTransactionAt).getTime() > subMonths(Date.now(), 1) &&
+    (tier === 'Silver Sponsors' || lastTransactionAmount >= 100)
+  )
+}
+
+function isBronze({
+  tier,
+  isActive,
+  lastTransactionAt,
+  lastTransactionAmount
+}) {
+  return (
+    isActive &&
+    new Date(lastTransactionAt).getTime() > subMonths(Date.now(), 1) &&
+    (tier === 'Bronze Sponsors' ||
+      (lastTransactionAmount >= 50 && lastTransactionAmount < 100))
   )
 }
