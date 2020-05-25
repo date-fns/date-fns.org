@@ -7,7 +7,7 @@ const silverSponsors = members.filter(
     isActive && (tier === 'Silver Sponsors' || lastTransactionAmount >= 100)
 )
 const bronzeSponsors = members.filter(
-  ({ tier, isActive }) =>
+  ({ tier, isActive, lastTransactionAmount }) =>
     isActive &&
     (tier === 'Bronze Sponsors' ||
       (lastTransactionAmount >= 50 && lastTransactionAmount < 100))
