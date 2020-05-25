@@ -3,10 +3,14 @@ import HomeBlock, { Link, Text } from '../_lib/block'
 import members from './members.json'
 
 const silverSponsors = members.filter(
-  ({ tier, isActive }) => isActive && tier === 'Silver Sponsors'
+  ({ tier, isActive, lastTransactionAmount }) =>
+    isActive && (tier === 'Silver Sponsors' || lastTransactionAmount >= 100)
 )
 const bronzeSponsors = members.filter(
-  ({ tier, isActive }) => isActive && tier === 'Bronze Sponsors'
+  ({ tier, isActive }) =>
+    isActive &&
+    (tier === 'Bronze Sponsors' ||
+      (lastTransactionAmount >= 50 && lastTransactionAmount < 100))
 )
 const backers = members.filter(
   ({ tier, lastTransactionAmount, createdAt, isActive }) =>
