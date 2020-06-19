@@ -2,6 +2,7 @@ import React from 'react'
 import HomeBlock, { Link, Text } from '../_lib/block'
 import members from './members.json'
 import subMonths from 'date-fns/sub_months'
+import { subWeeks } from 'date-fns'
 
 const silverSponsors = members.filter(isSilver)
 const bronzeSponsors = members.filter(isBronze)
@@ -125,7 +126,8 @@ function isBronze({
 }) {
   return (
     isActive &&
-    new Date(lastTransactionAt).getTime() > subMonths(Date.now(), 1) &&
+    new Date(lastTransactionAt).getTime() >
+      subWeeks(subMonths(Date.now(), 1), 2) &&
     (tier === 'Bronze Sponsors' ||
       (lastTransactionAmount >= 50 && lastTransactionAmount < 100))
   )
