@@ -101,7 +101,7 @@
     "emoji-flag": "^1.1.0",
     "enso": "^0.4.0",
     "immutable": "^3.8.1",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.19",
     "react": "^15.4.2",
     "react-chartjs": "^0.8.0",
     "react-dom": "^15.4.2",
