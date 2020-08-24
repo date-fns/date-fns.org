@@ -26,7 +26,7 @@
     "role": "HOST",
     "isActive": true,
     "totalAmountDonated": 0,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/opensource",
     "name": "Open Source Collective 501(c)(6)",
@@ -57,7 +57,7 @@
     "email": null,
     "twitter": "https://twitter.com/codepilotai",
     "github": "https://github.com/CodePilotai/codepilot",
-    "website": "http://codepilot.ai"
+    "website": "https://codepilot.ai"
   },
   {
     "MemberId": 18472,
@@ -77,7 +77,7 @@
     "email": null,
     "twitter": "https://twitter.com/ochursin",
     "github": "https://github.com/olegchursin",
-    "website": "http://olegchursin.com"
+    "website": "https://olegchursin.com"
   },
   {
     "MemberId": 23503,
@@ -397,7 +397,7 @@
     "role": "BACKER",
     "isActive": true,
     "totalAmountDonated": 145,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/triplebyte",
     "name": "Triplebyte",
@@ -623,7 +623,7 @@
     "role": "BACKER",
     "isActive": true,
     "totalAmountDonated": 10,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/twostoryrobot",
     "name": "Two Story Robot",
@@ -695,7 +695,7 @@
     "email": null,
     "twitter": null,
     "github": "https://github.com/Slessi",
-    "website": "http://preeo.software"
+    "website": "https://preeo.software"
   },
   {
     "MemberId": 35320,
@@ -1250,7 +1250,7 @@
     "role": "BACKER",
     "isActive": true,
     "totalAmountDonated": 145,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/triplebyte",
     "name": "Triplebyte",
@@ -1470,7 +1470,7 @@
     "email": null,
     "twitter": "https://twitter.com/addyosmani",
     "github": "https://github.com/addyosmani",
-    "website": "http://www.addyosmani.com"
+    "website": "https://www.addyosmani.com"
   },
   {
     "MemberId": 41646,
@@ -1499,7 +1499,7 @@
     "role": "BACKER",
     "isActive": true,
     "totalAmountDonated": 145,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/triplebyte",
     "name": "Triplebyte",
@@ -2296,7 +2296,7 @@
     "email": null,
     "twitter": "https://twitter.com/algolia",
     "github": "https://github.com/algolia",
-    "website": "http://algolia.com"
+    "website": "https://algolia.com"
   },
   {
     "MemberId": 66709,
@@ -2317,7 +2317,7 @@
     "email": null,
     "twitter": "https://twitter.com/ochursin",
     "github": "https://github.com/olegchursin",
-    "website": "http://olegchursin.com"
+    "website": "https://olegchursin.com"
   },
   {
     "MemberId": 66794,
@@ -2399,7 +2399,7 @@
     "email": null,
     "twitter": null,
     "github": null,
-    "website": "http://xn--lnepengerprivat-hlb.com"
+    "website": "https://xn--lnepengerprivat-hlb.com"
   },
   {
     "MemberId": 67631,
@@ -3067,7 +3067,7 @@
     "email": null,
     "twitter": null,
     "github": null,
-    "website": "http://wptheme.fr/theme-wordpress-divi/"
+    "website": "https://wptheme.fr/theme-wordpress-divi/"
   },
   {
     "MemberId": 83144,
@@ -3578,7 +3578,7 @@
     "role": "CONTRIBUTOR",
     "isActive": true,
     "totalAmountDonated": 0,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/targetedtraffic",
     "name": "targetedtraffic",
@@ -3588,7 +3588,7 @@
     "email": null,
     "twitter": null,
     "github": null,
-    "website": "http://pennhillswiki.com"
+    "website": "https://pennhillswiki.com"
   },
   {
     "MemberId": 93322,
@@ -3618,7 +3618,7 @@
     "role": "CONTRIBUTOR",
     "isActive": true,
     "totalAmountDonated": 0,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/kossnocorp",
     "name": "Sasha Koss",
@@ -3982,7 +3982,7 @@
     "description": "The best online casino in Australia for real money offers Australians to get the best service in the field of gambling, enjoy with us only in the most popular online pokies.",
     "image": "https://opencollective-production.s3.us-west-1.amazonaws.com/d2814d20-bace-11ea-820b-09a3ad23d2f3.png",
     "email": null,
-    "twitter": null,
+    "twitter": "https://twitter.com/baocasino1",
     "github": null,
     "website": "https://www.baocasino.com/"
   },
@@ -4033,7 +4033,7 @@
     "type": "USER",
     "role": "BACKER",
     "tier": "Backers",
-    "isActive": true,
+    "isActive": false,
     "totalAmountDonated": 10,
     "currency": "USD",
     "lastTransactionAt": "2020-07-20 10:19",
@@ -4054,7 +4054,7 @@
     "type": "ORGANIZATION",
     "role": "BACKER",
     "tier": "Bronze Sponsors",
-    "isActive": true,
+    "isActive": false,
     "totalAmountDonated": 50,
     "currency": "USD",
     "lastTransactionAt": "2020-07-20 13:50",
@@ -4076,7 +4076,7 @@
     "role": "CONTRIBUTOR",
     "isActive": true,
     "totalAmountDonated": 0,
-    "lastTransactionAt": "2020-08-17 02:52",
+    "lastTransactionAt": "2020-08-24 10:10",
     "lastTransactionAmount": 0,
     "profile": "https://opencollective.com/kossnocorp",
     "name": "Sasha Koss",
@@ -4170,5 +4170,26 @@
     "twitter": "https://twitter.com/japancasino_net",
     "github": "https://github.com/ShotaJapan",
     "website": "https://www.日本カジノ.net/オンラインカジノランキング/"
+  },
+  {
+    "MemberId": 121528,
+    "createdAt": "2020-08-24 08:15",
+    "type": "ORGANIZATION",
+    "role": "BACKER",
+    "tier": "Bronze Sponsors",
+    "isActive": true,
+    "totalAmountDonated": 50,
+    "currency": "USD",
+    "lastTransactionAt": "2020-08-24 08:15",
+    "lastTransactionAmount": 50,
+    "profile": "https://opencollective.com/casinopilot24",
+    "name": "CasinoPilot24",
+    "company": null,
+    "description": "Online Casino Echtgeld",
+    "image": "https://logo.clearbit.com/casinopilot24.com",
+    "email": null,
+    "twitter": null,
+    "github": null,
+    "website": "https://casinopilot24.com/echtgeld-casino"
   }
 ]
