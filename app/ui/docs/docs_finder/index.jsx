@@ -5,7 +5,7 @@ import Link from 'app/ui/_lib/link'
 import { trackAction } from 'app/acts/tracking_acts'
 import { DocsPropType } from 'app/types/docs'
 import { EitherPropType } from 'app/types/either'
-import Banner from 'app/ui/_lib/banner'
+import NewBanner from 'app/ui/_lib/new_banner'
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
@@ -47,7 +47,7 @@ export default class DocsFinder extends React.Component {
 
         {this._renderCategories()}
 
-        <Banner size="small" sticky />
+        <NewBanner />
       </div>
     )
   }
@@ -91,9 +91,9 @@ export default class DocsFinder extends React.Component {
 
         return (
           <ul className="docs_finder-categories">
-            {categories.map(category => {
+            {categories.map((category) => {
               const categoryPages = filteredPages.filter(
-                page => page.category === category
+                (page) => page.category === category
               )
 
               if (categoryPages.size === 0) {
@@ -117,7 +117,7 @@ export default class DocsFinder extends React.Component {
   }
 
   _renderDocs(docs) {
-    return docs.map(doc => {
+    return docs.map((doc) => {
       const urlId = doc.get('urlId')
 
       return (
@@ -145,14 +145,14 @@ export default class DocsFinder extends React.Component {
       const query = dirtyQuery.toLowerCase()
 
       pages = pages.filter(
-        page =>
+        (page) =>
           page.category.toLowerCase().includes(query) ||
           page.title.toLowerCase().includes(query) ||
           page.description.toLowerCase().includes(query)
       )
     }
 
-    return pages.filter(page => {
+    return pages.filter((page) => {
       const { category, isFPFn } = page
 
       if (category === 'General' || category === 'Types') {

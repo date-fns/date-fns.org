@@ -1,0 +1,81 @@
+.new_banner {
+  background: #f5d958;
+  padding: 0.25rem;
+}
+
+.new_banner-job {
+  background: #fcf4ca;
+  padding: 1rem 1rem 0.5rem;
+  text-decoration: none;
+  display: block;
+  color: black;
+  transition: background 150ms ease-out;
+}
+
+.new_banner-job:hover {
+  background: #ffefa5;
+}
+
+.new_banner-header {
+  display: flex;
+  align-items: center;
+}
+
+.new_banner-header > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.new_banner-location {
+  color: #8f8a72;
+}
+
+.new_banner-company {
+  color: #2c5bf7;
+  font-weight: 600;
+}
+
+.new_banner-logo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.new_banner-position {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.new_banner-tags {
+  border-top: 1px solid #e3dbb6;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  display: flex;
+}
+
+.new_banner-tags > *:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.new_banner-tag {
+  background: #e3dbb6;
+  color: #444237;
+  padding: 0.25rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.new_banner-link {
+  color: #837430;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.new_banner-link:hover {
+  color: black;
+  transition: color 150ms ease-out;
+}
