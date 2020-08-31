@@ -1,16 +1,19 @@
 {
   "development": {
     "db": "https://date-fns-org-staging.firebaseio.com",
-    "cache": "https://staging.date-fns.org/cache"
+    "cache": "https://staging.date-fns.org/cache",
+    "jobs": "http://localhost:7000"
   },
 
   "production": {
     "db": "https://date-fns.firebaseio.com",
-    "cache": "https://date-fns.org/cache"
+    "cache": "https://date-fns.org/cache",
+    "jobs": "https://jobs.date-fns.org"
   },
 
   "staging": {
     "db": "https://date-fns-org-staging.firebaseio.com",
-    "cache": "https://staging.date-fns.org/cache"
+    "cache": "https://staging.date-fns.org/cache",
+    "jobs": "https://staging.jobs.date-fns.org"
   }
 }

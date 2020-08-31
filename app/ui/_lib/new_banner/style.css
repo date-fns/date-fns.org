@@ -36,7 +36,6 @@
 
 .new_banner-logo {
   width: 48px;
-  height: 48px;
   flex-shrink: 0;
 }
 
@@ -47,9 +46,6 @@
 }
 
 .new_banner-tags {
-  border-top: 1px solid #e3dbb6;
-  margin-top: 1rem;
-  padding-top: 0.5rem;
   display: flex;
 }
 
@@ -63,6 +59,36 @@
   padding: 0.25rem 0.4rem;
   border-radius: 5px;
   font-size: 0.8rem;
+}
+
+.new_banner-tags_n_next {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e3dbb6;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+}
+
+.new_banner-next_button {
+  display: flex;
+  background: black;
+  color: white;
+  border: 0;
+  padding: 0.125rem 0.5rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.new_banner-next_button&:hover {
+  color: red;
+}
+
+.new_banner-next_button > *:not(:last-child) {
+  margin-right: 0.25rem;
+}
+
+.new_banner-next_icon {
+  width: 1rem;
 }
 
 .new_banner-link {
