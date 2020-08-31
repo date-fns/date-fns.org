@@ -56,7 +56,7 @@ export default class NewBanner extends React.Component {
 
           <div className="new_banner-tags_n_next">
             <div className="new_banner-tags">
-              {job.data.tags.slice(0, 4).map((tag) => (
+              {job.data.tags.slice(0, 3).map((tag) => (
                 <div className="new_banner-tag" key={tag}>
                   {tags[tag]}
                 </div>
