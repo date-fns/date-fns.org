@@ -81,7 +81,7 @@ export default class NewBanner extends React.Component {
 
         <a
           className="new_banner-link"
-          href={`{config.jobs}/?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`}
+          href={`${config.jobs}/?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`}
           target="_blank"
           rel="noopener noreferrer"
         >
