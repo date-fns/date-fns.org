@@ -1,0 +1,76 @@
+.newline_banner {
+  padding: 0.5rem;
+  background: #39065a;
+  color: #fff6f6;
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  transition: background 150ms ease-out;
+}
+
+.newline_banner:hover {
+  background: #6a0572;
+}
+
+.newline_banner > *:not(:last-child) {
+  margin-right: 0.75rem;
+}
+
+.newline_banner-cover_n_cta > *:not(:last-child) {
+  margin-bottom: 0.125rem;
+}
+
+.newline_banner-cover {
+  width: 6rem;
+  flex-shrink: 0;
+}
+
+.newline_banner-text {
+  line-height: 1.2;
+}
+
+.newline_banner-text > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.newline_banner-header > *:not(:last-child) {
+  margin-bottom: 0.125rem;
+}
+
+.newline_banner-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #ead7af;
+}
+
+.newline_banner:hover .newline_banner-title {
+  text-decoration: underline;
+}
+
+.newline_banner-headline {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.newline_banner-description {
+  line-height: 1.4;
+  font-size: 0.9rem;
+  color: #fdf4dc;
+}
+
+.newline_banner-link {
+  background: #ea0599;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: background 150ms ease-out;
+  border: none;
+  cursor: pointer;
+}
+
+.newline_banner:hover .newline_banner-link {
+  background: #ff00a5;
+}

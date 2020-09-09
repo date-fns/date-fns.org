@@ -5,7 +5,10 @@ import Link from 'app/ui/_lib/link'
 import { trackAction } from 'app/acts/tracking_acts'
 import { DocsPropType } from 'app/types/docs'
 import { EitherPropType } from 'app/types/either'
-import NewBanner from 'app/ui/_lib/new_banner'
+import JSJobsBanner from 'app/ui/_lib/new_banner'
+import NewlineBanner from 'app/ui/_lib/newline_banner'
+
+const showJSJobs = Math.random() > 1
 
 export default class DocsFinder extends React.Component {
   static propTypes = {
@@ -47,7 +50,7 @@ export default class DocsFinder extends React.Component {
 
         {this._renderCategories()}
 
-        <NewBanner />
+        {showJSJobs ? <JSJobsBanner /> : <NewlineBanner />}
       </div>
     )
   }
