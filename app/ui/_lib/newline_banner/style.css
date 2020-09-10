@@ -8,6 +8,32 @@
   transition: background 150ms ease-out;
 }
 
+.newline_banner-badge {
+  background: #9a0f98;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.newline_banner-badge_label {
+  color: white;
+  font-weight: 600;
+}
+
+.newline_banner-badge_next {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.newline_banner-badge_next:hover {
+  color: #9a0f98;
+  background: white;
+}
+
 .newline_banner:hover {
   background: #6a0572;
 }

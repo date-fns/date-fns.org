@@ -1,5 +1,5 @@
 import React from 'react'
-import sample from 'lodash/collection/sample'
+import shuffle from 'lodash/collection/shuffle'
 import nodejsCover from './covers/nodejs.jpg'
 import reactTypeScriptCover from './covers/reactTypeScript.jpg'
 import d3Cover from './covers/d3.jpg'
@@ -90,29 +90,55 @@ export default class NewlineBanner extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ book: sample(books) })
+    this.setState({
+      books: shuffle(books),
+      bookIndex: 0
+    })
   }
 
   render() {
-    const { book } = this.state
-    return (
-      <a
-        className="newline_banner"
-        href={book.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={book.cover} className="newline_banner-cover" />
+    const { books, bookIndex } = this.state
+    const book = books[bookIndex]
 
-        <div className="newline_banner-text">
-          <div className="newline_banner-header">
-            <div className="newline_banner-title">{book.title}</div>
-            <div className="newline_banner-description">{book.description}</div>
+    return (
+      <div className="newline_banner-wrapper">
+        <a
+          className="newline_banner"
+          href={book.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={book.cover} className="newline_banner-cover" />
+
+          <div className="newline_banner-text">
+            <div className="newline_banner-header">
+              <div className="newline_banner-title">{book.title}</div>
+              <div className="newline_banner-description">
+                {book.description}
+              </div>
+            </div>
+
+            <button className="newline_banner-link">Get the book</button>
+          </div>
+        </a>
+
+        <div className="newline_banner-badge">
+          <div className="newline_banner-badge_label">
+            ☝️ Support date-fns, buy a book 🙏
           </div>
 
-          <button className="newline_banner-link">Get the book</button>
+          <button
+            className="newline_banner-badge_next"
+            onClick={() => {
+              let newIndex = bookIndex + 1
+              if (newIndex > books.length - 1) newIndex = 0
+              this.setState({ bookIndex: newIndex })
+            }}
+          >
+            Next book
+          </button>
         </div>
-      </a>
+      </div>
     )
   }
 }
