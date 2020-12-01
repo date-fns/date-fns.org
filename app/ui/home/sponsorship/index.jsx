@@ -105,27 +105,16 @@ function Sponsor({ sponsor, compact }) {
   )
 }
 
-function isSilver({
-  tier,
-  isActive,
-  lastTransactionAt,
-  lastTransactionAmount
-}) {
+function isSilver({ tier, lastTransactionAt, lastTransactionAmount }) {
   return (
-    isActive &&
-    new Date(lastTransactionAt).getTime() > subMonths(Date.now(), 1) &&
+    new Date(lastTransactionAt).getTime() >
+      subWeeks(subMonths(Date.now(), 1), 2) &&
     (tier === 'Silver Sponsors' || lastTransactionAmount >= 100)
   )
 }
 
-function isBronze({
-  tier,
-  isActive,
-  lastTransactionAt,
-  lastTransactionAmount
-}) {
+function isBronze({ tier, lastTransactionAt, lastTransactionAmount }) {
   return (
-    isActive &&
     new Date(lastTransactionAt).getTime() >
       subWeeks(subMonths(Date.now(), 1), 2) &&
     (tier === 'Bronze Sponsors' ||
