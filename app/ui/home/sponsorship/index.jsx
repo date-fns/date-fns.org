@@ -2,10 +2,11 @@ import React from 'react'
 import HomeBlock, { Link, Text } from '../_lib/block'
 import members from './members.json'
 import subMonths from 'date-fns/sub_months'
+import compareAsc from 'date-fns/compare_asc'
 import { subWeeks } from 'date-fns'
 
-const silverSponsors = members.filter(isSilver)
-const bronzeSponsors = members.filter(isBronze)
+const silverSponsors = sortSponsors(members.filter(isSilver))
+const bronzeSponsors = sortSponsors(members.filter(isBronze))
 const backers = members.filter(
   ({ tier, lastTransactionAmount, createdAt, isActive }) =>
     isActive &&
@@ -14,6 +15,12 @@ const backers = members.filter(
     lastTransactionAmount < 50 &&
     new Date(createdAt).getTime() < new Date(2020, 4, 5).getTime()
 )
+
+function sortSponsors(sponsors) {
+  return sponsors
+    .sort((a, b) => compareAsc(new Date(a.createdAt), new Date(b.createdAt)))
+    .sort((a, b) => b.lastTransactionAmount - a.lastTransactionAmount)
+}
 
 export default function Sponsorship() {
   return (
