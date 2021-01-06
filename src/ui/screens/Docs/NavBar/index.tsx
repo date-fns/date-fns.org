@@ -28,16 +28,18 @@ export const NavBar: FunctionComponent<Props> = ({ versions, selectedVersion, se
           GitHub
         </Link>
 
+        <Link
+          tag="a"
+          href="https://github.com/date-fns/date-fns/discussions"
+        >
+          Community
+        </Link>
+
         <Link tag="a" href="https://twitter.com/date_fns">
           Twitter
         </Link>
 
-        <Link
-          tag="a"
-          href="https://spectrum.chat/date-fns"
-        >
-          Community
-        </Link>
+        
       </Links>
 
       <div>

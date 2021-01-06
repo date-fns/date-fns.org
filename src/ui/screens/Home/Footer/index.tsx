@@ -13,10 +13,10 @@ export const Footer = () => (
         </RouterLink>
       </Row>
       <Row>
-        <a href="https://github.com/date-fns/date-fns">GitHub Repo</a>
+        <a href="https://github.com/date-fns/date-fns">GitHub</a>
       </Row>
       <Row>
-        <a href="https://github.com/date-fns/date-fns/discussions">GitHub Discussions</a>
+        <a href="https://github.com/date-fns/date-fns/discussions">Community</a>
       </Row>
       <Row>
         <a href="https://twitter.com/date_fns">Twitter</a>

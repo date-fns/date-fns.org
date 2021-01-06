@@ -2,6 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import { getUrlIdFromText, renderTree } from './utils'
 import { MarkdownCode } from 'ui/components/MarkdownCode'
 import { RouterLink } from 'ui/router'
+import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
 
 type FIXME = any
 
@@ -20,12 +21,7 @@ export const Token: FunctionComponent<Props> = ({ token, selectedVersion }) => {
         let headerLinkId = getUrlIdFromText(token)
         extraAttrs.id = headerLinkId
         extraChildren.push(
-          <a
-            href={`#${headerLinkId}`}
-            className='doc-header_link'
-          >
-            #
-          </a>
+          <DocHeaderAnchor anchor={headerLinkId} />
         )
       }
 

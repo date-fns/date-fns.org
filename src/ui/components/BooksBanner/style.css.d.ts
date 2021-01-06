@@ -8,6 +8,5 @@ export const Cover: CSSComponent
 export const Text: CSSComponent
 export const Header: CSSComponent
 export const Title: CSSComponent
-export const Headline: CSSComponent
 export const Description: CSSComponent
 export const Link: CSSComponent

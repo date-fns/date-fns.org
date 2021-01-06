@@ -20,6 +20,18 @@ export const Navigation = () => (
     </Link>
     <Link
       tag="a"
+      href="https://github.com/date-fns/date-fns/discussions"
+    >
+      {/* <Icon
+        tag="img"
+        src={githubPath}
+        alt="Github community icon"
+        type="github"
+      /> */}
+      Join the community
+    </Link>
+    <Link
+      tag="a"
       href="https://twitter.com/date_fns"
     >
       <Icon
@@ -29,18 +41,6 @@ export const Navigation = () => (
         type="twitter"
       />
       Follow on Twitter
-    </Link>
-    <Link
-      tag="a"
-      href="https://github.com/date-fns/date-fns/discussions"
-    >
-      <Icon
-        tag="img"
-        src={githubPath}
-        alt="Github community icon"
-        type="github"
-      />
-      Join the community
     </Link>
   </StyledNavigation>
 )

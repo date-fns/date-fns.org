@@ -3,6 +3,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { MigratedDocUsage } from 'db/migratedDoc'
 import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
+import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
 
 const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'
@@ -35,9 +36,7 @@ export const Usage: FunctionComponent<Props> = ({ usageTabs, usage, selectedVers
     <section>
       <h2 id='usage'>
         Usage
-        <a href='#usage' className='doc-header_link'>
-          #
-        </a>
+        <DocHeaderAnchor anchor="usage" />
       </h2>
 
       <Options tag="ul">

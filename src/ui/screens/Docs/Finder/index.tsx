@@ -1,9 +1,9 @@
 import { h, FunctionComponent } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
-// import debounce from 'js-fns/debounce'
+import debounce from 'lodash/debounce'
 import db, { PagePreview } from 'db'
 import { Submodule } from 'types/submodule'
-import { useState } from 'preact/hooks'
+import { useCallback, useState } from 'preact/hooks'
 import { Container, Loading, Search, SearchField } from './style.css'
 import { CancelButton } from './CancelButton'
 import { NoResults } from './NoResults'
@@ -12,11 +12,11 @@ import { filterPages } from './utils'
 import { useQuery } from '@typesaurus/preact'
 import { PACKAGE_NAME } from 'common/constants'
 import { where } from 'typesaurus'
+import { BooksBanner } from 'ui/components/BooksBanner'
 
-const showJSJobs = Math.random() > 1
+const showJSJobs = false // FIXME: Math.random() > 1
 
 const JSJobsBanner = () => <div>JS jobs banner</div>
-const NewlineBanner = () => <div>Newline banner</div>
 
 type FIXME = any
 
@@ -29,11 +29,10 @@ interface Props {
 export const Finder: FunctionComponent<Props> = ({ selectedSubmodule, selectedVersion, selectedDoc }) => {
   const [query, setQuery] = useState('')
 
-  // const trackSearch = useCallback(debounce((query: string) => {
-  //   // FIXME:
-  //   // trackAction('Search', { query })
-  // }, 500), [])
-  const trackSearch = () => console.log('FIXME')
+  const trackSearch = useCallback(debounce((query: string) => {
+    // FIXME:
+    // trackAction('Search', { query })
+  }, 500), [])
 
   const [versions, { loading }] = useQuery(db.versions, [
     where('package', '==', PACKAGE_NAME),
@@ -56,7 +55,7 @@ export const Finder: FunctionComponent<Props> = ({ selectedSubmodule, selectedVe
             value={query}
             onInput={(e: FIXME) => {
               const query = e.target.value
-              // trackSearch(query)
+              trackSearch(query)
               setQuery(query)
             }}
           />
@@ -66,7 +65,7 @@ export const Finder: FunctionComponent<Props> = ({ selectedSubmodule, selectedVe
   
         {filteredPages.length === 0 ? <NoResults /> : <Categories pages={filteredPages} categories={categories} selectedVersion={selectedVersion} selectedDoc={selectedDoc} />}
   
-        {showJSJobs ? <JSJobsBanner /> : <NewlineBanner />}
+        {showJSJobs ? <JSJobsBanner /> : <BooksBanner />}
       </Container>
     )
   } else if (loading) {

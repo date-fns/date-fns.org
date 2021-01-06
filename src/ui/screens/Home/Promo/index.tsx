@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { Navigation } from './navigation'
+import { Navigation } from './Navigation'
 import {
   Outer,
   Inner,
