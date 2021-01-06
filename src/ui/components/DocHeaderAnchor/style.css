@@ -1,0 +1,19 @@
+.DocHeaderLink {
+  display: none;
+  margin-left: 7px;
+  text-decoration: none;
+  opacity: 0.3;
+}
+
+.DocHeaderLink:hover {
+  opacity: 0.6;
+}
+
+h1:hover .DocHeaderLink,
+h2:hover .DocHeaderLink,
+h3:hover .DocHeaderLink,
+h4:hover .DocHeaderLink,
+h5:hover .DocHeaderLink,
+h6:hover .DocHeaderLink {
+  display: inline;
+}

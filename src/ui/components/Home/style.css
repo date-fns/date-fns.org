@@ -1,0 +1,103 @@
+.Block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #e4e4dd;
+}
+
+.Block:nth-child(odd) {
+  background-color: #fffdfa;
+}
+
+.Block:nth-child(even) {
+  background-color: #fffbf5;
+}
+
+.Block:last-child {
+  border-bottom: none;
+}
+
+.InnerContainer {
+  max-width: 1200px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header {
+  color: #770c56;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.SubHeader {
+  color: #770c56;
+  margin-top: 0.8rem;
+  font-size: 1rem;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+}
+.Actions :not(:last-child) {
+  margin-right: 1rem;
+}
+
+.Action {
+  color: #8c1b54;
+  margin-top: 20px;
+}
+
+.Button {
+  margin-top: 30px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 15px 30px;
+}
+.Button-type-primary {
+  background: #8c1b54;
+  color: #fff;
+  border: 1px solid #8c1b54;
+}
+.Button-type-secondary {
+  background: transparent;
+  color: #8c1b54;
+  border: 1px solid #8c1b54;
+}
+
+.Link {
+  color: #862d5b;
+  text-decoration: none;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Content:not(:first-child) {
+  margin-top: 30px;
+}
+
+.Text {
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #4c193c;
+  max-width: 500px;
+}
+
+.Text p,
+.Text img {
+  margin-bottom: 1rem;
+}
+
+.Text p:last-child {
+  margin-bottom: 0;
+}

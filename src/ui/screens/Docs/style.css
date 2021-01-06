@@ -1,0 +1,11 @@
+.Container {
+  display: flex;
+  padding-top: 2rem;
+  min-height: 100vh;
+}
+
+.Content {
+  width: 100%;
+  padding-left: 25rem;
+  display: flex;
+}

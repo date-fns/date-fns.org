@@ -1,0 +1,24 @@
+{
+  "main": "index.js",
+  "dependencies": {
+    "@switcher/preact": "^1.1.2",
+    "@types/remarkable": "^2.0.0",
+    "@typesaurus/preact": "^4.0.0",
+    "body-parser": "^1.19.0",
+    "codemirror": "^5.57.0",
+    "cors": "^2.8.5",
+    "date-fns": "^2.16.1",
+    "express": "^4.17.1",
+    "firebase": "^7.20.0",
+    "firebase-admin": "^9.1.1",
+    "firebase-functions": "^3.11.0",
+    "isomorphic-fetch": "^2.2.1",
+    "js-fns": "^2.5.1",
+    "json-bond": "^0.1.0",
+    "preact": "^10.4.8",
+    "preact-render-to-string": "^5.1.10",
+    "remarkable": "^2.0.1",
+    "reset.css": "^2.0.2",
+    "typesaurus": "^6.2.0"
+  }
+}

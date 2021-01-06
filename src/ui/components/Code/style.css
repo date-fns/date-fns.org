@@ -1,0 +1,71 @@
+.cm-s-wormhole {
+  background-color: #5c0b33;
+  color: #fff8c5;
+  height: auto;
+  border-radius: 2px;
+  font: 13px Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+.cm-s-wormhole pre {
+  padding: 1px;
+}
+
+.cm-s-wormhole span.cm-comment {
+  color: #c77fa3;
+}
+
+.cm-s-wormhole span.cm-keyword {
+  color: #ffc9cb;
+}
+
+.cm-s-wormhole span.cm-variable {
+  color: #efcf9c;
+}
+
+.cm-s-wormhole .CodeMirror-cursor {
+  border-left: 1px solid white;
+}
+
+.cm-s-wormhole div.CodeMirror-selected {
+  background: #9e0f56;
+}
+
+.cm-s-wormhole .CodeMirror-lines {
+  padding: 4px;
+}
+
+.cm-s-milky {
+  background-color: #fffffe;
+  color: #5d583b;
+  height: auto;
+  border: 1px solid #b9a2b2;
+  font: 13px Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+.cm-s-milky pre {
+  padding: 1px;
+}
+
+.cm-s-milky span.cm-comment {
+  color: #9e9a95;
+}
+
+.cm-s-milky span.cm-keyword {
+  color: #770c56;
+}
+
+.cm-s-milky span.cm-variable {
+  color: #8e3608;
+}
+
+.cm-s-milky .CodeMirror-cursor {
+  border-left: 1px solid black;
+}
+
+.cm-s-milky div.CodeMirror-selected {
+  background: #efd7bb;
+}
+
+.cm-s-milky .CodeMirror-lines {
+  padding: 4px;
+}

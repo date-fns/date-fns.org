@@ -1,0 +1,107 @@
+.Container {
+  background: #f5d958;
+  padding: 0.25rem;
+}
+
+.Job {
+  background: #fcf4ca;
+  padding: 1rem 1rem 0.5rem;
+  text-decoration: none;
+  display: block;
+  color: black;
+  transition: background 150ms ease-out;
+}
+
+.Job:hover {
+  background: #ffefa5;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+}
+
+.Header > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.Location {
+  color: #8f8a72;
+}
+
+.Company {
+  color: #2c5bf7;
+  font-weight: 600;
+}
+
+.Logo {
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.Position {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.Tags {
+  display: flex;
+}
+
+.Tags > *:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.Tag {
+  background: #e3dbb6;
+  color: #444237;
+  padding: 0.25rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.TagsNNext {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e3dbb6;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+}
+
+.NextButton {
+  display: flex;
+  background: black;
+  color: white;
+  border: 0;
+  padding: 0.125rem 0.5rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.NextButton:hover {
+  color: red;
+}
+
+.NextButton > *:not(:last-child) {
+  margin-right: 0.25rem;
+}
+
+.NextIcon {
+  width: 1rem;
+}
+
+.Link {
+  color: #837430;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.Link:hover {
+  color: black;
+  transition: color 150ms ease-out;
+}

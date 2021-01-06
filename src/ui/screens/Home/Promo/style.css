@@ -1,0 +1,76 @@
+.Outer {
+  width: 100%;
+  color: white;
+  background: #5a0530;
+  background-image: url('./img/background.png');
+  background-size: cover;
+  background-position: top center;
+  overflow-y: auto;
+}
+
+.Inner {
+  background: linear-gradient(rgba(118, 10, 61, 0.7), #4c042b);
+  padding: 4rem 1rem;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33px;
+}
+
+.LogoImage {
+  width: 40px;
+}
+
+.LogoName {
+  font-size: 35px;
+  color: #fff;
+  font-weight: 400;
+  margin-left: 10px;
+  position: relative;
+  top: -1px;
+}
+
+.Header {
+  text-align: center;
+  color: #fbd7a1;
+  font-size: 20px;
+  margin-top: 2rem;
+  font-weight: 300;
+}
+
+.Text {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 200;
+  text-align: center;
+  margin-top: 1rem;
+  color: #ffe9c9;
+  max-width: 500px;
+}
+
+.GettingStarted {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 4rem 0 2rem;
+}
+
+.GettingStartedLink {
+  display: block;
+  background: #8c1b54;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 1rem;
+  padding: 1rem;
+  width: 12rem;
+}

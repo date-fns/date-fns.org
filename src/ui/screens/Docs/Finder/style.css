@@ -1,0 +1,128 @@
+.Container {
+  background: #fffbf5;
+  width: 25rem;
+  position: fixed;
+  top: 2rem;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e6e0e6;
+}
+
+.LogoImage {
+  cursor: pointer;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.Search {
+  color: #770c56;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #faf6f0;
+  flex-shrink: 0;
+  border-bottom: 1px solid #e6e0e6;
+  word-break: break-all;
+  position: relative;
+}
+
+.SearchField {
+  padding: 0.75rem 1rem;
+  border: 0;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.SearchCancel {
+  height: 16px;
+  width: 16px;
+  top: 50%;
+  right: 9px;
+  margin-top: -9px;
+  cursor: pointer;
+  background-image: url('./img/cancel.svg');
+  background-size: 16px;
+  position: absolute;
+  right: 1.5rem;
+}
+
+.CategoriesList {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.Category:first-child {
+  margin-top: 0;
+}
+
+.CategoryHeader {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  color: #4a3142;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e6e0e6;
+}
+
+.Item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.65);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e6e0e6;
+  text-decoration: none;
+}
+
+.Item-isSelected,
+.Item-isSelected:hover {
+  background-color: #fff0f3;
+}
+
+.Item:hover {
+  background: #fdf6f9;
+}
+
+.Item-type-jsdoc .ItemHeader {
+  font-family: monospace;
+}
+
+.ItemHeader {
+  font-size: 1rem;
+  margin-bottom: 0.4px;
+  word-break: break-all;
+  color: #4c193c;
+}
+
+.ItemText {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #7b6d77;
+}
+
+.ItemIcon {
+  background-image: url('./img/icon.svg');
+  background-size: 16px;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.NoResultsContainer {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.NoResultsText {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #7b6d77;
+}

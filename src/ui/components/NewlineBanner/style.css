@@ -1,0 +1,98 @@
+.Container {
+  padding: 0.5rem;
+  background: #39065a;
+  color: #fff6f6;
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  transition: background 150ms ease-out;
+}
+
+.Badge {
+  background: #9a0f98;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.BadgeLabel {
+  color: white;
+  font-weight: 600;
+}
+
+.BadgeNext {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.BadgeNext:hover {
+  color: #9a0f98;
+  background: white;
+}
+
+.Container:hover {
+  background: #6a0572;
+}
+
+.Container > *:not(:last-child) {
+  margin-right: 0.75rem;
+}
+
+.Cover {
+  width: 6rem;
+  flex-shrink: 0;
+}
+
+.Text {
+  line-height: 1.2;
+}
+
+.Text > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.Header > *:not(:last-child) {
+  margin-bottom: 0.125rem;
+}
+
+.Title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #ead7af;
+}
+
+.Container:hover .Title {
+  text-decoration: underline;
+}
+
+.Headline {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.Description {
+  line-height: 1.4;
+  font-size: 0.9rem;
+  color: #fdf4dc;
+}
+
+.Link {
+  background: #ea0599;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: background 150ms ease-out;
+  border: none;
+  cursor: pointer;
+}
+
+.Container:hover .Link {
+  background: #ff00a5;
+}

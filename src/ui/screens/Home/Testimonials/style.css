@@ -1,0 +1,69 @@
+.List {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: -30px;
+}
+
+.Item {
+  display: flex;
+  flex-basis: calc(50% - 50px);
+  margin: 0 50px 30px 0;
+}
+
+.Quote {
+  border: 1px solid #e4e4dd;
+  border-radius: 4px;
+  background-color: white;
+  padding: 16px 15px 15px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.QuoteTriangle {
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(0, 0, 0, 0);
+  border-bottom: 12px solid rgba(0, 0, 0, 0);
+  border-right: 12px solid #e4e4dd;
+  position: absolute;
+  top: 16px;
+  left: -12px;
+}
+
+.QuoteTriangleInner {
+  position: relative;
+  top: -11px;
+  left: 1px;
+  width: 0;
+  height: 0;
+  border-top: 11px solid rgba(0, 0, 0, 0);
+  border-bottom: 11px solid rgba(0, 0, 0, 0);
+  border-right: 11px solid #fff;
+}
+
+.Avatar {
+  flex-basis: 60px;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.AvatarImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #e4e4dd;
+}
+
+.Name {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.Text {
+  color: #4c193c;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}

@@ -1,0 +1,45 @@
+.Container {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.Options {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.Option {
+  margin: 0 5px;
+}
+
+.OptionLink {
+  color: #770c56;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  display: block;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #efe8df;
+}
+
+.OptionLink-isCurrent {
+  color: white;
+  background-color: #770c56;
+}
+
+.CodeWrapper {
+  flex-basis: 700px;
+}
+
+.Warning {
+  background: #fff8b9;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  color: #4c2f01;
+  margin: 1rem auto 0;
+  max-width: 44rem;
+}

@@ -1,0 +1,134 @@
+.Container {
+  padding: 30px;
+  color: #4a3142;
+  background-color: #fffdf9;
+  font-size: 16px;
+  line-height: 1.6em;
+  width: 100%;
+}
+
+.Container h1 {
+  color: #770c56;
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgba(88, 68, 82, 0.1);
+}
+
+.Container h2 {
+  color: #4a3142;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  border-bottom: 1px solid rgba(88, 68, 82, 0.1);
+}
+
+.Container h3 {
+  color: #4a3142;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Container a {
+  color: #5d3861;
+}
+
+.Container p {
+  margin-bottom: 10px;
+  max-width: 700px;
+}
+
+.Container p:last-child {
+  margin-bottom: 0;
+}
+
+.Container p:empty {
+  display: none;
+}
+
+.Container ul {
+  list-style: disc;
+}
+
+.Container ol {
+  list-style: decimal;
+}
+
+.Container ul,
+.Container ol {
+  max-width: 700px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.Container ul p + ul,
+.Container ol p + ul {
+  margin-top: -10px;
+}
+
+.Container ul:last-child,
+.Container ol:last-child {
+  margin-bottom: 0;
+}
+
+/*
+FIXME
+
+.Container .CodeMirror {
+  margin-bottom: 10px;
+}
+
+.Container .CodeMirror:last-child {
+  margin-bottom: 0;
+}
+
+.Container ul .CodeMirror:last-child,
+.Container ol .CodeMirror:last-child {
+  margin-bottom: 10px;
+} */
+
+.Container ul ul,
+.Container ul ol,
+.Container ol ol,
+.Container ol ul {
+  margin-bottom: 0;
+}
+
+.Container table {
+  background-color: #fffffe;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.Container table:last-child {
+  margin-bottom: 0;
+}
+
+.Container table th,
+.Container table td {
+  border: 1px solid #b9a2b2;
+  padding: 5px 10px;
+}
+
+.Container table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: #faf6f0;
+}
+
+.Container table table {
+  font-size: 14px;
+}
+
+.Container table table th {
+  background-color: #fdfdfd;
+}
+
+.Container table table th,
+.Container table table td {
+  border: 1px solid #d6cdd3;
+  padding: 3px 6px;
+}

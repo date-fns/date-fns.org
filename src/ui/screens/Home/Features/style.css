@@ -1,0 +1,131 @@
+.List {
+  color: #4a3142;
+  margin-top: 15px;
+  font-size: 17px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Item {
+  display: flex;
+  flex-basis: calc(33.3% - 2rem);
+  margin: 0 1rem 3rem;
+}
+
+.Item:last-child {
+  margin-bottom: 0;
+}
+
+.Title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.Description {
+  color: #4c193c;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.Description p {
+  padding-bottom: 0.5rem;
+}
+
+.Description p:last-child {
+  padding-bottom: 0;
+}
+
+.Icon {
+  width: 38px;
+  height: 38px;
+  background-size: 40px;
+  border: 1px solid rgba(119, 12, 86, 0.6);
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.Icon-type-modular {
+  background-image: url('./img/modular.svg');
+  background-size: 17px;
+  background-position: center 6px;
+}
+
+.Icon-type-immutable {
+  background-image: url('./img/immutable.svg');
+  background-size: 17px;
+  background-position: center 6px;
+}
+
+.Icon-type-consistent {
+  background-image: url('./img/consistent.svg');
+  background-size: 21px;
+  background-position: center 7px;
+}
+
+.Icon-type-reliable {
+  background-image: url('./img/reliable.svg');
+  background-size: 21px;
+  background-position: center 6px;
+}
+
+.Icon-type-simple {
+  background-image: url('./img/simple.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.Icon-type-safe {
+  background-image: url('./img/safe.svg');
+  background-size: 18px;
+}
+
+.Icon-type-fast {
+  background-image: url('./img/fast.svg');
+  background-size: 15px;
+  background-position: center 8px;
+}
+
+.Icon-type-docs {
+  background-image: url('./img/docs.svg');
+  background-size: 19px;
+  background-position: center 7px;
+}
+
+.Icon-type-types {
+  background-image: url('./img/types.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.Icon-type-fp {
+  background-image: url('./img/fp.svg');
+  background-size: 16px;
+  background-position: center 8px;
+}
+
+.Icon-type-i18n {
+  background-image: url('./img/i18n.svg');
+  background-size: 16px;
+  background-position: center 9px;
+}
+
+.Icon-type-native {
+  background-image: url('./img/native.svg');
+  background-size: 24px;
+  background-position: center 6px;
+}
+
+.Icon-type-coming {
+  background-image: url('./img/coming.svg');
+  background-size: 20px;
+  background-position: center 8px;
+}
+
+.Content {
+  margin-left: 15px;
+}

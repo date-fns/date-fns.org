@@ -1,0 +1,27 @@
+.Navigation {
+  margin: 0 -10px;
+  font-size: 15px;
+}
+
+.Link {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.Icon {
+  width: 16px;
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+}
+
+.Icon-type-spectrum {
+  top: 1px;
+  width: 11px;
+}
+
+.Link:hover {
+  opacity: 1;
+}

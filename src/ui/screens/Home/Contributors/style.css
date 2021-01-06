@@ -1,0 +1,36 @@
+.List {
+  color: #4a3142;
+  margin-top: 15px;
+  font-size: 17px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -20px;
+  justify-content: center;
+}
+
+.Item {
+  margin-top: 20px;
+  margin: 0 20px 20px 0;
+  flex-shrink: 0;
+}
+
+.LinkContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Item:last-child {
+  margin-bottom: 0;
+}
+
+.Avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.Name {
+  font-size: 14px;
+  margin: 5px 0 5px 0;
+}
