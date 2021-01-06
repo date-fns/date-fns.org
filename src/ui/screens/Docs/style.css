@@ -9,3 +9,7 @@
   padding-left: 25rem;
   display: flex;
 }
+
+.Loading {
+  padding: 30px;
+}

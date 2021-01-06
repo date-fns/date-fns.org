@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { Banner } from 'ui/components/Banner'
+// import { JobsBanner } from 'ui/components/JobsBanner'
 import { Promo } from './Promo'
 import { Examples } from './Examples'
 import { Features } from './Features'
@@ -11,11 +11,10 @@ import { Screen } from 'ui/components/Screen'
 
 export const Home = () => (
   <Screen>
-    <Banner size="large" />
+    {/* <Banner size="large" /> */}
     <Promo />
     <Examples />
     <Features />
-    {/* <I18n locales={locales} /> */}
     <Testimonials />
     {/* <Sponsorship />
     <Contributors /> */}

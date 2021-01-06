@@ -1,3 +1,4 @@
+.DS_Store
 .firebase/
 .vscode/
 node_modules/

@@ -9,6 +9,10 @@
   border-right: 1px solid #e6e0e6;
 }
 
+.Loading {
+  padding: 30px;
+}
+
 .LogoImage {
   cursor: pointer;
   height: 30px;

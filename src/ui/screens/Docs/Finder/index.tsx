@@ -4,7 +4,7 @@ import { h, FunctionComponent } from 'preact'
 import db, { PagePreview } from 'db'
 import { Submodule } from 'types/submodule'
 import { useState } from 'preact/hooks'
-import { Container, Search, SearchField } from './style.css'
+import { Container, Loading, Search, SearchField } from './style.css'
 import { CancelButton } from './CancelButton'
 import { NoResults } from './NoResults'
 import { Categories } from './Categories'
@@ -72,14 +72,18 @@ export const Finder: FunctionComponent<Props> = ({ selectedSubmodule, selectedVe
   } else if (loading) {
     return (
       <Container>
-        Loading...
+        <Loading>
+          Loading...
+        </Loading>
       </Container>
     )
   } else {
     // FIXME:
     return (
       <Container>
-        Error!
+        <Loading>
+          Error!
+        </Loading>
       </Container>
     )
   }

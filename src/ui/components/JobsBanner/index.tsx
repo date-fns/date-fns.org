@@ -11,7 +11,7 @@ interface Props {
   size: 'small' | 'large'
 }
 
-export const Banner: FunctionComponent<Props> = ({ size }) => (
+export const JobsBanner: FunctionComponent<Props> = ({ size }) => (
   <Container
     tag="a"
     size={size}

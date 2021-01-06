@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import { NavBar } from './NavBar'
 import { Finder } from './Finder'
 import { Doc } from './Doc'
-import { Container, Content } from './style.css'
+import { Container, Content, Loading } from './style.css'
 import { Submodule } from 'types/submodule'
 import { useState } from 'preact/hooks'
 import { useQuery } from '@typesaurus/preact'
@@ -54,9 +54,9 @@ export const Docs: FunctionComponent<Props> = ({ selectedVersion: urlSelectedVer
       </Container>
     )
   } else if (loading) {
-    return <div>Loading...</div>
+    return <Loading>Loading...</Loading>
   } else {
-    return <div>Failed to load package list!</div>
+    return <Loading>Failed to load package list!</Loading>
   }
 }
 

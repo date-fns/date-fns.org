@@ -16,7 +16,7 @@ export const Navigation = () => (
         alt="GitHub icon"
         type="github"
       />
-      Star at GitHub
+      Star on GitHub
     </Link>
     <Link
       tag="a"
@@ -28,17 +28,17 @@ export const Navigation = () => (
         alt="Twitter icon"
         type="twitter"
       />
-      Follow at Twitter
+      Follow on Twitter
     </Link>
     <Link
       tag="a"
-      href="https://spectrum.chat/date-fns"
+      href="https://github.com/date-fns/date-fns/discussions"
     >
       <Icon
         tag="img"
-        src={spectrumPath}
-        alt="Spectrum icon"
-        type="spectrum"
+        src={githubPath}
+        alt="Github community icon"
+        type="github"
       />
       Join the community
     </Link>

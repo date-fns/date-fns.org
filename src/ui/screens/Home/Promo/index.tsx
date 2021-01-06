@@ -13,6 +13,7 @@ import {
 } from './style.css'
 import logoPath from './img/logo.svg'
 import { RouterLink } from 'ui/router'
+import { DEFAULT_PAGE } from 'common/constants'
 
 export const Promo = () => (
   <Outer>
@@ -31,7 +32,7 @@ export const Promo = () => (
       </Text>
 
       <GettingStarted>
-        <GettingStartedLink tag={RouterLink} to={{ name: 'docs', params: { doc: 'Getting-Started' } }}>
+        <GettingStartedLink tag={RouterLink} to={{ name: 'docs', params: { doc: DEFAULT_PAGE } }}>
           Documentation
         </GettingStartedLink>
       </GettingStarted>
