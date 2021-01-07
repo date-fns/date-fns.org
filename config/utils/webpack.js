@@ -11,9 +11,9 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
       loader: 'tslint-loader',
       options: {
         configFile: getPath('config/tslint.yaml'),
-        typeCheck: true
-      }
-    }
+        typeCheck: true,
+      },
+    },
   ]
 
   const tsLoaders = [
@@ -21,9 +21,9 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
       loader: 'ts-loader',
       options: {
         context: process.cwd(),
-        configFile: tsConfig
-      }
-    }
+        configFile: tsConfig,
+      },
+    },
   ]
 
   const cssLoaders = ['style-loader', 'css-loader']
@@ -33,18 +33,20 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
     '@nyancss/css-modules-loader/preact',
     {
       loader: 'css-loader',
-      options: { modules: true }
-    }
+      options: { modules: true },
+    },
   ]
 
-  const fileLoaders = [{
-    loader: 'file-loader',
-    options: rest.devServer ? {
-      name: 'static/[name].[ext]'
-    } : {
-      publicPath: 'static'
-    }
-  }]
+  const fileLoaders = [
+    {
+      loader: 'file-loader',
+      options: rest.devServer
+        ? {
+            name: 'static/[name].[ext]',
+          }
+        : {},
+    },
+  ]
 
   const rawLoaders = ['raw-loader']
 
@@ -64,7 +66,7 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
         {
           test: /\.tsx?$/,
           use: tsLoaders,
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
 
         {
@@ -72,33 +74,33 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
           oneOf: [
             {
               resourceQuery: /global/, // foobar.css?global
-              use: cssLoaders
+              use: cssLoaders,
             },
-            { use: nyancssLoaders }
-          ]
+            { use: nyancssLoaders },
+          ],
         },
 
         {
           test: /\.(png|jpg|gif|svg)$/,
-          use: fileLoaders
+          use: fileLoaders,
         },
 
         {
           test: /\.(graphql)$/,
-          use: rawLoaders
+          use: rawLoaders,
         },
-        ...rules
-      ]
+        ...rules,
+      ],
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.json'],
-      plugins: [new TsconfigPathsPlugin({ configFile: tsConfig })]
+      plugins: [new TsconfigPathsPlugin({ configFile: tsConfig })],
     },
-    ...rest
+    ...rest,
   }
 }
 
 module.exports = {
   getPath,
-  getConfig
+  getConfig,
 }
