@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { Page } from 'db'
+import { Page } from '@date-fns/date-fns-db'
 import { parse } from 'json-bond'
 import { MigratedDoc } from './MigratedDoc'
 import { MarkdownDoc } from './MarkdownDoc'

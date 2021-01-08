@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { VersionPreview } from 'db'
+import { VersionPreview } from '@date-fns/date-fns-db'
 import { Selector, Label, Select } from './style.css'
 import { VersionOption } from './VersionOption'
 import { useContext } from 'preact/hooks'

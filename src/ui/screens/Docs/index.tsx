@@ -7,9 +7,8 @@ import { Submodule } from 'types/submodule'
 import { useState } from 'preact/hooks'
 import { useQuery } from '@typesaurus/preact'
 import { where } from 'typesaurus'
-import db from 'db'
+import { db, PACKAGE_NAME } from '@date-fns/date-fns-db'
 import { filterPreReleaseVersions, getLatestVersion, sortVersions } from 'utils/versions'
-import { PACKAGE_NAME } from 'common/constants'
 
 interface Props {
   // TODO: rename to currentVersion

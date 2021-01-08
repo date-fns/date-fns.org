@@ -1,4 +1,4 @@
-import { VersionPreview } from 'db'
+import { VersionPreview } from '@date-fns/date-fns-db'
 
 export function filterPreReleaseVersions (versions: VersionPreview[]) {
   return versions.filter(version => !version.preRelease)

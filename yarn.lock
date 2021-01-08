@@ -23,6 +23,11 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@date-fns/date-fns-db@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@date-fns/date-fns-db/-/date-fns-db-0.0.5.tgz#9ba061f801a53a4ef745ad5e2838c2ac9fadaa3c"
+  integrity sha512-04KOdE7YbbYMubFUbviDH50pOE5tAYPLZjsI6TiZFDUHNXod8LZXsGeLiTKYGkovciJ8S8+KouNWygKzgfr83w==
+
 "@firebase/analytics-types@0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@firebase/analytics-types/-/analytics-types-0.4.0.tgz#d6716f9fa36a6e340bc0ecfe68af325aa6f60508"
@@ -5959,10 +5964,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typesaurus@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/typesaurus/-/typesaurus-6.2.0.tgz#62869d4b9bce1f8951652c11b44db6e015f74d70"
-  integrity sha512-hgYHvD3nN823TrFrGYmuQ7ibzswr4xHLozbmq+/vPY4mU75cFlWixC4TDVI89jcQ4clQ5o0z5fdrYpy+vGUU6Q==
+typesaurus@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/typesaurus/-/typesaurus-7.1.0.tgz#f030083a201f6e4d02e7f3287bec271d84fba229"
+  integrity sha512-2Az/QN4FprxtT/6Grr3gFb8v6dY1NkSkGvEt6l0b4/cY28p6HmNY/VaZP9p9wQP2GdU8lAbOi+Ip6j1gehCarA==
 
 typescript@^4.0.2:
   version "4.0.2"

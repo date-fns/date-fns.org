@@ -13,6 +13,7 @@
     "start": "env NODE_ENV=development webpack-dev-server --config ./config/webpack.config.devserver.js"
   },
   "dependencies": {
+    "@date-fns/date-fns-db": "^0.0.5",
     "@switcher/preact": "^1.1.2",
     "@types/lodash": "^4.14.167",
     "@types/remarkable": "^2.0.0",
@@ -33,7 +34,7 @@
     "preact-render-to-string": "^5.1.10",
     "remarkable": "^2.0.1",
     "reset.css": "^2.0.2",
-    "typesaurus": "^6.2.0"
+    "typesaurus": "^7.1.0"
   },
   "devDependencies": {
     "@nyancss/css-modules-loader": "^1.1.0",
