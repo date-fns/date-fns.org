@@ -6,23 +6,31 @@ import {
   TextToken,
   Token,
 } from 'remarkable/lib'
-import { AnyNode, text, tag, softbreak, code, tagName, attrs } from './utils'
+import {
+  AnyNode,
+  text,
+  tag,
+  softbreak,
+  code,
+  getTagName,
+  getAttrs,
+} from './utils'
 
 export { AnyNode }
 
 export function remarkableTree(tokens: Token[]) {
-  var tree: AnyNode[] = []
-  var pos = 0
+  let tree: AnyNode[] = []
+  let pos = 0
   while (pos < tokens.length) {
-    let token = tokens[pos]
+    const token = tokens[pos]
 
     // Process tag token
     if (isOpeningTagToken(token)) {
-      let closingPos = getClosingPosFor(tokens, pos)
+      const closingPos = getClosingPosFor(tokens, pos)
       tree.push(
         tag(
-          tagName(token),
-          attrs(token),
+          getTagName(token),
+          getAttrs(token),
           getTagChildren(tokens, pos, closingPos)
         )
       )
@@ -88,8 +96,8 @@ function isOpeningTagToken(token: Token) {
 }
 
 function isClosingTagToken(token: Token, openingToken: Token) {
-  const [, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)!
-  return token.type === `${tagName}_close` && token.level === openingToken.level
+  const [, name] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)!
+  return token.type === `${name}_close` && token.level === openingToken.level
 }
 
 function getClosingPosFor(tokens: Token[], pos: number) {

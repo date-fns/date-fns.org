@@ -56,6 +56,8 @@ rules:
   # deployed.
   no-implicit-dependencies:
     - true
+    - ['~']
+
 
   # The 'this' keyword can only be used inside of classes.
   no-invalid-this: true

@@ -16,9 +16,12 @@ export const Markdown: FunctionComponent<Props> = ({
   value,
   selectedVersion,
 }) => {
-  value = value ? value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)') : ''
+  // Replace JSDoc-style links with markdown links
+  const valueWithFixedLinks = value
+    ? value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)')
+    : ''
 
-  const tree = remarkableTree(md.parse(value, {}))
+  const tree = remarkableTree(md.parse(valueWithFixedLinks, {}))
   const result = renderTree(tree, selectedVersion)
 
   // Render single node as is

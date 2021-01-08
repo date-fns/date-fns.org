@@ -52,7 +52,7 @@ export function code(content: string, language: string): CodeNode {
   }
 }
 
-export function tagName(token: Token) {
+export function getTagName(token: Token) {
   switch (token.type) {
     case 'paragraph_open':
       return 'p'
@@ -95,7 +95,7 @@ interface Attrs {
   href?: string
   title?: string
 }
-export function attrs(token: Token): Attrs {
+export function getAttrs(token: Token): Attrs {
   switch (token.type) {
     case 'link_open':
       return {

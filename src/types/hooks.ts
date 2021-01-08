@@ -1,4 +1,4 @@
 export type RequestHookResult<TResult> = [
   TResult | undefined,
-  { loading: boolean }
+  { loading: boolean; error?: any }
 ]

@@ -21,11 +21,15 @@ export function getTextFromToken(node: AnyNode): string[] {
   if (node.type === 'text') {
     return [node.content]
   } else if (node.type === 'tag' && node.children) {
-    return node.children.reduce((acc, node) => {
-      if (node.type === 'text') {
-        return acc.concat(node.content)
-      } else if (node.type === 'tag') {
-        return acc.concat(node.children.map((node) => getUrlIdFromText(node)))
+    return node.children.reduce((acc, childNode) => {
+      if (childNode.type === 'text') {
+        return acc.concat(childNode.content)
+      } else if (childNode.type === 'tag') {
+        return acc.concat(
+          childNode.children.map((grandChildNode) =>
+            getUrlIdFromText(grandChildNode)
+          )
+        )
       } else {
         return acc
       }

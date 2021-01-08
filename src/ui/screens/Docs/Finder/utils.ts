@@ -6,10 +6,12 @@ export function filterPages(
   dirtyQuery: string,
   selectedSubmodule: Submodule
 ) {
+  let filteredPages = pages
+
   if (dirtyQuery) {
     const query = dirtyQuery.toLowerCase()
 
-    pages = pages.filter(
+    filteredPages = filteredPages.filter(
       (page) =>
         page.category.toLowerCase().includes(query) ||
         page.title.toLowerCase().includes(query) ||
@@ -17,7 +19,7 @@ export function filterPages(
     )
   }
 
-  return pages.filter((page) => {
+  return filteredPages.filter((page) => {
     const { category, slug } = page
 
     if (category === 'General' || category === 'Types') {

@@ -17,7 +17,7 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
       const extraChildren = []
 
       if (/^h[2-6]$/.test(node.tagName)) {
-        let headerLinkId = getUrlIdFromText(node)
+        const headerLinkId = getUrlIdFromText(node)
         extraAttrs.id = headerLinkId
         extraChildren.push(<DocHeaderAnchor anchor={headerLinkId} />)
       }

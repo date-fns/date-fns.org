@@ -33,9 +33,9 @@ export const Finder: FunctionComponent<Props> = ({
   const [query, setQuery] = useState('')
 
   const trackSearch = useCallback(
-    debounce((query: string) => {
+    debounce((newQuery: string) => {
       // FIXME:
-      // trackAction('Search', { query })
+      // trackAction('Search', { query: newQuery })
     }, 500),
     []
   )
@@ -60,9 +60,9 @@ export const Finder: FunctionComponent<Props> = ({
             placeholder="Search"
             value={query}
             onInput={(e: FIXME) => {
-              const query = e.target.value
-              trackSearch(query)
-              setQuery(query)
+              const newQuery = e.target.value
+              trackSearch(newQuery)
+              setQuery(newQuery)
             }}
           />
 
