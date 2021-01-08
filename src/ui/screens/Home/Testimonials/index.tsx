@@ -2,7 +2,7 @@ import { h, Fragment } from 'preact'
 import {
   HomeBlock,
   HomeExternalAction,
-  HomeExternalLink
+  HomeExternalLink,
 } from '~/ui/components/Home'
 
 import {
@@ -14,7 +14,7 @@ import {
   Avatar,
   AvatarImage,
   Name,
-  Text
+  Text,
 } from './style.css'
 
 const testimonials = [
@@ -26,7 +26,7 @@ const testimonials = [
       date-fns is the modular path to date/time manipulation. Where I
       work, it helped us get our bundle sizes down, especially because
       we are able to include only the functionality we need.
-    `
+    `,
   },
 
   {
@@ -37,7 +37,7 @@ const testimonials = [
       date-fns gave us the power to work directly with date objects,
       without worrying about conversion or mutations. It's a real game
       changer for dates.
-    `
+    `,
   },
 
   {
@@ -57,8 +57,8 @@ const testimonials = [
       ever wanted, but didn’t got the time, the knowledge or the
       courage! Because of stars like date-fns the dev community is
       becoming an amazing universe. Thank you!
-    `
-  }
+    `,
+  },
 ]
 
 export const Testimonials = () => (

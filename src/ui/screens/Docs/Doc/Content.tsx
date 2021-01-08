@@ -9,14 +9,14 @@ interface Props {
   selectedVersion: string
 }
 
-export const Content: FunctionComponent<Props> = ({ page, selectedVersion }) => {
+export const Content: FunctionComponent<Props> = ({
+  page,
+  selectedVersion,
+}) => {
   switch (page.type) {
     case 'migrated':
       return (
-        <MigratedDoc
-          doc={parse(page.doc)}
-          selectedVersion={selectedVersion}
-        />
+        <MigratedDoc doc={parse(page.doc)} selectedVersion={selectedVersion} />
       )
     case 'markdown':
       return (
@@ -27,4 +27,3 @@ export const Content: FunctionComponent<Props> = ({ page, selectedVersion }) => 
       )
   }
 }
-

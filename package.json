@@ -67,13 +67,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,json,css,md}": [
-      "yarn format",
-      "git add"
+      "yarn format"
     ],
     "*.{ts,tsx}": [
       "yarn format",
-      "yarn lint",
-      "git add"
+      "yarn lint"
     ]
   },
   "prettier": {

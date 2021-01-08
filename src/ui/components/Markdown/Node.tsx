@@ -19,9 +19,7 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
       if (/^h[2-6]$/.test(node.tagName)) {
         let headerLinkId = getUrlIdFromText(node)
         extraAttrs.id = headerLinkId
-        extraChildren.push(
-          <DocHeaderAnchor anchor={headerLinkId} />
-        )
+        extraChildren.push(<DocHeaderAnchor anchor={headerLinkId} />)
       }
 
       // Replace internal links with Link component
@@ -29,16 +27,16 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
         node.tagName === 'a' &&
         node.attrs.href?.startsWith('https://date-fns.org/docs/')
       ) {
-        const doc = node.attrs.href.replace(
-          'https://date-fns.org/docs/',
-          ''
-        )
+        const doc = node.attrs.href.replace('https://date-fns.org/docs/', '')
 
         // Check for the case if the link is exactly 'https://date-fns.org/docs/'
         if (doc) {
           return (
             <RouterLink
-              to={{ name: 'versionDocs', params: { doc, version: selectedVersion } }}
+              to={{
+                name: 'versionDocs',
+                params: { doc, version: selectedVersion },
+              }}
             >
               {renderTree(node.children, selectedVersion)}
             </RouterLink>
@@ -60,10 +58,7 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
 
     case 'code':
       return (
-        <MarkdownCode
-          value={node.content.trim()}
-          language={node.language}
-        />
+        <MarkdownCode value={node.content.trim()} language={node.language} />
       )
   }
 }

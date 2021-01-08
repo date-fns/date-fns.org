@@ -15,9 +15,9 @@ export const HomeButton: FunctionComponent<Props> = ({
 }) => (
   <Button
     tag="a"
-    href={href} 
-    target={newTab ? "_blank" : undefined}
-    rel={newTab ? "noopener noreferrer" : undefined}
+    href={href}
+    target={newTab ? '_blank' : undefined}
+    rel={newTab ? 'noopener noreferrer' : undefined}
     type={type}
   >
     {children}

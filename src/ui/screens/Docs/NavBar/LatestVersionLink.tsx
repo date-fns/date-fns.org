@@ -7,12 +7,17 @@ interface Props {
   selectedDoc: string
 }
 
-export const LatestVersionLink: FunctionComponent<Props> = ({ latestVersion, selectedDoc }) => (
+export const LatestVersionLink: FunctionComponent<Props> = ({
+  latestVersion,
+  selectedDoc,
+}) => (
   <LatestLink
     tag={RouterLink}
-    to={{ name: 'versionDocs', params: { version: latestVersion, doc: selectedDoc } }}
+    to={{
+      name: 'versionDocs',
+      params: { version: latestVersion, doc: selectedDoc },
+    }}
   >
     Switch to latest
   </LatestLink>
 )
-

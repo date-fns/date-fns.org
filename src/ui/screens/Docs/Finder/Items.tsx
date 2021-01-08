@@ -9,13 +9,20 @@ interface Props {
   selectedDoc: string
 }
 
-export const Items: FunctionComponent<Props> = ({ pages, selectedVersion, selectedDoc }) => (
+export const Items: FunctionComponent<Props> = ({
+  pages,
+  selectedVersion,
+  selectedDoc,
+}) => (
   <>
-    {pages.map(page => (
+    {pages.map((page) => (
       <Item
         key={page.slug}
         tag={RouterLink}
-        to={{ name: 'versionDocs', params: { doc: page.slug, version: selectedVersion } }}
+        to={{
+          name: 'versionDocs',
+          params: { doc: page.slug, version: selectedVersion },
+        }}
         isSelected={selectedDoc === page.slug}
       >
         <div>

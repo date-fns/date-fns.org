@@ -8,25 +8,28 @@ interface Props {
   selectedVersion: string
 }
 
-export const Arguments: FunctionComponent<Props> = ({ args, selectedVersion }) => (
+export const Arguments: FunctionComponent<Props> = ({
+  args,
+  selectedVersion,
+}) => (
   <section>
-      <h2 id='arguments'>
-        Arguments
-        <DocHeaderAnchor anchor="arguments" />
-      </h2>
+    <h2 id="arguments">
+      Arguments
+      <DocHeaderAnchor anchor="arguments" />
+    </h2>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <DocParams params={args} selectedVersion={selectedVersion} />
-        </tbody>
-      </table>
-    </section>
+      <tbody>
+        <DocParams params={args} selectedVersion={selectedVersion} />
+      </tbody>
+    </table>
+  </section>
 )

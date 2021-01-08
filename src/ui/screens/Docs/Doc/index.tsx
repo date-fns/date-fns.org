@@ -11,13 +11,13 @@ interface Props {
   selectedDoc: string
 }
 
-export const Doc: FunctionComponent<Props> = ({ selectedDoc, selectedVersion }) => {
-  useEffect(
-    () => {
-      window.scrollTo(0, 0)
-    },
-    [selectedDoc, selectedVersion]
-  )
+export const Doc: FunctionComponent<Props> = ({
+  selectedDoc,
+  selectedVersion,
+}) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [selectedDoc, selectedVersion])
 
   const [pages, { loading }] = useQuery(db.pages, [
     where('package', '==', PACKAGE_NAME),
@@ -33,25 +33,11 @@ export const Doc: FunctionComponent<Props> = ({ selectedDoc, selectedVersion }) 
       </Container>
     )
   } else if (pages && pages.length === 0) {
-    return (
-      <Container>
-        This page is not available for this version
-      </Container>
-    )
+    return <Container>This page is not available for this version</Container>
   } else if (loading) {
-    return (
-      <Container>
-        Loading...
-      </Container>
-    )
+    return <Container>Loading...</Container>
   } else {
     // FIXME:
-    return (
-      <Container>
-        Error!
-      </Container>
-    )
+    return <Container>Error!</Container>
   }
 }
-
-

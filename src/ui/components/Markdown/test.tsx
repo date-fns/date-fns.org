@@ -1,6 +1,5 @@
 // FIXME
 
-
 // /* eslint-env mocha */
 
 // import Markdown from '.'

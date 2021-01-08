@@ -8,7 +8,7 @@ interface Props {
 
 export const Syntax: FunctionComponent<Props> = ({ syntax }) => (
   <section>
-    <h2 id='syntax'>
+    <h2 id="syntax">
       Syntax
       <DocHeaderAnchor anchor="syntax" />
     </h2>
@@ -17,7 +17,7 @@ export const Syntax: FunctionComponent<Props> = ({ syntax }) => (
       value={syntax}
       options={{
         readOnly: true,
-        mode: 'javascript'
+        mode: 'javascript',
       }}
     />
   </section>

@@ -8,9 +8,12 @@ interface Props {
   selectedVersion: string
 }
 
-export const Properties: FunctionComponent<Props> = ({ properties, selectedVersion }) => (
+export const Properties: FunctionComponent<Props> = ({
+  properties,
+  selectedVersion,
+}) => (
   <section>
-    <h2 id='properties'>
+    <h2 id="properties">
       Properties
       <DocHeaderAnchor anchor="properties" />
     </h2>

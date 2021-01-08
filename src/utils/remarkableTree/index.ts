@@ -1,9 +1,16 @@
-import { BlockContentToken, CodeToken, FenceToken, ImageToken, TextToken, Token } from 'remarkable/lib'
+import {
+  BlockContentToken,
+  CodeToken,
+  FenceToken,
+  ImageToken,
+  TextToken,
+  Token,
+} from 'remarkable/lib'
 import { AnyNode, text, tag, softbreak, code, tagName, attrs } from './utils'
 
 export { AnyNode }
 
-export function remarkableTree (tokens: Token[]) {
+export function remarkableTree(tokens: Token[]) {
   var tree: AnyNode[] = []
   var pos = 0
   while (pos < tokens.length) {
@@ -23,7 +30,9 @@ export function remarkableTree (tokens: Token[]) {
 
       // Process "inline" token
     } else if (token.type === 'inline') {
-      tree = tree.concat(remarkableTree((token as BlockContentToken).children ?? []))
+      tree = tree.concat(
+        remarkableTree((token as BlockContentToken).children ?? [])
+      )
       pos++
 
       // Process text token
@@ -43,7 +52,9 @@ export function remarkableTree (tokens: Token[]) {
 
       // Process fence token
     } else if (token.type === 'fence') {
-      tree.push(code((token as FenceToken).content, (token as FenceToken).params))
+      tree.push(
+        code((token as FenceToken).content, (token as FenceToken).params)
+      )
       pos++
 
       // Process image token
@@ -62,22 +73,26 @@ export function remarkableTree (tokens: Token[]) {
   return tree
 }
 
-function getTagChildren (tokens: Token[], openingPos: number, closingPos: number) {
+function getTagChildren(
+  tokens: Token[],
+  openingPos: number,
+  closingPos: number
+) {
   return remarkableTree(tokens.slice(openingPos + 1, closingPos))
 }
 
 const OPENING_TAG_TOKEN_TYPE_PATTERN = /(.+)_open$/
 
-function isOpeningTagToken (token: Token) {
+function isOpeningTagToken(token: Token) {
   return OPENING_TAG_TOKEN_TYPE_PATTERN.test(token.type)
 }
 
-function isClosingTagToken (token: Token, openingToken: Token) {
+function isClosingTagToken(token: Token, openingToken: Token) {
   const [, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)!
   return token.type === `${tagName}_close` && token.level === openingToken.level
 }
 
-function getClosingPosFor (tokens: Token[], pos: number) {
+function getClosingPosFor(tokens: Token[], pos: number) {
   const openingToken = tokens[pos]
 
   let closingPos = pos + 1

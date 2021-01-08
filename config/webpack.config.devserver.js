@@ -8,7 +8,7 @@ module.exports = getConfig({
   output: {
     filename: 'script.js',
     path: getPath('dist/static'),
-    publicPath: '/'
+    publicPath: '/',
   },
   target: 'web',
 
@@ -30,15 +30,15 @@ module.exports = getConfig({
       errors: true,
       errorDetails: true,
       warnings: true,
-      publicPath: false
-    }
+      publicPath: false,
+    },
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: getPath('src/assets/template.ejs')
+      template: getPath('src/assets/template.ejs'),
     }),
-    new HotModuleReplacementPlugin()
-  ]
+    new HotModuleReplacementPlugin(),
+  ],
 })

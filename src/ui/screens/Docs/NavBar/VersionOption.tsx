@@ -5,7 +5,5 @@ interface Props {
 }
 
 export const VersionOption: FunctionComponent<Props> = ({ version }) => (
-  <option value={version}>
-    {version}
-  </option>
+  <option value={version}>{version}</option>
 )

@@ -1,6 +1,6 @@
 query {
-  account (slug: "date-fns") {
-    orders (limit: 1000) {
+  account(slug: "date-fns") {
+    orders(limit: 1000) {
       totalCount
       nodes {
         fromAccount {

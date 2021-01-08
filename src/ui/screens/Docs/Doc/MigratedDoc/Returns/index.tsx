@@ -8,9 +8,12 @@ interface Props {
   selectedVersion: string
 }
 
-export const Returns: FunctionComponent<Props> = ({ returns, selectedVersion }) => (
+export const Returns: FunctionComponent<Props> = ({
+  returns,
+  selectedVersion,
+}) => (
   <section>
-    <h2 id='returns'>
+    <h2 id="returns">
       Returns
       <DocHeaderAnchor anchor="returns" />
     </h2>
@@ -26,9 +29,7 @@ export const Returns: FunctionComponent<Props> = ({ returns, selectedVersion }) 
       <tbody>
         {returns.map((returnData, index) => (
           <tr key={index}>
-            <td>
-              {returnData.type.names.join(' | ')}
-            </td>
+            <td>{returnData.type.names.join(' | ')}</td>
             <td>
               <Markdown
                 value={returnData.description}
@@ -41,4 +42,3 @@ export const Returns: FunctionComponent<Props> = ({ returns, selectedVersion }) 
     </table>
   </section>
 )
-

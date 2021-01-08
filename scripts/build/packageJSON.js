@@ -6,12 +6,12 @@ const packageJSON = require('../../package.json')
 
 const newPackageJSON = {
   main: 'index.js',
-  dependencies: packageJSON.dependencies
+  dependencies: packageJSON.dependencies,
 }
 
 const filePath = path.resolve(process.cwd(), 'build/package.json')
 const fileContent = JSON.stringify(newPackageJSON, null, '  ')
-fs.writeFile(filePath, fileContent, err => {
+fs.writeFile(filePath, fileContent, (err) => {
   if (err) {
     throw err
   }

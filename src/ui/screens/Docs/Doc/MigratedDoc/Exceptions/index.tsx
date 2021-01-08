@@ -8,9 +8,12 @@ interface Props {
   selectedVersion: string
 }
 
-export const Exceptions: FunctionComponent<Props> = ({ exceptions, selectedVersion }) => (
+export const Exceptions: FunctionComponent<Props> = ({
+  exceptions,
+  selectedVersion,
+}) => (
   <section>
-    <h2 id='exceptions'>
+    <h2 id="exceptions">
       Exceptions
       <DocHeaderAnchor anchor="exceptions" />
     </h2>
@@ -26,9 +29,7 @@ export const Exceptions: FunctionComponent<Props> = ({ exceptions, selectedVersi
       <tbody>
         {exceptions.map((exception, index) => (
           <tr key={index}>
-            <td>
-              {exception.type.names.join(' | ')}
-            </td>
+            <td>{exception.type.names.join(' | ')}</td>
             <td>
               <Markdown
                 value={exception.description}
@@ -41,4 +42,3 @@ export const Exceptions: FunctionComponent<Props> = ({ exceptions, selectedVersi
     </table>
   </section>
 )
-

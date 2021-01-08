@@ -10,7 +10,10 @@ export const SearchCancel: CSSComponent
 export const CategoriesList: CSSComponent
 export const Category: CSSComponent
 export const CategoryHeader: CSSComponent
-export const Item: CSSPreactComponent<typeof RouterLink, { isCurrent?: boolean }>
+export const Item: CSSPreactComponent<
+  typeof RouterLink,
+  { isCurrent?: boolean }
+>
 export const ItemHeader: CSSComponent
 export const ItemText: CSSComponent
 export const ItemIcon: CSSComponent

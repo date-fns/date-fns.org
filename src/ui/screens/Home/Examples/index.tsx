@@ -11,7 +11,7 @@ import {
   Option,
   OptionLink,
   CodeWrapper,
-  Warning
+  Warning,
 } from './style.css'
 
 // TODO: Generate example results with date-fns v2
@@ -30,7 +30,7 @@ format(new Date(), '[Today is a] dddd')
         'Wednesday',
         'Thursday',
         'Friday',
-        'Saturday'
+        'Saturday',
       ][new Date().getDay()]
     }"
 
@@ -39,7 +39,7 @@ formatDistance(subDays(new Date(), 3), new Date())
 
 formatRelative(subDays(new Date(), 3), new Date())
 //=> "last Friday at 7:26 p.m."
-`.trim()
+`.trim(),
   },
   {
     label: 'I18n',
@@ -55,7 +55,7 @@ formatRelative(subDays(new Date(), 3), new Date(), { locale: es })
 
 formatRelative(subDays(new Date(), 3), new Date(), { locale: ru })
 //=> "в прошлую пятницу в 19:26"
-`.trim()
+`.trim(),
   },
   {
     label: 'Composition & FP',
@@ -77,8 +77,8 @@ const toUpper = arg => String(arg).toUpperCase()
 
 const formattedDates = dates.map(addFiveYears).map(dateToString).map(toUpper)
 //=> ['1 JANUARO 2022', '11 FEBRUARO 2022', '2 JULIO 2022']
-`.trim()
-  }
+`.trim(),
+  },
 ]
 
 const IS_PRERELEASE = false
@@ -97,7 +97,7 @@ export const Examples = () => {
                 <OptionLink
                   tag="a"
                   href="#"
-                  onClick={e => {
+                  onClick={(e) => {
                     // TODO: trackAction('Changed Example', { exampleIndex: currentExampleIndex })
                     e.preventDefault()
                     setExampleIndex(index)
@@ -116,11 +116,13 @@ export const Examples = () => {
         </CodeWrapper>
       </Container>
 
-      {IS_PRERELEASE && <Warning>
-        ⚠️ The provided examples are for v2 which is in pre-release right now.
-        If you want to give it a try, install the latest version: npm install
-        date-fns@next
-      </Warning>}
+      {IS_PRERELEASE && (
+        <Warning>
+          ⚠️ The provided examples are for v2 which is in pre-release right now.
+          If you want to give it a try, install the latest version: npm install
+          date-fns@next
+        </Warning>
+      )}
     </HomeBlock>
   )
 }

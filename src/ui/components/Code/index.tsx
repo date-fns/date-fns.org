@@ -11,13 +11,16 @@ interface CodeProps {
 }
 export const Code: FunctionComponent<CodeProps> = ({ value, options }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const [codeMirror, setCodeMirror] = useState<CodeMirror.EditorFromTextArea | null>(null)
+  const [
+    codeMirror,
+    setCodeMirror,
+  ] = useState<CodeMirror.EditorFromTextArea | null>(null)
 
   useEffect(() => {
     setCodeMirror(
       CodeMirror.fromTextArea(textareaRef.current, {
         theme: 'milky',
-        ...options
+        ...options,
       })
     )
 
@@ -28,14 +31,11 @@ export const Code: FunctionComponent<CodeProps> = ({ value, options }) => {
     }
   }, [])
 
-  useEffect(
-    () => {
-      if (codeMirror) {
-        codeMirror.setValue(value)
-      }
-    },
-    [value]
-  )
+  useEffect(() => {
+    if (codeMirror) {
+      codeMirror.setValue(value)
+    }
+  }, [value])
 
   return <textarea value={value} ref={textareaRef} />
 }

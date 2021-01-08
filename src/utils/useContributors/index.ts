@@ -17,18 +17,18 @@ interface Contributor {
   name: string
 }
 
-export function useContributors (): RequestHookResult<Contributor[]> {
+export function useContributors(): RequestHookResult<Contributor[]> {
   const [result, meta] = useJSON<ContributorsFetchResponse>(CONTRIBUTORS_URL)
 
   if (result) {
     return [
-      result.map(user => ({
+      result.map((user) => ({
         id: user.id,
         url: user.html_url,
         avatarUrl: user.avatar_url,
-        name: user.login
+        name: user.login,
       })),
-      meta
+      meta,
     ]
   }
 

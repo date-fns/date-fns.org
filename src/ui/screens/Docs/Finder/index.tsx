@@ -25,17 +25,24 @@ interface Props {
   selectedSubmodule: Submodule
 }
 
-export const Finder: FunctionComponent<Props> = ({ selectedSubmodule, selectedVersion, selectedDoc }) => {
+export const Finder: FunctionComponent<Props> = ({
+  selectedSubmodule,
+  selectedVersion,
+  selectedDoc,
+}) => {
   const [query, setQuery] = useState('')
 
-  const trackSearch = useCallback(debounce((query: string) => {
-    // FIXME:
-    // trackAction('Search', { query })
-  }, 500), [])
+  const trackSearch = useCallback(
+    debounce((query: string) => {
+      // FIXME:
+      // trackAction('Search', { query })
+    }, 500),
+    []
+  )
 
   const [versions, { loading }] = useQuery(db.versions, [
     where('package', '==', PACKAGE_NAME),
-    where('version', '==', selectedVersion)
+    where('version', '==', selectedVersion),
   ])
 
   if (versions && versions.length === 1) {
@@ -58,30 +65,35 @@ export const Finder: FunctionComponent<Props> = ({ selectedSubmodule, selectedVe
               setQuery(query)
             }}
           />
-  
+
           {query.length >= 0 && <CancelButton setQuery={setQuery} />}
         </Search>
-  
-        {filteredPages.length === 0 ? <NoResults /> : <Categories pages={filteredPages} categories={categories} selectedVersion={selectedVersion} selectedDoc={selectedDoc} />}
-  
+
+        {filteredPages.length === 0 ? (
+          <NoResults />
+        ) : (
+          <Categories
+            pages={filteredPages}
+            categories={categories}
+            selectedVersion={selectedVersion}
+            selectedDoc={selectedDoc}
+          />
+        )}
+
         {showJSJobs ? <JSJobsBanner /> : <BooksBanner />}
       </Container>
     )
   } else if (loading) {
     return (
       <Container>
-        <Loading>
-          Loading...
-        </Loading>
+        <Loading>Loading...</Loading>
       </Container>
     )
   } else {
     // FIXME:
     return (
       <Container>
-        <Loading>
-          Error!
-        </Loading>
+        <Loading>Error!</Loading>
       </Container>
     )
   }

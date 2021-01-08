@@ -1,13 +1,13 @@
-import { HeadingToken, LinkOpenToken, Token } from "remarkable/lib"
+import { HeadingToken, LinkOpenToken, Token } from 'remarkable/lib'
 
 interface TextNode {
   type: 'text'
   content: string
 }
-export function text (content: string): TextNode {
+export function text(content: string): TextNode {
   return {
     type: 'text',
-    content
+    content,
   }
 }
 
@@ -17,21 +17,25 @@ interface TagNode {
   attrs: Attrs
   children: AnyNode[]
 }
-export function tag (tagName: string, attrs = {}, children: AnyNode[] = []): TagNode {
+export function tag(
+  tagName: string,
+  attrs = {},
+  children: AnyNode[] = []
+): TagNode {
   return {
     type: 'tag',
     tagName,
     attrs,
-    children
+    children,
   }
 }
 
 interface SoftbreakNode {
   type: 'softbreak'
 }
-export function softbreak (): SoftbreakNode {
+export function softbreak(): SoftbreakNode {
   return {
-    type: 'softbreak'
+    type: 'softbreak',
   }
 }
 
@@ -40,15 +44,15 @@ interface CodeNode {
   language: string
   content: string
 }
-export function code (content: string, language: string): CodeNode {
+export function code(content: string, language: string): CodeNode {
   return {
     type: 'code',
     language,
-    content
+    content,
   }
 }
 
-export function tagName (token: Token) {
+export function tagName(token: Token) {
   switch (token.type) {
     case 'paragraph_open':
       return 'p'
@@ -91,10 +95,13 @@ interface Attrs {
   href?: string
   title?: string
 }
-export function attrs (token: Token): Attrs {
+export function attrs(token: Token): Attrs {
   switch (token.type) {
     case 'link_open':
-      return { href: (token as LinkOpenToken).href, title: (token as LinkOpenToken).title }
+      return {
+        href: (token as LinkOpenToken).href,
+        title: (token as LinkOpenToken).title,
+      }
     default:
       return {}
   }

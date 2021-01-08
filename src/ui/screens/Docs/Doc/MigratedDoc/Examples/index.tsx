@@ -9,7 +9,7 @@ interface Props {
 
 export const Examples: FunctionComponent<Props> = ({ examples }) => (
   <section>
-    <h2 id='examples'>
+    <h2 id="examples">
       Examples
       <DocHeaderAnchor anchor="examples" />
     </h2>
@@ -21,7 +21,7 @@ export const Examples: FunctionComponent<Props> = ({ examples }) => (
             value={example}
             options={{
               readOnly: true,
-              mode: 'javascript'
+              mode: 'javascript',
             }}
           />
         </CodeContainer>

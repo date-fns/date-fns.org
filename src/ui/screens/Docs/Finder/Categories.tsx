@@ -10,10 +10,15 @@ interface Props {
   selectedDoc: string
 }
 
-export const Categories: FunctionComponent<Props> = ({ categories, pages, selectedVersion, selectedDoc }) => (
+export const Categories: FunctionComponent<Props> = ({
+  categories,
+  pages,
+  selectedVersion,
+  selectedDoc,
+}) => (
   <CategoriesList tag="ul">
     {categories.map((category) => {
-      const categoryPages = pages.filter(page => page.category === category)
+      const categoryPages = pages.filter((page) => page.category === category)
 
       if (categoryPages.length === 0) {
         return null
@@ -24,7 +29,11 @@ export const Categories: FunctionComponent<Props> = ({ categories, pages, select
           <CategoryHeader tag="h3">{category}</CategoryHeader>
 
           <div>
-            <Items pages={categoryPages} selectedVersion={selectedVersion} selectedDoc={selectedDoc} />
+            <Items
+              pages={categoryPages}
+              selectedVersion={selectedVersion}
+              selectedDoc={selectedDoc}
+            />
           </div>
         </Category>
       )

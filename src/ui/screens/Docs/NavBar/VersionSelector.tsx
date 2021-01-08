@@ -15,26 +15,40 @@ interface Props {
 
 type FIXME = any
 
-export const VersionSelector: FunctionComponent<Props> = ({ selectedVersion, latestVersion, selectedDoc, versions }) => {
+export const VersionSelector: FunctionComponent<Props> = ({
+  selectedVersion,
+  latestVersion,
+  selectedDoc,
+  versions,
+}) => {
   const { navigate } = useContext(RouterContext)
 
   return (
     <Selector tag="label" className="docs_nav_bar-selector">
       <Label tag="span">Version:</Label>
-  
+
       <Select
         tag="select"
         value={selectedVersion}
         className="docs_nav_bar-select"
-        onChange={(e: FIXME) => navigate({ name: 'versionDocs', params: { version: e.target.value, doc: selectedDoc } })}
+        onChange={(e: FIXME) =>
+          navigate({
+            name: 'versionDocs',
+            params: { version: e.target.value, doc: selectedDoc },
+          })
+        }
       >
-        {versions.map(version => <VersionOption version={version.version} key={version.version} />)}
+        {versions.map((version) => (
+          <VersionOption version={version.version} key={version.version} />
+        ))}
       </Select>
 
-      {selectedVersion !== latestVersion && <LatestVersionLink
-        latestVersion={latestVersion}
-        selectedDoc={selectedDoc}
-      />}
+      {selectedVersion !== latestVersion && (
+        <LatestVersionLink
+          latestVersion={latestVersion}
+          selectedDoc={selectedDoc}
+        />
+      )}
     </Selector>
   )
 }

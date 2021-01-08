@@ -1,7 +1,5 @@
 import { h, Fragment } from 'preact'
-import {
-  IconType,
-} from './style.css'
+import { IconType } from './style.css'
 
 export const features = [
   {
@@ -20,7 +18,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.modular
+    icon: IconType.modular,
   },
 
   {
@@ -38,7 +36,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.native
+    icon: IconType.native,
   },
 
   {
@@ -53,7 +51,7 @@ export const features = [
         <p>It allows to prevent bugs and skip long debugging sessions.</p>
       </>
     ),
-    icon: IconType.immutable
+    icon: IconType.immutable,
   },
 
   {
@@ -71,7 +69,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.types
+    icon: IconType.types,
   },
 
   {
@@ -83,7 +81,7 @@ export const features = [
         bloat your build.
       </>
     ),
-    icon: IconType.fp
+    icon: IconType.fp,
   },
 
   {
@@ -95,7 +93,7 @@ export const features = [
         that.
       </>
     ),
-    icon: IconType.i18n
+    icon: IconType.i18n,
   },
 
   {
@@ -112,7 +110,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.consistent
+    icon: IconType.consistent,
   },
 
   {
@@ -129,7 +127,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.reliable
+    icon: IconType.reliable,
   },
 
   {
@@ -147,7 +145,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.simple
+    icon: IconType.simple,
   },
 
   {
@@ -158,7 +156,7 @@ export const features = [
         users will have the best user experience.
       </>
     ),
-    icon: IconType.fast
+    icon: IconType.fast,
   },
 
   {
@@ -170,7 +168,7 @@ export const features = [
         annotations.
       </>
     ),
-    icon: IconType.docs
+    icon: IconType.docs,
   },
 
   {
@@ -181,6 +179,6 @@ export const features = [
         features.
       </>
     ),
-    icon: IconType.coming
-  }
+    icon: IconType.coming,
+  },
 ]

@@ -16,7 +16,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "paths": {
-      "~/*": ["src/*"],
+      "~/*": ["src/*"]
     }
   },
   "compileOnSave": true

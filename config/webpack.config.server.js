@@ -8,7 +8,7 @@ module.exports = getConfig({
     filename: 'index.js',
     path: getPath('build'),
     // Expose module.exports from entry for firebase to run
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   target: 'node',
   // Do not bundle all external libraries
@@ -18,7 +18,7 @@ module.exports = getConfig({
     // Load ejs file as a template function
     {
       test: /\.ejs?$/,
-      use: [{ loader: 'ejs-webpack-loader' }]
-    }
-  ]
+      use: [{ loader: 'ejs-webpack-loader' }],
+    },
+  ],
 })

@@ -19,7 +19,7 @@ export const BooksBanner: FunctionComponent = () => {
   const shuffledBooks = useMemo(() => shuffle(books), [])
   const [bookIndex, setBookIndex] = useState(0)
   const book = shuffledBooks[bookIndex]
-  
+
   return (
     <div>
       <Container
@@ -33,9 +33,7 @@ export const BooksBanner: FunctionComponent = () => {
         <Text>
           <Header>
             <Title>{book.title}</Title>
-            <Description>
-              {book.description}
-            </Description>
+            <Description>{book.description}</Description>
           </Header>
 
           <Link tag="button">Get the book</Link>
@@ -43,9 +41,7 @@ export const BooksBanner: FunctionComponent = () => {
       </Container>
 
       <Badge>
-        <BadgeLabel>
-          ☝️ Support date-fns, buy a book 🙏
-        </BadgeLabel>
+        <BadgeLabel>☝️ Support date-fns, buy a book 🙏</BadgeLabel>
 
         <BadgeNext
           tag="button"
@@ -63,4 +59,3 @@ export const BooksBanner: FunctionComponent = () => {
     </div>
   )
 }
-

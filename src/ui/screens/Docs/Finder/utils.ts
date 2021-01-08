@@ -1,7 +1,11 @@
 import { PagePreview } from '@date-fns/date-fns-db'
 import { Submodule } from '~/types/submodule'
 
-export function filterPages (pages: PagePreview[], dirtyQuery: string, selectedSubmodule: Submodule) {
+export function filterPages(
+  pages: PagePreview[],
+  dirtyQuery: string,
+  selectedSubmodule: Submodule
+) {
   if (dirtyQuery) {
     const query = dirtyQuery.toLowerCase()
 

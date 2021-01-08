@@ -1,5 +1,10 @@
 import { h, Fragment, FunctionComponent } from 'preact'
-import { HomeBlock, HomeText, HomeExternalLink, HomeButton } from '~/ui/components/Home'
+import {
+  HomeBlock,
+  HomeText,
+  HomeExternalLink,
+  HomeButton,
+} from '~/ui/components/Home'
 import {
   Subheader,
   List,
@@ -18,10 +23,7 @@ export const Sponsorship = () => {
       header="Sponsors"
       actions={
         <>
-          <HomeButton
-            href="https://opencollective.com/date-fns"
-            type="primary"
-          >
+          <HomeButton href="https://opencollective.com/date-fns" type="primary">
             Sponsor date-fns
           </HomeButton>
 
@@ -78,10 +80,7 @@ const Sponsor: FunctionComponent<{
   sponsor: Sponsor
 }> = ({ tier, sponsor, compact }) => {
   return (
-    <HomeExternalLink
-      href={`${sponsor.url}?ref=date-fns`}
-      newTab={true}
-    >
+    <HomeExternalLink href={`${sponsor.url}?ref=date-fns`} newTab={true}>
       <Item>
         <ItemImageContainer tier={tier}>
           {sponsor.imageUrl ? (
@@ -91,13 +90,11 @@ const Sponsor: FunctionComponent<{
               alt={`${sponsor.name} logo`}
             />
           ) : (
-            <ItemImagePlaceholder  />
+            <ItemImagePlaceholder />
           )}
         </ItemImageContainer>
 
-        {!compact && (
-          <ItemName tag="span">{sponsor.name}</ItemName>
-        )}
+        {!compact && <ItemName tag="span">{sponsor.name}</ItemName>}
       </Item>
     </HomeExternalLink>
   )

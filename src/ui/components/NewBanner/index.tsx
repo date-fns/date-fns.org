@@ -1,6 +1,5 @@
 // FIXME:
 
-
 // import React from 'react'
 // import classnames from 'classnames'
 // import { trackAction } from 'app/acts/tracking_acts'

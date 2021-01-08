@@ -14,7 +14,7 @@ export const books = [
     description:
       'The Fullstack Node.js book is the complete guide to building fast, production-ready Node.js apps',
     cover: nodejsCover,
-    url: 'http://link.date-fns.org/33gKOVM'
+    url: 'http://link.date-fns.org/33gKOVM',
   },
 
   {
@@ -23,7 +23,7 @@ export const books = [
     description:
       'Learn Pro Patterns for Hooks, Testing, Redux, SSR, and GraphQL',
     cover: reactTypeScriptCover,
-    url: 'http://link.date-fns.org/3k0zHah'
+    url: 'http://link.date-fns.org/3k0zHah',
   },
 
   {
@@ -32,7 +32,7 @@ export const books = [
     description:
       'The Fullstack D3 book is the complete guide to D3. With dozens of code examples showing each step, you can gain new insights into your data by creating visualizations.',
     cover: d3Cover,
-    url: 'http://link.date-fns.org/3bHdFq9'
+    url: 'http://link.date-fns.org/3bHdFq9',
   },
 
   {
@@ -41,7 +41,7 @@ export const books = [
     description:
       'The up-to-date, in-depth, complete guide to React and friends. Become a ReactJS expert today.',
     cover: reactCover,
-    url: 'http://link.date-fns.org/3idMQMF'
+    url: 'http://link.date-fns.org/3idMQMF',
   },
 
   {
@@ -50,7 +50,7 @@ export const books = [
     description:
       'The up-to-date, in-depth, complete guide to React Native. Create beautiful mobile apps with JavaScript and React.',
     cover: reactNativeCover,
-    url: 'http://link.date-fns.org/2FoOzQE'
+    url: 'http://link.date-fns.org/2FoOzQE',
   },
 
   {
@@ -59,7 +59,7 @@ export const books = [
     description:
       'The up-to-date, in-depth, complete guide to Vue. Create elegant apps with JavaScript and Vue.js.',
     cover: vueCover,
-    url: 'https://link.date-fns.org/3bGwI3P'
+    url: 'https://link.date-fns.org/3bGwI3P',
   },
 
   {
@@ -68,7 +68,7 @@ export const books = [
     description:
       'Pass your algorithms interview with confidence by learning data structures and algorithms in JavaScript.',
     cover: algorithmsCover,
-    url: 'https://link.date-fns.org/35lml4g'
+    url: 'https://link.date-fns.org/35lml4g',
   },
 
   {
@@ -77,6 +77,6 @@ export const books = [
     description:
       'A gentle introduction to React that builds from the ground up, using the JavaScript you already know.',
     cover: reactFromZeroCover,
-    url: 'https://link.date-fns.org/3m2EVnP'
-  }
+    url: 'https://link.date-fns.org/3m2EVnP',
+  },
 ]

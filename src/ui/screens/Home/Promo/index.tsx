@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { Navigation } from './Navigation'
+import { Navigation } from './_Navigation'
 import {
   Outer,
   Inner,
@@ -32,7 +32,10 @@ export const Promo = () => (
       </Text>
 
       <GettingStarted>
-        <GettingStartedLink tag={RouterLink} to={{ name: 'docs', params: { doc: DEFAULT_PAGE } }}>
+        <GettingStartedLink
+          tag={RouterLink}
+          to={{ name: 'docs', params: { doc: DEFAULT_PAGE } }}
+        >
           Documentation
         </GettingStartedLink>
       </GettingStarted>

@@ -18,7 +18,12 @@ export const UI = () => {
       return <Docs selectedDoc={location.params.doc} />
 
     case 'versionDocs':
-      return <Docs selectedDoc={location.params.doc} selectedVersion={location.params.version} />
+      return (
+        <Docs
+          selectedDoc={location.params.doc}
+          selectedVersion={location.params.version}
+        />
+      )
 
     case '404':
     default:

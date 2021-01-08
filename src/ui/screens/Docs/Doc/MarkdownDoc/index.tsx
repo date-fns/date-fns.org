@@ -6,6 +6,7 @@ interface Props {
   selectedVersion: string
 }
 
-export const MarkdownDoc: FunctionComponent<Props> = ({ markdown, selectedVersion }) => (
-  <Markdown value={markdown} selectedVersion={selectedVersion} />
-)
+export const MarkdownDoc: FunctionComponent<Props> = ({
+  markdown,
+  selectedVersion,
+}) => <Markdown value={markdown} selectedVersion={selectedVersion} />

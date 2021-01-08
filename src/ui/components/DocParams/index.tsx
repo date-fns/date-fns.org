@@ -8,13 +8,18 @@ interface Props {
   selectedVersion: string
 }
 
-export const DocParams: FunctionComponent<Props> = ({ params, selectedVersion }) => (
+export const DocParams: FunctionComponent<Props> = ({
+  params,
+  selectedVersion,
+}) => (
   <>
     {params.map((param, index) => (
       <tr key={index}>
         <td>
           {param.name}
-          {param.optional && <ParamOptionalLabel defaultValue={param.defaultvalue} />}
+          {param.optional && (
+            <ParamOptionalLabel defaultValue={param.defaultvalue} />
+          )}
         </td>
         <td>
           <ParamType type={param.type} variable={param.variable} />
@@ -24,9 +29,12 @@ export const DocParams: FunctionComponent<Props> = ({ params, selectedVersion })
             value={param.description}
             selectedVersion={selectedVersion}
           />
-          {
-            param.props && <ParamPropsTable props={param.props} selectedVersion={selectedVersion} />
-          }
+          {param.props && (
+            <ParamPropsTable
+              props={param.props}
+              selectedVersion={selectedVersion}
+            />
+          )}
         </td>
       </tr>
     ))}
@@ -66,7 +74,10 @@ const ParamPropsTable: FunctionComponent<{
   </div>
 )
 
-const ParamType: FunctionComponent<{ type: MigratedDocType, variable?: boolean }> = ({ type, variable }) => {
+const ParamType: FunctionComponent<{
+  type: MigratedDocType
+  variable?: boolean
+}> = ({ type, variable }) => {
   const names = type.names
   const types = names.join(' | ')
   if (variable) {
@@ -75,4 +86,3 @@ const ParamType: FunctionComponent<{ type: MigratedDocType, variable?: boolean }
     return <span>{types}</span>
   }
 }
-

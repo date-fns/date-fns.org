@@ -10,5 +10,3 @@ export const DocHeaderAnchor: FunctionComponent<Props> = ({ anchor }) => (
     #
   </DocHeaderLink>
 )
-
-

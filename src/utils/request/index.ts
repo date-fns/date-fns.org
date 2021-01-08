@@ -28,7 +28,7 @@ export async function request(url: string, options: RequestOptions = {}) {
   const response = await fetch(url, {
     ...fetchOptions,
     method,
-    headers: new Headers(headers)
+    headers: new Headers(headers),
   })
 
   const { status } = response
@@ -45,24 +45,25 @@ export async function request(url: string, options: RequestOptions = {}) {
 }
 
 export async function requestJSON(url: string, options: RequestOptions = {}) {
-  const response = await request(
-    url,
-    {
-      ...options,
-      headers: {
-        ...(options.headers ?? {}),
-        Accept: 'application/json'
-      }
-    }
-  )
+  const response = await request(url, {
+    ...options,
+    headers: {
+      ...(options.headers ?? {}),
+      Accept: 'application/json',
+    },
+  })
 
   return response.json()
 }
 
 export function getJSON(url: string, options: RequestOptions = {}) {
-  return requestJSON(url, {...options, method: 'GET'})
+  return requestJSON(url, { ...options, method: 'GET' })
 }
 
-export function requestGraphQL(url: string, query: string, headers?: { [key: string]: string }) {
-  return requestJSON(url, { method: 'POST', data: { query }, headers})
+export function requestGraphQL(
+  url: string,
+  query: string,
+  headers?: { [key: string]: string }
+) {
+  return requestJSON(url, { method: 'POST', data: { query }, headers })
 }

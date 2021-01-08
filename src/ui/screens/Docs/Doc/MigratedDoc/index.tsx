@@ -16,18 +16,19 @@ interface Props {
   selectedVersion: string
 }
 
-export const MigratedDoc: FunctionComponent<Props> = ({ doc, selectedVersion }) => (
+export const MigratedDoc: FunctionComponent<Props> = ({
+  doc,
+  selectedVersion,
+}) => (
   <div>
     <h1>
-      <Header tag="span">
-        {doc.title}
-      </Header>
+      <Header tag="span">{doc.title}</Header>
     </h1>
 
     <section>
-      <h2 id='description'>
+      <h2 id="description">
         Description
-        <DocHeaderAnchor anchor='description' />
+        <DocHeaderAnchor anchor="description" />
       </h2>
 
       <Markdown
@@ -36,27 +37,35 @@ export const MigratedDoc: FunctionComponent<Props> = ({ doc, selectedVersion }) 
       />
     </section>
 
-    {doc.usage && doc.usageTabs && <Usage
-      usage={doc.usage}
-      usageTabs={doc.usageTabs}
-      selectedVersion={selectedVersion}
-    />}
+    {doc.usage && doc.usageTabs && (
+      <Usage
+        usage={doc.usage}
+        usageTabs={doc.usageTabs}
+        selectedVersion={selectedVersion}
+      />
+    )}
     {doc.syntax && <Syntax syntax={doc.syntax} />}
-    {doc.args && doc.args.length > 0 && <Arguments args={doc.args} selectedVersion={selectedVersion} />}
-    {doc.content.properties && doc.content.properties.length > 0 && <Properties
-      properties={doc.content.properties}
-      selectedVersion={selectedVersion}
-    />}
-    {doc.content.returns && <Returns
-      returns={doc.content.returns}
-      selectedVersion={selectedVersion}
-    />}
-    {doc.content.exceptions && <Exceptions
-      exceptions={doc.content.exceptions}
-      selectedVersion={selectedVersion}
-    />}
-    {doc.content.examples && <Examples
-      examples={doc.content.examples}
-    />}
+    {doc.args && doc.args.length > 0 && (
+      <Arguments args={doc.args} selectedVersion={selectedVersion} />
+    )}
+    {doc.content.properties && doc.content.properties.length > 0 && (
+      <Properties
+        properties={doc.content.properties}
+        selectedVersion={selectedVersion}
+      />
+    )}
+    {doc.content.returns && (
+      <Returns
+        returns={doc.content.returns}
+        selectedVersion={selectedVersion}
+      />
+    )}
+    {doc.content.exceptions && (
+      <Exceptions
+        exceptions={doc.content.exceptions}
+        selectedVersion={selectedVersion}
+      />
+    )}
+    {doc.content.examples && <Examples examples={doc.content.examples} />}
   </div>
 )

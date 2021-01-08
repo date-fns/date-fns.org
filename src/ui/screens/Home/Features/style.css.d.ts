@@ -12,7 +12,7 @@ export const enum IconType {
   simple = 'simple',
   fast = 'fast',
   docs = 'docs',
-  coming = 'coming'
+  coming = 'coming',
 }
 
 export const List: CSSComponent

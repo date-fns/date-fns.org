@@ -7,7 +7,7 @@ export function useJSON<TResult>(url: string): RequestHookResult<TResult> {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getJSON(url).then(json => {
+    getJSON(url).then((json) => {
       setResult(json)
       setLoading(false)
     })

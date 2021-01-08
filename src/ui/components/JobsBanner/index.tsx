@@ -22,7 +22,9 @@ export const JobsBanner: FunctionComponent<Props> = ({ size }) => (
     }
     target="_blank"
     rel="noopener noreferrer"
-    onClick={() => console.log('FIXME') /*trackAction('Banner click', { kind }) */}
+    onClick={
+      () => console.log('FIXME') /*trackAction('Banner click', { kind }) */
+    }
   >
     <Inner>
       <EmojiWrapper>
@@ -37,7 +39,3 @@ export const JobsBanner: FunctionComponent<Props> = ({ size }) => (
     </Inner>
   </Container>
 )
-
-
-
-

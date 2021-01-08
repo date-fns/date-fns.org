@@ -11,14 +11,14 @@ export const HomeExternalLink: FunctionComponent<Props> = ({
   href,
   title,
   children,
-  newTab
+  newTab,
 }) => (
   <Link
     tag="a"
-    href={href} 
+    href={href}
     title={title}
-    target={newTab ? "_blank" : undefined}
-    rel={newTab ? "noopener noreferrer" : undefined}
+    target={newTab ? '_blank' : undefined}
+    rel={newTab ? 'noopener noreferrer' : undefined}
   >
     {children}
   </Link>

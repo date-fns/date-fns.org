@@ -10,7 +10,7 @@ interface Props {
 export const HomeAction: FunctionComponent<Props> = ({
   to,
   title,
-  children
+  children,
 }) => (
   <Action tag={RouterLink} to={to} title={title}>
     {children}

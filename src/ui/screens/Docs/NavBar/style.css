@@ -1,5 +1,5 @@
 .Container {
-  color: #FFE9C9;
+  color: #ffe9c9;
   background: #5a0530;
   background-image: url('./img/navBarBackground.png');
   background-size: cover;
@@ -26,10 +26,10 @@
 }
 
 .Link {
-  color: #FFE9C9;
+  color: #ffe9c9;
   text-decoration: none;
   margin-right: 1rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
   position: relative;
   top: 1px;
 }
@@ -47,7 +47,7 @@
 
 .LogoImage {
   height: 1.3rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .Selector {
@@ -59,19 +59,19 @@
 }
 
 .LatestLink {
-  color: #FBD7A1;
-  margin-left: .5rem;
+  color: #fbd7a1;
+  margin-left: 0.5rem;
 }
 
 .Label {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .Select {
   min-width: 5rem;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 .Select:disabled {
-  opacity: .4;
+  opacity: 0.4;
 }

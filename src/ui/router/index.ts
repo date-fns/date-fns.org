@@ -2,8 +2,12 @@ import { createRouter, InferRouteRef, route } from '@switcher/preact'
 
 export const appRoutes = [
   route('home', '/'),
-  route('docs', (params: { doc: string }) => `/docs/${params.doc}` ),
-  route('versionDocs', (params: { version: string, doc: string }) => `/${params.version}/docs/${params.doc}` ),
+  route('docs', (params: { doc: string }) => `/docs/${params.doc}`),
+  route(
+    'versionDocs',
+    (params: { version: string; doc: string }) =>
+      `/${params.version}/docs/${params.doc}`
+  ),
 ]
 
 export const {
@@ -12,7 +16,7 @@ export const {
   RouterContext,
   RouterLink,
   resolveLocation,
-  refToLocation
+  refToLocation,
 } = createRouter(appRoutes)
 
 // Type to use in prop definitions

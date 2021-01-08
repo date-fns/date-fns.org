@@ -4,7 +4,7 @@ import { remarkableTree } from '~/utils/remarkableTree'
 import { renderTree } from './utils'
 
 const md = new Remarkable({
-  linkify: true
+  linkify: true,
 })
 
 interface Props {
@@ -12,10 +12,11 @@ interface Props {
   selectedVersion: string
 }
 
-export const Markdown: FunctionComponent<Props> = ({ value, selectedVersion }) => {
-  value = value
-    ? value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)')
-    : ''
+export const Markdown: FunctionComponent<Props> = ({
+  value,
+  selectedVersion,
+}) => {
+  value = value ? value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)') : ''
 
   const tree = remarkableTree(md.parse(value, {}))
   const result = renderTree(tree, selectedVersion)
@@ -25,10 +26,6 @@ export const Markdown: FunctionComponent<Props> = ({ value, selectedVersion }) =
     return result[0]
     // Then there are more than one node, wrap into div
   } else {
-    return (
-      <div>
-        {result}
-      </div>
-    )
+    return <div>{result}</div>
   }
 }

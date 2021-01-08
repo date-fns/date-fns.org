@@ -12,7 +12,12 @@ interface Props {
   versions: VersionPreview[]
 }
 
-export const NavBar: FunctionComponent<Props> = ({ versions, selectedVersion, selectedDoc, latestVersion }) => (
+export const NavBar: FunctionComponent<Props> = ({
+  versions,
+  selectedVersion,
+  selectedDoc,
+  latestVersion,
+}) => (
   <Container>
     <Inner>
       <Links>
@@ -21,25 +26,17 @@ export const NavBar: FunctionComponent<Props> = ({ versions, selectedVersion, se
           date-fns
         </Logo>
 
-        <Link
-          tag="a"
-          href="https://github.com/date-fns/date-fns"
-        >
+        <Link tag="a" href="https://github.com/date-fns/date-fns">
           GitHub
         </Link>
 
-        <Link
-          tag="a"
-          href="https://github.com/date-fns/date-fns/discussions"
-        >
+        <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
           Community
         </Link>
 
         <Link tag="a" href="https://twitter.com/date_fns">
           Twitter
         </Link>
-
-        
       </Links>
 
       <div>

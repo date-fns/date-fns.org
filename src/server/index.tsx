@@ -13,7 +13,8 @@ import cors from 'cors'
 import { cache } from './cache'
 
 const SPONSORS_URL = 'https://api.opencollective.com/graphql/v2'
-const CONTRIBUTORS_URL = 'https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999'
+const CONTRIBUTORS_URL =
+  'https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999'
 
 export const server = express()
 
@@ -25,29 +26,40 @@ const ServerUI: FunctionComponent<{ url: string }> = () => {
   //     <UI />
   //   </RouterContext.Provider>
   // )
-  return <div>
-    SSR would be coming soon but I need to research what to do with style-loader
-  </div>
+  return (
+    <div>
+      SSR would be coming soon but I need to research what to do with
+      style-loader
+    </div>
+  )
 }
 
 server.get('/api/sponsors', cors(), async (_req, res) => {
-  const json = await cache('FIXME', () => requestGraphQL(SPONSORS_URL, sponsorsQuery, { 'Api-Key': OPEN_COLLECTIVE_API_KEY }))
+  const json = await cache('FIXME', () =>
+    requestGraphQL(SPONSORS_URL, sponsorsQuery, {
+      'Api-Key': OPEN_COLLECTIVE_API_KEY,
+    })
+  )
   res.send(json)
 })
 
 server.get('/api/contributors', cors(), async (_req, res) => {
-  const json = await cache('REPLACE ME WITH REAL CAHCE LIBRARY', () => getJSON(CONTRIBUTORS_URL))
+  const json = await cache('REPLACE ME WITH REAL CAHCE LIBRARY', () =>
+    getJSON(CONTRIBUTORS_URL)
+  )
   res.send(json)
 })
 
 server.get('*', (req, res) => {
   const body = render(<ServerUI url={req.url} />)
 
-  res.send(template({
-    body,
-    entry: '/static/script.js',
-    env: process.env.NODE_ENV,
-  }))
+  res.send(
+    template({
+      body,
+      entry: '/static/script.js',
+      env: process.env.NODE_ENV,
+    })
+  )
 })
 
 export const app = https.onRequest(server)

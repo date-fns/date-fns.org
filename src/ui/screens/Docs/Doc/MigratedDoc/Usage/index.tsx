@@ -9,14 +9,18 @@ const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'
 
 interface Props {
-  usage: MigratedDocUsage,
+  usage: MigratedDocUsage
   usageTabs: string[]
   selectedVersion: string
 }
 
 type FIXME = any
 
-export const Usage: FunctionComponent<Props> = ({ usageTabs, usage, selectedVersion }) => {
+export const Usage: FunctionComponent<Props> = ({
+  usageTabs,
+  usage,
+  selectedVersion,
+}) => {
   const [source, setSource] = useState(DEFAULT_SOURCE)
 
   useEffect(() => {
@@ -34,7 +38,7 @@ export const Usage: FunctionComponent<Props> = ({ usageTabs, usage, selectedVers
 
   return (
     <section>
-      <h2 id='usage'>
+      <h2 id="usage">
         Usage
         <DocHeaderAnchor anchor="usage" />
       </h2>
@@ -52,7 +56,7 @@ export const Usage: FunctionComponent<Props> = ({ usageTabs, usage, selectedVers
               <OptionLink
                 isCurrent={selectedTab === usageTab}
                 tag="a"
-                href='#'
+                href="#"
                 onClick={(e: FIXME) => {
                   // FIXME:
                   // trackAction('Changed Usage Source', { source })

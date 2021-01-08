@@ -9,7 +9,7 @@ interface Props {
 export const HomeExternalAction: FunctionComponent<Props> = ({
   href,
   title,
-  children
+  children,
 }) => (
   <Action tag="a" href={href} title={title}>
     {children}
