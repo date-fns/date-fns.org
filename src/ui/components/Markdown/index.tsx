@@ -9,7 +9,7 @@ const md = new Remarkable({
 
 interface Props {
   value: string
-  selectedVersion: string
+  selectedVersion?: string
 }
 
 export const Markdown: FunctionComponent<Props> = ({

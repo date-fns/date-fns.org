@@ -7,7 +7,7 @@ import { AnyNode } from '~/utils/remarkableTree'
 
 interface Props {
   node: AnyNode
-  selectedVersion: string
+  selectedVersion?: string
 }
 
 export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
@@ -33,10 +33,17 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
         if (doc) {
           return (
             <RouterLink
-              to={{
-                name: 'versionDocs',
-                params: { doc, version: selectedVersion },
-              }}
+              to={
+                selectedVersion
+                  ? {
+                      name: 'versionDocs',
+                      params: { doc, version: selectedVersion },
+                    }
+                  : {
+                      name: 'docs',
+                      params: { doc },
+                    }
+              }
             >
               {renderTree(node.children, selectedVersion)}
             </RouterLink>

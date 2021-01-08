@@ -41,10 +41,10 @@ export function softbreak(): SoftbreakNode {
 
 interface CodeNode {
   type: 'code'
-  language: string
+  language?: string
   content: string
 }
-export function code(content: string, language: string): CodeNode {
+export function code(content: string, language?: string): CodeNode {
   return {
     type: 'code',
     language,

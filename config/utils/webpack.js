@@ -54,13 +54,12 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
     devtool: 'inline-source-map',
     module: {
       rules: [
-        // FIXME: reenable
-        // {
-        //   test: /\.tsx?$/,
-        //   enforce: 'pre',
-        //   exclude: /node_modules/,
-        //   use: lintLoaders
-        // },
+        {
+          test: /\.tsx?$/,
+          enforce: 'pre',
+          exclude: /node_modules/,
+          use: lintLoaders,
+        },
 
         {
           test: /\.tsx?$/,
