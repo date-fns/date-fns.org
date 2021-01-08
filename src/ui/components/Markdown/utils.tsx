@@ -1,14 +1,13 @@
 import { h } from 'preact'
-import { Token } from './Token'
+import { AnyNode } from '~/utils/remarkableTree'
+import { Node } from './Node'
 
-type FIXME = any
-
-export function renderTree (tokens: FIXME[], selectedVersion: string) {
-  return tokens.map((token, index) => <Token token={token} selectedVersion={selectedVersion} key={index} />)
+export function renderTree (nodes: AnyNode[], selectedVersion: string) {
+  return nodes.map((node, index) => <Node node={node} selectedVersion={selectedVersion} key={index} />)
 }
 
-export function getUrlIdFromText (token: FIXME) {
-  return getTextFromToken(token)
+export function getUrlIdFromText (node: AnyNode) {
+  return getTextFromToken(node)
     .join(' ')
     .toLowerCase()
     .replace(/[^\w\d.]/g, '-')
@@ -16,18 +15,22 @@ export function getUrlIdFromText (token: FIXME) {
     .replace(/(^-|-$)/g, '')
 }
 
-export function getTextFromToken (token: FIXME) {
-  if (token.type === 'text') {
-    return [token.content]
-  } else {
-    return token.children.reduce((acc: FIXME, token: FIXME) => {
-      if (token.type === 'text') {
-        return acc.concat(token.content)
-      } else {
+export function getTextFromToken (node: AnyNode): string[] {
+  if (node.type === 'text') {
+    return [node.content]
+  } else if (node.type === 'tag' && node.children) {
+    return node.children.reduce((acc, node) => {
+      if (node.type === 'text') {
+        return acc.concat(node.content)
+      } else if (node.type === 'tag') {
         return acc.concat(
-          token.children.map((token: FIXME) => getUrlIdFromText(token))
+          node.children.map((node) => getUrlIdFromText(node))
         )
+      } else {
+        return acc
       }
-    }, [])
+    }, [] as string[])
+  } else {
+    return []
   }
 }

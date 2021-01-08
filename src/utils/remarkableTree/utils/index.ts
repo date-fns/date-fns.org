@@ -1,13 +1,23 @@
-type FIXME = any
+import { HeadingToken, LinkOpenToken, Token } from "remarkable/lib"
 
-export function text (content: FIXME) {
+interface TextNode {
+  type: 'text'
+  content: string
+}
+export function text (content: string): TextNode {
   return {
     type: 'text',
     content
   }
 }
 
-export function tag (tagName: FIXME, attrs = {}, children: FIXME[] = []) {
+interface TagNode {
+  type: 'tag'
+  tagName: string
+  attrs: Attrs
+  children: AnyNode[]
+}
+export function tag (tagName: string, attrs = {}, children: AnyNode[] = []): TagNode {
   return {
     type: 'tag',
     tagName,
@@ -16,13 +26,21 @@ export function tag (tagName: FIXME, attrs = {}, children: FIXME[] = []) {
   }
 }
 
-export function softbreak () {
+interface SoftbreakNode {
+  type: 'softbreak'
+}
+export function softbreak (): SoftbreakNode {
   return {
     type: 'softbreak'
   }
 }
 
-export function code (content: FIXME, language: FIXME) {
+interface CodeNode {
+  type: 'code'
+  language: string
+  content: string
+}
+export function code (content: string, language: string): CodeNode {
   return {
     type: 'code',
     language,
@@ -30,7 +48,7 @@ export function code (content: FIXME, language: FIXME) {
   }
 }
 
-export function tagName (token: FIXME) {
+export function tagName (token: Token) {
   switch (token.type) {
     case 'paragraph_open':
       return 'p'
@@ -45,7 +63,7 @@ export function tagName (token: FIXME) {
     case 'list_item_open':
       return 'li'
     case 'heading_open':
-      return `h${token.hLevel}`
+      return `h${(token as HeadingToken).hLevel}`
     case 'link_open':
       return 'a'
     case 'blockquote_open':
@@ -69,11 +87,17 @@ export function tagName (token: FIXME) {
   }
 }
 
-export function attrs (token: FIXME) {
+interface Attrs {
+  href?: string
+  title?: string
+}
+export function attrs (token: Token): Attrs {
   switch (token.type) {
     case 'link_open':
-      return { href: token.href, title: token.title }
+      return { href: (token as LinkOpenToken).href, title: (token as LinkOpenToken).title }
     default:
       return {}
   }
 }
+
+export type AnyNode = TextNode | TagNode | SoftbreakNode | CodeNode

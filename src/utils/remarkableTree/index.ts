@@ -1,9 +1,10 @@
-import { text, tag, softbreak, code, tagName, attrs } from './utils'
+import { BlockContentToken, CodeToken, FenceToken, ImageToken, TextToken, Token } from 'remarkable/lib'
+import { AnyNode, text, tag, softbreak, code, tagName, attrs } from './utils'
 
-type FIXME = any
+export { AnyNode }
 
-export function remarkableTree (tokens: FIXME) {
-  var tree: FIXME = []
+export function remarkableTree (tokens: Token[]) {
+  var tree: AnyNode[] = []
   var pos = 0
   while (pos < tokens.length) {
     let token = tokens[pos]
@@ -22,12 +23,12 @@ export function remarkableTree (tokens: FIXME) {
 
       // Process "inline" token
     } else if (token.type === 'inline') {
-      tree = tree.concat(remarkableTree(token.children))
+      tree = tree.concat(remarkableTree((token as BlockContentToken).children ?? []))
       pos++
 
       // Process text token
     } else if (token.type === 'text') {
-      tree.push(text(token.content))
+      tree.push(text((token as TextToken).content ?? ''))
       pos++
 
       // Process softbreak token
@@ -37,17 +38,17 @@ export function remarkableTree (tokens: FIXME) {
 
       // Process code token
     } else if (token.type === 'code') {
-      tree.push(tag('code', {}, [text(token.content)]))
+      tree.push(tag('code', {}, [text((token as CodeToken).content ?? '')]))
       pos++
 
       // Process fence token
     } else if (token.type === 'fence') {
-      tree.push(code(token.content, token.params))
+      tree.push(code((token as FenceToken).content, (token as FenceToken).params))
       pos++
 
       // Process image token
     } else if (token.type === 'image') {
-      const { alt, src, title } = token
+      const { alt, src, title } = token as ImageToken
       tree.push(tag('img', { alt, src, title }, []))
       pos++
 
@@ -61,22 +62,22 @@ export function remarkableTree (tokens: FIXME) {
   return tree
 }
 
-function getTagChildren (tokens: FIXME, openingPos: FIXME, closingPos: FIXME) {
+function getTagChildren (tokens: Token[], openingPos: number, closingPos: number) {
   return remarkableTree(tokens.slice(openingPos + 1, closingPos))
 }
 
 const OPENING_TAG_TOKEN_TYPE_PATTERN = /(.+)_open$/
 
-function isOpeningTagToken (token: FIXME) {
+function isOpeningTagToken (token: Token) {
   return OPENING_TAG_TOKEN_TYPE_PATTERN.test(token.type)
 }
 
-function isClosingTagToken (token: FIXME, openingToken: FIXME) {
-  const [, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)
+function isClosingTagToken (token: Token, openingToken: Token) {
+  const [, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)!
   return token.type === `${tagName}_close` && token.level === openingToken.level
 }
 
-function getClosingPosFor (tokens: FIXME, pos: FIXME) {
+function getClosingPosFor (tokens: Token[], pos: number) {
   const openingToken = tokens[pos]
 
   let closingPos = pos + 1

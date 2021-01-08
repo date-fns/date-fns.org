@@ -12,8 +12,6 @@ interface Props {
   selectedVersion: string
 }
 
-type FIXME = any
-
 export const Markdown: FunctionComponent<Props> = ({ value, selectedVersion }) => {
   value = value
     ? value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)')

@@ -13,7 +13,7 @@ import {
 } from './style.css'
 import logoPath from './img/logo.svg'
 import { RouterLink } from '~/ui/router'
-import { DEFAULT_PAGE } from '~/common/constants'
+import { DEFAULT_PAGE } from '~/constants'
 
 export const Promo = () => (
   <Outer>

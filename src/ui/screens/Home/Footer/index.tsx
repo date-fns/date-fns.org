@@ -1,4 +1,4 @@
-import { DEFAULT_PAGE } from '~/common/constants'
+import { DEFAULT_PAGE } from '~/constants'
 import { h } from 'preact'
 import { HomeBlock } from '~/ui/components/Home'
 import { RouterLink } from '~/ui/router'
