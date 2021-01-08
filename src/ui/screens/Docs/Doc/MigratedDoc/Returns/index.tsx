@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
-import { MigratedDocTypedAttribute } from 'db/migratedDoc'
-import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
-import { Markdown } from 'ui/components/Markdown'
+import { MigratedDocTypedAttribute } from '@date-fns/date-fns-db'
+import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
   returns: MigratedDocTypedAttribute[]

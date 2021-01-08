@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks'
-import { getJSON } from 'utils/request'
-import { RequestHookResult } from 'types/hooks'
+import { getJSON } from '~/utils/request'
+import { RequestHookResult } from '~/types/hooks'
 
 export function useJSON<TResult>(url: string): RequestHookResult<TResult> {
   const [result, setResult] = useState<TResult | undefined>(undefined)

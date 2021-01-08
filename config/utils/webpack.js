@@ -1,5 +1,4 @@
 const path = require('path')
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 function getPath(filename) {
   return path.resolve(process.cwd(), filename)
@@ -94,7 +93,9 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.json'],
-      plugins: [new TsconfigPathsPlugin({ configFile: tsConfig })],
+      alias: {
+        '~': getPath('src'),
+      },
     },
     ...rest,
   }

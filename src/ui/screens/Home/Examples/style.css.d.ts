@@ -1,4 +1,4 @@
-import { CSSComponent } from 'types/decss'
+import { CSSComponent } from '~/types/decss'
 
 export const Container: CSSComponent
 export const Options: CSSComponent

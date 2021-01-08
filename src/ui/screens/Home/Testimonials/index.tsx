@@ -3,7 +3,7 @@ import {
   HomeBlock,
   HomeExternalAction,
   HomeExternalLink
-} from 'ui/components/Home'
+} from '~/ui/components/Home'
 
 import {
   List,

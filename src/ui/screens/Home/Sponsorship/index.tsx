@@ -1,5 +1,5 @@
 import { h, Fragment, FunctionComponent } from 'preact'
-import { HomeBlock, HomeText, HomeExternalLink, HomeButton } from 'ui/components/Home'
+import { HomeBlock, HomeText, HomeExternalLink, HomeButton } from '~/ui/components/Home'
 import {
   Subheader,
   List,
@@ -9,7 +9,7 @@ import {
   ItemImagePlaceholder,
   ItemName,
 } from './style.css'
-import { useSponsors, Sponsor } from 'utils/useSponsors'
+import { useSponsors, Sponsor } from '~/utils/useSponsors'
 
 export const Sponsorship = () => {
   const [sponsors, { loading }] = useSponsors()

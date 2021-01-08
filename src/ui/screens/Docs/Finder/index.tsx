@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
 import debounce from 'lodash/debounce'
-import { Submodule } from 'types/submodule'
+import { Submodule } from '~/types/submodule'
 import { useCallback, useState } from 'preact/hooks'
 import { Container, Loading, Search, SearchField } from './style.css'
 import { CancelButton } from './CancelButton'
@@ -11,7 +11,7 @@ import { filterPages } from './utils'
 import { useQuery } from '@typesaurus/preact'
 import { db, PACKAGE_NAME } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'
-import { BooksBanner } from 'ui/components/BooksBanner'
+import { BooksBanner } from '~/ui/components/BooksBanner'
 
 const showJSJobs = false // FIXME: Math.random() > 1
 

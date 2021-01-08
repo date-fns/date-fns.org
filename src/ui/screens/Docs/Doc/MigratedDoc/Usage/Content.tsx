@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
-import { Code } from 'ui/components/Code'
-import { Markdown } from 'ui/components/Markdown'
+import { Code } from '~/ui/components/Code'
+import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
   code: string

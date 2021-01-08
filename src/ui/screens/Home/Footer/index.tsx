@@ -1,7 +1,7 @@
-import { DEFAULT_PAGE } from 'common/constants'
+import { DEFAULT_PAGE } from '~/common/constants'
 import { h } from 'preact'
-import { HomeBlock } from 'ui/components/Home'
-import { RouterLink } from 'ui/router'
+import { HomeBlock } from '~/ui/components/Home'
+import { RouterLink } from '~/ui/router'
 import { Container, Row } from './style.css'
 
 export const Footer = () => (

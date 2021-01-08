@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
-import { MigratedDocParam } from 'db/migratedDoc'
-import { DocParams } from 'ui/components/DocParams'
-import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
+import { MigratedDocParam } from '@date-fns/date-fns-db'
+import { DocParams } from '~/ui/components/DocParams'
+import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 interface Props {
   args: MigratedDocParam[]

@@ -1,6 +1,6 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { MigratedDocParam, MigratedDocType } from 'db/migratedDoc'
-import { Markdown } from 'ui/components/Markdown'
+import { MigratedDocParam, MigratedDocType } from '@date-fns/date-fns-db'
+import { Markdown } from '~/ui/components/Markdown'
 import { OptionalLabel, PropsLabel } from './style.css'
 
 interface Props {

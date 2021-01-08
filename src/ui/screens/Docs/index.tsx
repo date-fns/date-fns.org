@@ -3,12 +3,12 @@ import { NavBar } from './NavBar'
 import { Finder } from './Finder'
 import { Doc } from './Doc'
 import { Container, Content, Loading } from './style.css'
-import { Submodule } from 'types/submodule'
+import { Submodule } from '~/types/submodule'
 import { useState } from 'preact/hooks'
 import { useQuery } from '@typesaurus/preact'
 import { where } from 'typesaurus'
 import { db, PACKAGE_NAME } from '@date-fns/date-fns-db'
-import { filterPreReleaseVersions, getLatestVersion, sortVersions } from 'utils/versions'
+import { filterPreReleaseVersions, getLatestVersion, sortVersions } from '~/utils/versions'
 
 interface Props {
   // TODO: rename to currentVersion

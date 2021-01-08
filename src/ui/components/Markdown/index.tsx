@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { Remarkable } from 'remarkable'
-import { remarkableTree } from 'utils/remarkableTree'
+import { remarkableTree } from '~/utils/remarkableTree'
 import { renderTree } from './utils'
 
 const md = new Remarkable({

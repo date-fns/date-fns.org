@@ -1,4 +1,4 @@
-import { CSSComponent } from 'types/decss'
+import { CSSComponent } from '~/types/decss'
 
 export const enum IconType {
   modular = 'modular',

@@ -1,5 +1,5 @@
-import { useJSON } from 'utils/useJSON'
-import { RequestHookResult } from 'types/hooks'
+import { useJSON } from '~/utils/useJSON'
+import { RequestHookResult } from '~/types/hooks'
 import {
   isSilver,
   isBronze,

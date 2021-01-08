@@ -3,7 +3,7 @@ import { VersionPreview } from '@date-fns/date-fns-db'
 import { Selector, Label, Select } from './style.css'
 import { VersionOption } from './VersionOption'
 import { useContext } from 'preact/hooks'
-import { RouterContext } from 'ui/router'
+import { RouterContext } from '~/ui/router'
 import { LatestVersionLink } from './LatestVersionLink'
 
 interface Props {

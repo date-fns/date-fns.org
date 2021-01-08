@@ -1,5 +1,5 @@
-import { PagePreview } from "db"
-import { Submodule } from "types/submodule"
+import { PagePreview } from '@date-fns/date-fns-db'
+import { Submodule } from '~/types/submodule'
 
 export function filterPages (pages: PagePreview[], dirtyQuery: string, selectedSubmodule: Submodule) {
   if (dirtyQuery) {

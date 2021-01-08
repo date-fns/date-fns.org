@@ -1,5 +1,5 @@
-import { CSSComponent, CSSPreactComponent } from 'types/decss'
-import { RouterLink } from 'ui/router'
+import { CSSComponent, CSSPreactComponent } from '~/types/decss'
+import { RouterLink } from '~/ui/router'
 
 export const Container: CSSComponent
 export const Loading: CSSComponent

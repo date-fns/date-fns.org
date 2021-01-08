@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { RouterLink, AppRouteRef } from 'ui/router'
+import { RouterLink, AppRouteRef } from '~/ui/router'
 import { Action } from './style.css'
 
 interface Props {

@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { RouterLink } from 'ui/router'
+import { RouterLink } from '~/ui/router'
 import { LatestLink } from './style.css'
 
 interface Props {

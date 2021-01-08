@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { HotModuleReplacementPlugin } = require('webpack')
 
 module.exports = getConfig({
-  tsConfig: getPath('config/tsconfig.client.json'),
+  tsConfig: getPath('tsconfig.client.json'),
   entry: getPath('src/client/index.tsx'),
   output: {
     filename: 'script.js',
@@ -37,7 +37,7 @@ module.exports = getConfig({
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: getPath('src/server/template.ejs')
+      template: getPath('src/assets/template.ejs')
     }),
     new HotModuleReplacementPlugin()
   ]

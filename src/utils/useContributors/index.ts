@@ -1,5 +1,5 @@
-import { useJSON } from 'utils/useJSON'
-import { RequestHookResult } from 'types/hooks'
+import { useJSON } from '~/utils/useJSON'
+import { RequestHookResult } from '~/types/hooks'
 
 const CONTRIBUTORS_URL = 'https://november-experiment.web.app/api/contributors'
 

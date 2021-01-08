@@ -1,9 +1,9 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { MigratedDocUsage } from 'db/migratedDoc'
+import { MigratedDocUsage } from '@date-fns/date-fns-db'
 import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
-import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
+import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'

@@ -3,8 +3,7 @@
   "compilerOptions": {
     "lib": ["es6"],
     "module": "commonjs",
-    "target": "es6",
-    "baseUrl": "../src"
+    "target": "es6"
   },
   "exclude": ["src/client"]
 }

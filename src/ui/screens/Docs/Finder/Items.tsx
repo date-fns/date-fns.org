@@ -1,6 +1,6 @@
 import { h, FunctionComponent, Fragment } from 'preact'
 import { PagePreview } from '@date-fns/date-fns-db'
-import { RouterLink } from 'ui/router'
+import { RouterLink } from '~/ui/router'
 import { Item, ItemHeader, ItemText, ItemIcon } from './style.css'
 
 interface Props {

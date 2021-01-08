@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
-import { Code } from 'ui/components/Code'
-import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
+import { Code } from '~/ui/components/Code'
+import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 interface Props {
   syntax: string

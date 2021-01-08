@@ -1,9 +1,9 @@
 import { h } from 'preact'
 import { useContext } from 'preact/hooks'
-import { RouterContext } from 'ui/router'
-import { Home } from 'ui/screens/Home'
-import { Docs } from 'ui/screens/Docs'
-import { NotFound } from 'ui/screens/NotFound'
+import { RouterContext } from '~/ui/router'
+import { Home } from '~/ui/screens/Home'
+import { Docs } from '~/ui/screens/Docs'
+import { NotFound } from '~/ui/screens/NotFound'
 import 'reset.css/reset.css?global'
 import './global.css?global'
 

@@ -1,7 +1,7 @@
 import { h } from 'preact'
-import { HomeBlock, HomeAction, HomeExternalLink } from 'ui/components/Home'
+import { HomeBlock, HomeAction, HomeExternalLink } from '~/ui/components/Home'
 import { List, Item, LinkContent, Avatar, Name } from './style.css'
-import { useContributors } from 'utils/useContributors'
+import { useContributors } from '~/utils/useContributors'
 
 export const Contributors = () => {
   const [contributors, { loading }] = useContributors()

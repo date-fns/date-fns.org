@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { RouterLink } from 'ui/router'
+import { RouterLink } from '~/ui/router'
 import { Container, Inner, Logo, LogoImage, Links, Link } from './style.css'
 import logoPath from './img/logo.svg'
 import { VersionPreview } from '@date-fns/date-fns-db'

@@ -56,13 +56,6 @@ rules:
   # deployed.
   no-implicit-dependencies:
     - true
-    -
-      - ui
-      - client
-      - server
-      - utils
-      - types
-      - common
 
   # The 'this' keyword can only be used inside of classes.
   no-invalid-this: true

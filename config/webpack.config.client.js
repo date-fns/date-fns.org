@@ -1,7 +1,7 @@
 const { getPath, getConfig } = require('./utils/webpack')
 
 module.exports = getConfig({
-  tsConfig: getPath('config/tsconfig.client.json'),
+  tsConfig: getPath('tsconfig.client.json'),
   entry: getPath('src/client/index.tsx'),
   output: {
     filename: 'script.js',

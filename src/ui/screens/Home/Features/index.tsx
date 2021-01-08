@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { HomeBlock } from 'ui/components/Home'
+import { HomeBlock } from '~/ui/components/Home'
 import {
   List,
   Item,

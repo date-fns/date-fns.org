@@ -4,7 +4,6 @@
     "lib": ["es6", "dom"],
     "module": "es6",
     "target": "es5",
-    "baseUrl": "../src"
   },
   "exclude": ["src/server"]
 }

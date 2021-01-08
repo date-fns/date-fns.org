@@ -1,8 +1,8 @@
 import { h, FunctionComponent } from 'preact'
 import { getUrlIdFromText, renderTree } from './utils'
-import { MarkdownCode } from 'ui/components/MarkdownCode'
-import { RouterLink } from 'ui/router'
-import { DocHeaderAnchor } from 'ui/components/DocHeaderAnchor'
+import { MarkdownCode } from '~/ui/components/MarkdownCode'
+import { RouterLink } from '~/ui/router'
+import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 type FIXME = any
 

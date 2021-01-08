@@ -2,13 +2,13 @@ import 'isomorphic-fetch'
 import { https } from 'firebase-functions'
 import { h, FunctionComponent } from 'preact'
 import render from 'preact-render-to-string'
-// import { UI } from 'ui'
-import template from 'server/template.ejs'
-// import { RouterContext, useRouter } from 'ui/router'
+// import { UI } from '~/ui'
+import template from '~/assets/template.ejs'
+// import { RouterContext, useRouter } from '~/ui/router'
 import express from 'express'
-import { requestGraphQL, getJSON } from 'utils/request'
+import { requestGraphQL, getJSON } from '~/utils/request'
 import sponsorsQuery from './sponsorsQuery.graphql'
-import { OPEN_COLLECTIVE_API_KEY } from 'common/keys'
+import { OPEN_COLLECTIVE_API_KEY } from '~/common/keys'
 import cors from 'cors'
 import { cache } from './cache'
 
@@ -45,7 +45,8 @@ server.get('*', (req, res) => {
 
   res.send(template({
     body,
-    entry: '/static/script.js'
+    entry: '/static/script.js',
+    env: process.env.NODE_ENV,
   }))
 })
 

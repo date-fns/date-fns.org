@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { Markdown } from 'ui/components/Markdown'
+import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
   markdown: string

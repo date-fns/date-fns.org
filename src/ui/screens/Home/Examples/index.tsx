@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
-import { Code } from 'ui/components/Code'
-import { HomeBlock } from 'ui/components/Home'
+import { Code } from '~/ui/components/Code'
+import { HomeBlock } from '~/ui/components/Home'
 // TODO: import { trackAction } from 'app/acts/tracking_acts'
 // import classnames from 'classnames'
 

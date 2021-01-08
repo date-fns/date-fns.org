@@ -2,7 +2,7 @@ const { getPath, getConfig } = require('./utils/webpack')
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = getConfig({
-  tsConfig: getPath('config/tsconfig.server.json'),
+  tsConfig: getPath('tsconfig.server.json'),
   entry: getPath('src/server/index.tsx'),
   output: {
     filename: 'index.js',

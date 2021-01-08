@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { Code } from 'ui/components/Code'
+import { Code } from '~/ui/components/Code'
 
 interface Props {
   value: string
