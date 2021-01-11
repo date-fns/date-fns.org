@@ -3,7 +3,6 @@ import { NavBar } from './NavBar'
 import { Finder } from './Finder'
 import { Doc } from './Doc'
 import { Container, Content, Loading } from './style.css'
-import { useState } from 'preact/hooks'
 import { useQuery } from '@typesaurus/preact'
 import { where } from 'typesaurus'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
@@ -16,13 +15,13 @@ import {
 interface Props {
   selectedSubmodule: Submodule
   selectedVersion?: string
-  selectedDoc: string
+  selectedPage: string
 }
 
 export const Docs: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedVersion: urlSelectedVersion,
-  selectedDoc,
+  selectedPage,
 }) => {
   const [packages, { loading }] = useQuery(db.packages, [
     where('name', '==', PACKAGE_NAME),
@@ -38,7 +37,7 @@ export const Docs: FunctionComponent<Props> = ({
         <NavBar
           selectedVersion={selectedVersion}
           latestVersion={latestVersion}
-          selectedDoc={selectedDoc}
+          selectedPage={selectedPage}
           versions={sortVersions(
             filterPreReleaseVersions(dateFnsPackage.versions)
           )}
@@ -48,7 +47,7 @@ export const Docs: FunctionComponent<Props> = ({
         <div>
           <Finder
             selectedVersion={selectedVersion}
-            selectedDoc={selectedDoc}
+            selectedPage={selectedPage}
             selectedSubmodule={selectedSubmodule}
           />
         </div>
@@ -56,7 +55,7 @@ export const Docs: FunctionComponent<Props> = ({
         <Content>
           <Doc
             selectedVersion={selectedVersion}
-            selectedDoc={selectedDoc}
+            selectedPage={selectedPage}
             selectedSubmodule={selectedSubmodule}
           />
         </Content>

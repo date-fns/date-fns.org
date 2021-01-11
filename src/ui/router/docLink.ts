@@ -1,23 +1,28 @@
 import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
 import { AppRouteRef } from '~/ui/router'
 
-export function docLink(
-  doc: string,
-  submodule: Submodule,
+export interface DocLinkParams {
+  page: string
+  submodule?: Submodule
   version?: string
-): AppRouteRef {
-  if (submodule === DEFAULT_SUBMODULE) {
+}
+export function docLink({
+  page,
+  submodule,
+  version,
+}: DocLinkParams): AppRouteRef {
+  if (!submodule || submodule === DEFAULT_SUBMODULE) {
     return version
       ? {
           name: 'versionDocs',
           params: {
-            doc,
+            page,
             version,
           },
         }
       : {
           name: 'docs',
-          params: { doc },
+          params: { page },
         }
   }
 
@@ -25,7 +30,7 @@ export function docLink(
     ? {
         name: 'submoduleVersionDocs',
         params: {
-          doc,
+          page,
           version,
           submodule,
         },
@@ -33,7 +38,7 @@ export function docLink(
     : {
         name: 'submoduleDocs',
         params: {
-          doc,
+          page,
           submodule,
         },
       }

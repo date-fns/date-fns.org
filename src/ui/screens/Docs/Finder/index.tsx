@@ -20,14 +20,14 @@ type FIXME = any
 
 interface Props {
   selectedVersion: string
-  selectedDoc: string
+  selectedPage: string
   selectedSubmodule: Submodule
 }
 
 export const Finder: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedVersion,
-  selectedDoc,
+  selectedPage,
 }) => {
   const [query, setQuery] = useState('')
 
@@ -76,7 +76,7 @@ export const Finder: FunctionComponent<Props> = ({
             categories={categories}
             selectedVersion={selectedVersion}
             selectedSubmodule={selectedSubmodule}
-            selectedDoc={selectedDoc}
+            selectedPage={selectedPage}
           />
         )}
 

@@ -8,7 +8,7 @@ interface Props {
   pages: PagePreview[]
   selectedVersion: string
   selectedSubmodule: Submodule
-  selectedDoc: string
+  selectedPage: string
 }
 
 export const Categories: FunctionComponent<Props> = ({
@@ -16,7 +16,7 @@ export const Categories: FunctionComponent<Props> = ({
   pages,
   selectedVersion,
   selectedSubmodule,
-  selectedDoc,
+  selectedPage,
 }) => (
   <CategoriesList tag="ul">
     {categories.map((category) => {
@@ -35,7 +35,7 @@ export const Categories: FunctionComponent<Props> = ({
               pages={categoryPages}
               selectedVersion={selectedVersion}
               selectedSubmodule={selectedSubmodule}
-              selectedDoc={selectedDoc}
+              selectedPage={selectedPage}
             />
           </div>
         </Category>

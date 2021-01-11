@@ -3,7 +3,6 @@ import { HomeBlock, HomeAction, HomeExternalLink } from '~/ui/components/Home'
 import { List, Item, LinkContent, Avatar, Name } from './style.css'
 import { useContributors } from '~/utils/useContributors'
 import { docLink } from '~/ui/router/docLink'
-import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
 export const Contributors = () => {
   const [contributors, { loading }] = useContributors()
@@ -12,7 +11,7 @@ export const Contributors = () => {
     <HomeBlock
       header="Contributors"
       actions={
-        <HomeAction to={docLink('Contributing', DEFAULT_SUBMODULE)}>
+        <HomeAction to={docLink({ page: 'Contributing' })}>
           Contribute to date-fns
         </HomeAction>
       }

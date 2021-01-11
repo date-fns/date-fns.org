@@ -3,19 +3,8 @@ import { h } from 'preact'
 import { AnyNode } from '~/utils/remarkableTree'
 import { Node } from './Node'
 
-export function renderTree(
-  nodes: AnyNode[],
-  selectedSubmodule?: Submodule,
-  selectedVersion?: string
-) {
-  return nodes.map((node, index) => (
-    <Node
-      node={node}
-      selectedVersion={selectedVersion}
-      selectedSubmodule={selectedSubmodule}
-      key={index}
-    />
-  ))
+export function renderTree(nodes: AnyNode[]) {
+  return nodes.map((node, index) => <Node node={node} key={index} />)
 }
 
 export function getUrlIdFromText(node: AnyNode) {

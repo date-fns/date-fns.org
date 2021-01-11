@@ -9,7 +9,7 @@ import { docLink } from '~/ui/router/docLink'
 interface Props {
   selectedVersion: string
   latestVersion: string
-  selectedDoc: string
+  selectedPage: string
   selectedSubmodule: Submodule
   versions: VersionPreview[]
 }
@@ -19,7 +19,7 @@ type FIXME = any
 export const VersionSelector: FunctionComponent<Props> = ({
   selectedVersion,
   latestVersion,
-  selectedDoc,
+  selectedPage,
   selectedSubmodule,
   versions,
 }) => {
@@ -33,7 +33,13 @@ export const VersionSelector: FunctionComponent<Props> = ({
         tag="select"
         value={selectedVersion}
         onChange={(e: FIXME) =>
-          navigate(docLink(selectedDoc, selectedSubmodule, e.target.value))
+          navigate(
+            docLink({
+              page: selectedPage,
+              submodule: selectedSubmodule,
+              version: e.target.value,
+            })
+          )
         }
       >
         {versions.map(({ version }) => (
@@ -47,7 +53,7 @@ export const VersionSelector: FunctionComponent<Props> = ({
         <LatestVersionLink
           latestVersion={latestVersion}
           selectedSubmodule={selectedSubmodule}
-          selectedDoc={selectedDoc}
+          selectedPage={selectedPage}
         />
       )}
     </Selector>

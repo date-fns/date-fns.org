@@ -9,15 +9,9 @@ import { OptionalLabel, PropsLabel } from './style.css'
 
 interface Props {
   params: MigratedDocParam[]
-  selectedSubmodule: Submodule
-  selectedVersion: string
 }
 
-export const DocParams: FunctionComponent<Props> = ({
-  params,
-  selectedSubmodule,
-  selectedVersion,
-}) => (
+export const DocParams: FunctionComponent<Props> = ({ params }) => (
   <>
     {params.map((param, index) => (
       <tr key={index}>
@@ -31,18 +25,8 @@ export const DocParams: FunctionComponent<Props> = ({
           <ParamType type={param.type} variable={param.variable} />
         </td>
         <td>
-          <Markdown
-            value={param.description}
-            selectedSubmodule={selectedSubmodule}
-            selectedVersion={selectedVersion}
-          />
-          {param.props && (
-            <ParamPropsTable
-              props={param.props}
-              selectedSubmodule={selectedSubmodule}
-              selectedVersion={selectedVersion}
-            />
-          )}
+          <Markdown value={param.description} />
+          {param.props && <ParamPropsTable props={param.props} />}
         </td>
       </tr>
     ))}
@@ -61,9 +45,7 @@ const ParamOptionalLabel: FunctionComponent<{
 
 const ParamPropsTable: FunctionComponent<{
   props: MigratedDocParam[]
-  selectedSubmodule: Submodule
-  selectedVersion: string
-}> = ({ props, selectedSubmodule, selectedVersion }) => (
+}> = ({ props }) => (
   <div>
     <PropsLabel>Properties:</PropsLabel>
 
@@ -77,11 +59,7 @@ const ParamPropsTable: FunctionComponent<{
       </thead>
 
       <tbody>
-        <DocParams
-          params={props}
-          selectedSubmodule={selectedSubmodule}
-          selectedVersion={selectedVersion}
-        />
+        <DocParams params={props} />
       </tbody>
     </table>
   </div>

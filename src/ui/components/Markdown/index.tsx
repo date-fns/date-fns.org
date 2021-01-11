@@ -10,26 +10,16 @@ const md = new Remarkable({
 
 interface Props {
   value: string
-  selectedSubmodule?: Submodule
-  selectedVersion?: string
 }
 
-export const Markdown: FunctionComponent<Props> = ({
-  value,
-  selectedSubmodule,
-  selectedVersion,
-}) => {
+export const Markdown: FunctionComponent<Props> = ({ value }) => {
   // Replace JSDoc-style links with markdown links
   const valueWithFixedLinks = value
     ? value.replace(/\[([^\]]+)\]{@link ([^}]+)}/g, '[$1]($2)')
     : ''
 
   const tree = remarkableTree(md.parse(valueWithFixedLinks, {}))
-  const result = renderTree(
-    tree,
-    selectedSubmodule ?? DEFAULT_SUBMODULE,
-    selectedVersion
-  )
+  const result = renderTree(tree)
 
   // Render single node as is
   if (result.length === 1) {

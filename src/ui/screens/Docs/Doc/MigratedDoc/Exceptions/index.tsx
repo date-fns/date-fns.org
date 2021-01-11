@@ -5,15 +5,9 @@ import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
   exceptions: MigratedDocTypedAttribute[]
-  selectedSubmodule: Submodule
-  selectedVersion: string
 }
 
-export const Exceptions: FunctionComponent<Props> = ({
-  exceptions,
-  selectedSubmodule,
-  selectedVersion,
-}) => (
+export const Exceptions: FunctionComponent<Props> = ({ exceptions }) => (
   <section>
     <h2 id="exceptions">
       Exceptions
@@ -33,11 +27,7 @@ export const Exceptions: FunctionComponent<Props> = ({
           <tr key={index}>
             <td>{exception.type.names.join(' | ')}</td>
             <td>
-              <Markdown
-                value={exception.description}
-                selectedSubmodule={selectedSubmodule}
-                selectedVersion={selectedVersion}
-              />
+              <Markdown value={exception.description} />
             </td>
           </tr>
         ))}

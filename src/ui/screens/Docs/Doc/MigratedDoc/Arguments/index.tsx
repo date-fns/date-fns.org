@@ -1,19 +1,13 @@
 import { h, FunctionComponent } from 'preact'
-import { MigratedDocParam, Submodule } from '@date-fns/date-fns-db'
+import { MigratedDocParam } from '@date-fns/date-fns-db'
 import { DocParams } from '~/ui/components/DocParams'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 interface Props {
   args: MigratedDocParam[]
-  selectedSubmodule: Submodule
-  selectedVersion: string
 }
 
-export const Arguments: FunctionComponent<Props> = ({
-  args,
-  selectedVersion,
-  selectedSubmodule,
-}) => (
+export const Arguments: FunctionComponent<Props> = ({ args }) => (
   <section>
     <h2 id="arguments">
       Arguments
@@ -30,11 +24,7 @@ export const Arguments: FunctionComponent<Props> = ({
       </thead>
 
       <tbody>
-        <DocParams
-          params={args}
-          selectedVersion={selectedVersion}
-          selectedSubmodule={selectedSubmodule}
-        />
+        <DocParams params={args} />
       </tbody>
     </table>
   </section>

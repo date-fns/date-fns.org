@@ -9,7 +9,7 @@ import { SubmoduleSelector } from './SubmoduleSelector'
 interface Props {
   selectedVersion: string
   latestVersion: string
-  selectedDoc: string
+  selectedPage: string
   versions: VersionPreview[]
   selectedSubmodule: Submodule
 }
@@ -17,7 +17,7 @@ interface Props {
 export const NavBar: FunctionComponent<Props> = ({
   versions,
   selectedVersion,
-  selectedDoc,
+  selectedPage,
   latestVersion,
   selectedSubmodule,
 }) => (
@@ -46,14 +46,14 @@ export const NavBar: FunctionComponent<Props> = ({
         <VersionSelector
           selectedVersion={selectedVersion}
           latestVersion={latestVersion}
-          selectedDoc={selectedDoc}
+          selectedPage={selectedPage}
           selectedSubmodule={selectedSubmodule}
           versions={versions}
         />
 
         <SubmoduleSelector
           selectedSubmodule={selectedSubmodule}
-          selectedDoc={selectedDoc}
+          selectedPage={selectedPage}
           selectedVersion={selectedVersion}
         />
       </div>

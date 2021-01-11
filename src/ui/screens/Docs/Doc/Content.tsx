@@ -6,31 +6,13 @@ import { MarkdownDoc } from './MarkdownDoc'
 
 interface Props {
   page: Page
-  selectedSubmodule: Submodule
-  selectedVersion: string
 }
 
-export const Content: FunctionComponent<Props> = ({
-  page,
-  selectedSubmodule,
-  selectedVersion,
-}) => {
+export const Content: FunctionComponent<Props> = ({ page }) => {
   switch (page.type) {
     case 'migrated':
-      return (
-        <MigratedDoc
-          doc={parse(page.doc)}
-          selectedSubmodule={selectedSubmodule}
-          selectedVersion={selectedVersion}
-        />
-      )
+      return <MigratedDoc doc={parse(page.doc)} />
     case 'markdown':
-      return (
-        <MarkdownDoc
-          markdown={page.markdown}
-          selectedSubmodule={selectedSubmodule}
-          selectedVersion={selectedVersion}
-        />
-      )
+      return <MarkdownDoc markdown={page.markdown} />
   }
 }

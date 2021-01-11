@@ -6,7 +6,7 @@ import { Docs } from '~/ui/screens/Docs'
 import { NotFound } from '~/ui/screens/NotFound'
 import 'reset.css/reset.css?global'
 import './global.css?global'
-import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
+import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
 export const UI = () => {
   const { location } = useContext(RouterContext)
@@ -19,7 +19,7 @@ export const UI = () => {
       return (
         <Docs
           selectedSubmodule={DEFAULT_SUBMODULE}
-          selectedDoc={location.params.doc}
+          selectedPage={location.params.page}
         />
       )
 
@@ -27,7 +27,7 @@ export const UI = () => {
       return (
         <Docs
           selectedSubmodule={location.params.submodule}
-          selectedDoc={location.params.doc}
+          selectedPage={location.params.page}
         />
       )
 
@@ -35,7 +35,7 @@ export const UI = () => {
       return (
         <Docs
           selectedSubmodule={DEFAULT_SUBMODULE}
-          selectedDoc={location.params.doc}
+          selectedPage={location.params.page}
           selectedVersion={location.params.version}
         />
       )
@@ -44,7 +44,7 @@ export const UI = () => {
       return (
         <Docs
           selectedSubmodule={location.params.submodule}
-          selectedDoc={location.params.doc}
+          selectedPage={location.params.page}
           selectedVersion={location.params.version}
         />
       )

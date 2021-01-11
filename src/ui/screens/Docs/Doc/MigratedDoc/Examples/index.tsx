@@ -3,20 +3,13 @@ import { Code } from '~/ui/components/Code'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { CodeContainer } from './style.css'
 import isArray from 'lodash/isArray'
-import { Submodule } from '@date-fns/date-fns-db'
 import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
   examples: string[] | string
-  selectedSubmodule: Submodule
-  selectedVersion: string
 }
 
-export const Examples: FunctionComponent<Props> = ({
-  examples,
-  selectedSubmodule,
-  selectedVersion,
-}) => (
+export const Examples: FunctionComponent<Props> = ({ examples }) => (
   <section>
     <h2 id="examples">
       Examples
@@ -38,11 +31,7 @@ export const Examples: FunctionComponent<Props> = ({
         )
       })
     ) : (
-      <Markdown
-        value={examples}
-        selectedSubmodule={selectedSubmodule}
-        selectedVersion={selectedVersion}
-      />
+      <Markdown value={examples} />
     )}
   </section>
 )

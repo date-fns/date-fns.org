@@ -8,22 +8,26 @@ interface Props {
   pages: PagePreview[]
   selectedVersion: string
   selectedSubmodule: Submodule
-  selectedDoc: string
+  selectedPage: string
 }
 
 export const Items: FunctionComponent<Props> = ({
   pages,
   selectedVersion,
   selectedSubmodule,
-  selectedDoc,
+  selectedPage,
 }) => (
   <>
     {pages.map((page) => (
       <Item
         key={page.slug}
         tag={RouterLink}
-        to={docLink(page.slug, selectedSubmodule, selectedVersion)}
-        isSelected={selectedDoc === page.slug}
+        to={docLink({
+          page: page.slug,
+          submodule: selectedSubmodule,
+          version: selectedVersion,
+        })}
+        isSelected={selectedPage === page.slug}
       >
         <div>
           <ItemHeader tag="h4">{page.title}</ItemHeader>

@@ -3,21 +3,21 @@ import { createRouter, InferRouteRef, route } from '@switcher/preact'
 
 export const appRoutes = [
   route('home', '/'),
-  route('docs', (params: { doc: string }) => `/docs/${params.doc}`),
+  route('docs', (params: { page: string }) => `/docs/${params.page}`),
   route(
     'versionDocs',
-    (params: { version: string; doc: string }) =>
-      `/${params.version}/docs/${params.doc}`
+    (params: { version: string; page: string }) =>
+      `/${params.version}/docs/${params.page}`
   ),
   route(
     'submoduleDocs',
-    (params: { submodule: Submodule; doc: string }) =>
-      `/docs/${params.submodule}/${params.doc}`
+    (params: { submodule: Submodule; page: string }) =>
+      `/docs/${params.submodule}/${params.page}`
   ),
   route(
     'submoduleVersionDocs',
-    (params: { submodule: Submodule; version: string; doc: string }) =>
-      `/${params.version}/docs/${params.submodule}/${params.doc}`
+    (params: { submodule: Submodule; version: string; page: string }) =>
+      `/${params.version}/docs/${params.submodule}/${params.page}`
   ),
 ]
 

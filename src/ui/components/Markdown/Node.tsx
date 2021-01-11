@@ -6,18 +6,16 @@ import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { AnyNode } from '~/utils/remarkableTree'
 import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
 import { docLink } from '~/ui/router/docLink'
+import { useContext } from 'preact/hooks'
+import { DocLinkContext } from '~/ui/router/DocLinkContext'
 
 interface Props {
   node: AnyNode
-  selectedVersion?: string
-  selectedSubmodule?: Submodule
 }
 
-export const Node: FunctionComponent<Props> = ({
-  node,
-  selectedVersion,
-  selectedSubmodule,
-}) => {
+export const Node: FunctionComponent<Props> = ({ node }) => {
+  const docLinkParams = useContext(DocLinkContext)
+
   switch (node.type) {
     case 'tag':
       const extraAttrs: { id?: string } = {}
@@ -34,19 +32,13 @@ export const Node: FunctionComponent<Props> = ({
         node.tagName === 'a' &&
         node.attrs.href?.startsWith('https://date-fns.org/docs/')
       ) {
-        const doc = node.attrs.href.replace('https://date-fns.org/docs/', '')
+        const page = node.attrs.href.replace('https://date-fns.org/docs/', '')
 
         // Check for the case if the link is exactly 'https://date-fns.org/docs/'
-        if (doc) {
+        if (page) {
           return (
-            <RouterLink
-              to={docLink(
-                doc,
-                selectedSubmodule ?? DEFAULT_SUBMODULE,
-                selectedVersion
-              )}
-            >
-              {renderTree(node.children, selectedSubmodule, selectedVersion)}
+            <RouterLink to={docLink({ ...docLinkParams, page })}>
+              {renderTree(node.children)}
             </RouterLink>
           )
         }
@@ -55,9 +47,7 @@ export const Node: FunctionComponent<Props> = ({
       return h(
         node.tagName,
         Object.assign({}, node.attrs, extraAttrs),
-        renderTree(node.children, selectedSubmodule, selectedVersion).concat(
-          extraChildren
-        )
+        renderTree(node.children).concat(extraChildren)
       )
 
     case 'text':

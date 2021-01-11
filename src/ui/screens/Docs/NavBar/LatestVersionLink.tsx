@@ -7,17 +7,21 @@ import { LatestLink } from './style.css'
 interface Props {
   latestVersion: string
   selectedSubmodule: Submodule
-  selectedDoc: string
+  selectedPage: string
 }
 
 export const LatestVersionLink: FunctionComponent<Props> = ({
   latestVersion,
   selectedSubmodule,
-  selectedDoc,
+  selectedPage,
 }) => (
   <LatestLink
     tag={RouterLink}
-    to={docLink(selectedDoc, selectedSubmodule, latestVersion)}
+    to={docLink({
+      page: selectedPage,
+      submodule: selectedSubmodule,
+      version: latestVersion,
+    })}
   >
     Switch to latest
   </LatestLink>

@@ -11,18 +11,11 @@ const DEFAULT_SOURCE = 'commonjs'
 interface Props {
   usage: MigratedDocUsage
   usageTabs: string[]
-  selectedVersion: string
-  selectedSubmodule: Submodule
 }
 
 type FIXME = any
 
-export const Usage: FunctionComponent<Props> = ({
-  usageTabs,
-  usage,
-  selectedVersion,
-  selectedSubmodule,
-}) => {
+export const Usage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
   const [source, setSource] = useState(DEFAULT_SOURCE)
 
   useEffect(() => {
@@ -74,12 +67,7 @@ export const Usage: FunctionComponent<Props> = ({
         })}
       </Options>
 
-      <Content
-        code={selectedUsage.code}
-        text={selectedUsage.text}
-        selectedVersion={selectedVersion}
-        selectedSubmodule={selectedSubmodule}
-      />
+      <Content code={selectedUsage.code} text={selectedUsage.text} />
     </section>
   )
 }

@@ -4,18 +4,8 @@ import { Submodule } from '@date-fns/date-fns-db'
 
 interface Props {
   markdown: string
-  selectedSubmodule: Submodule
-  selectedVersion: string
 }
 
-export const MarkdownDoc: FunctionComponent<Props> = ({
-  markdown,
-  selectedSubmodule,
-  selectedVersion,
-}) => (
-  <Markdown
-    value={markdown}
-    selectedSubmodule={selectedSubmodule}
-    selectedVersion={selectedVersion}
-  />
+export const MarkdownDoc: FunctionComponent<Props> = ({ markdown }) => (
+  <Markdown value={markdown} />
 )

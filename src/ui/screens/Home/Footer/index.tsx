@@ -4,13 +4,12 @@ import { HomeBlock } from '~/ui/components/Home'
 import { RouterLink } from '~/ui/router'
 import { Container, Row } from './style.css'
 import { docLink } from '~/ui/router/docLink'
-import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
 export const Footer = () => (
   <HomeBlock>
     <Container>
       <Row>
-        <RouterLink to={docLink(DEFAULT_PAGE, DEFAULT_SUBMODULE)}>
+        <RouterLink to={docLink({ page: DEFAULT_PAGE })}>
           Documentation
         </RouterLink>
       </Row>

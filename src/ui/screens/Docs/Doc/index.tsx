@@ -8,23 +8,23 @@ import { Content } from './Content'
 
 interface Props {
   selectedVersion: string
-  selectedDoc: string
+  selectedPage: string
   selectedSubmodule: Submodule
 }
 
 export const Doc: FunctionComponent<Props> = ({
-  selectedDoc,
+  selectedPage,
   selectedVersion,
   selectedSubmodule,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [selectedDoc, selectedVersion])
+  }, [selectedPage, selectedVersion])
 
   const [pages, { loading }] = useQuery(db.pages, [
     where('package', '==', PACKAGE_NAME),
     where('version', '==', selectedVersion),
-    where('slug', '==', selectedDoc),
+    where('slug', '==', selectedPage),
     where('submodules', 'array-contains', selectedSubmodule),
   ])
 
@@ -32,11 +32,7 @@ export const Doc: FunctionComponent<Props> = ({
     const page = pages[0].data
     return (
       <Container>
-        <Content
-          page={page}
-          selectedSubmodule={selectedSubmodule}
-          selectedVersion={selectedVersion}
-        />
+        <Content page={page} />
       </Container>
     )
   } else if (pages && pages.length === 0) {

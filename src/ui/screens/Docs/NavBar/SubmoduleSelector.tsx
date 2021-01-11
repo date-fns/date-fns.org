@@ -12,7 +12,7 @@ const SUBMODULE_LABELS: { [k in Submodule]: string } = {
 
 interface Props {
   selectedSubmodule: Submodule
-  selectedDoc: string
+  selectedPage: string
   selectedVersion: string
 }
 
@@ -20,7 +20,7 @@ type FIXME = any
 
 export const SubmoduleSelector: FunctionComponent<Props> = ({
   selectedSubmodule,
-  selectedDoc,
+  selectedPage,
   selectedVersion,
 }) => {
   const { navigate } = useContext(RouterContext)
@@ -33,7 +33,13 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
         tag="select"
         value={selectedSubmodule}
         onChange={(e: FIXME) =>
-          navigate(docLink(selectedDoc, e.target.value, selectedVersion))
+          navigate(
+            docLink({
+              page: selectedPage,
+              submodule: e.target.value,
+              version: selectedVersion,
+            })
+          )
         }
       >
         {SUBMODULES.map((submodule) => (
