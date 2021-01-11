@@ -5,16 +5,6 @@ function getPath(filename) {
 }
 
 function getConfig({ tsConfig, rules = [], ...rest }) {
-  const lintLoaders = [
-    {
-      loader: 'tslint-loader',
-      options: {
-        configFile: getPath('config/tslint.yaml'),
-        typeCheck: true,
-      },
-    },
-  ]
-
   const tsLoaders = [
     {
       loader: 'ts-loader',
@@ -54,13 +44,6 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
     devtool: 'inline-source-map',
     module: {
       rules: [
-        {
-          test: /\.tsx?$/,
-          enforce: 'pre',
-          exclude: /node_modules/,
-          use: lintLoaders,
-        },
-
         {
           test: /\.tsx?$/,
           use: tsLoaders,
