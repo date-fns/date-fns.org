@@ -1,15 +1,21 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { MigratedDocParam, MigratedDocType } from '@date-fns/date-fns-db'
+import {
+  MigratedDocParam,
+  MigratedDocType,
+  Submodule,
+} from '@date-fns/date-fns-db'
 import { Markdown } from '~/ui/components/Markdown'
 import { OptionalLabel, PropsLabel } from './style.css'
 
 interface Props {
   params: MigratedDocParam[]
+  selectedSubmodule: Submodule
   selectedVersion: string
 }
 
 export const DocParams: FunctionComponent<Props> = ({
   params,
+  selectedSubmodule,
   selectedVersion,
 }) => (
   <>
@@ -27,11 +33,13 @@ export const DocParams: FunctionComponent<Props> = ({
         <td>
           <Markdown
             value={param.description}
+            selectedSubmodule={selectedSubmodule}
             selectedVersion={selectedVersion}
           />
           {param.props && (
             <ParamPropsTable
               props={param.props}
+              selectedSubmodule={selectedSubmodule}
               selectedVersion={selectedVersion}
             />
           )}
@@ -53,8 +61,9 @@ const ParamOptionalLabel: FunctionComponent<{
 
 const ParamPropsTable: FunctionComponent<{
   props: MigratedDocParam[]
+  selectedSubmodule: Submodule
   selectedVersion: string
-}> = ({ props, selectedVersion }) => (
+}> = ({ props, selectedSubmodule, selectedVersion }) => (
   <div>
     <PropsLabel>Properties:</PropsLabel>
 
@@ -68,7 +77,11 @@ const ParamPropsTable: FunctionComponent<{
       </thead>
 
       <tbody>
-        <DocParams params={props} selectedVersion={selectedVersion} />
+        <DocParams
+          params={props}
+          selectedSubmodule={selectedSubmodule}
+          selectedVersion={selectedVersion}
+        />
       </tbody>
     </table>
   </div>

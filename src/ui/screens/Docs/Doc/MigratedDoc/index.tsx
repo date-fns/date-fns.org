@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import { Markdown } from '~/ui/components/Markdown'
 import { Header } from './style.css'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { MigratedDocFunction } from '@date-fns/date-fns-db'
+import { MigratedDocFunction, Submodule } from '@date-fns/date-fns-db'
 import { Usage } from './Usage'
 import { Syntax } from './Syntax'
 import { Arguments } from './Arguments'
@@ -13,11 +13,13 @@ import { Examples } from './Examples'
 
 interface Props {
   doc: MigratedDocFunction
+  selectedSubmodule: Submodule
   selectedVersion: string
 }
 
 export const MigratedDoc: FunctionComponent<Props> = ({
   doc,
+  selectedSubmodule,
   selectedVersion,
 }) => (
   <div>
@@ -33,6 +35,7 @@ export const MigratedDoc: FunctionComponent<Props> = ({
 
       <Markdown
         value={doc.content.description}
+        selectedSubmodule={selectedSubmodule}
         selectedVersion={selectedVersion}
       />
     </section>
@@ -41,31 +44,45 @@ export const MigratedDoc: FunctionComponent<Props> = ({
       <Usage
         usage={doc.usage}
         usageTabs={doc.usageTabs}
+        selectedSubmodule={selectedSubmodule}
         selectedVersion={selectedVersion}
       />
     )}
     {doc.syntax && <Syntax syntax={doc.syntax} />}
     {doc.args && doc.args.length > 0 && (
-      <Arguments args={doc.args} selectedVersion={selectedVersion} />
+      <Arguments
+        args={doc.args}
+        selectedSubmodule={selectedSubmodule}
+        selectedVersion={selectedVersion}
+      />
     )}
     {doc.content.properties && doc.content.properties.length > 0 && (
       <Properties
         properties={doc.content.properties}
+        selectedSubmodule={selectedSubmodule}
         selectedVersion={selectedVersion}
       />
     )}
     {doc.content.returns && (
       <Returns
         returns={doc.content.returns}
+        selectedSubmodule={selectedSubmodule}
         selectedVersion={selectedVersion}
       />
     )}
     {doc.content.exceptions && (
       <Exceptions
         exceptions={doc.content.exceptions}
+        selectedSubmodule={selectedSubmodule}
         selectedVersion={selectedVersion}
       />
     )}
-    {doc.content.examples && <Examples examples={doc.content.examples} />}
+    {doc.content.examples && (
+      <Examples
+        examples={doc.content.examples}
+        selectedSubmodule={selectedSubmodule}
+        selectedVersion={selectedVersion}
+      />
+    )}
   </div>
 )

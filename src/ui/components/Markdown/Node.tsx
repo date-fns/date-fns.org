@@ -4,13 +4,20 @@ import { MarkdownCode } from '~/ui/components/MarkdownCode'
 import { RouterLink } from '~/ui/router'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { AnyNode } from '~/utils/remarkableTree'
+import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
+import { docLink } from '~/ui/router/docLink'
 
 interface Props {
   node: AnyNode
   selectedVersion?: string
+  selectedSubmodule?: Submodule
 }
 
-export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
+export const Node: FunctionComponent<Props> = ({
+  node,
+  selectedVersion,
+  selectedSubmodule,
+}) => {
   switch (node.type) {
     case 'tag':
       const extraAttrs: { id?: string } = {}
@@ -33,19 +40,13 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
         if (doc) {
           return (
             <RouterLink
-              to={
+              to={docLink(
+                doc,
+                selectedSubmodule ?? DEFAULT_SUBMODULE,
                 selectedVersion
-                  ? {
-                      name: 'versionDocs',
-                      params: { doc, version: selectedVersion },
-                    }
-                  : {
-                      name: 'docs',
-                      params: { doc },
-                    }
-              }
+              )}
             >
-              {renderTree(node.children, selectedVersion)}
+              {renderTree(node.children, selectedSubmodule, selectedVersion)}
             </RouterLink>
           )
         }
@@ -54,7 +55,9 @@ export const Node: FunctionComponent<Props> = ({ node, selectedVersion }) => {
       return h(
         node.tagName,
         Object.assign({}, node.attrs, extraAttrs),
-        renderTree(node.children, selectedVersion).concat(extraChildren)
+        renderTree(node.children, selectedSubmodule, selectedVersion).concat(
+          extraChildren
+        )
       )
 
     case 'text':

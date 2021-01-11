@@ -3,12 +3,14 @@ import { h } from 'preact'
 import { HomeBlock } from '~/ui/components/Home'
 import { RouterLink } from '~/ui/router'
 import { Container, Row } from './style.css'
+import { docLink } from '~/ui/router/docLink'
+import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
 export const Footer = () => (
   <HomeBlock>
     <Container>
       <Row>
-        <RouterLink to={{ name: 'docs', params: { doc: DEFAULT_PAGE } }}>
+        <RouterLink to={docLink(DEFAULT_PAGE, DEFAULT_SUBMODULE)}>
           Documentation
         </RouterLink>
       </Row>

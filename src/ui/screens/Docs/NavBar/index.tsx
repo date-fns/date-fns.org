@@ -2,14 +2,16 @@ import { h, FunctionComponent } from 'preact'
 import { RouterLink } from '~/ui/router'
 import { Container, Inner, Logo, LogoImage, Links, Link } from './style.css'
 import logoPath from './img/logo.svg'
-import { VersionPreview } from '@date-fns/date-fns-db'
+import { Submodule, VersionPreview } from '@date-fns/date-fns-db'
 import { VersionSelector } from './VersionSelector'
+import { SubmoduleSelector } from './SubmoduleSelector'
 
 interface Props {
   selectedVersion: string
   latestVersion: string
   selectedDoc: string
   versions: VersionPreview[]
+  selectedSubmodule: Submodule
 }
 
 export const NavBar: FunctionComponent<Props> = ({
@@ -17,6 +19,7 @@ export const NavBar: FunctionComponent<Props> = ({
   selectedVersion,
   selectedDoc,
   latestVersion,
+  selectedSubmodule,
 }) => (
   <Container>
     <Inner>
@@ -44,19 +47,15 @@ export const NavBar: FunctionComponent<Props> = ({
           selectedVersion={selectedVersion}
           latestVersion={latestVersion}
           selectedDoc={selectedDoc}
+          selectedSubmodule={selectedSubmodule}
           versions={versions}
         />
 
-        {/* 
-        FIXME:
         <SubmoduleSelector
-          docId={docId}
-          docs={docs}
           selectedSubmodule={selectedSubmodule}
+          selectedDoc={selectedDoc}
           selectedVersion={selectedVersion}
-          selectedVersionTag={selectedVersionTag}
-          routeData={routeData}
-        /> */}
+        />
       </div>
     </Inner>
   </Container>

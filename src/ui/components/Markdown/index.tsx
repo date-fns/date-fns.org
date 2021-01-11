@@ -1,3 +1,4 @@
+import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
 import { h, FunctionComponent } from 'preact'
 import { Remarkable } from 'remarkable'
 import { remarkableTree } from '~/utils/remarkableTree'
@@ -9,11 +10,13 @@ const md = new Remarkable({
 
 interface Props {
   value: string
+  selectedSubmodule?: Submodule
   selectedVersion?: string
 }
 
 export const Markdown: FunctionComponent<Props> = ({
   value,
+  selectedSubmodule,
   selectedVersion,
 }) => {
   // Replace JSDoc-style links with markdown links
@@ -22,7 +25,11 @@ export const Markdown: FunctionComponent<Props> = ({
     : ''
 
   const tree = remarkableTree(md.parse(valueWithFixedLinks, {}))
-  const result = renderTree(tree, selectedVersion)
+  const result = renderTree(
+    tree,
+    selectedSubmodule ?? DEFAULT_SUBMODULE,
+    selectedVersion
+  )
 
   // Render single node as is
   if (result.length === 1) {

@@ -1,15 +1,17 @@
 import { h, FunctionComponent } from 'preact'
-import { MigratedDocTypedAttribute } from '@date-fns/date-fns-db'
+import { MigratedDocTypedAttribute, Submodule } from '@date-fns/date-fns-db'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
   returns: MigratedDocTypedAttribute[]
+  selectedSubmodule: Submodule
   selectedVersion: string
 }
 
 export const Returns: FunctionComponent<Props> = ({
   returns,
+  selectedSubmodule,
   selectedVersion,
 }) => (
   <section>
@@ -33,6 +35,7 @@ export const Returns: FunctionComponent<Props> = ({
             <td>
               <Markdown
                 value={returnData.description}
+                selectedSubmodule={selectedSubmodule}
                 selectedVersion={selectedVersion}
               />
             </td>

@@ -1,5 +1,4 @@
-import { PagePreview } from '@date-fns/date-fns-db'
-import { Submodule } from '~/types/submodule'
+import { PagePreview, Submodule } from '@date-fns/date-fns-db'
 
 export function filterPages(
   pages: PagePreview[],
@@ -19,13 +18,7 @@ export function filterPages(
     )
   }
 
-  return filteredPages.filter((page) => {
-    const { category, slug } = page
-
-    if (category === 'General' || category === 'Types') {
-      return true
-    } else {
-      return (selectedSubmodule === Submodule.FP) === slug.startsWith('fp')
-    }
-  })
+  return filteredPages.filter((page) =>
+    page.submodules.includes(selectedSubmodule)
+  )
 }

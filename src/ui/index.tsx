@@ -6,6 +6,7 @@ import { Docs } from '~/ui/screens/Docs'
 import { NotFound } from '~/ui/screens/NotFound'
 import 'reset.css/reset.css?global'
 import './global.css?global'
+import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
 
 export const UI = () => {
   const { location } = useContext(RouterContext)
@@ -15,11 +16,34 @@ export const UI = () => {
       return <Home />
 
     case 'docs':
-      return <Docs selectedDoc={location.params.doc} />
+      return (
+        <Docs
+          selectedSubmodule={DEFAULT_SUBMODULE}
+          selectedDoc={location.params.doc}
+        />
+      )
+
+    case 'submoduleDocs':
+      return (
+        <Docs
+          selectedSubmodule={location.params.submodule}
+          selectedDoc={location.params.doc}
+        />
+      )
 
     case 'versionDocs':
       return (
         <Docs
+          selectedSubmodule={DEFAULT_SUBMODULE}
+          selectedDoc={location.params.doc}
+          selectedVersion={location.params.version}
+        />
+      )
+
+    case 'submoduleVersionDocs':
+      return (
+        <Docs
+          selectedSubmodule={location.params.submodule}
           selectedDoc={location.params.doc}
           selectedVersion={location.params.version}
         />

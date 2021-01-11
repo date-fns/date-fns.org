@@ -1,10 +1,20 @@
+import { Submodule } from '@date-fns/date-fns-db'
 import { h } from 'preact'
 import { AnyNode } from '~/utils/remarkableTree'
 import { Node } from './Node'
 
-export function renderTree(nodes: AnyNode[], selectedVersion?: string) {
+export function renderTree(
+  nodes: AnyNode[],
+  selectedSubmodule?: Submodule,
+  selectedVersion?: string
+) {
   return nodes.map((node, index) => (
-    <Node node={node} selectedVersion={selectedVersion} key={index} />
+    <Node
+      node={node}
+      selectedVersion={selectedVersion}
+      selectedSubmodule={selectedSubmodule}
+      key={index}
+    />
   ))
 }
 

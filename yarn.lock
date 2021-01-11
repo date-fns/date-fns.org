@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@date-fns/date-fns-db@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@date-fns/date-fns-db/-/date-fns-db-0.0.9.tgz#ec2132787d6a50ba41d41245ba8f27dd7cd9e3e7"
-  integrity sha512-NrNoA5YMKkd1Yt/6MmF+hk9vg4VrURG9Vy2p+BOw1D30XFoaPQiT5Erz8TB/oOhOvbU+Glu4JkjSqwSS8sP4Zg==
+"@date-fns/date-fns-db@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@date-fns/date-fns-db/-/date-fns-db-0.0.11.tgz#03889aaa6814f552e2b6dcb4926d4649d6c1abb4"
+  integrity sha512-vwhM82ukhwFvXifJBOXJW/wz6NkpdcfRgdRSSrCSNh6Qaq8hf9GPUOBhhNiEEvW/f16J4kobGcBNPsGs9wg4YQ==
 
 "@firebase/analytics-types@0.4.0":
   version "0.4.0"

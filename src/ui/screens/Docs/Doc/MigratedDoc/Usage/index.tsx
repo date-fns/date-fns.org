@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { MigratedDocUsage } from '@date-fns/date-fns-db'
+import { MigratedDocUsage, Submodule } from '@date-fns/date-fns-db'
 import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
@@ -12,6 +12,7 @@ interface Props {
   usage: MigratedDocUsage
   usageTabs: string[]
   selectedVersion: string
+  selectedSubmodule: Submodule
 }
 
 type FIXME = any
@@ -20,6 +21,7 @@ export const Usage: FunctionComponent<Props> = ({
   usageTabs,
   usage,
   selectedVersion,
+  selectedSubmodule,
 }) => {
   const [source, setSource] = useState(DEFAULT_SOURCE)
 
@@ -76,6 +78,7 @@ export const Usage: FunctionComponent<Props> = ({
         code={selectedUsage.code}
         text={selectedUsage.text}
         selectedVersion={selectedVersion}
+        selectedSubmodule={selectedSubmodule}
       />
     </section>
   )

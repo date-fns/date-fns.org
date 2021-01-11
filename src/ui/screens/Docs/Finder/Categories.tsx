@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { PagePreview } from '@date-fns/date-fns-db'
+import { PagePreview, Submodule } from '@date-fns/date-fns-db'
 import { Items } from './Items'
 import { CategoriesList, Category, CategoryHeader } from './style.css'
 
@@ -7,6 +7,7 @@ interface Props {
   categories: string[]
   pages: PagePreview[]
   selectedVersion: string
+  selectedSubmodule: Submodule
   selectedDoc: string
 }
 
@@ -14,6 +15,7 @@ export const Categories: FunctionComponent<Props> = ({
   categories,
   pages,
   selectedVersion,
+  selectedSubmodule,
   selectedDoc,
 }) => (
   <CategoriesList tag="ul">
@@ -32,6 +34,7 @@ export const Categories: FunctionComponent<Props> = ({
             <Items
               pages={categoryPages}
               selectedVersion={selectedVersion}
+              selectedSubmodule={selectedSubmodule}
               selectedDoc={selectedDoc}
             />
           </div>

@@ -14,6 +14,8 @@ import {
 import logoPath from './img/logo.svg'
 import { RouterLink } from '~/ui/router'
 import { DEFAULT_PAGE } from '~/constants'
+import { docLink } from '~/ui/router/docLink'
+import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
 export const Promo = () => (
   <Outer>
@@ -34,7 +36,7 @@ export const Promo = () => (
       <GettingStarted>
         <GettingStartedLink
           tag={RouterLink}
-          to={{ name: 'docs', params: { doc: DEFAULT_PAGE } }}
+          to={docLink(DEFAULT_PAGE, DEFAULT_SUBMODULE)}
         >
           Documentation
         </GettingStartedLink>

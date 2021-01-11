@@ -1,3 +1,4 @@
+import { Submodule } from '@date-fns/date-fns-db'
 import { h, FunctionComponent } from 'preact'
 import { Code } from '~/ui/components/Code'
 import { Markdown } from '~/ui/components/Markdown'
@@ -5,12 +6,14 @@ import { Markdown } from '~/ui/components/Markdown'
 interface Props {
   code: string
   text?: string
+  selectedSubmodule: Submodule
   selectedVersion: string
 }
 
 export const Content: FunctionComponent<Props> = ({
   code,
   text,
+  selectedSubmodule,
   selectedVersion,
 }) => (
   <div>
@@ -25,7 +28,11 @@ export const Content: FunctionComponent<Props> = ({
     </div>
     {text && (
       <div>
-        <Markdown value={text} selectedVersion={selectedVersion} />
+        <Markdown
+          value={text}
+          selectedSubmodule={selectedSubmodule}
+          selectedVersion={selectedVersion}
+        />
       </div>
     )}
   </div>

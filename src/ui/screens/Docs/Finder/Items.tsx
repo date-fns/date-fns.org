@@ -1,17 +1,20 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { PagePreview } from '@date-fns/date-fns-db'
+import { PagePreview, Submodule } from '@date-fns/date-fns-db'
 import { RouterLink } from '~/ui/router'
 import { Item, ItemHeader, ItemText, ItemIcon } from './style.css'
+import { docLink } from '~/ui/router/docLink'
 
 interface Props {
   pages: PagePreview[]
   selectedVersion: string
+  selectedSubmodule: Submodule
   selectedDoc: string
 }
 
 export const Items: FunctionComponent<Props> = ({
   pages,
   selectedVersion,
+  selectedSubmodule,
   selectedDoc,
 }) => (
   <>
@@ -19,10 +22,7 @@ export const Items: FunctionComponent<Props> = ({
       <Item
         key={page.slug}
         tag={RouterLink}
-        to={{
-          name: 'versionDocs',
-          params: { doc: page.slug, version: selectedVersion },
-        }}
+        to={docLink(page.slug, selectedSubmodule, selectedVersion)}
         isSelected={selectedDoc === page.slug}
       >
         <div>

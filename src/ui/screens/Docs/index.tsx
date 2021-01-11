@@ -3,11 +3,10 @@ import { NavBar } from './NavBar'
 import { Finder } from './Finder'
 import { Doc } from './Doc'
 import { Container, Content, Loading } from './style.css'
-import { Submodule } from '~/types/submodule'
 import { useState } from 'preact/hooks'
 import { useQuery } from '@typesaurus/preact'
 import { where } from 'typesaurus'
-import { db, PACKAGE_NAME } from '@date-fns/date-fns-db'
+import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import {
   filterPreReleaseVersions,
   getLatestVersion,
@@ -15,18 +14,16 @@ import {
 } from '~/utils/versions'
 
 interface Props {
-  // TODO: rename to currentVersion
+  selectedSubmodule: Submodule
   selectedVersion?: string
-  // TODO: rename to currentDoc
   selectedDoc: string
 }
 
 export const Docs: FunctionComponent<Props> = ({
+  selectedSubmodule,
   selectedVersion: urlSelectedVersion,
   selectedDoc,
 }) => {
-  // TODO: rename to currentSubmodule
-  const [selectedSubmodule, setSelectedSubmodule] = useState(Submodule.Default)
   const [packages, { loading }] = useQuery(db.packages, [
     where('name', '==', PACKAGE_NAME),
   ])
@@ -45,6 +42,7 @@ export const Docs: FunctionComponent<Props> = ({
           versions={sortVersions(
             filterPreReleaseVersions(dateFnsPackage.versions)
           )}
+          selectedSubmodule={selectedSubmodule}
         />
 
         <div>
@@ -56,7 +54,11 @@ export const Docs: FunctionComponent<Props> = ({
         </div>
 
         <Content>
-          <Doc selectedVersion={selectedVersion} selectedDoc={selectedDoc} />
+          <Doc
+            selectedVersion={selectedVersion}
+            selectedDoc={selectedDoc}
+            selectedSubmodule={selectedSubmodule}
+          />
         </Content>
       </Container>
     )
