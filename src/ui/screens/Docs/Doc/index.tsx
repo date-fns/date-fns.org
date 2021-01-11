@@ -5,6 +5,7 @@ import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'
 import { Container } from './style.css'
 import { Content } from './Content'
+import { DocLinkContext } from '~/ui/router/DocLinkContext'
 
 interface Props {
   selectedVersion: string
@@ -17,10 +18,6 @@ export const Doc: FunctionComponent<Props> = ({
   selectedVersion,
   selectedSubmodule,
 }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [selectedPage, selectedVersion])
-
   const [pages, { loading }] = useQuery(db.pages, [
     where('package', '==', PACKAGE_NAME),
     where('version', '==', selectedVersion),
@@ -31,9 +28,13 @@ export const Doc: FunctionComponent<Props> = ({
   if (pages && pages.length >= 1) {
     const page = pages[0].data
     return (
-      <Container>
-        <Content page={page} />
-      </Container>
+      <DocLinkContext.Provider
+        value={{ version: selectedVersion, submodule: selectedSubmodule }}
+      >
+        <Container>
+          <Content page={page} />
+        </Container>
+      </DocLinkContext.Provider>
     )
   } else if (pages && pages.length === 0) {
     return (

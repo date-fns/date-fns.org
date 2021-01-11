@@ -11,7 +11,7 @@ import { Screen } from '~/ui/components/Screen'
 
 export const Home = () => (
   <Screen>
-    {/* <Banner size="large" /> */}
+    {/* <JobsBanner size="large" /> */}
     <Promo />
     <Examples />
     <Features />
