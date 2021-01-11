@@ -51,27 +51,3 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
     </Selector>
   )
 }
-
-// function SubmoduleSelector({
-//   docId,
-//   docs,
-//   selectedSubmodule,
-//   selectedVersion,
-//   selectedVersionTag,
-//   routeData
-// }) {
-//   const relatedDocs = docs
-//     .chain(docs =>
-//       Either.fromNullable(docs.pages.find(page => page.urlId === docId))
-//     )
-//     .chain(page => Either.fromNullable(page.relatedDocs))
-
-//   return selectedVersion
-//     .chain(version =>
-//       areSubmodulesAvailable(version) ? Either.Right() : Either.Left()
-//     )
-//     .fold(
-//       () => null,
-//       () =>
-//     )
-// }
