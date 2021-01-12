@@ -1,5 +1,4 @@
 import { h, FunctionComponent } from 'preact'
-import { useEffect } from 'preact/hooks'
 import { useQuery } from '@typesaurus/preact'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'

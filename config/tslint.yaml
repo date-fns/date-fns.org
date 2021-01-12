@@ -74,6 +74,8 @@ rules:
   # Disallow duplicate imports in the same file.
   no-duplicate-imports: true
 
+  no-unused-variable: true
+
   # -- Strong Warnings --
   # These rules should almost never be needed, but may be included due to legacy code.
   # They are left as a warning to avoid frustration with blocked deploys when the developer
@@ -116,3 +118,4 @@ rules:
   # Multi-line object literals and function calls should have a trailing comma. This helps avoid merge conflicts.
   trailing-comma:
     severity: warning
+

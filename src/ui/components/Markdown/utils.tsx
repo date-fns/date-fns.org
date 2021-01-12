@@ -1,4 +1,3 @@
-import { Submodule } from '@date-fns/date-fns-db'
 import { h } from 'preact'
 import { AnyNode } from '~/utils/remarkableTree'
 import { Node } from './Node'

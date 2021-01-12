@@ -1,4 +1,3 @@
-import { DEFAULT_SUBMODULE, Submodule } from '@date-fns/date-fns-db'
 import { h, FunctionComponent } from 'preact'
 import { Remarkable } from 'remarkable'
 import { remarkableTree } from '~/utils/remarkableTree'

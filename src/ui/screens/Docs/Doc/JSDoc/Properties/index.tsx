@@ -1,17 +1,17 @@
 import { h, FunctionComponent } from 'preact'
-import { MigratedDocParam } from '@date-fns/date-fns-db'
+import { JSDocParam } from '@date-fns/date-fns-db'
 import { DocParams } from '~/ui/components/DocParams'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 interface Props {
-  args: MigratedDocParam[]
+  properties: JSDocParam[]
 }
 
-export const Arguments: FunctionComponent<Props> = ({ args }) => (
+export const Properties: FunctionComponent<Props> = ({ properties }) => (
   <section>
-    <h2 id="arguments">
-      Arguments
-      <DocHeaderAnchor anchor="arguments" />
+    <h2 id="properties">
+      Properties
+      <DocHeaderAnchor anchor="properties" />
     </h2>
 
     <table>
@@ -24,7 +24,7 @@ export const Arguments: FunctionComponent<Props> = ({ args }) => (
       </thead>
 
       <tbody>
-        <DocParams params={args} />
+        <DocParams params={properties} />
       </tbody>
     </table>
   </section>

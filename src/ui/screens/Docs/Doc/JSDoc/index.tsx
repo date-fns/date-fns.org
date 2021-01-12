@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import { Markdown } from '~/ui/components/Markdown'
 import { Header } from './style.css'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { MigratedDocFunction, Submodule } from '@date-fns/date-fns-db'
+import { JSDocFunction } from '@date-fns/date-fns-db'
 import { Usage } from './Usage'
 import { Syntax } from './Syntax'
 import { Arguments } from './Arguments'
@@ -12,10 +12,10 @@ import { Exceptions } from './Exceptions'
 import { Examples } from './Examples'
 
 interface Props {
-  doc: MigratedDocFunction
+  doc: JSDocFunction
 }
 
-export const MigratedDoc: FunctionComponent<Props> = ({ doc }) => (
+export const JSDoc: FunctionComponent<Props> = ({ doc }) => (
   <div>
     <h1>
       <Header tag="span">{doc.title}</Header>

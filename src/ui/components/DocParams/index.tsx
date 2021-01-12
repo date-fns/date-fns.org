@@ -1,14 +1,10 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import {
-  MigratedDocParam,
-  MigratedDocType,
-  Submodule,
-} from '@date-fns/date-fns-db'
+import { JSDocParam, JSDocType } from '@date-fns/date-fns-db'
 import { Markdown } from '~/ui/components/Markdown'
 import { OptionalLabel, PropsLabel } from './style.css'
 
 interface Props {
-  params: MigratedDocParam[]
+  params: JSDocParam[]
 }
 
 export const DocParams: FunctionComponent<Props> = ({ params }) => (
@@ -44,7 +40,7 @@ const ParamOptionalLabel: FunctionComponent<{
 )
 
 const ParamPropsTable: FunctionComponent<{
-  props: MigratedDocParam[]
+  props: JSDocParam[]
 }> = ({ props }) => (
   <div>
     <PropsLabel>Properties:</PropsLabel>
@@ -66,7 +62,7 @@ const ParamPropsTable: FunctionComponent<{
 )
 
 const ParamType: FunctionComponent<{
-  type: MigratedDocType
+  type: JSDocType
   variable?: boolean
 }> = ({ type, variable }) => {
   const names = type.names

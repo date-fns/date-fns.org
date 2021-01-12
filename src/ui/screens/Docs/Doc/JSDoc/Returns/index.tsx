@@ -1,10 +1,10 @@
 import { h, FunctionComponent } from 'preact'
-import { MigratedDocTypedAttribute } from '@date-fns/date-fns-db'
+import { JSDocTypedAttribute } from '@date-fns/date-fns-db'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
-  returns: MigratedDocTypedAttribute[]
+  returns: JSDocTypedAttribute[]
 }
 
 export const Returns: FunctionComponent<Props> = ({ returns }) => (

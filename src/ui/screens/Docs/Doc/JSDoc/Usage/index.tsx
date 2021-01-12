@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { MigratedDocUsage, Submodule } from '@date-fns/date-fns-db'
+import { JSDocUsage } from '@date-fns/date-fns-db'
 import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
@@ -9,7 +9,7 @@ const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'
 
 interface Props {
-  usage: MigratedDocUsage
+  usage: JSDocUsage
   usageTabs: string[]
 }
 
