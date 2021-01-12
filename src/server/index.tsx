@@ -28,8 +28,8 @@ const ServerUI: FunctionComponent<{ url: string }> = () => {
   // )
   return (
     <div>
-      SSR would be coming soon but I need to research what to do with
-      style-loader
+      {/* SSR would be coming soon but I need to research what to do with
+      style-loader */}
     </div>
   )
 }
