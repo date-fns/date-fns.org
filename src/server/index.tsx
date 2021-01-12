@@ -35,7 +35,7 @@ const ServerUI: FunctionComponent<{ url: string }> = () => {
 }
 
 server.get('/api/sponsors', cors(), async (_req, res) => {
-  const json = await cache('FIXME', () =>
+  const json = await cache('sponsors', () =>
     requestGraphQL(SPONSORS_URL, sponsorsQuery, {
       'Api-Key': OPEN_COLLECTIVE_API_KEY,
     })
@@ -44,9 +44,7 @@ server.get('/api/sponsors', cors(), async (_req, res) => {
 })
 
 server.get('/api/contributors', cors(), async (_req, res) => {
-  const json = await cache('REPLACE ME WITH REAL CAHCE LIBRARY', () =>
-    getJSON(CONTRIBUTORS_URL)
-  )
+  const json = await cache('contributors', () => getJSON(CONTRIBUTORS_URL))
   res.send(json)
 })
 
