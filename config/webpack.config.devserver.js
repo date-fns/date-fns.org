@@ -1,4 +1,5 @@
 const { getPath, getConfig } = require('./utils/webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { HotModuleReplacementPlugin } = require('webpack')
 
@@ -35,6 +36,9 @@ module.exports = getConfig({
   },
 
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: getPath('src/static'), to: 'static' }],
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: getPath('src/assets/template.ejs'),
