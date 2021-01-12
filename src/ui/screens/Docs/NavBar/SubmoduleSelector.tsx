@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { Label, Select, Selector } from './style.css'
-import { Submodule, SUBMODULES } from '@date-fns/date-fns-db'
+import { Submodule } from '@date-fns/date-fns-db'
 import { docLink } from '~/ui/router/docLink'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
@@ -14,6 +14,7 @@ interface Props {
   selectedSubmodule: Submodule
   selectedPage: string
   selectedVersion: string
+  submodules: Submodule[]
 }
 
 type FIXME = any
@@ -22,8 +23,13 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedPage,
   selectedVersion,
+  submodules,
 }) => {
   const { navigate } = useContext(RouterContext)
+
+  if (submodules.length === 1 && submodules.includes(selectedSubmodule)) {
+    return null
+  }
 
   return (
     <Selector tag="label">
@@ -42,7 +48,7 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
           )
         }
       >
-        {SUBMODULES.map((submodule) => (
+        {submodules.map((submodule) => (
           <option key={submodule} value={submodule}>
             {SUBMODULE_LABELS[submodule]}
           </option>

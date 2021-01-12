@@ -2,7 +2,11 @@ import { h, FunctionComponent } from 'preact'
 import { RouterLink } from '~/ui/router'
 import { Container, Inner, Logo, LogoImage, Links, Link } from './style.css'
 import logoPath from './img/logo.svg'
-import { Submodule, VersionPreview } from '@date-fns/date-fns-db'
+import {
+  DEFAULT_SUBMODULE,
+  Submodule,
+  VersionPreview,
+} from '@date-fns/date-fns-db'
 import { VersionSelector } from './VersionSelector'
 import { SubmoduleSelector } from './SubmoduleSelector'
 
@@ -20,43 +24,51 @@ export const NavBar: FunctionComponent<Props> = ({
   selectedPage,
   latestVersion,
   selectedSubmodule,
-}) => (
-  <Container>
-    <Inner>
-      <Links>
-        <Logo tag={RouterLink} to={{ name: 'home' }}>
-          <LogoImage tag="img" src={logoPath} />
-          date-fns
-        </Logo>
+}) => {
+  const versionPreview = versions.find(
+    ({ version }) => version === selectedVersion
+  )
+  const submodules = versionPreview?.submodules ?? [DEFAULT_SUBMODULE]
 
-        <Link tag="a" href="https://github.com/date-fns/date-fns">
-          GitHub
-        </Link>
+  return (
+    <Container>
+      <Inner>
+        <Links>
+          <Logo tag={RouterLink} to={{ name: 'home' }}>
+            <LogoImage tag="img" src={logoPath} />
+            date-fns
+          </Logo>
 
-        <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
-          Community
-        </Link>
+          <Link tag="a" href="https://github.com/date-fns/date-fns">
+            GitHub
+          </Link>
 
-        <Link tag="a" href="https://twitter.com/date_fns">
-          Twitter
-        </Link>
-      </Links>
+          <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
+            Community
+          </Link>
 
-      <div>
-        <VersionSelector
-          selectedVersion={selectedVersion}
-          latestVersion={latestVersion}
-          selectedPage={selectedPage}
-          selectedSubmodule={selectedSubmodule}
-          versions={versions}
-        />
+          <Link tag="a" href="https://twitter.com/date_fns">
+            Twitter
+          </Link>
+        </Links>
 
-        <SubmoduleSelector
-          selectedSubmodule={selectedSubmodule}
-          selectedPage={selectedPage}
-          selectedVersion={selectedVersion}
-        />
-      </div>
-    </Inner>
-  </Container>
-)
+        <div>
+          <VersionSelector
+            selectedVersion={selectedVersion}
+            latestVersion={latestVersion}
+            selectedPage={selectedPage}
+            selectedSubmodule={selectedSubmodule}
+            versions={versions}
+          />
+
+          <SubmoduleSelector
+            selectedSubmodule={selectedSubmodule}
+            selectedPage={selectedPage}
+            selectedVersion={selectedVersion}
+            submodules={submodules}
+          />
+        </div>
+      </Inner>
+    </Container>
+  )
+}
