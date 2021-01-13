@@ -1,6 +1,9 @@
 {
   "name": "date-fns.org",
   "version": "3.0.0",
+  "engines": {
+    "node": "14"
+  },
   "scripts": {
     "lint": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json -c config/tslint.yaml",
     "format": "prettier --write",
@@ -23,9 +26,9 @@
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
     "express": "^4.17.1",
-    "firebase": "^7.20.0",
-    "firebase-admin": "^9.1.1",
-    "firebase-functions": "^3.11.0",
+    "firebase": "^8.2.2",
+    "firebase-admin": "^9.4.2",
+    "firebase-functions": "^3.13.0",
     "isomorphic-fetch": "^2.2.1",
     "js-fns": "^2.5.1",
     "json-bond": "^0.1.0",
@@ -34,7 +37,8 @@
     "preact-render-to-string": "^5.1.10",
     "remarkable": "^2.0.1",
     "reset.css": "^2.0.2",
-    "typesaurus": "^7.1.0"
+    "typesaurus": "^7.1.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@nyancss/css-modules-loader": "^1.1.0",
@@ -50,6 +54,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^2.2.3",
     "file-loader": "^6.1.0",
+    "firebase-tools": "^9.2.0",
     "html-webpack-plugin": "^4.4.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.3.0",

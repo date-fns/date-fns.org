@@ -1,7 +1,7 @@
 import { h, render } from 'preact'
 import { UI } from '~/ui'
 import { RouterContext, useRouter } from '~/ui/router'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import { FIREBASE_APP } from '~/constants'
 
 firebase.initializeApp(FIREBASE_APP)

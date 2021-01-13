@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { useContext } from 'preact/hooks'
+import { useContext, useEffect } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
 import { Home } from '~/ui/screens/Home'
 import { Docs } from '~/ui/screens/Docs'
@@ -8,8 +8,17 @@ import 'reset.css/reset.css?global'
 import './global.css?global'
 import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
+const win =
+  typeof window !== 'undefined'
+    ? (window as Window & { ga?: (...args: any) => void })
+    : undefined
+
 export const UI = () => {
   const { location } = useContext(RouterContext)
+
+  useEffect(() => {
+    win?.ga?.('send', 'pageview')
+  }, [JSON.stringify(location)])
 
   switch (location.name) {
     case 'home':
