@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'preact/hooks'
 import { getJSON } from '~/utils/request'
 import { RequestHookResult } from '~/types/hooks'
+import * as Sentry from '@sentry/browser'
 
 export function useJSON<TResult>(url: string): RequestHookResult<TResult> {
   const [result, setResult] = useState<TResult | undefined>(undefined)
@@ -15,6 +16,13 @@ export function useJSON<TResult>(url: string): RequestHookResult<TResult> {
       })
       .catch((e) => setError(e))
   }, [])
+
+  useEffect(() => {
+    if (error) {
+      console.error(error)
+      Sentry.captureException(error)
+    }
+  }, [error])
 
   return [result, { loading, error }]
 }
