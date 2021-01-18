@@ -38,7 +38,15 @@ export const Sponsorship = () => {
     >
       {sponsors && (
         <>
-          <Subheader tag="h2">Silver sponsors</Subheader>
+          <Subheader tag="h2">Gold Sponsors</Subheader>
+
+          <List>
+            {sponsors.gold.map((sponsor) => (
+              <Sponsor key={sponsor.id} sponsor={sponsor} tier="gold" />
+            ))}
+          </List>
+
+          <Subheader tag="h2">Silver Sponsors</Subheader>
 
           <List>
             {sponsors.silver.map((sponsor) => (
@@ -46,7 +54,7 @@ export const Sponsorship = () => {
             ))}
           </List>
 
-          <Subheader tag="h2">Bronze sponsors</Subheader>
+          <Subheader tag="h2">Bronze Sponsors</Subheader>
 
           <List>
             {sponsors.bronze.map((sponsor) => (
@@ -75,7 +83,7 @@ export const Sponsorship = () => {
 }
 
 const Sponsor: FunctionComponent<{
-  tier?: 'silver' | 'bronze'
+  tier?: 'gold' | 'silver' | 'bronze'
   compact?: boolean
   sponsor: Sponsor
 }> = ({ tier, sponsor, compact }) => {

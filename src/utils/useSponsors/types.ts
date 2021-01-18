@@ -37,6 +37,7 @@ export interface Sponsor {
 }
 
 export interface Sponsors {
+  gold: Sponsor[]
   silver: Sponsor[]
   bronze: Sponsor[]
   backers: Sponsor[]

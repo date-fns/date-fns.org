@@ -17,6 +17,10 @@ export function isActive(node: SponsorsResponseNode) {
   )
 }
 
+export function isGold(node: SponsorsResponseNode) {
+  return node.totalDonations.value >= 5000
+}
+
 export function isSilver(node: SponsorsResponseNode) {
   return (
     isActive(node) &&

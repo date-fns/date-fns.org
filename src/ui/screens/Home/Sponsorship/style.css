@@ -31,6 +31,11 @@
   justify-content: center;
 }
 
+.ItemImageContainer-tier-gold {
+  height: 150px;
+  width: 150px;
+}
+
 .ItemImageContainer-tier-silver {
   height: 120px;
   width: 120px;

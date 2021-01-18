@@ -1,6 +1,6 @@
 import { useJSON } from '~/utils/useJSON'
 import { RequestHookResult } from '~/types/hooks'
-import { isSilver, isBronze, isBacker, sponsorsMapFn } from './utils'
+import { isGold, isSilver, isBronze, isBacker, sponsorsMapFn } from './utils'
 import { SponsorsResponse, Sponsors, Sponsor } from './types'
 
 export { Sponsor }
@@ -13,6 +13,9 @@ export function useSponsors(): RequestHookResult<Sponsors> {
   if (result) {
     return [
       {
+        gold: result.data.account.orders.nodes
+          .filter(isGold)
+          .map(sponsorsMapFn),
         silver: result.data.account.orders.nodes
           .filter(isSilver)
           .map(sponsorsMapFn),
