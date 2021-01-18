@@ -4,9 +4,6 @@
 website. It provides information about key library features, API browser,
 documentation, etc.
 
-date-fns.org is built using [React](http://facebook.github.io/react),
-powered by [webpack](http://webpack.github.io/) and [Babel](https://babeljs.io).
-
 ## License
 
 [MIT © Sasha Koss](https://kossnocorp.mit-license.org/)
