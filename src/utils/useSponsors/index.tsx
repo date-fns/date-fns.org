@@ -1,11 +1,19 @@
 import { useJSON } from '~/utils/useJSON'
 import { RequestHookResult } from '~/types/hooks'
-import { isSilver, isBronze, isBacker, sponsorsMapFn } from './utils'
+import {
+  isGold,
+  isSilver,
+  isBronze,
+  isBacker,
+  sponsorsSortFn,
+  sponsorsMapFn,
+} from './utils'
 import { SponsorsResponse, Sponsors, Sponsor } from './types'
+import { API_URL } from '~/constants'
 
 export { Sponsor }
 
-const SPONSORS_URL = 'https://november-experiment.web.app/api/sponsors'
+const SPONSORS_URL = `${API_URL}/sponsors`
 
 export function useSponsors(): RequestHookResult<Sponsors> {
   const [result, meta] = useJSON<SponsorsResponse>(SPONSORS_URL)
@@ -13,14 +21,21 @@ export function useSponsors(): RequestHookResult<Sponsors> {
   if (result) {
     return [
       {
+        gold: result.data.account.orders.nodes
+          .filter(isGold)
+          .sort(sponsorsSortFn)
+          .map(sponsorsMapFn),
         silver: result.data.account.orders.nodes
           .filter(isSilver)
+          .sort(sponsorsSortFn)
           .map(sponsorsMapFn),
         bronze: result.data.account.orders.nodes
           .filter(isBronze)
+          .sort(sponsorsSortFn)
           .map(sponsorsMapFn),
         backers: result.data.account.orders.nodes
           .filter(isBacker)
+          .sort(sponsorsSortFn)
           .map(sponsorsMapFn),
       },
       meta,

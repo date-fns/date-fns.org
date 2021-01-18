@@ -4,6 +4,7 @@ export interface SponsorsResponseNode {
     name: string
     website?: string
     slug: string
+    id: string
   }
   tier: null | {
     slug: string
@@ -37,6 +38,7 @@ export interface Sponsor {
 }
 
 export interface Sponsors {
+  gold: Sponsor[]
   silver: Sponsor[]
   bronze: Sponsor[]
   backers: Sponsor[]

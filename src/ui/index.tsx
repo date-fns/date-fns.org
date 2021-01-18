@@ -8,10 +8,7 @@ import 'reset.css/reset.css?global'
 import './global.css?global'
 import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
 
-const win =
-  typeof window !== 'undefined'
-    ? (window as Window & { ga?: (...args: any) => void })
-    : undefined
+const win = typeof window !== 'undefined' ? window : undefined
 
 export const UI = () => {
   const { location } = useContext(RouterContext)

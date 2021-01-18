@@ -2,10 +2,9 @@ import { h, FunctionComponent } from 'preact'
 import { Remarkable } from 'remarkable'
 import { remarkableTree } from '~/utils/remarkableTree'
 import { renderTree } from './utils'
+import { linkify } from 'remarkable/linkify'
 
-const md = new Remarkable({
-  linkify: true,
-})
+const md = new Remarkable().use(linkify)
 
 interface Props {
   value: string

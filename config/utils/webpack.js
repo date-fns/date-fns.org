@@ -5,6 +5,8 @@ function getPath(filename) {
 }
 
 function getConfig({ tsConfig, rules = [], ...rest }) {
+  const mode = process.env.NODE_ENV || 'production'
+
   const tsLoaders = [
     {
       loader: 'ts-loader',
@@ -40,8 +42,8 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
   const rawLoaders = ['raw-loader']
 
   return {
-    mode: process.env.NODE_ENV || 'production',
-    devtool: 'inline-source-map',
+    mode,
+    devtool: mode === 'production' ? 'source-map' : 'inline-source-map',
     module: {
       rules: [
         {

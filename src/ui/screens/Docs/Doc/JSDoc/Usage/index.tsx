@@ -57,7 +57,7 @@ export const Usage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
                   // trackAction('Changed Usage Source', { source })
                   e.preventDefault()
                   setSource(usageTab)
-                  window.localStorage.setItem('usageSource', source)
+                  window.localStorage.setItem(LOCALSTORAGE_KEY, usageTab)
                 }}
               >
                 {usageItem.title}

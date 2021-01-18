@@ -7,14 +7,13 @@ import { CancelButton } from './CancelButton'
 import { NoResults } from './NoResults'
 import { Categories } from './Categories'
 import { filterPages } from './utils'
-import { useQuery } from '@typesaurus/preact'
+import { useQuery } from '~/utils/useQuery'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'
 import { BooksBanner } from '~/ui/components/BooksBanner'
+import { NewJobsBanner } from '~/ui/components/NewJobsBanner'
 
-const showJSJobs = false // FIXME: Math.random() > 1
-
-const JSJobsBanner = () => <div>JS jobs banner</div>
+const showJSJobs = Math.random() > 1
 
 type FIXME = any
 
@@ -80,7 +79,7 @@ export const Finder: FunctionComponent<Props> = ({
           />
         )}
 
-        {showJSJobs ? <JSJobsBanner /> : <BooksBanner />}
+        {showJSJobs ? <NewJobsBanner /> : <BooksBanner />}
       </Container>
     )
   } else if (loading) {

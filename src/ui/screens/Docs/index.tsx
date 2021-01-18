@@ -3,7 +3,7 @@ import { NavBar } from './NavBar'
 import { Finder } from './Finder'
 import { Doc } from './Doc'
 import { Container, Content, Loading } from './style.css'
-import { useQuery } from '@typesaurus/preact'
+import { useQuery } from '~/utils/useQuery'
 import { where } from 'typesaurus'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import {
