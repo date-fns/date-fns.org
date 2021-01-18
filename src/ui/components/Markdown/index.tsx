@@ -4,9 +4,7 @@ import { remarkableTree } from '~/utils/remarkableTree'
 import { renderTree } from './utils'
 import { linkify } from 'remarkable/linkify'
 
-const md = new Remarkable({
-  linkify: true,
-}).use(linkify)
+const md = new Remarkable().use(linkify)
 
 interface Props {
   value: string

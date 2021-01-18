@@ -13,7 +13,7 @@ import { where } from 'typesaurus'
 import { BooksBanner } from '~/ui/components/BooksBanner'
 import { NewJobsBanner } from '~/ui/components/NewJobsBanner'
 
-const showJSJobs = Math.random() > 0.5
+const showJSJobs = Math.random() > 1
 
 type FIXME = any
 
