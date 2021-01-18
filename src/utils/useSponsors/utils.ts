@@ -2,6 +2,8 @@ import { SponsorsResponseNode, Sponsor } from './types'
 import subWeeks from 'date-fns/subWeeks'
 import subMonths from 'date-fns/subMonths'
 
+const TRUE_CAR_ID = 'dgm9bnk8-0437xqra-kxjpvzeo-ljdayw5r'
+
 function getProfileURL(node: SponsorsResponseNode) {
   return (
     node.fromAccount.website ??
@@ -18,13 +20,18 @@ export function isActive(node: SponsorsResponseNode) {
 }
 
 export function isGold(node: SponsorsResponseNode) {
-  return node.totalDonations.value >= 5000
+  return (
+    node.fromAccount.id === TRUE_CAR_ID ||
+    (isActive(node) &&
+      (node.tier?.slug === 'gold-sponsors' || node.amount.value >= 500))
+  )
 }
 
 export function isSilver(node: SponsorsResponseNode) {
   return (
     isActive(node) &&
-    (node.tier?.slug === 'silver-sponsors' || node.amount.value >= 100)
+    (node.tier?.slug === 'silver-sponsors' ||
+      (node.amount.value >= 100 && node.amount.value < 500))
   )
 }
 

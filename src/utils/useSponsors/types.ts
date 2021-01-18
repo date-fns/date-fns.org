@@ -4,6 +4,7 @@ export interface SponsorsResponseNode {
     name: string
     website?: string
     slug: string
+    id: string
   }
   tier: null | {
     slug: string

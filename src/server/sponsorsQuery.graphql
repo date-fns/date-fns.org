@@ -8,6 +8,7 @@ query {
           imageUrl
           slug
           website
+          id
         }
         createdAt
         updatedAt
