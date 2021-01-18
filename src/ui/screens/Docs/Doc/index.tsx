@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { useQuery } from '@typesaurus/preact'
+import { useQuery } from '~/utils/useQuery'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'
 import { Container } from './style.css'
