@@ -9,3 +9,6 @@ export const FIREBASE_APP = {
 }
 
 export const API_URL = 'https://date-fns.org/api'
+
+export const SENTRY_URL =
+  'https://d4e775c8bbec48749f45293b22414b77@o506823.ingest.sentry.io/5597042'
