@@ -54,3 +54,12 @@ export function sponsorsMapFn(node: SponsorsResponseNode): Sponsor {
     name: node.fromAccount.name,
   }
 }
+
+export function sponsorsSortFn(
+  nodeA: SponsorsResponseNode,
+  nodeB: SponsorsResponseNode
+): number {
+  return (
+    new Date(nodeB.createdAt).getTime() - new Date(nodeA.createdAt).getTime()
+  )
+}
