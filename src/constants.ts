@@ -7,3 +7,5 @@ export const FIREBASE_APP = {
   apiKey: 'AIzaSyBoDBiIbKeiu4-Uz4JzqH3X7pwbop2PfpU',
   projectId: 'date-fns-org',
 }
+
+export const API_URL = 'https://date-fns.org/api'

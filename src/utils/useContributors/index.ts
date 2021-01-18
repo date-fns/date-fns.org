@@ -1,7 +1,8 @@
 import { useJSON } from '~/utils/useJSON'
 import { RequestHookResult } from '~/types/hooks'
 
-const CONTRIBUTORS_URL = 'https://november-experiment.web.app/api/contributors'
+const CONTRIBUTORS_URL =
+  'https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999'
 
 type ContributorsFetchResponse = {
   id: string
