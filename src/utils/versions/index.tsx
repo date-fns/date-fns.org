@@ -1,7 +1,12 @@
 import { VersionPreview } from '@date-fns/date-fns-db'
 
-export function filterPreReleaseVersions(versions: VersionPreview[]) {
-  return versions.filter((version) => !version.preRelease)
+export function filterPreReleaseVersions(
+  versions: VersionPreview[],
+  selectedVersion?: string
+) {
+  return versions.filter(
+    (version) => version.version === selectedVersion || !version.preRelease
+  )
 }
 
 export function sortVersions(versions: VersionPreview[]) {

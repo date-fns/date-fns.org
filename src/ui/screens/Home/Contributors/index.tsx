@@ -19,7 +19,7 @@ export const Contributors = () => {
       {loading && <div>Loading...</div>}
       {contributors && (
         <List tag="ol">
-          {contributors.map((contributor) => (
+          {contributors.map?.((contributor) => (
             <Item tag="li" key={contributor.name}>
               <HomeExternalLink href={contributor.url}>
                 <LinkContent tag="span">
