@@ -5,6 +5,6 @@ export function initSentry(sentryURL: string) {
   Sentry.init({
     dsn: sentryURL,
     integrations: [new Integrations.BrowserTracing()],
-    tracesSampleRate: 1.0,
+    tracesSampleRate: 0.01,
   })
 }
