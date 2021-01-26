@@ -39,7 +39,7 @@ export const Docs: FunctionComponent<Props> = ({
           latestVersion={latestVersion}
           selectedPage={selectedPage}
           versions={sortVersions(
-            filterPreReleaseVersions(dateFnsPackage.versions)
+            filterPreReleaseVersions(dateFnsPackage.versions, selectedVersion)
           )}
           selectedSubmodule={selectedSubmodule}
         />

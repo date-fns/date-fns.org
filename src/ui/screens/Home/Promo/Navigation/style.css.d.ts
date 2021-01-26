@@ -3,9 +3,7 @@ import { RouterLink } from '~/ui/router'
 
 export const Navigation: CSSComponent
 export const Link: CSSComponent
-export const Icon: CSSComponent<{
-  type: 'github' | 'twitter' | 'spectrum'
-}>
+export const Icon: CSSComponent
 export const LogoImage: CSSComponent
 export const LogoName: CSSComponent
 export const Header: CSSComponent

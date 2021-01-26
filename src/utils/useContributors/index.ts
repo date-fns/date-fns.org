@@ -18,7 +18,7 @@ interface Contributor {
   name: string
 }
 
-export function useContributors(): RequestHookResult<Contributor[]> {
+export function useContributors(): RequestHookResult<Contributor[] | {}> {
   const [result, meta] = useJSON<ContributorsFetchResponse>(CONTRIBUTORS_URL)
 
   if (result) {
