@@ -12,13 +12,7 @@ import {
 // import twitterIcon from './img/twitterBlack.svg'
 
 export const JobsSubscribeBanner = () => (
-  <Container
-    tag="form"
-    action="https://cafe.us16.list-manage.com/subscribe/post?u=bf10ea6555c1dc38f3bcfa7e5&amp;id=b7d6fa4833"
-    method="post"
-    target="_blank"
-    rel="noreferrer,noopener"
-  >
+  <Container>
     <Header>Get awesome JavaScript jobs to your email</Header>
     <Form
       tag="form"
