@@ -5,10 +5,11 @@ import {
   Form,
   Input,
   SubscribeButton,
-  TwitterLink,
-  TwitterIcon,
+  Description,
+  // TwitterLink,
+  // TwitterIcon,
 } from './style.css'
-import twitterIcon from './img/twitterBlack.svg'
+// import twitterIcon from './img/twitterBlack.svg'
 
 export const JobsSubscribeBanner = () => (
   <Container
@@ -18,7 +19,7 @@ export const JobsSubscribeBanner = () => (
     target="_blank"
     rel="noreferrer,noopener"
   >
-    <Header>Biweekly emails with fresh JavaScript jobs</Header>
+    <Header>Get awesome JavaScript jobs to your email</Header>
     <Form
       tag="form"
       action="https://cafe.us16.list-manage.com/subscribe/post?u=bf10ea6555c1dc38f3bcfa7e5&amp;id=b7d6fa4833"
@@ -39,10 +40,13 @@ export const JobsSubscribeBanner = () => (
       </SubscribeButton>
     </Form>
 
-    {/* <TwitterLink color={Color.Ink} /> */}
-    <TwitterLink tag="a" href="https://twitter.com/date_fns" target="_blank">
+    <Description>
+      Subscribe to support date-fns development, it's free!
+    </Description>
+
+    {/* <TwitterLink tag="a" href="https://twitter.com/date_fns" target="_blank">
       <TwitterIcon tag="img" src={twitterIcon} alt="Twitter icon" />
       Follow on Twitter
-    </TwitterLink>
+    </TwitterLink> */}
   </Container>
 )

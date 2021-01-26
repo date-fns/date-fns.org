@@ -7,3 +7,4 @@ export const Input: CSSComponent
 export const SubscribeButton: CSSComponent
 export const TwitterLink: CSSComponent
 export const TwitterIcon: CSSComponent
+export const Description: CSSComponent

@@ -12,7 +12,7 @@
 .Form {
   display: flex;
   align-items: center;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .Input {
@@ -50,4 +50,8 @@
 .TwitterLink {
   color: black;
   text-decoration: none;
+}
+
+.Description {
+  opacity: 0.6;
 }

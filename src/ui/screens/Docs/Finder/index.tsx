@@ -29,9 +29,7 @@ export const Finder: FunctionComponent<Props> = ({
 }) => {
   const [query, setQuery] = useState('')
 
-  const [currentBanner, setCurrentBanner] = useState<
-    'subscribe' | 'books' | 'jobs'
-  >('subscribe')
+  const [currentBanner] = useState<'subscribe' | 'books' | 'jobs'>('subscribe')
 
   const trackSearch = useCallback(
     debounce((newQuery: string) => {
@@ -82,12 +80,12 @@ export const Finder: FunctionComponent<Props> = ({
           />
         )}
 
-        <div>
-          FIXME:
+        {/* <div>
+          Debug banners:
           <div onClick={() => setCurrentBanner('subscribe')}>Subscribe</div>
           <div onClick={() => setCurrentBanner('jobs')}>Jobs</div>
           <div onClick={() => setCurrentBanner('books')}>Books</div>
-        </div>
+        </div> */}
         {currentBanner === 'subscribe' && <JobsSubscribeBanner />}
         {currentBanner === 'jobs' && <NewJobsBanner />}
         {currentBanner === 'books' && <BooksBanner />}
