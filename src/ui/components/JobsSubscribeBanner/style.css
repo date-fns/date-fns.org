@@ -1,0 +1,53 @@
+.Container {
+  background: #f5d958;
+  padding: 0.75rem 0.5rem;
+}
+
+.Header {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.Form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.Input {
+  flex: auto;
+  height: 2rem;
+  background: #f9f6e3;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  border: 0;
+  border-radius: 0;
+  color: black;
+  margin-right: 0.5rem;
+}
+
+.SubscribeButton {
+  flex: none;
+  height: 2rem;
+  font-size: 1rem;
+  display: block;
+  background: black;
+  color: white;
+  border: 0;
+  padding: 0 1rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.TwitterIcon {
+  width: 24px;
+  margin-right: 5px;
+  position: relative;
+  top: 6px;
+}
+
+.TwitterLink {
+  color: black;
+  text-decoration: none;
+}

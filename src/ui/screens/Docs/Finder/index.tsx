@@ -12,8 +12,7 @@ import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'
 import { BooksBanner } from '~/ui/components/BooksBanner'
 import { NewJobsBanner } from '~/ui/components/NewJobsBanner'
-
-const showJSJobs = Math.random() > 1
+import { JobsSubscribeBanner } from '~/ui/components/JobsSubscribeBanner'
 
 type FIXME = any
 
@@ -29,6 +28,10 @@ export const Finder: FunctionComponent<Props> = ({
   selectedPage,
 }) => {
   const [query, setQuery] = useState('')
+
+  const [currentBanner, setCurrentBanner] = useState<
+    'subscribe' | 'books' | 'jobs'
+  >('subscribe')
 
   const trackSearch = useCallback(
     debounce((newQuery: string) => {
@@ -79,7 +82,15 @@ export const Finder: FunctionComponent<Props> = ({
           />
         )}
 
-        {showJSJobs ? <NewJobsBanner /> : <BooksBanner />}
+        <div>
+          FIXME:
+          <div onClick={() => setCurrentBanner('subscribe')}>Subscribe</div>
+          <div onClick={() => setCurrentBanner('jobs')}>Jobs</div>
+          <div onClick={() => setCurrentBanner('books')}>Books</div>
+        </div>
+        {currentBanner === 'subscribe' && <JobsSubscribeBanner />}
+        {currentBanner === 'jobs' && <NewJobsBanner />}
+        {currentBanner === 'books' && <BooksBanner />}
       </Container>
     )
   } else if (loading) {
