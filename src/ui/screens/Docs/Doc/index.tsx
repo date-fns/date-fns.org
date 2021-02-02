@@ -5,6 +5,9 @@ import { where } from 'typesaurus'
 import { Container } from './style.css'
 import { Content } from './Content'
 import { DocLinkContext } from '~/ui/router/DocLinkContext'
+import { useEffect } from 'preact/hooks'
+
+const SCROLL_OFFSET = 35
 
 interface Props {
   selectedVersion: string
@@ -23,6 +26,21 @@ export const Doc: FunctionComponent<Props> = ({
     where('slug', '==', selectedPage),
     where('submodules', 'array-contains', selectedSubmodule),
   ])
+
+  useEffect(() => {
+    if (pages && location.hash) {
+      const element = document.getElementById(location.hash.replace('#', ''))
+      if (!element) {
+        return
+      }
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition - SCROLL_OFFSET
+
+      window.scrollTo({
+        top: offsetPosition,
+      })
+    }
+  }, [loading])
 
   if (pages && pages.length >= 1) {
     const page = pages[0].data
