@@ -59,7 +59,7 @@ formatRelative(subDays(new Date(), 3), new Date(), { locale: ru })
   {
     label: 'Composition & FP',
     code: `
-import { addYears, formatWithOptions, toUpper } from 'date-fns/fp'
+import { addYears, formatWithOptions } from 'date-fns/fp'
 import { eo } from 'date-fns/locale'
 
 const addFiveYears = addYears(5)
