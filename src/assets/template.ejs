@@ -65,5 +65,38 @@
       ga('create', 'UA-71951329-1', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <script>
+      const HEADER_STYLE = 'color: #770c56; font-size: 24px; font-family: sans-serif;'
+      const MESSAGE_STYLE = 'color: #7B6D77; font-size: 16px; font-family: sans-serif;'
+      const CODE_STYLE = 'font-size: 14px; font-family: monospace;'
+
+      async function init(dirtyVersion) {
+        const version = dirtyVersion && dirtyVersion.replace(/^v/, '')
+        const url = `https://unpkg.com/date-fns${version ? '@' + version : ''}/esm/index.js`
+        try {
+          const dateFns = await import(url)
+          window._ = dateFns
+          window.dateFns = dateFns
+
+          console.log(
+            '%cUse %c_%c global variable to access date-fns functions.\n' +
+              'For example: %c_.addDays(new Date(), 5)',
+            MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE, CODE_STYLE,
+          )
+        } catch (e) {
+          console.error(e)
+          console.log('Something went wrong! Please try again')
+        }
+      }
+
+      console.log(
+        '%c( ⩗) date-fns console\n' +
+          '%cRun %cinit()%c or %cinit("v2.16.1" /* version */)\n' +
+          '%cto make date-fns functions available in console.',
+        HEADER_STYLE, MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE,
+      )
+      window.init = init
+    </script>
   </body>
 </html>
