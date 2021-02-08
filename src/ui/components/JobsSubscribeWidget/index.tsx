@@ -1,11 +1,9 @@
 import { h } from 'preact'
+import { Container, Header, Footer } from '~/ui/components/JobsWidget/style.css'
 import {
-  Container,
-  Header,
   Form,
   Input,
   SubscribeButton,
-  Description,
   // TwitterLink,
   // TwitterIcon,
 } from './style.css'
@@ -13,7 +11,7 @@ import {
 
 export const JobsSubscribeWidget = () => (
   <Container>
-    <Header>Get awesome JavaScript jobs to your email</Header>
+    <Header>Get awesome JavaScript jobs in your email</Header>
     <Form
       tag="form"
       action="https://cafe.us16.list-manage.com/subscribe/post?u=bf10ea6555c1dc38f3bcfa7e5&amp;id=b7d6fa4833"
@@ -34,9 +32,7 @@ export const JobsSubscribeWidget = () => (
       </SubscribeButton>
     </Form>
 
-    <Description>
-      Subscribe to support date-fns development, it's free!
-    </Description>
+    <Footer>Subscribe to support date-fns development, it's free!</Footer>
 
     {/* <TwitterLink tag="a" href="https://twitter.com/date_fns" target="_blank">
       <TwitterIcon tag="img" src={twitterIcon} alt="Twitter icon" />

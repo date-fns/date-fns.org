@@ -3,7 +3,7 @@
   padding: 0.25rem;
 }
 
-.Job {
+.Block {
   background: #fcf4ca;
   padding: 1rem 1rem 0.5rem;
   text-decoration: none;
@@ -12,16 +12,16 @@
   transition: background 150ms ease-out;
 }
 
-.Job:hover {
+.Block-clickable:hover {
   background: #ffefa5;
 }
 
-.Header {
+.Company {
   display: flex;
   align-items: center;
 }
 
-.Header > *:not(:last-child) {
+.Company > *:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -29,7 +29,7 @@
   color: #8f8a72;
 }
 
-.Company {
+.CompanyName {
   color: #2c5bf7;
   font-weight: 600;
 }
@@ -39,7 +39,7 @@
   flex-shrink: 0;
 }
 
-.Position {
+.Header {
   font-size: 1.1rem;
   line-height: 1.4;
   font-weight: 600;
@@ -91,14 +91,18 @@
   width: 1rem;
 }
 
-.Link {
+.Footer {
   color: #837430;
-  text-decoration: none;
   font-weight: 600;
   text-align: center;
   display: block;
   padding: 0.5rem 0;
   font-size: 0.8rem;
+}
+
+.Link {
+  color: #837430;
+  text-decoration: none;
 }
 
 .Link:hover {
