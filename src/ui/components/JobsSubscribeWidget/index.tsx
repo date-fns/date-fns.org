@@ -11,7 +11,7 @@ import {
 } from './style.css'
 // import twitterIcon from './img/twitterBlack.svg'
 
-export const JobsSubscribeBanner = () => (
+export const JobsSubscribeWidget = () => (
   <Container>
     <Header>Get awesome JavaScript jobs to your email</Header>
     <Form

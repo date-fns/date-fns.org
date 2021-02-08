@@ -6,13 +6,11 @@ import { Container, Loading, Search, SearchField } from './style.css'
 import { CancelButton } from './CancelButton'
 import { NoResults } from './NoResults'
 import { Categories } from './Categories'
+import { Widget } from './Widget'
 import { filterPages } from './utils'
 import { useQuery } from '~/utils/useQuery'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import { where } from 'typesaurus'
-import { BooksBanner } from '~/ui/components/BooksBanner'
-import { NewJobsBanner } from '~/ui/components/NewJobsBanner'
-import { JobsSubscribeBanner } from '~/ui/components/JobsSubscribeBanner'
 
 type FIXME = any
 
@@ -28,8 +26,6 @@ export const Finder: FunctionComponent<Props> = ({
   selectedPage,
 }) => {
   const [query, setQuery] = useState('')
-
-  const [currentBanner] = useState<'subscribe' | 'books' | 'jobs'>('subscribe')
 
   const trackSearch = useCallback(
     debounce((newQuery: string) => {
@@ -80,15 +76,7 @@ export const Finder: FunctionComponent<Props> = ({
           />
         )}
 
-        {/* <div>
-          Debug banners:
-          <div onClick={() => setCurrentBanner('subscribe')}>Subscribe</div>
-          <div onClick={() => setCurrentBanner('jobs')}>Jobs</div>
-          <div onClick={() => setCurrentBanner('books')}>Books</div>
-        </div> */}
-        {currentBanner === 'subscribe' && <JobsSubscribeBanner />}
-        {currentBanner === 'jobs' && <NewJobsBanner />}
-        {currentBanner === 'books' && <BooksBanner />}
+        <Widget />
       </Container>
     )
   } else if (loading) {

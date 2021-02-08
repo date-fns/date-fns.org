@@ -18,16 +18,21 @@ import {
 } from './style.css'
 import { useJobs } from '~/utils/useJobs'
 import { useMemo, useState } from 'preact/hooks'
+import { JobsSubscribeWidget } from '~/ui/components/JobsSubscribeWidget'
 
-export const NewJobsBanner: FunctionComponent = () => {
+export const JobsWidget: FunctionComponent = () => {
   const [result] = useJobs()
   const [jobIndex, setJobIndex] = useState(0)
   const shuffledJobs = useMemo(() => shuffle(result?.jobs ?? []), [
     result?.jobs,
   ])
 
-  if (!result || shuffledJobs.length === 0) {
+  if (!result) {
     return null
+  }
+
+  if (shuffledJobs.length === 0) {
+    return <JobsSubscribeWidget />
   }
 
   const job = shuffledJobs[jobIndex]

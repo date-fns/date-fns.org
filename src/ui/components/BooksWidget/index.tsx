@@ -15,7 +15,7 @@ import {
   Link,
 } from './style.css'
 
-export const BooksBanner: FunctionComponent = () => {
+export const BooksWidget: FunctionComponent = () => {
   const shuffledBooks = useMemo(() => shuffle(books), [])
   const [bookIndex, setBookIndex] = useState(0)
   const book = shuffledBooks[bookIndex]
