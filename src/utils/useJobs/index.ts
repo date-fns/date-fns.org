@@ -26,6 +26,8 @@ interface Job {
     companyURL: string
     approved: boolean
     companyLogo: string
+    applyURL?: string
+    featureDirectLink?: boolean
   }
 }
 

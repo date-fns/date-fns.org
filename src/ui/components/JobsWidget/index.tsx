@@ -41,7 +41,11 @@ export const JobsWidget: FunctionComponent = () => {
     <Container>
       <Job
         tag="a"
-        href={`${JOBS_URL}/jobs/${job.ref.id}?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`}
+        href={
+          job.data.featureDirectLink
+            ? job.data.applyURL!
+            : `${JOBS_URL}/jobs/${job.ref.id}?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`
+        }
         target="_blank"
         rel="noopener noreferrer"
       >
