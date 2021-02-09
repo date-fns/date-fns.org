@@ -1,5 +1,6 @@
 import { CSSComponent } from '~/types/decss'
 
+export const BlockContent: CSSComponent
 export const Form: CSSComponent
 export const Input: CSSComponent
 export const SubscribeButton: CSSComponent

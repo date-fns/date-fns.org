@@ -9,7 +9,7 @@ export const Logo: CSSComponent
 export const Header: CSSComponent
 export const Tags: CSSComponent
 export const Tag: CSSComponent
-export const TagsNNext: CSSComponent
+export const Buttons: CSSComponent
 export const NextButton: CSSComponent
 export const Link: CSSComponent
 export const NextIcon: CSSComponent

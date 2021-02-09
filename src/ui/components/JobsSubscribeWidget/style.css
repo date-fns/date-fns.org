@@ -1,3 +1,7 @@
+.BlockContent {
+  padding: 1rem;
+}
+
 .Form {
   display: flex;
   align-items: center;
@@ -14,6 +18,7 @@
   border-radius: 0;
   color: black;
   margin-right: 0.5rem;
+  border: 1px solid black;
 }
 
 .SubscribeButton {

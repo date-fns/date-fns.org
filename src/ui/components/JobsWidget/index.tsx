@@ -12,7 +12,7 @@ import {
   Location,
   Tag,
   Tags,
-  TagsNNext,
+  Buttons,
   Link,
   NextButton,
   Footer,
@@ -78,7 +78,7 @@ export const JobsWidget: FunctionComponent = () => {
           <Header>{job.data.position}</Header>
         </Company>
 
-        <TagsNNext>
+        <Buttons>
           <Tags>
             {job.data.tags.slice(0, 3).map((tag) => (
               <Tag key={tag}>{result.tags[tag]}</Tag>
@@ -100,7 +100,7 @@ export const JobsWidget: FunctionComponent = () => {
             <span>Next job</span>
             <NextIcon />
           </NextButton>
-        </TagsNNext>
+        </Buttons>
       </Block>
 
       <Footer>

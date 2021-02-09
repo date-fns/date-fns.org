@@ -5,9 +5,9 @@
 
 .Block {
   background: #fcf4ca;
-  padding: 1rem 1rem 0.5rem;
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
   color: black;
   transition: background 150ms ease-out;
 }
@@ -19,6 +19,7 @@
 .Company {
   display: flex;
   align-items: center;
+  padding: 1rem;
 }
 
 .Company > *:not(:last-child) {
@@ -40,9 +41,16 @@
 }
 
 .Header {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.4;
   font-weight: 600;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e3dbb6;
+  padding: 0.5rem 1rem;
 }
 
 .Tags {
@@ -59,14 +67,6 @@
   padding: 0.25rem 0.4rem;
   border-radius: 5px;
   font-size: 0.8rem;
-}
-
-.TagsNNext {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #e3dbb6;
-  margin-top: 1rem;
-  padding-top: 0.5rem;
 }
 
 .NextButton {
