@@ -20,7 +20,7 @@ const examples = [
     code: `
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
-format(new Date(), '[Today is a] dddd')
+format(new Date(), "'Today is a' eeee")
 //=> "Today is a ${
       [
         'Sunday',
