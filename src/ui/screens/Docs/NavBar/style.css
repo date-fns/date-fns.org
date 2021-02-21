@@ -4,11 +4,8 @@
   background-image: url('./img/navBarBackground.png');
   background-size: cover;
   background-position: top center;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  right: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .Inner {

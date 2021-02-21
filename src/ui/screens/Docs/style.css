@@ -1,13 +1,33 @@
-.Container {
+.Screen {
   display: flex;
-  padding-top: 2rem;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.NavBarContainer {
+  flex: none;
+  height: 2rem;
 }
 
 .Content {
-  width: 100%;
-  padding-left: 25rem;
+  flex: auto;
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.FinderContainer {
+  flex: none;
+  width: 25rem;
+}
+
+.DocContainer {
+  flex: auto;
+  overflow-y: auto;
 }
 
 .Loading {

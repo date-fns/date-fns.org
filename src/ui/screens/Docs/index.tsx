@@ -2,7 +2,14 @@ import { h, FunctionComponent } from 'preact'
 import { NavBar } from './NavBar'
 import { Finder } from './Finder'
 import { Doc } from './Doc'
-import { Container, Content, Loading } from './style.css'
+import {
+  Screen,
+  Content,
+  Loading,
+  DocContainer,
+  FinderContainer,
+  NavBarContainer,
+} from './style.css'
 import { useQuery } from '~/utils/useQuery'
 import { where } from 'typesaurus'
 import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
@@ -33,33 +40,37 @@ export const Docs: FunctionComponent<Props> = ({
     const selectedVersion = urlSelectedVersion ?? latestVersion
 
     return (
-      <Container>
-        <NavBar
-          selectedVersion={selectedVersion}
-          latestVersion={latestVersion}
-          selectedPage={selectedPage}
-          versions={sortVersions(
-            filterPreReleaseVersions(dateFnsPackage.versions, selectedVersion)
-          )}
-          selectedSubmodule={selectedSubmodule}
-        />
-
-        <div>
-          <Finder
+      <Screen>
+        <NavBarContainer>
+          <NavBar
             selectedVersion={selectedVersion}
+            latestVersion={latestVersion}
             selectedPage={selectedPage}
+            versions={sortVersions(
+              filterPreReleaseVersions(dateFnsPackage.versions, selectedVersion)
+            )}
             selectedSubmodule={selectedSubmodule}
           />
-        </div>
+        </NavBarContainer>
 
         <Content>
-          <Doc
-            selectedVersion={selectedVersion}
-            selectedPage={selectedPage}
-            selectedSubmodule={selectedSubmodule}
-          />
+          <FinderContainer>
+            <Finder
+              selectedVersion={selectedVersion}
+              selectedPage={selectedPage}
+              selectedSubmodule={selectedSubmodule}
+            />
+          </FinderContainer>
+
+          <DocContainer>
+            <Doc
+              selectedVersion={selectedVersion}
+              selectedPage={selectedPage}
+              selectedSubmodule={selectedSubmodule}
+            />
+          </DocContainer>
         </Content>
-      </Container>
+      </Screen>
     )
   } else if (loading) {
     return <Loading>Loading...</Loading>
