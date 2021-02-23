@@ -11,6 +11,14 @@
   margin: 0 50px 30px 0;
 }
 
+@media screen and (max-width: 767px) {
+  .Item {
+    display: flex;
+    flex-basis: 100%;
+    margin: 0 0 30px;
+  }
+}
+
 .Quote {
   border: 1px solid #e4e4dd;
   border-radius: 4px;

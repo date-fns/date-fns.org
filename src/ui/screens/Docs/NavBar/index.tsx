@@ -1,6 +1,14 @@
 import { h, FunctionComponent } from 'preact'
 import { RouterLink } from '~/ui/router'
-import { Container, Inner, Logo, LogoImage, Links, Link } from './style.css'
+import {
+  Container,
+  Inner,
+  Logo,
+  LogoImage,
+  Links,
+  Link,
+  MenuIcon,
+} from './style.css'
 import logoPath from './img/logo.svg'
 import {
   DEFAULT_SUBMODULE,
@@ -16,6 +24,7 @@ interface Props {
   selectedPage: string
   versions: VersionPreview[]
   selectedSubmodule: Submodule
+  menuIcon: React.ReactNode
 }
 
 export const NavBar: FunctionComponent<Props> = ({
@@ -24,6 +33,7 @@ export const NavBar: FunctionComponent<Props> = ({
   selectedPage,
   latestVersion,
   selectedSubmodule,
+  menuIcon,
 }) => {
   const versionPreview = versions.find(
     ({ version }) => version === selectedVersion
@@ -34,6 +44,8 @@ export const NavBar: FunctionComponent<Props> = ({
     <Container>
       <Inner>
         <Links>
+          <MenuIcon>{menuIcon}</MenuIcon>
+
           <Logo tag={RouterLink} to={{ name: 'home' }}>
             <LogoImage tag="img" src={logoPath} />
             date-fns

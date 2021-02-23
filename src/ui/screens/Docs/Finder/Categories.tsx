@@ -9,6 +9,7 @@ interface Props {
   selectedVersion: string
   selectedSubmodule: Submodule
   selectedPage: string
+  onNavigate(): void
 }
 
 export const Categories: FunctionComponent<Props> = ({
@@ -17,6 +18,7 @@ export const Categories: FunctionComponent<Props> = ({
   selectedVersion,
   selectedSubmodule,
   selectedPage,
+  onNavigate,
 }) => (
   <CategoriesList tag="ul">
     {categories.map((category) => {
@@ -36,6 +38,7 @@ export const Categories: FunctionComponent<Props> = ({
               selectedVersion={selectedVersion}
               selectedSubmodule={selectedSubmodule}
               selectedPage={selectedPage}
+              onNavigate={onNavigate}
             />
           </div>
         </Category>

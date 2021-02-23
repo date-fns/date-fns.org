@@ -10,6 +10,7 @@ export const Navigation = () => (
       Star on GitHub
     </Link>
     <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
+      <Icon tag="img" src={githubPath} alt="GitHub icon" />
       Join the community
     </Link>
     <Link tag="a" href="https://twitter.com/date_fns">

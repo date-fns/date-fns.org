@@ -1,7 +1,7 @@
 .Screen {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   flex-direction: column;
   align-items: stretch;
   overflow: hidden;
@@ -18,16 +18,57 @@
   flex-direction: row;
   align-items: stretch;
   min-height: 0;
+  position: relative;
 }
 
 .FinderContainer {
   flex: none;
   width: 25rem;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .FinderContainer {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+  }
+
+  .FinderContainer-menuOpen {
+    display: block;
+  }
 }
 
 .DocContainer {
+  height: auto;
+  min-height: 100%;
   flex: auto;
   overflow-y: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .DocContainer-menuOpen {
+    overflow-y: hidden;
+  }
+
+  .DocContainer:after {
+    display: none;
+    content: '';
+    background-color: grey;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+
+  .DocContainer-menuOpen:after {
+    display: block;
+  }
 }
 
 .Loading {

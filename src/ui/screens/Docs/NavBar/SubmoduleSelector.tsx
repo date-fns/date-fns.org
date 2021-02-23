@@ -48,6 +48,9 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
           )
         }
       >
+        <option key="title" disabled>
+          Submodule
+        </option>
         {submodules.map((submodule) => (
           <option key={submodule} value={submodule}>
             {SUBMODULE_LABELS[submodule]}

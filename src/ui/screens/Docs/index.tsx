@@ -18,6 +18,8 @@ import {
   getLatestVersion,
   sortVersions,
 } from '~/utils/versions'
+import hamburgerPath from './img/hamburger.svg'
+import { useState } from 'preact/hooks'
 
 interface Props {
   selectedSubmodule: Submodule
@@ -33,6 +35,8 @@ export const Docs: FunctionComponent<Props> = ({
   const [packages, { loading }] = useQuery(db.packages, [
     where('name', '==', PACKAGE_NAME),
   ])
+
+  const [menuOpen, setMenuOpen] = useState(false)
 
   if (packages && packages.length === 1) {
     const dateFnsPackage = packages[0].data
@@ -50,19 +54,23 @@ export const Docs: FunctionComponent<Props> = ({
               filterPreReleaseVersions(dateFnsPackage.versions, selectedVersion)
             )}
             selectedSubmodule={selectedSubmodule}
+            menuIcon={
+              <img src={hamburgerPath} onClick={() => setMenuOpen(!menuOpen)} />
+            }
           />
         </NavBarContainer>
 
         <Content>
-          <FinderContainer>
+          <FinderContainer menuOpen={menuOpen}>
             <Finder
               selectedVersion={selectedVersion}
               selectedPage={selectedPage}
               selectedSubmodule={selectedSubmodule}
+              onNavigate={() => setMenuOpen(false)}
             />
           </FinderContainer>
 
-          <DocContainer>
+          <DocContainer menuOpen={menuOpen}>
             <Doc
               selectedVersion={selectedVersion}
               selectedPage={selectedPage}

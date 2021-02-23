@@ -18,12 +18,14 @@ interface Props {
   selectedVersion: string
   selectedPage: string
   selectedSubmodule: Submodule
+  onNavigate(): void
 }
 
 export const Finder: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedVersion,
   selectedPage,
+  onNavigate,
 }) => {
   const [query, setQuery] = useState('')
 
@@ -74,6 +76,7 @@ export const Finder: FunctionComponent<Props> = ({
               selectedVersion={selectedVersion}
               selectedSubmodule={selectedSubmodule}
               selectedPage={selectedPage}
+              onNavigate={onNavigate}
             />
           )}
         </Content>

@@ -1,8 +1,8 @@
 .Container {
   width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
   display: flex;
+  flex-direction: column;
 }
 
 .Options {
@@ -32,7 +32,13 @@
 }
 
 .CodeWrapper {
-  flex-basis: 700px;
+  width: 700px;
+}
+
+@media screen and (max-width: 767px) {
+  .CodeWrapper {
+    width: calc(100vw - 60px);
+  }
 }
 
 .Warning {

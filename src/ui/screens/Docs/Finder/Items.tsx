@@ -9,6 +9,7 @@ interface Props {
   selectedVersion: string
   selectedSubmodule: Submodule
   selectedPage: string
+  onNavigate(): void
 }
 
 export const Items: FunctionComponent<Props> = ({
@@ -16,6 +17,7 @@ export const Items: FunctionComponent<Props> = ({
   selectedVersion,
   selectedSubmodule,
   selectedPage,
+  onNavigate,
 }) => (
   <>
     {pages.map((page) => (
@@ -28,6 +30,7 @@ export const Items: FunctionComponent<Props> = ({
           version: selectedVersion,
         })}
         isSelected={selectedPage === page.slug}
+        onClick={onNavigate}
       >
         <div>
           <ItemHeader tag="h4">{page.title}</ItemHeader>

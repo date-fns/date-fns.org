@@ -5,6 +5,7 @@ export const Container: CSSComponent
 export const Inner: CSSComponent
 export const Links: CSSComponent
 export const Link: CSSComponent
+export const MenuIcon: CSSComponent
 export const Logo: CSSPreactComponent<typeof RouterLink>
 export const LogoImage: CSSComponent
 export const Selector: CSSComponent
