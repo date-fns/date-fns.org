@@ -5,6 +5,7 @@
   font-size: 16px;
   line-height: 1.6em;
   width: 100%;
+  min-height: 100%;
 }
 
 .Container h1 {

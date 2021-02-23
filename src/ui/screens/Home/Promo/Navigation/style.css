@@ -3,9 +3,17 @@
   font-size: 15px;
 }
 
+@media screen and (max-width: 767px) {
+  .Navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .Link {
   color: white;
-  margin: 0 10px;
+  margin: 5px 10px;
   text-decoration: none;
   opacity: 0.5;
 }

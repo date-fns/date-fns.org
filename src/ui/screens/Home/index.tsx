@@ -7,7 +7,7 @@ import { Testimonials } from './Testimonials'
 import { Sponsorship } from './Sponsorship'
 import { Contributors } from './Contributors'
 import { Footer } from './Footer'
-import { Screen } from '~/ui/components/Screen'
+import { Screen } from './style.css'
 
 export const Home = () => (
   <Screen>

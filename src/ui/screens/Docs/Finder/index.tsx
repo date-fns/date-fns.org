@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
 import debounce from 'lodash/debounce'
 import { useCallback, useState } from 'preact/hooks'
-import { Container, Loading, Search, SearchField } from './style.css'
+import { Container, Content, Loading, Search, SearchField } from './style.css'
 import { CancelButton } from './CancelButton'
 import { NoResults } from './NoResults'
 import { Categories } from './Categories'
@@ -18,12 +18,14 @@ interface Props {
   selectedVersion: string
   selectedPage: string
   selectedSubmodule: Submodule
+  onNavigate(): void
 }
 
 export const Finder: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedVersion,
   selectedPage,
+  onNavigate,
 }) => {
   const [query, setQuery] = useState('')
 
@@ -64,17 +66,20 @@ export const Finder: FunctionComponent<Props> = ({
           {query.length >= 0 && <CancelButton setQuery={setQuery} />}
         </Search>
 
-        {filteredPages.length === 0 ? (
-          <NoResults />
-        ) : (
-          <Categories
-            pages={filteredPages}
-            categories={categories}
-            selectedVersion={selectedVersion}
-            selectedSubmodule={selectedSubmodule}
-            selectedPage={selectedPage}
-          />
-        )}
+        <Content>
+          {filteredPages.length === 0 ? (
+            <NoResults />
+          ) : (
+            <Categories
+              pages={filteredPages}
+              categories={categories}
+              selectedVersion={selectedVersion}
+              selectedSubmodule={selectedSubmodule}
+              selectedPage={selectedPage}
+              onNavigate={onNavigate}
+            />
+          )}
+        </Content>
 
         <Widget />
       </Container>

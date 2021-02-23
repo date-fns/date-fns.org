@@ -2,6 +2,8 @@ import { CSSComponent, CSSPreactComponent } from '~/types/decss'
 import { RouterLink } from '~/ui/router'
 
 export const Container: CSSComponent
+export const Content: CSSComponent
+export const WidgetContainer: CSSComponent
 export const Loading: CSSComponent
 export const LogoImage: CSSComponent
 export const Search: CSSComponent

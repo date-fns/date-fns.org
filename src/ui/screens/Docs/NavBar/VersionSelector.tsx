@@ -42,6 +42,9 @@ export const VersionSelector: FunctionComponent<Props> = ({
           )
         }
       >
+        <option key="title" disabled>
+          Version
+        </option>
         {versions.map(({ version }) => (
           <option key={version} value={version}>
             {version}

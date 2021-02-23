@@ -4,11 +4,8 @@
   background-image: url('./img/navBarBackground.png');
   background-size: cover;
   background-position: top center;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  right: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .Inner {
@@ -34,6 +31,34 @@
   top: 1px;
 }
 
+@media screen and (max-width: 767px) {
+  .Link {
+    display: none;
+  }
+}
+
+.MenuIcon {
+  display: none;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.MenuIcon img {
+  width: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .MenuIcon {
+    display: flex;
+  }
+}
+
 .Logo {
   display: flex;
   align-items: center;
@@ -45,9 +70,23 @@
   margin-right: 2rem;
 }
 
+@media screen and (max-width: 360px) {
+  .Logo {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-right: 1rem;
+  }
+}
+
 .LogoImage {
   height: 1.3rem;
   margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 400px) {
+  .LogoImage {
+    display: none;
+  }
 }
 
 .Selector {
@@ -65,6 +104,12 @@
 
 .Label {
   margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 550px) {
+  .Label {
+    display: none;
+  }
 }
 
 .Select {

@@ -1,12 +1,25 @@
 .Container {
+  height: 100%;
+  width: 100%;
   background: #fffbf5;
-  width: 25rem;
-  position: fixed;
-  top: 2rem;
-  bottom: 0;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   border-right: 1px solid #e6e0e6;
+}
+
+.Content {
+  flex: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.WidgetContainer {
+  flex: none;
+}
+
+.CategoriesList {
+  flex-grow: 1;
 }
 
 .Loading {
@@ -20,6 +33,8 @@
 }
 
 .Search {
+  position: relative;
+  flex: none;
   color: #770c56;
   font-weight: 600;
   font-size: 20px;
@@ -27,10 +42,8 @@
   justify-content: space-between;
   align-items: center;
   background-color: #faf6f0;
-  flex-shrink: 0;
   border-bottom: 1px solid #e6e0e6;
   word-break: break-all;
-  position: relative;
 }
 
 .SearchField {
@@ -51,12 +64,6 @@
   background-size: 16px;
   position: absolute;
   right: 1.5rem;
-}
-
-.CategoriesList {
-  overflow-y: auto;
-  overflow-x: hidden;
-  flex-grow: 1;
 }
 
 .Category:first-child {
