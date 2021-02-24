@@ -1,0 +1,18 @@
+name: Deploy to Firebase Hosting on merge
+'on':
+  push:
+    branches: [main]
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      NODE_ENV: production
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    - run: yarn
+    - run: npx firebase use --add "$NODE_ENV"
+    - run: yarn deploy

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "date-fns-org"
+    "production": "date-fns-org",
+    "development": "november-experiment"
   }
 }
