@@ -1,0 +1,16 @@
+name: Deploy to Firebase Hosting (development)
+'on': workflow_dispatch
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: yarn
+    - name:  Deploy to Firebase
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        PROJECT_ID: development
+        NODE_ENV: development

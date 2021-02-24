@@ -1,10 +1,11 @@
 const path = require('path')
+const { DefinePlugin } = require('webpack')
 
 function getPath(filename) {
   return path.resolve(process.cwd(), filename)
 }
 
-function getConfig({ tsConfig, rules = [], ...rest }) {
+function getConfig({ tsConfig, rules = [], plugins = [], ...rest }) {
   const mode = process.env.NODE_ENV || 'production'
 
   const tsLoaders = [
@@ -81,6 +82,12 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
         '~': getPath('src'),
       },
     },
+    plugins: [
+      ...plugins,
+      new DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(mode),
+      }),
+    ],
     ...rest,
   }
 }

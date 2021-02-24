@@ -6,7 +6,12 @@ export const OPEN_COLLECTIVE_API_KEY =
 export const SENTRY_URL =
   'https://d4e775c8bbec48749f45293b22414b77@o506823.ingest.sentry.io/5597042'
 
-const config = {
+interface Config {
+  jobsURL: string
+  firebaseApp: Object
+  apiURL: string
+}
+const config: { [k: string]: Config } = {
   production: {
     jobsURL: 'https://jobs.date-fns.org',
     firebaseApp: {
@@ -16,7 +21,7 @@ const config = {
     apiURL: 'https://date-fns.org/api',
   },
 
-  staging: {
+  development: {
     jobsURL: 'https://staging.jobs.date-fns.org',
     firebaseApp: {
       apiKey: 'AIzaSyBQhFyhhZ496Btpt4CFRC2aheSlL71ombc-Uz4JzqH3X7pwbop2PfpU',
@@ -26,4 +31,5 @@ const config = {
   },
 }
 
-export const CONFIG = config.production // FIXME
+const mode = process.env.NODE_ENV ?? 'development'
+export const CONFIG = config[mode] ?? config.development
