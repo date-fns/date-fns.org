@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting (development)
+name: Deploy (development)
 'on': workflow_dispatch
 jobs:
   build_and_preview:
