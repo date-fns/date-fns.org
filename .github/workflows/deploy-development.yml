@@ -3,17 +3,14 @@ name: Deploy to Firebase Hosting (development)
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEVELOPMENT }}
+      NODE_ENV: development
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
         node-version: 14.x
     - run: yarn
-    - name:  Deploy to Firebase
-      uses: w9jds/firebase-action@master
-      with:
-        args: deploy
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_ID: development
-        NODE_ENV: development
+    - run: npx firebase use --add "$NODE_ENV"
+    - run: yarn deploy
