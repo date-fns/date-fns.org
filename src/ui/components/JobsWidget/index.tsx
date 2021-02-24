@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import shuffle from 'lodash/shuffle'
 import { NextIcon } from './NextIcon'
-import { JOBS_URL } from '~/constants'
+import { CONFIG } from '~/constants'
 import {
   Company,
   Container,
@@ -38,10 +38,12 @@ export const JobsWidget: FunctionComponent = () => {
 
   useEffect(() => {
     if (job && !trackedJobs[job.ref.id]) {
-      request(`${JOBS_URL}/api/impression?id=${job.ref.id}`).catch((error) => {
-        console.error(error)
-        Sentry.captureException(error)
-      })
+      request(`${CONFIG.jobsURL}/api/impression?id=${job.ref.id}`).catch(
+        (error) => {
+          console.error(error)
+          Sentry.captureException(error)
+        }
+      )
       setTrackedJobs({ ...trackedJobs, [job.ref.id]: true })
     }
   }, [job])
@@ -58,7 +60,7 @@ export const JobsWidget: FunctionComponent = () => {
     <Container>
       <Block
         tag="a"
-        href={`${JOBS_URL}/api/apply?id=${job.ref.id}`}
+        href={`${CONFIG.jobsURL}/api/apply?id=${job.ref.id}`}
         target="_blank"
         rel="noopener noreferrer"
         clickable
@@ -106,7 +108,7 @@ export const JobsWidget: FunctionComponent = () => {
       <Footer>
         <Link
           tag="a"
-          href={`${JOBS_URL}/?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`}
+          href={`${CONFIG.jobsURL}/?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`}
           target="_blank"
           rel="noopener noreferrer"
         >

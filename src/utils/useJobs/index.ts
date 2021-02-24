@@ -1,6 +1,6 @@
 import { useJSON } from '~/utils/useJSON'
 import { RequestHookResult } from '~/types/hooks'
-import { JOBS_URL } from '~/constants'
+import { CONFIG } from '~/constants'
 
 interface Job {
   ref: {
@@ -37,5 +37,5 @@ interface JobsFetchResponse {
 }
 
 export function useJobs(): RequestHookResult<JobsFetchResponse> {
-  return useJSON<JobsFetchResponse>(`${JOBS_URL}/api/jobs`)
+  return useJSON<JobsFetchResponse>(`${CONFIG.jobsURL}/api/jobs`)
 }

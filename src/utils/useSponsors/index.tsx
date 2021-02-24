@@ -9,11 +9,11 @@ import {
   sponsorsMapFn,
 } from './utils'
 import { SponsorsResponse, Sponsors, Sponsor } from './types'
-import { API_URL } from '~/constants'
+import { CONFIG } from '~/constants'
 
 export { Sponsor }
 
-const SPONSORS_URL = `${API_URL}/sponsors`
+const SPONSORS_URL = `${CONFIG.apiURL}/sponsors`
 
 export function useSponsors(): RequestHookResult<Sponsors> {
   const [result, meta] = useJSON<SponsorsResponse>(SPONSORS_URL)

@@ -7,6 +7,11 @@
   "hosting": {
     "public": "dist",
     "predeploy": ["yarn build:client"],
-    "rewrites": [{ "source": "**", "function": "app" }]
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "app"
+      }
+    ]
   }
 }
