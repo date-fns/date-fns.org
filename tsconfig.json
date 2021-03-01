@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom"],
+    "lib": ["dom", "es2017"],
+    "module": "commonjs",
+    "target": "es6",
     "noImplicitReturns": true,
     "outDir": "lib",
     "sourceMap": true,
@@ -11,13 +13,14 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
     "strict": true,
     "resolveJsonModule": true,
     "allowJs": true,
+    "checkJs": false,
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "noImplicitAny": true
   },
-  "compileOnSave": true
+  "include": ["**/*.ts", "**/*.tsx"]
 }

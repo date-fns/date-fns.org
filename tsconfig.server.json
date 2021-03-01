@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "lib": ["es6"],
-    "module": "commonjs",
-    "target": "es6"
-  },
-  "exclude": ["src/client"]
-}
