@@ -175,7 +175,7 @@ export const features = [
     title: 'More Coming!',
     description: (
       <>
-        date-fns is an active development and we are constantly adding more
+        date-fns is an active development and we are constantly adding new
         features.
       </>
     ),
