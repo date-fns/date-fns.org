@@ -10,13 +10,7 @@ interface Props {
 export const Content: FunctionComponent<Props> = ({ code, text }) => (
   <div>
     <div>
-      <Code
-        value={code}
-        options={{
-          readOnly: true,
-          mode: 'javascript',
-        }}
-      />
+      <Code value={code} />
     </div>
     {text && (
       <div>

@@ -1,41 +1,38 @@
-import { h, FunctionComponent } from 'preact'
-import { useRef, useState, useEffect } from 'preact/hooks'
-import CodeMirror from 'codemirror'
-import 'codemirror/mode/javascript/javascript.js'
-import 'codemirror/lib/codemirror.css?global'
-import './style.css?global'
+import { h, FunctionComponent, Fragment } from 'preact'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism.css?global'
+import './global.css?global'
+import { Pre, Code as StyledCode } from './style.css'
 
 interface CodeProps {
   value: string
-  options?: CodeMirror.EditorConfiguration
+  language?: string
 }
-export const Code: FunctionComponent<CodeProps> = ({ value, options }) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const [
-    codeMirror,
-    setCodeMirror,
-  ] = useState<CodeMirror.EditorFromTextArea | null>(null)
+export const Code: FunctionComponent<CodeProps> = ({
+  value,
+  language: dirtyLanguage,
+}) => {
+  const language = getLanguage(dirtyLanguage)
+  console.log(language)
+  const html = Prism.highlight(value, Prism.languages[language], language)
+  return (
+    <>
+      <Pre tag="pre">
+        <StyledCode tag="code" dangerouslySetInnerHTML={{ __html: html }} />
+      </Pre>
+    </>
+  )
+}
 
-  useEffect(() => {
-    setCodeMirror(
-      CodeMirror.fromTextArea(textareaRef.current, {
-        theme: 'milky',
-        ...options,
-      })
-    )
+function getLanguage(dirtyLanguage: string | undefined) {
+  if (
+    dirtyLanguage === 'typescript' ||
+    dirtyLanguage === 'js' ||
+    dirtyLanguage === 'bash' ||
+    dirtyLanguage === ''
+  ) {
+    return 'javascript'
+  }
 
-    return () => {
-      if (codeMirror) {
-        codeMirror.toTextArea()
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (codeMirror) {
-      codeMirror.setValue(value)
-    }
-  }, [value])
-
-  return <textarea value={value} ref={textareaRef} />
+  return dirtyLanguage ?? 'javascript'
 }

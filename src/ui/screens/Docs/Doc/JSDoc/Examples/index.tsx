@@ -20,13 +20,7 @@ export const Examples: FunctionComponent<Props> = ({ examples }) => (
       examples.map((example, index) => {
         return (
           <CodeContainer key={index}>
-            <Code
-              value={example}
-              options={{
-                readOnly: true,
-                mode: 'javascript',
-              }}
-            />
+            <Code value={example} />
           </CodeContainer>
         )
       })
