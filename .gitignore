@@ -2,8 +2,8 @@
 .firebase/
 .vscode/
 node_modules/
-build/
-dist/
+/build/
+/dist/
 yarn-error.log
 .DS_Store
 FIXME_*

@@ -21,6 +21,15 @@ const config: { [k: string]: Config } = {
     apiURL: 'https://date-fns.org/api',
   },
 
+  staging: {
+    jobsURL: 'https://staging.jobs.date-fns.org',
+    firebaseApp: {
+      apiKey: 'AIzaSyArPabWWebnLWhEgITZbLjTA6I_BaDmF0E',
+      projectId: 'date-fns-org-staging',
+    },
+    apiURL: 'https://staging.date-fns.org/api',
+  },
+
   development: {
     jobsURL: 'https://staging.jobs.date-fns.org',
     firebaseApp: {

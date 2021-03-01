@@ -6,7 +6,8 @@ function getPath(filename) {
 }
 
 function getConfig({ tsConfig, rules = [], plugins = [], ...rest }) {
-  const mode = process.env.NODE_ENV || 'production'
+  const mode =
+    process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
   const tsLoaders = [
     {
@@ -85,7 +86,7 @@ function getConfig({ tsConfig, rules = [], plugins = [], ...rest }) {
     plugins: [
       ...plugins,
       new DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
     ],
     ...rest,
