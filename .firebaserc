@@ -1,6 +1,7 @@
 {
   "projects": {
     "production": "date-fns-org",
+    "staging": "date-fns-org-staging",
     "development": "november-experiment"
   }
 }
