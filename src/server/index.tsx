@@ -35,12 +35,14 @@ server.get('/api/sponsors', cors(), async (req, res) => {
 })
 
 server.get('*', (req, res) => {
-  const body = render(<ServerUI url={req.url} />)
+  const url = req.protocol + '://' + req.get('host') + req.url
+  const body = render(<ServerUI url={url} />)
 
   res.send(
     template({
       body,
       entry: '/static/script.js',
+      styles: '/static/main.css',
       env: process.env.NODE_ENV,
     })
   )

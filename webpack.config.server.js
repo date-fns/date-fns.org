@@ -6,12 +6,17 @@ module.exports = getConfig({
   output: {
     filename: 'index.js',
     path: getPath('build'),
+    publicPath: '/static/',
     // Expose module.exports from entry for firebase to run
     libraryTarget: 'commonjs2',
   },
   target: 'node',
   // Do not bundle all external libraries
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      allowlist: [/\.css\?global$/],
+    }),
+  ],
 
   rules: [
     // Load ejs file as a template function
