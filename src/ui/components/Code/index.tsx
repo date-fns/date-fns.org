@@ -13,7 +13,6 @@ export const Code: FunctionComponent<CodeProps> = ({
   language: dirtyLanguage,
 }) => {
   const language = getLanguage(dirtyLanguage)
-  console.log(language)
   const html = Prism.highlight(value, Prism.languages[language], language)
   return (
     <>
