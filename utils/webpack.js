@@ -89,15 +89,16 @@ function getConfig({ rules = [], plugins = [], ...rest }) {
     },
     plugins: [
       new MiniCssExtractPlugin(
-        mode === 'production'
-          ? {
-              filename: '[name]-[hash].css',
-              chunkFilename: '[id]-[hash].css',
-            }
-          : {
-              filename: '[name].css',
-              chunkFilename: '[id].css',
-            }
+        // TODO:
+        // mode === 'production'
+        //   ? {
+        //       filename: '[name]-[hash].css',
+        //       chunkFilename: '[id]-[hash].css',
+        //     } :
+        {
+          filename: '[name].css',
+          chunkFilename: '[id].css',
+        }
       ),
       ...plugins,
       new DefinePlugin({
