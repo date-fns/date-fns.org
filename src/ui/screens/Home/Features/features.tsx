@@ -102,7 +102,7 @@ export const features = [
       <>
         <p>
           It always returns a date in the same time zone, no matter what's
-          passed, a timestamp, a string or a date object.
+          passed - a timestamp, a string or a date object.
         </p>
 
         <p>
@@ -163,9 +163,9 @@ export const features = [
     title: 'Docs',
     description: (
       <>
-        Every date-fns has detailed description with examples. The documentation
-        is accessible both online, at the website, and offline thank to JSDoc
-        annotations.
+        Every date-fns function has a detailed description with examples. The
+        documentation is accessible both online on the website and offline
+        thanks to JSDoc annotations.
       </>
     ),
     icon: IconType.docs,
@@ -175,7 +175,7 @@ export const features = [
     title: 'More Coming!',
     description: (
       <>
-        date-fns is an active development and we have plans to add more
+        date-fns is an active development and we are constantly adding new
         features.
       </>
     ),
