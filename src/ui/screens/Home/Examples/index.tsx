@@ -111,7 +111,7 @@ export const Examples = () => {
         </Options>
 
         <CodeWrapper>
-          <Code value={currentExample.code} options={{ readOnly: true }} />
+          <Code value={currentExample.code} />
         </CodeWrapper>
       </Container>
 

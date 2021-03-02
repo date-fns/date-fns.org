@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "lib": ["es6", "dom"],
-    "module": "es6",
-    "target": "es5"
-  },
-  "exclude": ["src/server"]
-}

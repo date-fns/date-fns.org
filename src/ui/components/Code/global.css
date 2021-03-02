@@ -1,0 +1,17 @@
+.token.keyword {
+  color: #770c56;
+}
+
+.token.function,
+.token.class-name {
+  color: #8e3608;
+}
+
+.token.number,
+.token.string {
+  color: unset;
+}
+
+.token.comment {
+  color: #9e9a95;
+}

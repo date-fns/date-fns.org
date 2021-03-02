@@ -2,9 +2,9 @@ import 'isomorphic-fetch'
 import { https } from 'firebase-functions'
 import { h, FunctionComponent } from 'preact'
 import render from 'preact-render-to-string'
-// import { UI } from '~/ui'
+import { UI } from '~/ui'
 import template from '~/assets/template.ejs'
-// import { RouterContext, useRouter } from '~/ui/router'
+import { RouterContext, useRouter } from '~/ui/router'
 import express from 'express'
 import { requestGraphQL } from '~/utils/request'
 import sponsorsQuery from './sponsorsQuery.graphql'
@@ -16,19 +16,13 @@ const ONE_DAY = 24 * 60 * 60
 
 export const server = express()
 
-const ServerUI: FunctionComponent<{ url: string }> = () => {
-  // const router = useRouter(url)
+const ServerUI: FunctionComponent<{ url: string }> = ({ url }) => {
+  const router = useRouter(url)
 
-  // return (
-  //   <RouterContext.Provider value={router}>
-  //     <UI />
-  //   </RouterContext.Provider>
-  // )
   return (
-    <div>
-      {/* SSR would be coming soon but I need to research what to do with
-      style-loader */}
-    </div>
+    <RouterContext.Provider value={router}>
+      <UI />
+    </RouterContext.Provider>
   )
 }
 
@@ -41,12 +35,14 @@ server.get('/api/sponsors', cors(), async (req, res) => {
 })
 
 server.get('*', (req, res) => {
-  const body = render(<ServerUI url={req.url} />)
+  const url = req.protocol + '://' + req.get('host') + req.url
+  const body = render(<ServerUI url={url} />)
 
   res.send(
     template({
       body,
       entry: '/static/script.js',
+      styles: '/static/main.css',
       env: process.env.NODE_ENV,
     })
   )

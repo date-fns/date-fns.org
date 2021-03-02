@@ -18,4 +18,4 @@ const ClientUI = () => {
   )
 }
 
-render(<ClientUI />, document.body)
+render(<ClientUI />, document.getElementById('root') ?? document.body)

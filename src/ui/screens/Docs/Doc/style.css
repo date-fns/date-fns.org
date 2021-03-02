@@ -75,21 +75,18 @@
   margin-bottom: 0;
 }
 
-/*
-FIXME
-
-.Container .CodeMirror {
+.Container pre {
   margin-bottom: 10px;
 }
 
-.Container .CodeMirror:last-child {
+.Container pre:last-child {
   margin-bottom: 0;
 }
 
-.Container ul .CodeMirror:last-child,
-.Container ol .CodeMirror:last-child {
+.Container ul pre:last-child,
+.Container ol pre:last-child {
   margin-bottom: 10px;
-} */
+}
 
 .Container ul ul,
 .Container ul ol,

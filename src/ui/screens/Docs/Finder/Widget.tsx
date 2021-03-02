@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { useMemo } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import { BooksWidget } from '~/ui/components/BooksWidget'
 import { JobsSubscribeWidget } from '~/ui/components/JobsSubscribeWidget'
 import { JobsWidget } from '~/ui/components/JobsWidget'
@@ -7,8 +7,9 @@ import { JobsWidget } from '~/ui/components/JobsWidget'
 type CurrentWidget = 'jobsSubscribe' | 'books' | 'jobs'
 
 export const Widget = () => {
-  const currentWidget: CurrentWidget = useMemo(
-    () => (Math.random() > 0.5 ? 'jobsSubscribe' : 'jobs'),
+  const [currentWidget, setCurrentWidget] = useState<null | CurrentWidget>(null)
+  useEffect(
+    () => setCurrentWidget(Math.random() > 0.5 ? 'jobsSubscribe' : 'jobs'),
     []
   )
 

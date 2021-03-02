@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { HotModuleReplacementPlugin } = require('webpack')
 
 module.exports = getConfig({
-  tsConfig: getPath('tsconfig.client.json'),
   entry: getPath('src/client/index.tsx'),
   output: {
     filename: 'script.js',

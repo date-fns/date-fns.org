@@ -7,15 +7,5 @@ interface Props {
 }
 
 export const MarkdownCode: FunctionComponent<Props> = ({ value, language }) => {
-  return (
-    <Code value={value} options={{ readOnly: true, mode: getMode(language) }} />
-  )
-}
-
-function getMode(language?: string): string {
-  if (!language || language === 'js') {
-    return 'javascript'
-  }
-
-  return language
+  return <Code value={value} language={language} />
 }

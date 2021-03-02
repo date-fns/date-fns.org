@@ -1,11 +1,12 @@
 const path = require('path')
 const { DefinePlugin } = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 function getPath(filename) {
   return path.resolve(process.cwd(), filename)
 }
 
-function getConfig({ tsConfig, rules = [], plugins = [], ...rest }) {
+function getConfig({ rules = [], plugins = [], ...rest }) {
   const mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
@@ -14,16 +15,19 @@ function getConfig({ tsConfig, rules = [], plugins = [], ...rest }) {
       loader: 'ts-loader',
       options: {
         context: process.cwd(),
-        configFile: tsConfig,
+        configFile: getPath('tsconfig.json'),
       },
     },
   ]
 
-  const cssLoaders = ['style-loader', 'css-loader']
+  const cssLoaders = [
+    { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
+    'css-loader',
+  ]
 
   const nyancssLoaders = [
-    'style-loader',
     '@nyancss/css-modules-loader/preact',
+    { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
     {
       loader: 'css-loader',
       options: { modules: true },
@@ -84,6 +88,17 @@ function getConfig({ tsConfig, rules = [], plugins = [], ...rest }) {
       },
     },
     plugins: [
+      new MiniCssExtractPlugin(
+        mode === 'production'
+          ? {
+              filename: '[name]-[hash].css',
+              chunkFilename: '[id]-[hash].css',
+            }
+          : {
+              filename: '[name].css',
+              chunkFilename: '[id].css',
+            }
+      ),
       ...plugins,
       new DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

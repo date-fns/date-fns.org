@@ -13,12 +13,6 @@ export const Syntax: FunctionComponent<Props> = ({ syntax }) => (
       <DocHeaderAnchor anchor="syntax" />
     </h2>
 
-    <Code
-      value={syntax}
-      options={{
-        readOnly: true,
-        mode: 'javascript',
-      }}
-    />
+    <Code value={syntax} />
   </section>
 )
