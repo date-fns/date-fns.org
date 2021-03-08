@@ -1,12 +1,19 @@
-const path = require('path')
-const { DefinePlugin } = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+import * as path from 'path'
+import { DefinePlugin, RuleSetRule, Configuration } from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-function getPath(filename) {
+export function getPath(filename: string) {
   return path.resolve(process.cwd(), filename)
 }
 
-function getConfig({ rules = [], plugins = [], ...rest }) {
+interface GetConfigParams extends Partial<Configuration> {
+  rules?: RuleSetRule[]
+}
+export function getConfig({
+  rules = [],
+  plugins = [],
+  ...rest
+}: GetConfigParams): Configuration {
   const mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
@@ -107,9 +114,4 @@ function getConfig({ rules = [], plugins = [], ...rest }) {
     ],
     ...rest,
   }
-}
-
-module.exports = {
-  getPath,
-  getConfig,
 }

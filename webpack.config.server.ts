@@ -1,7 +1,8 @@
-const { getPath, getConfig } = require('./utils/webpack')
-const nodeExternals = require('webpack-node-externals')
+import { getPath, getConfig } from './utils/webpack'
+import nodeExternals from 'webpack-node-externals'
+import { Configuration } from 'webpack'
 
-module.exports = getConfig({
+const config: Configuration = getConfig({
   entry: getPath('src/server/index.tsx'),
   output: {
     filename: 'index.js',
@@ -26,3 +27,5 @@ module.exports = getConfig({
     },
   ],
 })
+
+export default config

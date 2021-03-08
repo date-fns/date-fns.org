@@ -1,9 +1,9 @@
-const { getPath, getConfig } = require('./utils/webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { HotModuleReplacementPlugin } = require('webpack')
+import { getPath, getConfig } from './utils/webpack'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { Configuration, HotModuleReplacementPlugin } from 'webpack'
 
-module.exports = getConfig({
+const config: Configuration = getConfig({
   entry: getPath('src/client/index.tsx'),
   output: {
     filename: 'script.js',
@@ -45,3 +45,5 @@ module.exports = getConfig({
     new HotModuleReplacementPlugin(),
   ],
 })
+
+export default config
