@@ -6,6 +6,6 @@ interface Props {
   language?: string
 }
 
-export const MarkdownCode: FunctionComponent<Props> = ({ value, language }) => {
-  return <Code value={value} language={language} />
+export const MarkdownCode: FunctionComponent<Props> = ({ value }) => {
+  return <Code value={value} />
 }

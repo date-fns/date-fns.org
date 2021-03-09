@@ -6,14 +6,9 @@ import { Pre, Code as StyledCode } from './style.css'
 
 interface CodeProps {
   value: string
-  language?: string
 }
-export const Code: FunctionComponent<CodeProps> = ({
-  value,
-  language: dirtyLanguage,
-}) => {
-  const language = getLanguage(dirtyLanguage)
-  const html = Prism.highlight(value, Prism.languages[language], language)
+export const Code: FunctionComponent<CodeProps> = ({ value }) => {
+  const html = Prism.highlight(value, Prism.languages.javascript, 'javascript')
   return (
     <>
       <Pre tag="pre">
@@ -21,17 +16,4 @@ export const Code: FunctionComponent<CodeProps> = ({
       </Pre>
     </>
   )
-}
-
-function getLanguage(dirtyLanguage: string | undefined) {
-  if (
-    dirtyLanguage === 'typescript' ||
-    dirtyLanguage === 'js' ||
-    dirtyLanguage === 'bash' ||
-    dirtyLanguage === ''
-  ) {
-    return 'javascript'
-  }
-
-  return dirtyLanguage ?? 'javascript'
 }
