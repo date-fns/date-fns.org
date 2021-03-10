@@ -20,7 +20,7 @@
 
 .InnerContainer {
   max-width: 1200px;
-  padding: 30px;
+  padding: 75px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
