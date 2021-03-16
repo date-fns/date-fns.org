@@ -3,10 +3,10 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import { Configuration } from 'webpack'
 
 const config: Configuration = getConfig({
-  entry: getPath('src/client/index.tsx'),
+  entry: getPath('src/web/index.tsx'),
   output: {
     filename: 'script.js',
-    path: getPath('dist/static'),
+    path: getPath('build/web/static'),
     publicPath: '/static/',
   },
   target: 'web',

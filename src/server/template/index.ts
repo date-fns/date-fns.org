@@ -1,3 +1,11 @@
+interface Params {
+  entry: string
+  styles: string
+  body?: string
+}
+
+export const template = ({ entry, styles, body }: Params) =>
+  `
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,20 +54,12 @@
     <meta property='og:image:width' content='600'>
     <meta property='og:image:height' content='330'>
 
-    <% if (typeof styles !== 'undefined') { %>
-      <link href="<%= styles %>" rel="stylesheet">
-    <% } %>
+    <link href="${styles}" rel="stylesheet">
   </head>
   <body>
-    <div id="root">
-      <% if (typeof body !== 'undefined') { %>
-        <%- body %>
-      <% } %>
-    </div>
+    <div id="root">${body ?? ''}</div>
 
-    <% if (typeof entry !== 'undefined') { %>
-      <script src="<%= entry %>"></script>
-    <% } %>
+    <script src="${entry}"></script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -78,7 +78,7 @@
 
       async function init(dirtyVersion) {
         const version = dirtyVersion && dirtyVersion.replace(/^v/, '')
-        const url = `https://unpkg.com/date-fns${version ? '@' + version : ''}/esm/index.js`
+        const url = 'https://unpkg.com/date-fns' + (version ? '@' + version : '') + '/esm/index.js'
         try {
           const dateFns = await import(url)
           window._ = dateFns
@@ -105,3 +105,4 @@
     </script>
   </body>
 </html>
+`.trim()

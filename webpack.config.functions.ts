@@ -3,10 +3,10 @@ import nodeExternals from 'webpack-node-externals'
 import { Configuration } from 'webpack'
 
 const config: Configuration = getConfig({
-  entry: getPath('src/server/index.tsx'),
+  entry: getPath('src/functions/index.ts'),
   output: {
     filename: 'index.js',
-    path: getPath('build'),
+    path: getPath('build/functions'),
     publicPath: '/static/',
     // Expose module.exports from entry for firebase to run
     libraryTarget: 'commonjs2',
@@ -17,14 +17,6 @@ const config: Configuration = getConfig({
     nodeExternals({
       allowlist: [/\.css\?global$/],
     }),
-  ],
-
-  rules: [
-    // Load ejs file as a template function
-    {
-      test: /\.ejs?$/,
-      use: [{ loader: 'ejs-webpack-loader' }],
-    },
   ],
 })
 

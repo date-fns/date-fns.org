@@ -52,8 +52,6 @@ export function getConfig({
     },
   ]
 
-  const rawLoaders = ['raw-loader']
-
   return {
     mode,
     devtool: mode === 'production' ? 'source-map' : 'inline-source-map',
@@ -79,11 +77,6 @@ export function getConfig({
         {
           test: /\.(png|jpg|gif|svg)$/,
           use: fileLoaders,
-        },
-
-        {
-          test: /\.(graphql)$/,
-          use: rawLoaders,
         },
         ...rules,
       ],

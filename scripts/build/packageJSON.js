@@ -9,7 +9,7 @@ const newPackageJSON = {
   dependencies: packageJSON.dependencies,
 }
 
-const filePath = path.resolve(process.cwd(), 'build/package.json')
+const filePath = path.resolve(process.cwd(), 'build/functions/package.json')
 const fileContent = JSON.stringify(newPackageJSON, null, '  ')
 fs.writeFile(filePath, fileContent, (err) => {
   if (err) {
