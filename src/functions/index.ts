@@ -1,3 +1,4 @@
+import 'isomorphic-fetch'
 import { https } from 'firebase-functions'
 import express from 'express'
 import { sponsors } from '~/server/sponsors'

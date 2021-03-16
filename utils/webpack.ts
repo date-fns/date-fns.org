@@ -1,21 +1,21 @@
 import * as path from 'path'
-import { DefinePlugin, RuleSetRule, Configuration } from 'webpack'
+import { DefinePlugin, Configuration } from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 export function getPath(filename: string) {
   return path.resolve(process.cwd(), filename)
 }
 
-interface GetConfigParams extends Partial<Configuration> {
-  rules?: RuleSetRule[]
+export function getMode() {
+  return process.env.NODE_ENV === 'production' ? 'production' : 'development'
 }
+
 export function getConfig({
-  rules = [],
   plugins = [],
   ...rest
-}: GetConfigParams): Configuration {
-  const mode =
-    process.env.NODE_ENV === 'production' ? 'production' : 'development'
+}: Configuration): Configuration {
+  const { target } = rest
+  const mode = getMode()
 
   const tsLoaders = [
     {
@@ -27,10 +27,13 @@ export function getConfig({
     },
   ]
 
-  const cssLoaders = [
-    { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
-    'css-loader',
-  ]
+  const cssLoaders =
+    target === 'web'
+      ? [
+          { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
+          'css-loader',
+        ]
+      : 'null-loader'
 
   const nyancssLoaders = [
     '@nyancss/css-modules-loader/preact',
@@ -41,7 +44,9 @@ export function getConfig({
     },
   ]
 
-  const fileLoaders = ['file-loader']
+  const fileLoaders = [
+    { loader: 'file-loader', options: { emitFile: target === 'web' } },
+  ]
 
   return {
     mode,
@@ -69,7 +74,6 @@ export function getConfig({
           test: /\.(png|jpg|gif|svg)$/,
           use: fileLoaders,
         },
-        ...rules,
       ],
     },
     resolve: {
@@ -79,19 +83,18 @@ export function getConfig({
       },
     },
     plugins: [
-      new MiniCssExtractPlugin(
-        // TODO:
-        // mode === 'production'
-        //   ? {
-        //       filename: '[name]-[hash].css',
-        //       chunkFilename: '[id]-[hash].css',
-        //     } :
-        {
-          filename: '[name].css',
-          chunkFilename: '[id].css',
-        }
-      ),
       ...plugins,
+      new MiniCssExtractPlugin(
+        mode === 'production'
+          ? {
+              filename: '[name]-[hash].css',
+              chunkFilename: '[id]-[hash].css',
+            }
+          : {
+              filename: '[name].css',
+              chunkFilename: '[id].css',
+            }
+      ),
       new DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),

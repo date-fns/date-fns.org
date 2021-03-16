@@ -5,8 +5,6 @@ import { UI } from '~/ui'
 import { RouterContext, useRouter } from '~/ui/router'
 import { template } from '~/server/template'
 
-import 'isomorphic-fetch'
-
 export const ssr = express()
 
 const ServerUI: FunctionComponent<{ url: string }> = ({ url }) => {
@@ -26,8 +24,6 @@ ssr.get('*', (req, res) => {
   res.send(
     template({
       body,
-      entry: '/static/script.js',
-      styles: '/static/main.css',
     })
   )
 })

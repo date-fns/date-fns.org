@@ -1,10 +1,10 @@
+import { entryPath } from './entryPath'
+
 interface Params {
-  entry: string
-  styles: string
   body?: string
 }
 
-export const template = ({ entry, styles, body }: Params) =>
+export const template = ({ body }: Params = {}) =>
   `
 <!DOCTYPE html>
 <html>
@@ -54,12 +54,12 @@ export const template = ({ entry, styles, body }: Params) =>
     <meta property='og:image:width' content='600'>
     <meta property='og:image:height' content='330'>
 
-    <link href="${styles}" rel="stylesheet">
+    <link href="${entryPath('main', 'css')}" rel="stylesheet">
   </head>
   <body>
     <div id="root">${body ?? ''}</div>
 
-    <script src="${entry}"></script>
+    <script src="${entryPath('main', 'js')}"></script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -85,7 +85,7 @@ export const template = ({ entry, styles, body }: Params) =>
           window.dateFns = dateFns
 
           console.log(
-            '%cUse %c_%c global variable to access date-fns functions.\n' +
+            '%cUse %c_%c global variable to access date-fns functions.\\n' +
               'For example: %c_.addDays(new Date(), 5)',
             MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE, CODE_STYLE,
           )
@@ -96,8 +96,8 @@ export const template = ({ entry, styles, body }: Params) =>
       }
 
       console.log(
-        '%c( ⩗) date-fns console\n' +
-          '%cRun %cinit()%c or %cinit("v2.16.1" /* version */)\n' +
+        '%c( ⩗) date-fns console\\n' +
+          '%cRun %cinit()%c or %cinit("v2.16.1" /* version */)\\n' +
           '%cto make date-fns functions available in console.',
         HEADER_STYLE, MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE,
       )

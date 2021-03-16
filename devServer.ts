@@ -4,7 +4,7 @@ import { template } from '~/server/template'
 import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 import webpack from 'webpack'
-import config from './webpack.config.devserver'
+import config from './webpack.config.dev'
 
 const PORT = 1337
 
@@ -16,12 +16,7 @@ server.use(WebpackDevMiddleware(compiler))
 server.use(WebpackHotMiddleware(compiler))
 
 server.get('*', (_req, res) => {
-  res.send(
-    template({
-      entry: '/static/script.js',
-      styles: '/static/main.css',
-    })
-  )
+  res.send(template())
 })
 
 server.listen(1337)
