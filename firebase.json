@@ -1,12 +1,12 @@
 {
   "functions": {
-    "source": "build",
-    "predeploy": ["yarn build:server"],
+    "source": "build/functions",
+    "predeploy": ["yarn build"],
     "runtime": "nodejs14"
   },
   "hosting": {
-    "public": "dist",
-    "predeploy": ["yarn build:client"],
+    "public": "build/web",
+    "predeploy": ["yarn build"],
     "rewrites": [
       {
         "source": "**",

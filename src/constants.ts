@@ -31,12 +31,12 @@ const config: { [k: string]: Config } = {
   },
 
   development: {
-    jobsURL: 'https://staging.jobs.date-fns.org',
+    jobsURL: 'https://jobs.date-fns.org',
     firebaseApp: {
-      apiKey: 'AIzaSyBQhFyhhZ496Btpt4CFRC2aheSlL71ombc-Uz4JzqH3X7pwbop2PfpU',
-      projectId: 'november-experiment',
+      apiKey: 'AIzaSyBoDBiIbKeiu4-Uz4JzqH3X7pwbop2PfpU',
+      projectId: 'date-fns-org',
     },
-    apiURL: 'https://november-experiment.web.app/api',
+    apiURL: '/api',
   },
 }
 

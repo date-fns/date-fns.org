@@ -4,6 +4,13 @@
 website. It provides information about key library features, API browser,
 documentation, etc.
 
-## License
+## Running locally
 
-[MIT © Sasha Koss](https://kossnocorp.mit-license.org/)
+To run the website locally, use:
+
+```sh
+yarn
+yarn start
+```
+
+The website will be available on http://localhost:1337/

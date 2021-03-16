@@ -1,3 +1,4 @@
+export const sponsorsQuery = `
 query {
   account(slug: "date-fns") {
     orders(limit: 1000) {
@@ -26,3 +27,4 @@ query {
     }
   }
 }
+`.trim()

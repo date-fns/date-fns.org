@@ -1,14 +1,21 @@
-const path = require('path')
-const { DefinePlugin } = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+import * as path from 'path'
+import { DefinePlugin, Configuration } from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-function getPath(filename) {
+export function getPath(filename: string) {
   return path.resolve(process.cwd(), filename)
 }
 
-function getConfig({ rules = [], plugins = [], ...rest }) {
-  const mode =
-    process.env.NODE_ENV === 'production' ? 'production' : 'development'
+export function getMode() {
+  return process.env.NODE_ENV === 'production' ? 'production' : 'development'
+}
+
+export function getConfig({
+  plugins = [],
+  ...rest
+}: Configuration): Configuration {
+  const { target } = rest
+  const mode = getMode()
 
   const tsLoaders = [
     {
@@ -20,10 +27,13 @@ function getConfig({ rules = [], plugins = [], ...rest }) {
     },
   ]
 
-  const cssLoaders = [
-    { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
-    'css-loader',
-  ]
+  const cssLoaders =
+    target === 'web'
+      ? [
+          { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
+          'css-loader',
+        ]
+      : 'null-loader'
 
   const nyancssLoaders = [
     '@nyancss/css-modules-loader/preact',
@@ -35,17 +45,8 @@ function getConfig({ rules = [], plugins = [], ...rest }) {
   ]
 
   const fileLoaders = [
-    {
-      loader: 'file-loader',
-      options: rest.devServer
-        ? {
-            name: 'static/[name].[ext]',
-          }
-        : {},
-    },
+    { loader: 'file-loader', options: { emitFile: target === 'web' } },
   ]
-
-  const rawLoaders = ['raw-loader']
 
   return {
     mode,
@@ -73,12 +74,6 @@ function getConfig({ rules = [], plugins = [], ...rest }) {
           test: /\.(png|jpg|gif|svg)$/,
           use: fileLoaders,
         },
-
-        {
-          test: /\.(graphql)$/,
-          use: rawLoaders,
-        },
-        ...rules,
       ],
     },
     resolve: {
@@ -88,28 +83,22 @@ function getConfig({ rules = [], plugins = [], ...rest }) {
       },
     },
     plugins: [
-      new MiniCssExtractPlugin(
-        // TODO:
-        // mode === 'production'
-        //   ? {
-        //       filename: '[name]-[hash].css',
-        //       chunkFilename: '[id]-[hash].css',
-        //     } :
-        {
-          filename: '[name].css',
-          chunkFilename: '[id].css',
-        }
-      ),
       ...plugins,
+      new MiniCssExtractPlugin(
+        mode === 'production'
+          ? {
+              filename: '[name]-[hash].css',
+              chunkFilename: '[id]-[hash].css',
+            }
+          : {
+              filename: '[name].css',
+              chunkFilename: '[id].css',
+            }
+      ),
       new DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
     ],
     ...rest,
   }
-}
-
-module.exports = {
-  getPath,
-  getConfig,
 }
