@@ -41,16 +41,7 @@ export function getConfig({
     },
   ]
 
-  const fileLoaders = [
-    {
-      loader: 'file-loader',
-      options: rest.devServer
-        ? {
-            name: 'static/[name].[ext]',
-          }
-        : {},
-    },
-  ]
+  const fileLoaders = ['file-loader']
 
   return {
     mode,
