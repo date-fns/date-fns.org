@@ -62,6 +62,10 @@ export const NavBar: FunctionComponent<Props> = ({
           <Link tag="a" href="https://twitter.com/date_fns">
             Twitter
           </Link>
+
+          <Link tag="a" href="https://jobs.date-fns.org">
+            JS Jobs
+          </Link>
         </Links>
 
         <div>
