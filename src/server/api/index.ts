@@ -7,9 +7,9 @@ import cors from 'cors'
 const SPONSORS_URL = 'https://api.opencollective.com/graphql/v2'
 const ONE_DAY = 24 * 60 * 60
 
-export const sponsors = express()
+export const api = express()
 
-sponsors.get('/api/sponsors', cors(), async (req, res) => {
+api.get('/api/sponsors', cors(), async (req, res) => {
   const { age } = req.query
   const json = await requestGraphQL(SPONSORS_URL, sponsorsQuery, {
     'Api-Key': OPEN_COLLECTIVE_API_KEY,
