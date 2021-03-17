@@ -1,5 +1,5 @@
-import { Configuration } from 'webpack'
-import { getPath, getConfig, getMode } from './utils/webpack'
+import { webpackDefaults } from './config/webpackDefaults'
+import { getPath, getMode } from './config/utils'
 import nodeExternals from 'webpack-node-externals'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
@@ -7,7 +7,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 const mode = getMode()
 const isProduction = mode === 'production'
 
-const webConfig: Configuration = getConfig({
+const webConfig = webpackDefaults({
   entry: getPath('src/web/index.tsx'),
   output: {
     filename: isProduction ? '[name]-[chunkhash].js' : '[name].js',
@@ -21,12 +21,14 @@ const webConfig: Configuration = getConfig({
       patterns: [{ from: getPath('src/static') }],
     }),
     ...(isProduction
-      ? [new AssetsWebpackPlugin({ path: getPath('build/functions') })]
+      ? // Put webpack-assets.json into functions build
+        // so it knows which JS and CSS file to link in the web page.
+        [new AssetsWebpackPlugin({ path: getPath('build/functions') })]
       : []),
   ],
 })
 
-const functionsConfig: Configuration = getConfig({
+const functionsConfig = webpackDefaults({
   entry: getPath('src/functions/index.ts'),
   output: {
     filename: 'index.js',

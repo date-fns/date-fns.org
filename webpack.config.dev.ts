@@ -1,8 +1,9 @@
-import { Configuration, HotModuleReplacementPlugin } from 'webpack'
-import { getPath, getConfig } from './utils/webpack'
+import { HotModuleReplacementPlugin } from 'webpack'
+import { webpackDefaults } from './config/webpackDefaults'
+import { getPath } from './config/utils'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 
-const config: Configuration = getConfig({
+const config = webpackDefaults({
   entry: getPath('src/web/index.tsx'),
   output: {
     path: getPath('build/web/static'),

@@ -15,10 +15,7 @@ const server = express()
 server.use(api)
 server.use(WebpackDevMiddleware(compiler))
 server.use(WebpackHotMiddleware(compiler))
-
-server.get('*', (_req, res) => {
-  res.send(template())
-})
-
+server.get('*', (_req, res) => res.send(template()))
 server.listen(PORT)
+
 console.log(`Started listening on http://localhost:${PORT}/`)
