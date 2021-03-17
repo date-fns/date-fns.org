@@ -22,6 +22,9 @@ export const Footer = () => (
       <Row>
         <a href="https://twitter.com/date_fns">Twitter</a>
       </Row>
+      <Row>
+        <a href="http://jobs.date-fns.org">JavaScript Jobs</a>
+      </Row>
       <Row isLicense>
         <a href="https://kossnocorp.mit-license.org/">MIT © Sasha Koss</a>
       </Row>
