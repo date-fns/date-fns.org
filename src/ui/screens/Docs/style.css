@@ -52,6 +52,11 @@
 @media screen and (max-width: 767px) {
   .DocContainer-menuOpen {
     overflow-y: hidden;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
   }
 
   .DocContainer:after {

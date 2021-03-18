@@ -70,7 +70,10 @@ export const Docs: FunctionComponent<Props> = ({
             />
           </FinderContainer>
 
-          <DocContainer menuOpen={menuOpen}>
+          <DocContainer
+            menuOpen={menuOpen}
+            onClick={menuOpen ? () => setMenuOpen(false) : undefined}
+          >
             <Doc
               selectedVersion={selectedVersion}
               selectedPage={selectedPage}
