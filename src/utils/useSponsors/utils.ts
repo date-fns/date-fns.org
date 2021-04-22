@@ -1,6 +1,4 @@
 import { SponsorsResponseNode, Sponsor } from './types'
-import subWeeks from 'date-fns/subWeeks'
-import subMonths from 'date-fns/subMonths'
 
 const TRUE_CAR_ID = 'dgm9bnk8-0437xqra-kxjpvzeo-ljdayw5r'
 
@@ -12,11 +10,7 @@ function getProfileURL(node: SponsorsResponseNode) {
 }
 
 export function isActive(node: SponsorsResponseNode) {
-  return (
-    node.status === 'ACTIVE' &&
-    new Date(node.updatedAt).getTime() >
-      subWeeks(subMonths(Date.now(), 1), 2).getTime()
-  )
+  return node.status === 'ACTIVE'
 }
 
 export function isGold(node: SponsorsResponseNode) {
