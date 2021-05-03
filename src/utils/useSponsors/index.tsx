@@ -13,7 +13,7 @@ import { CONFIG } from '~/constants'
 
 export { Sponsor }
 
-const SPONSORS_URL = `${CONFIG.apiURL}/sponsors`
+const SPONSORS_URL = `${CONFIG.apiURL}/sponsors?v2`
 
 export function useSponsors(): RequestHookResult<Sponsors> {
   const [result, meta] = useJSON<SponsorsResponse>(SPONSORS_URL)
