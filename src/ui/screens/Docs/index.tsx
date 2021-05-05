@@ -19,7 +19,10 @@ import {
   sortVersions,
 } from '~/utils/versions'
 import hamburgerPath from './img/hamburger.svg'
-import { useState } from 'preact/hooks'
+import { useContext, useEffect, useState } from 'preact/hooks'
+import { RouterContext } from '~/ui/router'
+import { docLink } from '~/ui/router/docLink'
+import { DEFAULT_PAGE } from '~/constants'
 
 interface Props {
   selectedSubmodule: Submodule
@@ -32,6 +35,20 @@ export const Docs: FunctionComponent<Props> = ({
   selectedVersion: urlSelectedVersion,
   selectedPage,
 }) => {
+  const { navigate } = useContext(RouterContext)
+
+  useEffect(() => {
+    if (!selectedPage) {
+      navigate(
+        docLink({
+          page: DEFAULT_PAGE,
+          submodule: selectedSubmodule,
+          version: urlSelectedVersion,
+        })
+      )
+    }
+  })
+
   const [packages, { loading }] = useQuery(db.packages, [
     where('name', '==', PACKAGE_NAME),
   ])
