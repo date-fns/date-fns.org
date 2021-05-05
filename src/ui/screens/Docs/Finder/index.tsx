@@ -42,7 +42,7 @@ export const Finder: FunctionComponent<Props> = ({
     where('version', '==', selectedVersion),
   ])
 
-  if (versions && versions.length === 1) {
+  if (versions && versions.length >= 1) {
     const { pages, categories } = versions[0].data
     const filteredPages = filterPages(pages, query, selectedSubmodule)
 
