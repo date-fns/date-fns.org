@@ -13,7 +13,7 @@ export const features = [
 
         <p>
           It works well with modern module bundlers such as{' '}
-          <strong>webpack</strong>, <strong>Browserify</strong>, or{' '}
+          <strong>webpack</strong>, <strong>Browserify</strong>, and{' '}
           <strong>Rollup</strong> and also supports tree-shaking.
         </p>
       </>
@@ -26,12 +26,12 @@ export const features = [
     description: (
       <>
         <p>
-          date-fns doesn't reinvent the wheel and uses the existing native type.
-          Also, it doesn't extend core objects for safety sake.
+          date-fns uses the native <code>Date</code> type and doesn't reinvent the wheel.
+          It doesn't extend core objects for safety's sake.
         </p>
 
         <p>
-          Functions in date-fns work predictable and stick to ECMAScript
+          Functions in date-fns work predictably and stick to ECMAScript
           behavior in edge cases.
         </p>
       </>
@@ -48,7 +48,7 @@ export const features = [
           instance instead of changing the passed one.
         </p>
 
-        <p>It allows to prevent bugs and skip long debugging sessions.</p>
+        <p>It helps to prevent bugs and avoid long debugging sessions.</p>
       </>
     ),
     icon: IconType.immutable,
@@ -59,13 +59,13 @@ export const features = [
     description: (
       <>
         <p>
-          date-fns supports both <strong>Flow</strong> and{' '}
-          <strong>TypeScript</strong>.
+          date-fns supports both <strong>TypeScript</strong> and{' '}
+          <strong>Flow</strong>.
         </p>
 
         <p>
           The typings are generated from the source code and bundled with the
-          package, so they always up-to-date.
+          package, so they're always up-to-date.
         </p>
       </>
     ),
@@ -77,7 +77,7 @@ export const features = [
     description: (
       <>
         The functional programming submodule provides a better alternative to
-        chaining — composition, which makes your code clean, safe and doesn't
+        chaining: composition; which makes your code clean and safe and doesn't
         bloat your build.
       </>
     ),
@@ -88,9 +88,8 @@ export const features = [
     title: 'I18n',
     description: (
       <>
-        With the support of an amazing community, date-fns have dozens of
-        locales. But none of them will be included in your build unless you use
-        that.
+        With support from the amazing community, date-fns has dozens of locales.
+        Only the ones that you use will be included in your project.
       </>
     ),
     icon: IconType.i18n,
@@ -101,7 +100,7 @@ export const features = [
     description: (
       <>
         <p>
-          It always returns a date in the same time zone, no matter what's
+          date-fns always returns a date in the same time zone, no matter what's
           passed - a timestamp, a string or a date object.
         </p>
 
