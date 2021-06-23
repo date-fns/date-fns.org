@@ -9,7 +9,7 @@ type CurrentWidget = 'jobsSubscribe' | 'books' | 'jobs'
 export const Widget = () => {
   const [currentWidget, setCurrentWidget] = useState<null | CurrentWidget>(null)
   useEffect(
-    () => setCurrentWidget(Math.random() > 0.5 ? 'jobsSubscribe' : 'jobs'),
+    () => setCurrentWidget(Math.random() > 0.75 ? 'jobsSubscribe' : 'jobs'),
     []
   )
 
@@ -17,7 +17,9 @@ export const Widget = () => {
     return <JobsSubscribeWidget />
   } else if (currentWidget === 'jobs') {
     return <JobsWidget />
-  } else {
+  } else if (currentWidget === 'books') {
     return <BooksWidget />
+  } else {
+    return null
   }
 }

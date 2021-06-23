@@ -87,21 +87,23 @@ export const JobsWidget: FunctionComponent = () => {
             ))}
           </Tags>
 
-          <NextButton
-            tag="button"
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              let newIndex = jobIndex + 1
-              if (newIndex > shuffledJobs.length - 1) {
-                newIndex = 0
-              }
-              setJobIndex(newIndex)
-            }}
-          >
-            <span>Next job</span>
-            <NextIcon />
-          </NextButton>
+          {shuffledJobs.length > 1 && (
+            <NextButton
+              tag="button"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                let newIndex = jobIndex + 1
+                if (newIndex > shuffledJobs.length - 1) {
+                  newIndex = 0
+                }
+                setJobIndex(newIndex)
+              }}
+            >
+              <span>Next job</span>
+              <NextIcon />
+            </NextButton>
+          )}
         </Buttons>
       </Block>
 
