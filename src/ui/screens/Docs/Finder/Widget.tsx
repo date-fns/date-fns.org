@@ -1,25 +1,33 @@
 import { h } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import { BooksWidget } from '~/ui/components/BooksWidget'
+import { HireWidget } from '~/ui/components/HireWidget'
 import { JobsSubscribeWidget } from '~/ui/components/JobsSubscribeWidget'
 import { JobsWidget } from '~/ui/components/JobsWidget'
 
-type CurrentWidget = 'jobsSubscribe' | 'books' | 'jobs'
+type CurrentWidget = 'jobsSubscribe' | 'books' | 'jobs' | 'hire'
 
 export const Widget = () => {
-  const [currentWidget, setCurrentWidget] = useState<null | CurrentWidget>(null)
-  useEffect(
-    () => setCurrentWidget(Math.random() > 0.75 ? 'jobsSubscribe' : 'jobs'),
-    []
-  )
+  const [
+    currentWidget /*, setCurrentWidget */,
+  ] = useState<null | CurrentWidget>('hire')
+  // useEffect(
+  //   () => {
+  //     setCurrentWidget(Math.random() > 0.75 ? 'jobsSubscribe' : 'jobs')
+  //   },
+  //   []
+  // )
 
-  if (currentWidget === 'jobsSubscribe') {
-    return <JobsSubscribeWidget />
-  } else if (currentWidget === 'jobs') {
-    return <JobsWidget />
-  } else if (currentWidget === 'books') {
-    return <BooksWidget />
-  } else {
-    return null
+  switch (currentWidget) {
+    case 'jobsSubscribe':
+      return <JobsSubscribeWidget />
+    case 'jobs':
+      return <JobsWidget />
+    case 'books':
+      return <BooksWidget />
+    case 'hire':
+      return <HireWidget />
+    default:
+      return null
   }
 }

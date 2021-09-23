@@ -1,0 +1,28 @@
+.BlockContent {
+  padding: 1rem;
+}
+
+.HireButton {
+  margin-top: 1rem;
+  flex: none;
+  height: 2rem;
+  font-size: 1rem;
+  display: block;
+  background: #129e4f;
+  color: white;
+  border: 0;
+  padding: 0 1rem;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.HireButton:hover {
+  background: #17cf67;
+}
+
+.Description {
+  margin-top: 0.5rem;
+}
