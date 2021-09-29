@@ -76,6 +76,10 @@
   text-decoration: none;
 }
 
+.Link-decorated {
+  text-decoration: underline;
+}
+
 .Content {
   display: flex;
   flex-direction: column;
