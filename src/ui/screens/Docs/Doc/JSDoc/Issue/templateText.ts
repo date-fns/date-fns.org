@@ -28,28 +28,34 @@ export function bugTemplateText(url: string, fn: string): string {
 
   const body = encodeURIComponent(`
   There is an issue with the [${fn} function](${url})
-  ### Describe the bug
 
- 
-  #### 💻 Code if available
+  ## The problem
 
+  ### 💻 Code demonstrating the problem
 
-  #### 🙁  Actual behavior
+  <!-- Demonstrate the problem -->
 
+  \`\`\`js
+  import { fn } from 'date-fns'
 
-  #### 🙂  Expected behavior
+  fn()
+  //=> Problematic output
+  \`\`\`
 
+  ### 🙁 Actual behavior
 
-  #### 🎮  Playground link if available
+  <!-- Describe what you received -->
 
+  ### 🙂 Expected behavior
 
-  #### Software used:
-  - Browser [e.g. chrome, safari]
-  
-  - date-fns version [e.g. 2.24]
-  
-  #### Additional info
-  <!--Add any other info about the problem here. -->
+  <!-- Describe what you expected to get -->
+
+  ## Debug information
+
+  - date-fns version: <!-- Fill in the date-fns version you use -->
+  - Browser/Node.js version: <!-- Fill in the envrionment version (i.e. Chrome 94.0.4606.61) -->
+  - Your timezone: <!-- Fill in your timezone name (i.e. Asia/Singapore) -->
+  - Your current time: <!-- Fill in the time when did you tested the probmlem (i.e. 16:20) -->
 
   `)
   return githubUrl + '&title=' + title + '&body=' + body
