@@ -1,15 +1,16 @@
-import { h, FunctionComponent } from 'preact'
-import { Markdown } from '~/ui/components/Markdown'
-import { Header } from './style.css'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { JSDocFunction } from '@date-fns/date-fns-db'
-import { Usage } from './Usage'
-import { Syntax } from './Syntax'
+import { FunctionComponent, h } from 'preact'
+import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { Markdown } from '~/ui/components/Markdown'
 import { Arguments } from './Arguments'
+import { Examples } from './Examples'
+import { Exceptions } from './Exceptions'
+import Issue from './Issue'
 import { Properties } from './Properties'
 import { Returns } from './Returns'
-import { Exceptions } from './Exceptions'
-import { Examples } from './Examples'
+import { Header } from './style.css'
+import { Syntax } from './Syntax'
+import { Usage } from './Usage'
 
 interface Props {
   doc: JSDocFunction
@@ -43,5 +44,7 @@ export const JSDoc: FunctionComponent<Props> = ({ doc }) => (
       <Exceptions exceptions={doc.content.exceptions} />
     )}
     {doc.content.examples && <Examples examples={doc.content.examples} />}
+
+    <Issue />
   </div>
 )
