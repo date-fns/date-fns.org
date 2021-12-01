@@ -10,6 +10,7 @@ import {
 } from './utils'
 import { SponsorsResponse, Sponsors, Sponsor } from './types'
 import { CONFIG } from '~/constants'
+import uniqBy from 'lodash/uniqBy'
 
 export { Sponsor }
 
@@ -21,22 +22,34 @@ export function useSponsors(): RequestHookResult<Sponsors> {
   if (result) {
     return [
       {
-        gold: result.data.account.orders.nodes
-          .filter(isGold)
-          .sort(sponsorsSortFn)
-          .map(sponsorsMapFn),
-        silver: result.data.account.orders.nodes
-          .filter(isSilver)
-          .sort(sponsorsSortFn)
-          .map(sponsorsMapFn),
-        bronze: result.data.account.orders.nodes
-          .filter(isBronze)
-          .sort(sponsorsSortFn)
-          .map(sponsorsMapFn),
-        backers: result.data.account.orders.nodes
-          .filter(isBacker)
-          .sort(sponsorsSortFn)
-          .map(sponsorsMapFn),
+        gold: uniqBy(
+          result.data.account.orders.nodes
+            .filter(isGold)
+            .sort(sponsorsSortFn)
+            .map(sponsorsMapFn),
+          'id'
+        ),
+        silver: uniqBy(
+          result.data.account.orders.nodes
+            .filter(isSilver)
+            .sort(sponsorsSortFn)
+            .map(sponsorsMapFn),
+          'id'
+        ),
+        bronze: uniqBy(
+          result.data.account.orders.nodes
+            .filter(isBronze)
+            .sort(sponsorsSortFn)
+            .map(sponsorsMapFn),
+          'id'
+        ),
+        backers: uniqBy(
+          result.data.account.orders.nodes
+            .filter(isBacker)
+            .sort(sponsorsSortFn)
+            .map(sponsorsMapFn),
+          'id'
+        ),
       },
       meta,
     ]
