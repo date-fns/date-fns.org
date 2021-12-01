@@ -1,6 +1,7 @@
 import { SponsorsResponseNode, Sponsor } from './types'
 
 const TRUE_CAR_ID = 'dgm9bnk8-0437xqra-kxjpvzeo-ljdayw5r'
+const DTC_INNOVATION_ID = 'v349mrwg-z75lpy7w-4onpa08d-jeybknox'
 
 function getProfileURL(node: SponsorsResponseNode) {
   return (
@@ -16,6 +17,7 @@ export function isActive(node: SponsorsResponseNode) {
 export function isGold(node: SponsorsResponseNode) {
   return (
     node.fromAccount.id === TRUE_CAR_ID ||
+    node.fromAccount.id === DTC_INNOVATION_ID ||
     (isActive(node) &&
       (node.tier?.slug === 'gold-sponsors' || node.amount.value >= 500))
   )
