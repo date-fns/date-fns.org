@@ -9,7 +9,7 @@ export function docIssueTemplateText(url: string, fn: string): string {
   const body = encodeURIComponent(`
    There is an issue with the [${fn} documentation](${url})
 
-  ### The problem with isDate documentation
+  ### The problem with ${fn} documentation
 
   <!-- Describe the problem in the documentation -->
 
