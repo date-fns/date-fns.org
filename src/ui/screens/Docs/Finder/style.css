@@ -77,6 +77,9 @@
   color: #4a3142;
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #e6e0e6;
+  position: sticky;
+  top: 0;
+  background-color: #fffbf5;
 }
 
 .Item {
