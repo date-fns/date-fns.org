@@ -17,6 +17,8 @@ interface Job {
     featuredUntil: string
     descriptionHTML: string
     featured: boolean
+    directApply?: boolean
+    applyURL?: string
     companyName: string
     engagmentType: string
     sourceURL: string
