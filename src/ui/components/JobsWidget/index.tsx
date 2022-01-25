@@ -60,7 +60,11 @@ export const JobsWidget: FunctionComponent = () => {
     <Container>
       <Block
         tag="a"
-        href={`${CONFIG.jobsURL}/api/apply?id=${job.ref.id}`}
+        href={
+          job.data.directApply
+            ? job.data.applyURL
+            : `${CONFIG.jobsURL}/api/apply?id=${job.ref.id}`
+        }
         target="_blank"
         rel="noopener noreferrer"
         clickable
