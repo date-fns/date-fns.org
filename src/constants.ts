@@ -33,8 +33,8 @@ const config: { [k: string]: Config } = {
   development: {
     jobsURL: 'https://jobs.date-fns.org',
     firebaseApp: {
-      apiKey: 'AIzaSyBoDBiIbKeiu4-Uz4JzqH3X7pwbop2PfpU',
-      projectId: 'date-fns-org',
+      apiKey: 'AIzaSyArPabWWebnLWhEgITZbLjTA6I_BaDmF0E',
+      projectId: 'date-fns-org-staging',
     },
     apiURL: '/api',
   },
