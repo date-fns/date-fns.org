@@ -8,9 +8,8 @@ import { NoResults } from './NoResults'
 import { Categories } from './Categories'
 import { Widget } from './Widget'
 import { filterPages } from './utils'
-import { useQuery } from '~/utils/useQuery'
-import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
-import { where } from 'typesaurus'
+import { packageName, Submodule, db } from '@date-fns/docs/db'
+import { useRead } from '@typesaurus/preact'
 
 type FIXME = any
 
@@ -37,10 +36,12 @@ export const Finder: FunctionComponent<Props> = ({
     []
   )
 
-  const [versions, { loading }] = useQuery(db.versions, [
-    where('package', '==', PACKAGE_NAME),
-    where('version', '==', selectedVersion),
-  ])
+  const [versions, { loading }] = useRead(
+    db.versions.query(($) => [
+      $.field('package').equal(packageName),
+      $.field('version').equal(selectedVersion),
+    ])
+  )
 
   if (versions && versions.length >= 1) {
     const { pages, categories } = versions[0].data

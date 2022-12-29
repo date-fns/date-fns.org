@@ -1,4 +1,4 @@
-import { PagePreview, Submodule } from '@date-fns/date-fns-db'
+import { PagePreview, Submodule } from '@date-fns/docs/db'
 
 export function filterPages(
   pages: PagePreview[],

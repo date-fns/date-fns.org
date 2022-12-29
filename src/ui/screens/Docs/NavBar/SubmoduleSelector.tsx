@@ -1,13 +1,13 @@
 import { h, FunctionComponent } from 'preact'
 import { Label, Select, Selector } from './style.css'
-import { Submodule } from '@date-fns/date-fns-db'
+import { Submodule } from '@date-fns/docs/db'
 import { docLink } from '~/ui/router/docLink'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
 
-const SUBMODULE_LABELS: { [k in Submodule]: string } = {
-  [Submodule.Default]: 'Default',
-  [Submodule.FP]: 'FP',
+const SUBMODULE_LABELS: Record<Submodule, string> = {
+  default: 'Default',
+  fp: 'FP',
 }
 
 interface Props {

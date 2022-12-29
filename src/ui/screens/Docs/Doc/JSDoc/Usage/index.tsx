@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { JSDocUsage } from '@date-fns/date-fns-db'
+import { JSDocUsage } from '@date-fns/docs/db'
 import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'

@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { PagePreview, Submodule } from '@date-fns/date-fns-db'
+import { PagePreview, Submodule } from '@date-fns/docs/db'
 import { Items } from './Items'
 import { CategoriesList, Category, CategoryHeader } from './style.css'
 

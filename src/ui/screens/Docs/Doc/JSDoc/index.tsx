@@ -1,4 +1,4 @@
-import { JSDocFunction } from '@date-fns/date-fns-db'
+import { JSDocFunction } from '@date-fns/docs/db'
 import { FunctionComponent, h } from 'preact'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { Markdown } from '~/ui/components/Markdown'

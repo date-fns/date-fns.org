@@ -1,11 +1,10 @@
 import { h, FunctionComponent } from 'preact'
-import { useQuery } from '~/utils/useQuery'
-import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
-import { where } from 'typesaurus'
 import { Container } from './style.css'
 import { Content } from './Content'
 import { DocLinkContext } from '~/ui/router/DocLinkContext'
 import { useEffect } from 'preact/hooks'
+import { useRead } from '@typesaurus/preact'
+import { db, Submodule, packageName } from '@date-fns/docs/db'
 
 const SCROLL_OFFSET = 35
 
@@ -20,12 +19,14 @@ export const Doc: FunctionComponent<Props> = ({
   selectedVersion,
   selectedSubmodule,
 }) => {
-  const [pages, { loading }] = useQuery(db.pages, [
-    where('package', '==', PACKAGE_NAME),
-    where('version', '==', selectedVersion),
-    where('slug', '==', selectedPage),
-    where('submodules', 'array-contains', selectedSubmodule),
-  ])
+  const [pages, { loading }] = useRead(
+    db.pages.query(($) => [
+      $.field('package').equal(packageName),
+      $.field('version').equal(selectedVersion),
+      $.field('slug').equal(selectedPage),
+      $.field('submodules').contains(selectedSubmodule),
+    ])
+  )
 
   useEffect(() => {
     if (pages && location.hash) {
