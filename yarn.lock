@@ -49,16 +49,16 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@date-fns/docs@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@date-fns/docs/-/docs-0.4.0.tgz#9c31b70ce52b198948dc9a8cb89c76967c0fdd2e"
-  integrity sha512-U5fkCFDTnqtOsiKWIusJTRPSma+jPwnLPSGjOdPopkOX1yOWSfLG4ys7L6yYwZ1hO7rTybRu9GfYuGR+kR3Umg==
+"@date-fns/docs@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@date-fns/docs/-/docs-0.5.0.tgz#43d2e0b388265c55a3103e5e710aa41de80c2b6f"
+  integrity sha512-E3c0Yh3c/4qBkr5GzvDpMNiFisVZqg/z7K5eQsSYE3+R98R3NyL2xPPl314MpTfcZmIW8pyTqI+hU7mgGIHnrw==
   dependencies:
     firebase-admin "^11.4.1"
     js-fns "^2.5.2"
     typedoc "^0.23.23"
     typeroo "^0.9.0"
-    typesaurus "^10.0.0-alpha.40"
+    typesaurus "^10.0.0-alpha.41"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.2"
@@ -8226,10 +8226,10 @@ typeroo@^0.9.0:
   resolved "https://registry.yarnpkg.com/typeroo/-/typeroo-0.9.0.tgz#34886e8529423462cd876c8090745b578f83cc9e"
   integrity sha512-dVYoqIFk1OeKuDU3pwdQEsUuTosrf3oIHzXBm+/YaemahBe6iDUZl08MStcyVBPplOfK8Hp4CY1nHZEClqNsuw==
 
-typesaurus@10.0.0-alpha.40, typesaurus@^10.0.0-alpha.40:
-  version "10.0.0-alpha.40"
-  resolved "https://registry.yarnpkg.com/typesaurus/-/typesaurus-10.0.0-alpha.40.tgz#022bb1a90a01cc4ee05a35c1c6ccadbd1232afae"
-  integrity sha512-tzfcGzXOJmOXvPBie8MZVCvbf0qV5vKZgOiYtaZkGJW0SmAZmzQeuxItcS7O9/T+AtBYOzwuhRCqKUIHN4u5VA==
+typesaurus@10.0.0-alpha.41, typesaurus@^10.0.0-alpha.41:
+  version "10.0.0-alpha.41"
+  resolved "https://registry.yarnpkg.com/typesaurus/-/typesaurus-10.0.0-alpha.41.tgz#c6c9dffedbf06f7b6375c7ff01720f01e952c635"
+  integrity sha512-K3c8pwpkzMiSG8joVLcRcgZTxe20QDObdKP2eJNU8P+bRpDIvF5y3jDkz+teUoqtAp6CAlO1ZXucl9gQhwK3DA==
 
 typescript@^4.9.4:
   version "4.9.4"
