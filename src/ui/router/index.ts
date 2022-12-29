@@ -1,4 +1,4 @@
-import { Submodule } from '@date-fns/date-fns-db'
+import { Submodule } from '@date-fns/docs/db'
 import { createRouter, InferRouteRef, route } from '@switcher/preact'
 
 export const appRoutes = [

@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { JSDocParam } from '@date-fns/date-fns-db'
+import { JSDocParam } from '@date-fns/docs/db'
 import { DocParams } from '~/ui/components/DocParams'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 

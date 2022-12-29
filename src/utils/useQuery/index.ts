@@ -1,3 +1,4 @@
+/* TODO: Recover this?
 import { useQuery as useFirestoreQuery } from '@typesaurus/preact'
 import { TypesaurusHookResult } from '@typesaurus/preact/types'
 import { useEffect } from 'preact/hooks'
@@ -20,4 +21,4 @@ export function useQuery<Model>(
   }, [result[1].error])
 
   return result
-}
+}*/

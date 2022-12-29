@@ -10,9 +10,6 @@ import {
   FinderContainer,
   NavBarContainer,
 } from './style.css'
-import { useQuery } from '~/utils/useQuery'
-import { where } from 'typesaurus'
-import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
 import {
   filterPreReleaseVersions,
   getLatestVersion,
@@ -23,6 +20,8 @@ import { useContext, useEffect, useState } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
 import { docLink } from '~/ui/router/docLink'
 import { DEFAULT_PAGE } from '~/constants'
+import { useRead } from '@typesaurus/preact'
+import { Submodule, db, packageName } from '@date-fns/docs/db'
 
 interface Props {
   selectedSubmodule: Submodule
@@ -49,9 +48,9 @@ export const Docs: FunctionComponent<Props> = ({
     }
   })
 
-  const [packages, { loading }] = useQuery(db.packages, [
-    where('name', '==', PACKAGE_NAME),
-  ])
+  const [packages, { loading }] = useRead(
+    db.packages.query(($) => $.field('name').equal(packageName))
+  )
 
   const [menuOpen, setMenuOpen] = useState(false)
 

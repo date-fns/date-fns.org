@@ -1,5 +1,5 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { JSDocParam, JSDocType } from '@date-fns/date-fns-db'
+import { JSDocParam, JSDocType } from '@date-fns/docs/db'
 import { Markdown } from '~/ui/components/Markdown'
 import { OptionalLabel, PropsLabel } from './style.css'
 

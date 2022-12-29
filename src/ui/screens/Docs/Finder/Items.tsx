@@ -1,5 +1,5 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { PagePreview, Submodule } from '@date-fns/date-fns-db'
+import { PagePreview, Submodule } from '@date-fns/docs/db'
 import { RouterLink } from '~/ui/router'
 import { Item, ItemHeader, ItemText, ItemIcon } from './style.css'
 import { docLink } from '~/ui/router/docLink'

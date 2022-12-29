@@ -10,11 +10,7 @@ import {
   MenuIcon,
 } from './style.css'
 import logoPath from './img/logo.svg'
-import {
-  DEFAULT_SUBMODULE,
-  Submodule,
-  VersionPreview,
-} from '@date-fns/date-fns-db'
+import { defaultSubmodule, Submodule, VersionPreview } from '@date-fns/docs/db'
 import { VersionSelector } from './VersionSelector'
 import { SubmoduleSelector } from './SubmoduleSelector'
 
@@ -38,7 +34,7 @@ export const NavBar: FunctionComponent<Props> = ({
   const versionPreview = versions.find(
     ({ version }) => version === selectedVersion
   )
-  const submodules = versionPreview?.submodules ?? [DEFAULT_SUBMODULE]
+  const submodules = versionPreview?.submodules ?? [defaultSubmodule]
 
   return (
     <Container>

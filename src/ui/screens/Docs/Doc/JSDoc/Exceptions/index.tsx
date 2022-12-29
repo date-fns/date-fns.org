@@ -1,10 +1,10 @@
 import { h, FunctionComponent } from 'preact'
-import { JSDocTypedAttribute } from '@date-fns/date-fns-db'
+import { JSDocAttribute } from '@date-fns/docs/db'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { Markdown } from '~/ui/components/Markdown'
 
 interface Props {
-  exceptions: JSDocTypedAttribute[]
+  exceptions: JSDocAttribute[]
 }
 
 export const Exceptions: FunctionComponent<Props> = ({ exceptions }) => (

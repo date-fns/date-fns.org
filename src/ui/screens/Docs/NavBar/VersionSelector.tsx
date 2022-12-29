@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { Submodule, VersionPreview } from '@date-fns/date-fns-db'
+import { Submodule, VersionPreview } from '@date-fns/docs/db'
 import { Selector, Label, Select } from './style.css'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
