@@ -9,7 +9,7 @@ interface Props {
   examples: string[] | string
 }
 
-export const Examples: FunctionComponent<Props> = ({ examples }) => (
+export const DocExamples: FunctionComponent<Props> = ({ examples }) => (
   <section>
     <h2 id="examples">
       Examples

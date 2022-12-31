@@ -10,7 +10,8 @@ import {
   MenuIcon,
 } from './style.css'
 import logoPath from './img/logo.svg'
-import { defaultSubmodule, Submodule, VersionPreview } from '@date-fns/docs/db'
+import { defaultSubmodule } from '@date-fns/docs/consts'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { VersionSelector } from './VersionSelector'
 import { SubmoduleSelector } from './SubmoduleSelector'
 
@@ -18,8 +19,8 @@ interface Props {
   selectedVersion: string
   latestVersion: string
   selectedPage: string
-  versions: VersionPreview[]
-  selectedSubmodule: Submodule
+  versions: DateFnsDocs.VersionPreview[]
+  selectedSubmodule: DateFnsDocs.Submodule
   menuIcon: React.ReactNode
 }
 

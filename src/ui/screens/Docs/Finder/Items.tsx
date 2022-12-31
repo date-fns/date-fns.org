@@ -1,13 +1,13 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { PagePreview, Submodule } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { RouterLink } from '~/ui/router'
 import { Item, ItemHeader, ItemText, ItemIcon } from './style.css'
 import { docLink } from '~/ui/router/docLink'
 
 interface Props {
-  pages: PagePreview[]
+  pages: DateFnsDocs.PagePreview[]
   selectedVersion: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   onNavigate(): void
 }

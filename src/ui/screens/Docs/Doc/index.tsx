@@ -4,14 +4,16 @@ import { Content } from './Content'
 import { DocLinkContext } from '~/ui/router/DocLinkContext'
 import { useEffect } from 'preact/hooks'
 import { useRead } from '@typesaurus/preact'
-import { db, Submodule, packageName } from '@date-fns/docs/db'
+import { db } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { packageName } from '@date-fns/docs/consts'
 
 const SCROLL_OFFSET = 35
 
 interface Props {
   selectedVersion: string
   selectedPage: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
 }
 
 export const Doc: FunctionComponent<Props> = ({

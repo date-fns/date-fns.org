@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { JSDocUsage } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
@@ -9,13 +9,13 @@ const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'
 
 interface Props {
-  usage: JSDocUsage
+  usage: DateFnsDocs.FnUsage
   usageTabs: string[]
 }
 
 type FIXME = any
 
-export const Usage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
+export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
   const [source, setSource] = useState(DEFAULT_SOURCE)
 
   useEffect(() => {

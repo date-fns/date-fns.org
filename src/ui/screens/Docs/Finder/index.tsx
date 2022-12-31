@@ -8,7 +8,9 @@ import { NoResults } from './NoResults'
 import { Categories } from './Categories'
 import { Widget } from './Widget'
 import { filterPages } from './utils'
-import { packageName, Submodule, db } from '@date-fns/docs/db'
+import { db } from '@date-fns/docs/db'
+import { packageName } from '@date-fns/docs/consts'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { useRead } from '@typesaurus/preact'
 
 type FIXME = any
@@ -16,7 +18,7 @@ type FIXME = any
 interface Props {
   selectedVersion: string
   selectedPage: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   onNavigate(): void
 }
 
