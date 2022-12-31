@@ -6,7 +6,7 @@ import { Docs } from '~/ui/screens/Docs'
 import { NotFound } from '~/ui/screens/NotFound'
 import 'reset.css/reset.css?global'
 import './global.css?global'
-import { defaultSubmodule } from '@date-fns/docs/db'
+import { defaultSubmodule } from '@date-fns/docs/consts'
 
 const win = typeof window !== 'undefined' ? window : undefined
 

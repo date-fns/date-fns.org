@@ -1,7 +1,7 @@
-import { VersionPreview } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs'
 
 export function filterPreReleaseVersions(
-  versions: VersionPreview[],
+  versions: DateFnsDocs.VersionPreview[],
   selectedVersion?: string
 ) {
   return versions.filter(
@@ -9,12 +9,12 @@ export function filterPreReleaseVersions(
   )
 }
 
-export function sortVersions(versions: VersionPreview[]) {
+export function sortVersions(versions: DateFnsDocs.VersionPreview[]) {
   return [...versions].sort(
     (versionA, versionB) => versionB.createdAt - versionA.createdAt
   )
 }
 
-export function getLatestVersion(versions: VersionPreview[]) {
+export function getLatestVersion(versions: DateFnsDocs.VersionPreview[]) {
   return sortVersions(filterPreReleaseVersions(versions))[0]
 }

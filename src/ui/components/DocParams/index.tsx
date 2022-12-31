@@ -1,10 +1,10 @@
 import { h, FunctionComponent, Fragment } from 'preact'
-import { JSDocParam, JSDocType } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs'
 import { Markdown } from '~/ui/components/Markdown'
 import { OptionalLabel, PropsLabel } from './style.css'
 
 interface Props {
-  params: JSDocParam[]
+  params: DateFnsDocs.JSDocParam[]
 }
 
 export const DocParams: FunctionComponent<Props> = ({ params }) => (
@@ -40,7 +40,7 @@ const ParamOptionalLabel: FunctionComponent<{
 )
 
 const ParamPropsTable: FunctionComponent<{
-  props: JSDocParam[]
+  props: DateFnsDocs.JSDocParam[]
 }> = ({ props }) => (
   <div>
     <PropsLabel>Properties:</PropsLabel>
@@ -62,7 +62,7 @@ const ParamPropsTable: FunctionComponent<{
 )
 
 const ParamType: FunctionComponent<{
-  type: JSDocType
+  type: DateFnsDocs.JSDocType
   variable?: boolean
 }> = ({ type, variable }) => {
   const names = type.names

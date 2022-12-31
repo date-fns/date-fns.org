@@ -1,13 +1,13 @@
 import { h, FunctionComponent } from 'preact'
-import { PagePreview, Submodule } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { Items } from './Items'
 import { CategoriesList, Category, CategoryHeader } from './style.css'
 
 interface Props {
   categories: string[]
-  pages: PagePreview[]
+  pages: DateFnsDocs.PagePreview[]
   selectedVersion: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   onNavigate(): void
 }

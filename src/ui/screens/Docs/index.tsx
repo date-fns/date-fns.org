@@ -21,10 +21,12 @@ import { RouterContext } from '~/ui/router'
 import { docLink } from '~/ui/router/docLink'
 import { DEFAULT_PAGE } from '~/constants'
 import { useRead } from '@typesaurus/preact'
-import { Submodule, db, packageName } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { db } from '@date-fns/docs/db'
+import { packageName } from '@date-fns/docs/consts'
 
 interface Props {
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedVersion?: string
   selectedPage: string
 }
@@ -48,15 +50,14 @@ export const Docs: FunctionComponent<Props> = ({
     }
   })
 
-  const [packages, { loading }] = useRead(
-    db.packages.query(($) => $.field('name').equal(packageName))
+  const [dateFnsPackage, { loading }] = useRead(
+    db.packages.get(db.packages.id(packageName))
   )
 
   const [menuOpen, setMenuOpen] = useState(false)
 
-  if (packages && packages.length === 1) {
-    const dateFnsPackage = packages[0].data
-    const latestVersion = getLatestVersion(dateFnsPackage.versions).version
+  if (dateFnsPackage) {
+    const latestVersion = getLatestVersion(dateFnsPackage.data.versions).version
     const selectedVersion = urlSelectedVersion ?? latestVersion
 
     return (
@@ -67,7 +68,10 @@ export const Docs: FunctionComponent<Props> = ({
             latestVersion={latestVersion}
             selectedPage={selectedPage}
             versions={sortVersions(
-              filterPreReleaseVersions(dateFnsPackage.versions, selectedVersion)
+              filterPreReleaseVersions(
+                dateFnsPackage.data.versions,
+                selectedVersion
+              )
             )}
             selectedSubmodule={selectedSubmodule}
             menuIcon={

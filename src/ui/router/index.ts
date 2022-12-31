@@ -1,4 +1,4 @@
-import { Submodule } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs'
 import { createRouter, InferRouteRef, route } from '@switcher/preact'
 
 export const appRoutes = [
@@ -11,13 +11,16 @@ export const appRoutes = [
   ),
   route(
     'submoduleDocs',
-    (params: { submodule: Submodule; page: string }) =>
+    (params: { submodule: DateFnsDocs.Submodule; page: string }) =>
       `/docs/${params.submodule}/${params.page}`
   ),
   route(
     'submoduleVersionDocs',
-    (params: { submodule: Submodule; version: string; page: string }) =>
-      `/${params.version}/docs/${params.submodule}/${params.page}`
+    (params: {
+      submodule: DateFnsDocs.Submodule
+      version: string
+      page: string
+    }) => `/${params.version}/docs/${params.submodule}/${params.page}`
   ),
 ]
 

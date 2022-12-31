@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { Submodule, VersionPreview } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { Selector, Label, Select } from './style.css'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
@@ -10,8 +10,8 @@ interface Props {
   selectedVersion: string
   latestVersion: string
   selectedPage: string
-  selectedSubmodule: Submodule
-  versions: VersionPreview[]
+  selectedSubmodule: DateFnsDocs.Submodule
+  versions: DateFnsDocs.VersionPreview[]
 }
 
 type FIXME = any

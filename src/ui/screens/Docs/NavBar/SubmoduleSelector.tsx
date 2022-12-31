@@ -1,20 +1,20 @@
 import { h, FunctionComponent } from 'preact'
 import { Label, Select, Selector } from './style.css'
-import { Submodule } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { docLink } from '~/ui/router/docLink'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
 
-const SUBMODULE_LABELS: Record<Submodule, string> = {
+const SUBMODULE_LABELS: Record<DateFnsDocs.Submodule, string> = {
   default: 'Default',
   fp: 'FP',
 }
 
 interface Props {
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   selectedVersion: string
-  submodules: Submodule[]
+  submodules: DateFnsDocs.Submodule[]
 }
 
 type FIXME = any

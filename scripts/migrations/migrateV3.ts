@@ -1,4 +1,4 @@
-import { db, JSDocFunction, JSDocPage, MarkdownPage } from '@date-fns/docs/db'
+import { db, DateFnsDocs } from '@date-fns/docs'
 import * as admin from 'firebase-admin'
 import { last } from 'lodash'
 import { StringifiedJSON } from 'typeroo/json'
@@ -7,8 +7,8 @@ import { schema, Typesaurus } from 'typesaurus'
 admin.initializeApp()
 
 type Page =
-  | MarkdownPage
-  | (Omit<JSDocPage, 'doc'> & {
+  | DateFnsDocs.MarkdownPage
+  | (Omit<DateFnsDocs.JSDocPage, 'doc'> & {
       doc: { json: string }
     })
 
@@ -25,7 +25,7 @@ processAll((pages) =>
     pages.map((page) => {
       if (page.data.type === 'markdown') return
       return db.pages.update(page.ref.id, {
-        doc: page.data.doc.json as StringifiedJSON<JSDocFunction>,
+        doc: page.data.doc.json as StringifiedJSON<DateFnsDocs.JSDocFunction>,
       })
     })
   )
