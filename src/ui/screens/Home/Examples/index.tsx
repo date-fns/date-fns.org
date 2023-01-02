@@ -3,15 +3,8 @@ import { useState } from 'preact/hooks'
 import { Code } from '~/ui/components/Code'
 import { HomeBlock } from '~/ui/components/Home'
 // TODO: import { trackAction } from 'app/acts/tracking_acts'
-
-import {
-  Container,
-  Options,
-  Option,
-  OptionLink,
-  CodeWrapper,
-  Warning,
-} from './style.css'
+import classNames from 'classnames'
+import * as styles from './styles.css'
 
 // TODO: Generate example results with date-fns v2
 const examples = [
@@ -88,39 +81,41 @@ export const Examples = () => {
 
   return (
     <HomeBlock header="Examples">
-      <Container>
-        <Options tag="ul">
+      <div class={styles.container}>
+        <ul class={styles.options}>
           {examples.map((example, index) => {
             return (
-              <Option key={index} tag="li">
-                <OptionLink
-                  tag="a"
+              <li class={styles.option} key={index}>
+                <a
+                  class={classNames(
+                    styles.optionLink,
+                    index === currentExampleIndex && styles.optionLinkIsCurrent
+                  )}
                   href="#"
                   onClick={(e) => {
                     // TODO: trackAction('Changed Example', { exampleIndex: currentExampleIndex })
                     e.preventDefault()
                     setExampleIndex(index)
                   }}
-                  isCurrent={index === currentExampleIndex}
                 >
                   {example.label}
-                </OptionLink>
-              </Option>
+                </a>
+              </li>
             )
           })}
-        </Options>
+        </ul>
 
-        <CodeWrapper>
+        <div class={styles.codeWrapper}>
           <Code value={currentExample.code} />
-        </CodeWrapper>
-      </Container>
+        </div>
+      </div>
 
       {IS_PRERELEASE && (
-        <Warning>
+        <div class={styles.warning}>
           ⚠️ The provided examples are for v2 which is in pre-release right now.
           If you want to give it a try, install the latest version: npm install
           date-fns@next
-        </Warning>
+        </div>
       )}
     </HomeBlock>
   )

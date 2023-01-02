@@ -1,10 +1,10 @@
 import { h } from 'preact'
 import { useContext } from 'preact/hooks'
-import { Link } from '~/ui/components/Home/style.css'
 import { RouterContext, RouterLink } from '~/ui/router'
 import { bugTemplateText, docIssueTemplateText } from './templateText'
+import * as styles from './styles.css'
 
-export default function Issue() {
+export const DocLinks = () => {
   const { location } = useContext(RouterContext)
   const pageUrl = window.location.href
   const fnName = location.params?.page || ''
@@ -18,9 +18,9 @@ export default function Issue() {
       <ul>
         <li>
           <div>
-            <Link
+            <RouterLink
+              class={styles.link}
               decorated
-              tag={RouterLink}
               to={{
                 name: 'docs',
                 params: {
@@ -29,7 +29,7 @@ export default function Issue() {
               }}
             >
               Suggest edits by sending a PR
-            </Link>
+            </RouterLink>
           </div>
         </li>
 

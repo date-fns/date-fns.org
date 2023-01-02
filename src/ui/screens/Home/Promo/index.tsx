@@ -1,47 +1,37 @@
 import { h } from 'preact'
-import { Navigation } from './Navigation'
-import {
-  Outer,
-  Inner,
-  Logo,
-  LogoImage,
-  LogoName,
-  Header,
-  Text,
-  GettingStarted,
-  GettingStartedLink,
-} from './style.css'
-import logoPath from './img/logo.svg'
-import { RouterLink } from '~/ui/router'
 import { DEFAULT_PAGE } from '~/constants'
+import { RouterLink } from '~/ui/router'
 import { docLink } from '~/ui/router/docLink'
+import logoPath from './img/logo.svg'
+import { Navigation } from './Navigation'
+import * as styles from './styles.css'
 
 export const Promo = () => (
-  <Outer>
-    <Inner>
-      <Logo>
-        <LogoImage tag="img" src={logoPath} />
-        <LogoName>date-fns</LogoName>
-      </Logo>
+  <div class={styles.outer}>
+    <div class={styles.inner}>
+      <div class={styles.logo}>
+        <img class={styles.logoImage} src={logoPath} />
+        <div class={styles.logoName}>date-fns</div>
+      </div>
 
-      <Header tag="h1">Modern JavaScript date utility library</Header>
+      <h1 class={styles.header}>Modern JavaScript date utility library</h1>
 
-      <Text>
+      <p class={styles.text}>
         date-fns provides the most comprehensive, yet simple and consistent
         toolset for manipulating <strong>JavaScript dates</strong> in{' '}
         <strong>a&nbsp;browser</strong> & <strong>Node.js</strong>.
-      </Text>
+      </p>
 
-      <GettingStarted>
-        <GettingStartedLink
-          tag={RouterLink}
+      <div class={styles.gettingStarted}>
+        <RouterLink
+          class={styles.gettingStartedLink}
           to={docLink({ page: DEFAULT_PAGE })}
         >
           Documentation
-        </GettingStartedLink>
-      </GettingStarted>
+        </RouterLink>
+      </div>
 
       <Navigation />
-    </Inner>
-  </Outer>
+    </div>
+  </div>
 )

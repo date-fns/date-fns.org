@@ -1,21 +1,26 @@
 import { h } from 'preact'
 import githubPath from './img/github.svg'
 import twitterPath from './img/twitter.svg'
-import { Navigation as StyledNavigation, Link, Icon } from './style.css'
+import * as styles from './styles.css'
 
 export const Navigation = () => (
-  <StyledNavigation tag="nav">
-    <Link tag="a" href="https://github.com/date-fns/date-fns">
-      <Icon tag="img" src={githubPath} alt="GitHub icon" />
+  <nav class={styles.navigation}>
+    <a class={styles.link} href="https://github.com/date-fns/date-fns">
+      <img class={styles.icon} src={githubPath} alt="GitHub icon" />
       Star on GitHub
-    </Link>
-    <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
-      <Icon tag="img" src={githubPath} alt="GitHub icon" />
+    </a>
+
+    <a
+      class={styles.link}
+      href="https://github.com/date-fns/date-fns/discussions"
+    >
+      <img class={styles.icon} src={githubPath} alt="GitHub icon" />
       Join the community
-    </Link>
-    <Link tag="a" href="https://twitter.com/date_fns">
-      <Icon tag="img" src={twitterPath} alt="Twitter icon" />
+    </a>
+
+    <a class={styles.link} href="https://twitter.com/date_fns">
+      <img class={styles.icon} src={twitterPath} alt="Twitter icon" />
       Follow on Twitter
-    </Link>
-  </StyledNavigation>
+    </a>
+  </nav>
 )

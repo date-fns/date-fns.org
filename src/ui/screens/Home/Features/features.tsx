@@ -1,7 +1,13 @@
-import { h, Fragment } from 'preact'
-import { IconType } from './style.css'
+import { h, Fragment, VNode } from 'preact'
+import { iconType } from './styles.css'
 
-export const features = [
+export interface Feature {
+  title: string
+  description: VNode
+  icon: keyof typeof iconType
+}
+
+export const features: Feature[] = [
   {
     title: 'Modular',
     description: (
@@ -18,7 +24,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.modular,
+    icon: 'modular',
   },
 
   {
@@ -26,8 +32,8 @@ export const features = [
     description: (
       <>
         <p>
-          date-fns uses the native <code>Date</code> type and doesn't reinvent the wheel.
-          It doesn't extend core objects for safety's sake.
+          date-fns uses the native <code>Date</code> type and doesn't reinvent
+          the wheel. It doesn't extend core objects for safety's sake.
         </p>
 
         <p>
@@ -36,7 +42,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.native,
+    icon: 'native',
   },
 
   {
@@ -51,7 +57,7 @@ export const features = [
         <p>It helps to prevent bugs and avoid long debugging sessions.</p>
       </>
     ),
-    icon: IconType.immutable,
+    icon: 'immutable',
   },
 
   {
@@ -69,7 +75,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.types,
+    icon: 'types',
   },
 
   {
@@ -81,7 +87,7 @@ export const features = [
         bloat your build.
       </>
     ),
-    icon: IconType.fp,
+    icon: 'fp',
   },
 
   {
@@ -92,7 +98,7 @@ export const features = [
         Only the ones that you use will be included in your project.
       </>
     ),
-    icon: IconType.i18n,
+    icon: 'i18n',
   },
 
   {
@@ -109,7 +115,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.consistent,
+    icon: 'consistent',
   },
 
   {
@@ -126,7 +132,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.reliable,
+    icon: 'reliable',
   },
 
   {
@@ -144,7 +150,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.simple,
+    icon: 'simple',
   },
 
   {
@@ -155,7 +161,7 @@ export const features = [
         users will have the best user experience.
       </>
     ),
-    icon: IconType.fast,
+    icon: 'fast',
   },
 
   {
@@ -167,7 +173,7 @@ export const features = [
         thanks to JSDoc annotations.
       </>
     ),
-    icon: IconType.docs,
+    icon: 'docs',
   },
 
   {
@@ -178,6 +184,6 @@ export const features = [
         features.
       </>
     ),
-    icon: IconType.coming,
+    icon: 'coming',
   },
 ]

@@ -5,16 +5,9 @@ import {
   HomeExternalLink,
   HomeButton,
 } from '~/ui/components/Home'
-import {
-  Subheader,
-  List,
-  Item,
-  ItemImageContainer,
-  ItemImage,
-  ItemImagePlaceholder,
-  ItemName,
-} from './style.css'
 import { useSponsors, Sponsor } from '~/utils/useSponsors'
+import * as styles from './styles.css'
+import classNames from 'classnames'
 
 export const Sponsorship = () => {
   const [sponsors, { loading }] = useSponsors()
@@ -38,37 +31,37 @@ export const Sponsorship = () => {
     >
       {sponsors && (
         <>
-          <Subheader tag="h2">Gold Sponsors</Subheader>
+          <h2 class={styles.subheader}>Gold Sponsors</h2>
 
-          <List>
+          <div class={styles.list}>
             {sponsors.gold.map((sponsor) => (
               <Sponsor key={sponsor.id} sponsor={sponsor} tier="gold" />
             ))}
-          </List>
+          </div>
 
-          <Subheader tag="h2">Silver Sponsors</Subheader>
+          <h2 class={styles.subheader}>Silver Sponsors</h2>
 
-          <List>
+          <div class={styles.list}>
             {sponsors.silver.map((sponsor) => (
               <Sponsor key={sponsor.id} sponsor={sponsor} tier="silver" />
             ))}
-          </List>
+          </div>
 
-          <Subheader tag="h2">Bronze Sponsors</Subheader>
+          <h2 class={styles.subheader}>Bronze Sponsors</h2>
 
-          <List>
+          <div class={styles.list}>
             {sponsors.bronze.map((sponsor) => (
               <Sponsor key={sponsor.id} sponsor={sponsor} tier="bronze" />
             ))}
-          </List>
+          </div>
 
-          <Subheader tag="h2">Backers</Subheader>
+          <h2 class={styles.subheader}>Backers</h2>
 
-          <List>
+          <div class={styles.list}>
             {sponsors.backers.map((sponsor) => (
               <Sponsor key={sponsor.id} sponsor={sponsor} compact />
             ))}
-          </List>
+          </div>
         </>
       )}
 
@@ -83,27 +76,32 @@ export const Sponsorship = () => {
 }
 
 const Sponsor: FunctionComponent<{
-  tier?: 'gold' | 'silver' | 'bronze'
+  tier?: keyof typeof styles.tier
   compact?: boolean
   sponsor: Sponsor
 }> = ({ tier, sponsor, compact }) => {
   return (
     <HomeExternalLink href={sponsor.url} newTab={true}>
-      <Item>
-        <ItemImageContainer tier={tier}>
+      <div class={styles.item}>
+        <div
+          class={classNames(
+            styles.itemImageContainer,
+            tier && styles.tier[tier]
+          )}
+        >
           {sponsor.imageUrl ? (
-            <ItemImage
-              tag="img"
+            <img
+              class={styles.itemImage}
               src={sponsor.imageUrl}
               alt={`${sponsor.name} logo`}
             />
           ) : (
-            <ItemImagePlaceholder />
+            <div class={styles.itemImagePlaceholder} />
           )}
-        </ItemImageContainer>
+        </div>
 
-        {!compact && <ItemName tag="span">{sponsor.name}</ItemName>}
-      </Item>
+        {!compact && <span class={styles.itemName}>{sponsor.name}</span>}
+      </div>
     </HomeExternalLink>
   )
 }

@@ -1,4 +1,4 @@
-import { h, VNode } from 'preact'
+import { h, Fragment, VNode } from 'preact'
 import { useContext, useEffect } from 'preact/hooks'
 import { AppRouteLocation, RouterContext } from '~/ui/router'
 import { Home } from '~/ui/screens/Home'
@@ -18,9 +18,9 @@ export const UI = () => {
   }, [JSON.stringify(location)])
 
   return (
-    <div>
+    <>
       <Content location={location} />
-    </div>
+    </>
   )
 }
 
