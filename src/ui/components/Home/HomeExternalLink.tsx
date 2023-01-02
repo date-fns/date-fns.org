@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { Link } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   href: string
@@ -13,13 +13,13 @@ export const HomeExternalLink: FunctionComponent<Props> = ({
   children,
   newTab,
 }) => (
-  <Link
-    tag="a"
+  <a
+    class={styles.link}
     href={href}
     title={title}
     target={newTab ? '_blank' : undefined}
     rel={newTab ? 'noopener noreferrer' : undefined}
   >
     {children}
-  </Link>
+  </a>
 )

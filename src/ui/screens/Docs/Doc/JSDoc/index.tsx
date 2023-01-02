@@ -3,9 +3,9 @@ import { FunctionComponent, h } from 'preact'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { Markdown } from '~/ui/components/Markdown'
 import { Arguments } from './Arguments'
-import { DocExamples } from '../../../../components/DocExamples'
+import { DocExamples } from '~/ui/components/DocExamples'
 import { Exceptions } from './Exceptions'
-import Issue from './Issue'
+import { DocLinks } from '~/ui/components/DocLinks'
 import { Properties } from './Properties'
 import { Returns } from './Returns'
 import { Header } from './style.css'
@@ -45,6 +45,6 @@ export const JSDoc: FunctionComponent<Props> = ({ doc }) => (
     )}
     {doc.content.examples && <DocExamples examples={doc.content.examples} />}
 
-    <Issue />
+    <DocLinks />
   </div>
 )

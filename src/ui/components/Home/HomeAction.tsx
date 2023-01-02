@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { RouterLink, AppRouteRef } from '~/ui/router'
-import { Action } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   to: AppRouteRef
@@ -12,7 +12,7 @@ export const HomeAction: FunctionComponent<Props> = ({
   title,
   children,
 }) => (
-  <Action tag={RouterLink} to={to} title={title}>
+  <RouterLink class={styles.action} to={to} title={title}>
     {children}
-  </Action>
+  </RouterLink>
 )

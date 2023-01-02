@@ -7,10 +7,10 @@ import { Testimonials } from './Testimonials'
 import { Sponsorship } from './Sponsorship'
 import { Contributors } from './Contributors'
 import { Footer } from './Footer'
-import { Screen } from './style.css'
+import * as styles from './styles.css'
 
 export const Home = () => (
-  <Screen>
+  <div class={styles.screen}>
     {/* <JobsBanner size="large" /> */}
     <Promo />
     <Examples />
@@ -19,5 +19,5 @@ export const Home = () => (
     <Sponsorship />
     <Contributors />
     <Footer />
-  </Screen>
+  </div>
 )

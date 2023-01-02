@@ -1,10 +1,11 @@
 import { h, FunctionComponent } from 'preact'
-import { Button } from './style.css'
+import classNames from 'classnames'
+import * as styles from './styles.css'
 
 interface Props {
   href: string
   newTab?: boolean
-  type: 'primary' | 'secondary'
+  type: keyof typeof styles.button
 }
 
 export const HomeButton: FunctionComponent<Props> = ({
@@ -13,13 +14,13 @@ export const HomeButton: FunctionComponent<Props> = ({
   newTab,
   type,
 }) => (
-  <Button
-    tag="a"
+  <a
+    class={classNames(styles.button[type])}
     href={href}
     target={newTab ? '_blank' : undefined}
     rel={newTab ? 'noopener noreferrer' : undefined}
     type={type}
   >
     {children}
-  </Button>
+  </a>
 )

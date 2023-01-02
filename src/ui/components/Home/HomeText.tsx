@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
-import { Text } from './style.css'
+import * as styles from './styles.css'
 
 export const HomeText: FunctionComponent = ({ children }) => (
-  <Text>{children}</Text>
+  <div class={styles.text}>{children}</div>
 )

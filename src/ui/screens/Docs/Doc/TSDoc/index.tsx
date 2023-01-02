@@ -1,18 +1,13 @@
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import {
-  findDescription,
-  findExamples,
-  findFn,
-  findReturns,
-} from '@date-fns/docs/utils'
+import { findDescription, findExamples, findFn } from '@date-fns/docs/utils'
 import { FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import { parse } from 'typeroo'
 import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
 import { Markdown } from '~/ui/components/Markdown'
-import Issue from './Issue'
 import { Returns } from './Returns'
 import { Header } from './style.css'
 
@@ -65,7 +60,7 @@ export const TSDoc: FunctionComponent<Props> = ({ page }) => {
         <pre>{JSON.stringify(tsdoc, null, 2)}</pre>
       </code>
 
-      <Issue />
+      <DocLinks />
     </div>
   )
 }
