@@ -1,37 +1,25 @@
-import { h, FunctionComponent } from 'preact'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { Markdown } from '~/ui/components/Markdown'
+import { findReturns } from '@date-fns/docs/utils'
+import { FunctionComponent, h } from 'preact'
+import { useMemo } from 'preact/hooks'
+import type { DeclarationReflection } from 'typedoc'
+import { DocReturns } from '~/ui/components/DocReturns'
+import { DocType } from '~/ui/components/DocType'
 
 interface Props {
-  returns: DateFnsDocs.JSDocAttribute[]
+  fn: DeclarationReflection
 }
 
-export const Returns: FunctionComponent<Props> = ({ returns }) => (
-  <section>
-    <h2 id="returns">
-      Returns
-      <DocHeaderAnchor anchor="returns" />
-    </h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {returns.map((returnData, index) => (
-          <tr key={index}>
-            <td>{returnData.type.names.join(' | ')}</td>
-            <td>
-              <Markdown value={returnData.description} />
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </section>
-)
+export const Returns: FunctionComponent<Props> = ({ fn }) => {
+  const description = useMemo(() => findReturns(fn), [fn])
+  console.log({ fn })
+  return (
+    <DocReturns
+      returns={
+        fn.signatures?.map((s) => ({
+          type: s.type && <DocType type={s.type} />,
+          description: description || '',
+        })) || []
+      }
+    />
+  )
+}

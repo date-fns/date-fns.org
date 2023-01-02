@@ -1,6 +1,6 @@
-import { h } from 'preact'
+import { h, VNode } from 'preact'
 import { useContext, useEffect } from 'preact/hooks'
-import { RouterContext } from '~/ui/router'
+import { AppRouteLocation, RouterContext } from '~/ui/router'
 import { Home } from '~/ui/screens/Home'
 import { Docs } from '~/ui/screens/Docs'
 import { NotFound } from '~/ui/screens/NotFound'
@@ -17,6 +17,18 @@ export const UI = () => {
     win?.ga?.('send', 'pageview')
   }, [JSON.stringify(location)])
 
+  return (
+    <div>
+      <Content location={location} />
+    </div>
+  )
+}
+
+interface ContentProps {
+  location: AppRouteLocation
+}
+
+function Content({ location }: ContentProps): VNode<any> {
   switch (location.name) {
     case 'home':
       return <Home />
@@ -56,7 +68,6 @@ export const UI = () => {
       )
 
     case '404':
-    default:
       return <NotFound />
   }
 }
