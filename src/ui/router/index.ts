@@ -1,5 +1,11 @@
 import type { DateFnsDocs } from '@date-fns/docs'
-import { createRouter, InferRouteRef, route } from '@switcher/preact'
+import {
+  createRouter,
+  InferRoute,
+  InferRouteRef,
+  route,
+} from '@switcher/preact'
+import { RouteLocation, RouteNotFoundLocation } from '@switcher/preact/core'
 
 export const appRoutes = [
   route('home', '/'),
@@ -34,4 +40,16 @@ export const {
 } = createRouter(appRoutes)
 
 // Type to use in prop definitions
-export type AppRouteRef = InferRouteRef<typeof appRoutes>
+export type AppRoutes = typeof appRoutes
+
+export type AppRouteRef = InferRouteRef<AppRoutes>
+
+export type AppRoute = InferRoute<AppRoutes>
+
+export type AppRouteMeta = AppRoute['meta']
+
+export type AppRouteLocation =
+  | RouteLocation<AppRoute, AppRouteMeta>
+  | RouteNotFoundLocation<AppRouteMeta>
+
+export type AppRouteName = AppRouteLocation['name']
