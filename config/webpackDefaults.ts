@@ -73,24 +73,9 @@ function cssRule(isWeb: boolean) {
       ]
     : 'null-loader'
 
-  const nyancssLoaders = [
-    '@nyancss/css-modules-loader/preact',
-    { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
-    {
-      loader: 'css-loader',
-      options: { modules: true },
-    },
-  ]
-
   return {
     test: /\.css$/,
-    oneOf: [
-      {
-        resourceQuery: /global/, // foobar.css?global
-        use: cssLoaders,
-      },
-      { use: nyancssLoaders },
-    ],
+    use: cssLoaders,
     exclude: [/\.vanilla\.css$/i],
   }
 }

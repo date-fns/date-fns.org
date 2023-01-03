@@ -950,41 +950,6 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@nyancss/css-modules-loader@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@nyancss/css-modules-loader/-/css-modules-loader-1.1.0.tgz"
-  integrity sha512-Zqhw3HTF2NX21Bf9tjdRcEZMspmCQ/vb2ix4oSqlU7wt/jjBJg/25WnPxubwU8bhYx+lCfNiBJD2+pOaWIUviQ==
-  dependencies:
-    "@nyancss/css-modules" "^1.2"
-
-"@nyancss/css-modules@^1.2":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@nyancss/css-modules/-/css-modules-1.2.0.tgz"
-  integrity sha512-2tT/mxRtl0Y8u8EtJLk8pLNJktoZcKewc8DFMc48Om9pw5lKDOeG9N9IUzIhO1jJkaKmJ+/SOoKHAwf8Ho4q+Q==
-  dependencies:
-    "@nyancss/types" "^1"
-    "@nyancss/utils" "^1.2"
-
-"@nyancss/react@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/@nyancss/react/-/react-1.3.0.tgz"
-  integrity sha512-yzuuTnn+WU5qOTzlFlZFQ1YyAMLwMsRxFoEr3GMi2vlz3J958sJQSjPBQTpSOUmxOfhFNacWIhXFm5UYXRe2Kw==
-  dependencies:
-    "@nyancss/types" "^1"
-    "@nyancss/utils" "^1.2"
-
-"@nyancss/types@^1", "@nyancss/types@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@nyancss/types/-/types-1.1.0.tgz"
-  integrity sha512-iiC7HUmil5T3pLcRDP+9Iza0WbN9ZXD9t5UGvwscf8PC97JJyXQe1tS5fea3DskEB8mxUUh/J8A14LMyvX71kw==
-
-"@nyancss/utils@^1.2":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@nyancss/utils/-/utils-1.2.0.tgz"
-  integrity sha512-9QWCpjZGo5GupaS+6C6VfYscaZo2PGsr8SWs+/B7ryrA6ztSAYE3EOVvTQIdxYC23ccZzsfIlM2tqcchUMOq+A==
-  dependencies:
-    "@nyancss/types" "^1.1.0"
-
 "@opentelemetry/api@^1.0.0":
   version "1.0.4"
   resolved "https://registry.npmjs.org/@opentelemetry/api/-/api-1.0.4.tgz"
