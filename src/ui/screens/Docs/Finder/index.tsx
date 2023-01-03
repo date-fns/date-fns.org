@@ -2,7 +2,6 @@ import { h, FunctionComponent } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
 import debounce from 'lodash/debounce'
 import { useCallback, useState } from 'preact/hooks'
-import { Container, Content, Loading, Search, SearchField } from './style.css'
 import { CancelButton } from './CancelButton'
 import { NoResults } from './NoResults'
 import { Categories } from './Categories'
@@ -12,6 +11,7 @@ import { db } from '@date-fns/docs/db'
 import { packageName } from '@date-fns/docs/consts'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { useRead } from '@typesaurus/preact'
+import * as styles from './styles.css'
 
 type FIXME = any
 
@@ -50,10 +50,10 @@ export const Finder: FunctionComponent<Props> = ({
     const filteredPages = filterPages(pages, query, selectedSubmodule)
 
     return (
-      <Container>
-        <Search tag="header">
-          <SearchField
-            tag="input"
+      <div class={styles.container}>
+        <header class={styles.search}>
+          <input
+            class={styles.searchField}
             autoFocus
             type="text"
             name="search"
@@ -67,9 +67,9 @@ export const Finder: FunctionComponent<Props> = ({
           />
 
           {query.length >= 0 && <CancelButton setQuery={setQuery} />}
-        </Search>
+        </header>
 
-        <Content>
+        <div class={styles.content}>
           {filteredPages.length === 0 ? (
             <NoResults />
           ) : (
@@ -82,23 +82,23 @@ export const Finder: FunctionComponent<Props> = ({
               onNavigate={onNavigate}
             />
           )}
-        </Content>
+        </div>
 
         <Widget />
-      </Container>
+      </div>
     )
   } else if (loading) {
     return (
-      <Container>
-        <Loading>Loading...</Loading>
-      </Container>
+      <div class={styles.container}>
+        <div class={styles.loading}>Loading...</div>
+      </div>
     )
   } else {
     // FIXME:
     return (
-      <Container>
-        <Loading>Error!</Loading>
-      </Container>
+      <div class={styles.container}>
+        <div class={styles.loading}>Error!</div>
+      </div>
     )
   }
 }

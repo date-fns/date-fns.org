@@ -1,12 +1,12 @@
 import { h, FunctionComponent } from 'preact'
-import { DocHeaderLink } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   anchor: string
 }
 
 export const DocHeaderAnchor: FunctionComponent<Props> = ({ anchor }) => (
-  <DocHeaderLink tag="a" href={`#${anchor}`}>
+  <a class={styles.docHeaderLink} href={`#${anchor}`}>
     #
-  </DocHeaderLink>
+  </a>
 )

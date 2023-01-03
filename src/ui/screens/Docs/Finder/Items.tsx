@@ -1,8 +1,8 @@
 import { h, FunctionComponent, Fragment } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { RouterLink } from '~/ui/router'
-import { Item, ItemHeader, ItemText, ItemIcon } from './style.css'
 import { docLink } from '~/ui/router/docLink'
+import * as styles from './styles.css'
 
 interface Props {
   pages: DateFnsDocs.PagePreview[]
@@ -21,9 +21,9 @@ export const Items: FunctionComponent<Props> = ({
 }) => (
   <>
     {pages.map((page) => (
-      <Item
+      <RouterLink
+        class={styles.item}
         key={page.slug}
-        tag={RouterLink}
         to={docLink({
           page: page.slug,
           submodule: selectedSubmodule,
@@ -33,12 +33,12 @@ export const Items: FunctionComponent<Props> = ({
         onClick={onNavigate}
       >
         <div>
-          <ItemHeader tag="h4">{page.title}</ItemHeader>
-          <ItemText tag="p">{page.summary}</ItemText>
+          <h4 class={styles.itemHeader}>{page.title}</h4>
+          <p class={styles.itemText}>{page.summary}</p>
         </div>
 
-        <ItemIcon />
-      </Item>
+        <div class={styles.itemIcon} />
+      </RouterLink>
     ))}
   </>
 )

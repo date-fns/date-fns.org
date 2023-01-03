@@ -1,7 +1,7 @@
 import { h, FunctionComponent, Fragment } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs'
 import { Markdown } from '~/ui/components/Markdown'
-import { OptionalLabel, PropsLabel } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   params: DateFnsDocs.JSDocParam[]
@@ -32,18 +32,18 @@ export const DocParams: FunctionComponent<Props> = ({ params }) => (
 const ParamOptionalLabel: FunctionComponent<{
   defaultValue?: string
 }> = ({ defaultValue }) => (
-  <OptionalLabel>
+  <div class={styles.optionalLabel}>
     {defaultValue !== undefined
       ? `(optional, default=${defaultValue})`
       : '(optional)'}
-  </OptionalLabel>
+  </div>
 )
 
 const ParamPropsTable: FunctionComponent<{
   props: DateFnsDocs.JSDocParam[]
 }> = ({ props }) => (
   <div>
-    <PropsLabel>Properties:</PropsLabel>
+    <div class={styles.propsLabel}>Properties:</div>
 
     <table>
       <thead>

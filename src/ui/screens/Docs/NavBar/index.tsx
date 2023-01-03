@@ -1,19 +1,11 @@
 import { h, FunctionComponent } from 'preact'
 import { RouterLink } from '~/ui/router'
-import {
-  Container,
-  Inner,
-  Logo,
-  LogoImage,
-  Links,
-  Link,
-  MenuIcon,
-} from './style.css'
 import logoPath from './img/logo.svg'
 import { defaultSubmodule } from '@date-fns/docs/consts'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { VersionSelector } from './VersionSelector'
 import { SubmoduleSelector } from './SubmoduleSelector'
+import * as styles from './styles.css'
 
 interface Props {
   selectedVersion: string
@@ -38,32 +30,35 @@ export const NavBar: FunctionComponent<Props> = ({
   const submodules = versionPreview?.submodules ?? [defaultSubmodule]
 
   return (
-    <Container>
-      <Inner>
-        <Links>
-          <MenuIcon>{menuIcon}</MenuIcon>
+    <div class={styles.container}>
+      <div class={styles.inner}>
+        <div class={styles.links}>
+          <div class={styles.menuIcon}>{menuIcon}</div>
 
-          <Logo tag={RouterLink} to={{ name: 'home' }}>
-            <LogoImage tag="img" src={logoPath} />
+          <RouterLink class={styles.logo} to={{ name: 'home' }}>
+            <img class={styles.logoImage} src={logoPath} />
             date-fns
-          </Logo>
+          </RouterLink>
 
-          <Link tag="a" href="https://github.com/date-fns/date-fns">
+          <a class={styles.link} href="https://github.com/date-fns/date-fns">
             GitHub
-          </Link>
+          </a>
 
-          <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
+          <a
+            class={styles.link}
+            href="https://github.com/date-fns/date-fns/discussions"
+          >
             Community
-          </Link>
+          </a>
 
-          <Link tag="a" href="https://twitter.com/date_fns">
+          <a class={styles.link} href="https://twitter.com/date_fns">
             Twitter
-          </Link>
+          </a>
 
-          <Link tag="a" href="https://jobs.date-fns.org">
+          <a class={styles.link} href="https://jobs.date-fns.org">
             JS Jobs
-          </Link>
-        </Links>
+          </a>
+        </div>
 
         <div>
           <VersionSelector
@@ -81,7 +76,7 @@ export const NavBar: FunctionComponent<Props> = ({
             submodules={submodules}
           />
         </div>
-      </Inner>
-    </Container>
+      </div>
+    </div>
   )
 }

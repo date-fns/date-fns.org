@@ -2,18 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import shuffle from 'lodash/shuffle'
 import { useMemo, useState } from 'preact/hooks'
 import { books } from './constants'
-import {
-  Container,
-  Badge,
-  BadgeLabel,
-  BadgeNext,
-  Cover,
-  Text,
-  Header,
-  Title,
-  Description,
-  Link,
-} from './style.css'
+import * as styles from './styles.css'
 
 export const BooksWidget: FunctionComponent = () => {
   const shuffledBooks = useMemo(() => shuffle(books), [])
@@ -22,29 +11,29 @@ export const BooksWidget: FunctionComponent = () => {
 
   return (
     <div>
-      <Container
-        tag="a"
+      <a
+        class={styles.container}
         href={book.url}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Cover tag="img" src={book.cover} />
+        <img class={styles.cover} src={book.cover} />
 
-        <Text>
-          <Header>
-            <Title>{book.title}</Title>
-            <Description>{book.description}</Description>
-          </Header>
+        <div class={styles.text}>
+          <div class={styles.header}>
+            <div class={styles.title}>{book.title}</div>
+            <div class={styles.description}>{book.description}</div>
+          </div>
 
-          <Link tag="button">Get the book</Link>
-        </Text>
-      </Container>
+          <button class={styles.link}>Get the book</button>
+        </div>
+      </a>
 
-      <Badge>
-        <BadgeLabel>☝️ Support date-fns, buy a book 🙏</BadgeLabel>
+      <div class={styles.badge}>
+        <div class={styles.badgeLabel}>☝️ Support date-fns, buy a book 🙏</div>
 
-        <BadgeNext
-          tag="button"
+        <button
+          class={styles.badgeNext}
           onClick={() => {
             let newIndex = bookIndex + 1
             if (newIndex > books.length - 1) {
@@ -54,8 +43,8 @@ export const BooksWidget: FunctionComponent = () => {
           }}
         >
           Next book
-        </BadgeNext>
-      </Badge>
+        </button>
+      </div>
     </div>
   )
 }

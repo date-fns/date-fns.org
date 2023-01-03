@@ -1,33 +1,27 @@
 import { h } from 'preact'
-import {
-  Container,
-  Header,
-  // Footer,
-  Block,
-} from '~/ui/components/JobsWidget/style.css'
-import { BlockContent, HireButton, Description } from './style.css'
+import * as styles from './styles.css'
 
 export const HireWidget = () => (
-  <Container>
-    <Block>
-      <BlockContent>
-        <Header>Your company is hiring JS developers?</Header>
+  <div class={styles.container}>
+    <div class={styles.block}>
+      <div class={styles.blockContent}>
+        <div class={styles.header}>Your company is hiring JS developers?</div>
 
-        <Description>
+        <div class={styles.description}>
           Find a great teammate and support date-fns. Get in front of tens of
           thousands of JS devs.
-        </Description>
+        </div>
 
-        <HireButton
-          tag="a"
+        <a
+          class={styles.hireButton}
           href="https://jobs.date-fns.org/hire"
           target="_blank"
         >
           Promote job here
-        </HireButton>
-      </BlockContent>
-    </Block>
+        </a>
+      </div>
+    </div>
 
-    {/* <Footer>Subscribe to support date-fns development, it's free!</Footer> */}
-  </Container>
+    {/* <div class={styles.footer}>Subscribe to support date-fns development, it's free!</div> */}
+  </div>
 )

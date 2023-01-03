@@ -1,21 +1,10 @@
-import { h, Fragment } from 'preact'
+import { Fragment, h } from 'preact'
 import {
   HomeBlock,
   HomeExternalAction,
   HomeExternalLink,
 } from '~/ui/components/Home'
-
-import {
-  List,
-  Item,
-  Quote,
-  QuoteTriangle,
-  QuoteTriangleInner,
-  Avatar,
-  AvatarImage,
-  Name,
-  Text,
-} from './style.css'
+import * as styles from './styles.css'
 
 const testimonials = [
   {
@@ -70,29 +59,29 @@ export const Testimonials = () => (
       </HomeExternalAction>
     }
   >
-    <List>
+    <div class={styles.list}>
       {testimonials.map((testimonial, index) => (
-        <Item key={index}>
-          <Avatar>
-            <AvatarImage tag="img" src={testimonial.avatar} />
-          </Avatar>
+        <div class={styles.item} key={index}>
+          <div class={styles.avatar}>
+            <img class={styles.avatarImage} src={testimonial.avatar} />
+          </div>
 
-          <Quote>
-            <QuoteTriangle>
-              <QuoteTriangleInner />
-            </QuoteTriangle>
+          <div class={styles.quote}>
+            <div class={styles.quoteTriangle}>
+              <div class={styles.quoteTriangleInner} />
+            </div>
 
-            <Name>
+            <div class={styles.name}>
               <HomeExternalLink href={testimonial.url}>
                 {testimonial.name}
               </HomeExternalLink>
               {testimonial.title}
-            </Name>
+            </div>
 
-            <Text>{testimonial.text}</Text>
-          </Quote>
-        </Item>
+            <div class={styles.text}>{testimonial.text}</div>
+          </div>
+        </div>
       ))}
-    </List>
+    </div>
   </HomeBlock>
 )
