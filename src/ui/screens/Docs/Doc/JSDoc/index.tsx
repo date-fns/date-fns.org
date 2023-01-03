@@ -8,9 +8,9 @@ import { Exceptions } from './Exceptions'
 import { DocLinks } from '~/ui/components/DocLinks'
 import { Properties } from './Properties'
 import { Returns } from './Returns'
-import { Header } from './style.css'
 import { Syntax } from './Syntax'
 import { DocUsage } from '~/ui/components/DocUsage'
+import { DocHeader } from '~/ui/components/DocHeader'
 
 interface Props {
   doc: DateFnsDocs.JSDocFunction
@@ -18,9 +18,7 @@ interface Props {
 
 export const JSDoc: FunctionComponent<Props> = ({ doc }) => (
   <div>
-    <h1>
-      <Header tag="span">{doc.title}</Header>
-    </h1>
+    <DocHeader>{doc.title}</DocHeader>
 
     <section>
       <h2 id="description">

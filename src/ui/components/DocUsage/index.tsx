@@ -1,9 +1,10 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import { Options, Option, OptionLink } from './style.css'
 import { Content } from './Content'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import * as styles from './styles.css'
+import classNames from 'classnames'
 
 const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'
@@ -38,7 +39,7 @@ export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
         <DocHeaderAnchor anchor="usage" />
       </h2>
 
-      <Options tag="ul">
+      <ul class={styles.options}>
         {usageTabs.map((usageTab) => {
           const usageItem = usage[usageTab]
 
@@ -47,10 +48,12 @@ export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
           }
 
           return (
-            <Option tag="li" key={usageTab}>
-              <OptionLink
-                isCurrent={selectedTab === usageTab}
-                tag="a"
+            <li class={styles.option} key={usageTab}>
+              <a
+                class={classNames(
+                  styles.optionLink,
+                  selectedTab === usageTab && styles.optionLinkIsCurrent
+                )}
                 href="#"
                 onClick={(e: FIXME) => {
                   // FIXME:
@@ -61,11 +64,11 @@ export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
                 }}
               >
                 {usageItem.title}
-              </OptionLink>
-            </Option>
+              </a>
+            </li>
           )
         })}
-      </Options>
+      </ul>
 
       <Content code={selectedUsage.code} text={selectedUsage.text} />
     </section>

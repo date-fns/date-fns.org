@@ -1,10 +1,10 @@
 import { h, FunctionComponent } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import { Selector, Label, Select } from './style.css'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
 import { LatestVersionLink } from './LatestVersionLink'
 import { docLink } from '~/ui/router/docLink'
+import * as styles from './styles.css'
 
 interface Props {
   selectedVersion: string
@@ -26,11 +26,11 @@ export const VersionSelector: FunctionComponent<Props> = ({
   const { navigate } = useContext(RouterContext)
 
   return (
-    <Selector tag="label">
-      <Label tag="span">Version:</Label>
+    <label class={styles.selector}>
+      <span class={styles.label}>Version:</span>
 
-      <Select
-        tag="select"
+      <select
+        class={styles.select}
         value={selectedVersion}
         onChange={(e: FIXME) =>
           navigate(
@@ -45,12 +45,13 @@ export const VersionSelector: FunctionComponent<Props> = ({
         <option key="title" disabled>
           Version
         </option>
+
         {versions.map(({ version }) => (
           <option key={version} value={version}>
             {version}
           </option>
         ))}
-      </Select>
+      </select>
 
       {selectedVersion !== latestVersion && (
         <LatestVersionLink
@@ -59,6 +60,6 @@ export const VersionSelector: FunctionComponent<Props> = ({
           selectedPage={selectedPage}
         />
       )}
-    </Selector>
+    </label>
   )
 }

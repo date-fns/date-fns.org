@@ -1,8 +1,8 @@
 import { h } from 'preact'
-import { NoResultsContainer, NoResultsText } from './style.css'
+import * as styles from './styles.css'
 
 export const NoResults = () => (
-  <NoResultsContainer>
-    <NoResultsText tag="p">Your search didn't match any results.</NoResultsText>
-  </NoResultsContainer>
+  <div class={styles.noResultsContainer}>
+    <p class={styles.noResultsText}>Your search didn't match any results.</p>
+  </div>
 )

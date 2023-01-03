@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { Items } from './Items'
-import { CategoriesList, Category, CategoryHeader } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   categories: string[]
@@ -20,7 +20,7 @@ export const Categories: FunctionComponent<Props> = ({
   selectedPage,
   onNavigate,
 }) => (
-  <CategoriesList tag="ul">
+  <ul class={styles.categoriesList}>
     {categories.map((category) => {
       const categoryPages = pages.filter((page) => page.category === category)
 
@@ -29,8 +29,8 @@ export const Categories: FunctionComponent<Props> = ({
       }
 
       return (
-        <Category tag="li" key={category}>
-          <CategoryHeader tag="h3">{category}</CategoryHeader>
+        <li class={styles.category} key={category}>
+          <h3 class={styles.categoryHeader}>{category}</h3>
 
           <div>
             <Items
@@ -41,8 +41,8 @@ export const Categories: FunctionComponent<Props> = ({
               onNavigate={onNavigate}
             />
           </div>
-        </Category>
+        </li>
       )
     })}
-  </CategoriesList>
+  </ul>
 )

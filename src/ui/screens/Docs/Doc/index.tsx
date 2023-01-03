@@ -1,12 +1,12 @@
-import { h, FunctionComponent } from 'preact'
-import { Container } from './style.css'
-import { Content } from './Content'
-import { DocLinkContext } from '~/ui/router/DocLinkContext'
-import { useEffect } from 'preact/hooks'
-import { useRead } from '@typesaurus/preact'
+import { packageName } from '@date-fns/docs/consts'
 import { db } from '@date-fns/docs/db'
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import { packageName } from '@date-fns/docs/consts'
+import { useRead } from '@typesaurus/preact'
+import { FunctionComponent, h } from 'preact'
+import { useEffect } from 'preact/hooks'
+import { DocLinkContext } from '~/ui/router/DocLinkContext'
+import { Content } from './Content'
+import * as styles from './styles.css'
 
 const SCROLL_OFFSET = 35
 
@@ -51,21 +51,21 @@ export const Doc: FunctionComponent<Props> = ({
       <DocLinkContext.Provider
         value={{ version: selectedVersion, submodule: selectedSubmodule }}
       >
-        <Container>
+        <div class={styles.container}>
           <Content page={page} />
-        </Container>
+        </div>
       </DocLinkContext.Provider>
     )
   } else if (pages && pages.length === 0) {
     return (
-      <Container>
+      <div class={styles.container}>
         This page is not available for this version or this submodule
-      </Container>
+      </div>
     )
   } else if (loading) {
-    return <Container>Loading...</Container>
+    return <div class={styles.container}>Loading...</div>
   } else {
     // FIXME:
-    return <Container>Error!</Container>
+    return <div class={styles.container}>Error!</div>
   }
 }

@@ -1,29 +1,23 @@
-import { h, FunctionComponent } from 'preact'
-import { NavBar } from './NavBar'
-import { Finder } from './Finder'
-import { Doc } from './Doc'
-import {
-  Screen,
-  Content,
-  Loading,
-  DocContainer,
-  FinderContainer,
-  NavBarContainer,
-} from './style.css'
+import { packageName } from '@date-fns/docs/consts'
+import { db } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { useRead } from '@typesaurus/preact'
+import classNames from 'classnames'
+import { FunctionComponent, h } from 'preact'
+import { useContext, useEffect, useState } from 'preact/hooks'
+import { DEFAULT_PAGE } from '~/constants'
+import { RouterContext } from '~/ui/router'
+import { docLink } from '~/ui/router/docLink'
 import {
   filterPreReleaseVersions,
   getLatestVersion,
   sortVersions,
 } from '~/utils/versions'
+import { Doc } from './Doc'
+import { Finder } from './Finder'
 import hamburgerPath from './img/hamburger.svg'
-import { useContext, useEffect, useState } from 'preact/hooks'
-import { RouterContext } from '~/ui/router'
-import { docLink } from '~/ui/router/docLink'
-import { DEFAULT_PAGE } from '~/constants'
-import { useRead } from '@typesaurus/preact'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { db } from '@date-fns/docs/db'
-import { packageName } from '@date-fns/docs/consts'
+import { NavBar } from './NavBar'
+import * as styles from './styles.css'
 
 interface Props {
   selectedSubmodule: DateFnsDocs.Submodule
@@ -61,8 +55,8 @@ export const Docs: FunctionComponent<Props> = ({
     const selectedVersion = urlSelectedVersion ?? latestVersion
 
     return (
-      <Screen>
-        <NavBarContainer>
+      <div class={styles.screen}>
+        <div class={styles.navBarContainer}>
           <NavBar
             selectedVersion={selectedVersion}
             latestVersion={latestVersion}
@@ -78,20 +72,28 @@ export const Docs: FunctionComponent<Props> = ({
               <img src={hamburgerPath} onClick={() => setMenuOpen(!menuOpen)} />
             }
           />
-        </NavBarContainer>
+        </div>
 
-        <Content>
-          <FinderContainer menuOpen={menuOpen}>
+        <div class={styles.content}>
+          <div
+            class={classNames(
+              styles.finderContainer,
+              menuOpen && styles.finderContainerMenuOpen
+            )}
+          >
             <Finder
               selectedVersion={selectedVersion}
               selectedPage={selectedPage}
               selectedSubmodule={selectedSubmodule}
               onNavigate={() => setMenuOpen(false)}
             />
-          </FinderContainer>
+          </div>
 
-          <DocContainer
-            menuOpen={menuOpen}
+          <div
+            class={classNames(
+              styles.docContainer,
+              menuOpen && styles.docContainerMenuOpen
+            )}
             onClick={menuOpen ? () => setMenuOpen(false) : undefined}
           >
             <Doc
@@ -99,13 +101,13 @@ export const Docs: FunctionComponent<Props> = ({
               selectedPage={selectedPage}
               selectedSubmodule={selectedSubmodule}
             />
-          </DocContainer>
-        </Content>
-      </Screen>
+          </div>
+        </div>
+      </div>
     )
   } else if (loading) {
-    return <Loading>Loading...</Loading>
+    return <div class={styles.loading}>Loading...</div>
   } else {
-    return <Loading>Failed to load package list!</Loading>
+    return <div class={styles.loading}>Failed to load package list!</div>
   }
 }

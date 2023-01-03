@@ -4,12 +4,12 @@ import { FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import { parse } from 'typeroo'
 import { DocExamples } from '~/ui/components/DocExamples'
+import { DocHeader } from '~/ui/components/DocHeader'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
 import { Markdown } from '~/ui/components/Markdown'
 import { Returns } from './Returns'
-import { Header } from './style.css'
 
 interface Props {
   page: DateFnsDocs.TSDocPage
@@ -26,9 +26,7 @@ export const TSDoc: FunctionComponent<Props> = ({ page }) => {
 
   return (
     <div>
-      <h1>
-        <Header tag="span">{page.title}</Header>
-      </h1>
+      <DocHeader>{page.title}</DocHeader>
 
       {description && (
         <section>
