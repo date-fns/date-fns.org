@@ -1096,10 +1096,12 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@switcher/preact@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@switcher/preact/-/preact-1.1.2.tgz"
-  integrity sha512-1knle4+lkOCUSZaA9dJ/6G15FMHqwFCc9FwIdY/i4blov7p28PkPU2v1up8WT/1v8H5xHd+zpn8rdmXnzSazMg==
+"@switcher/preact@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@switcher/preact/-/preact-2.3.0.tgz#c7a18dd2af9ede0df252bf2e05c4be68aa5b7069"
+  integrity sha512-0YmKAEMAn6WOa601iDpdpANGB5dhzVUtcK1RbPtk59ZJYmdmumBgEhzk84YYlOlpyAwwtsh9tNNetvww9kYfyg==
+  dependencies:
+    preact "^10.2.1"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -7034,10 +7036,10 @@ preact-render-to-string@^5.1.10:
   dependencies:
     pretty-format "^3.8.0"
 
-preact@^10.4.8:
-  version "10.4.8"
-  resolved "https://registry.npmjs.org/preact/-/preact-10.4.8.tgz"
-  integrity sha512-uVLeEAyRsCkUEFhVHlOu17OxcrwC7+hTGZ08kBoLBiGHiZooUZuibQnphgMKftw/rqYntNMyhVCPqQhcyAGHag==
+preact@^10.11.3, preact@^10.2.1:
+  version "10.11.3"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.11.3.tgz#8a7e4ba19d3992c488b0785afcc0f8aa13c78d19"
+  integrity sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
