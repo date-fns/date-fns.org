@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const DocType: FunctionComponent<Props> = ({ type }) => {
-  console.log({ type })
+  // console.log({ type })
 
   switch (type.type) {
     case 'intrinsic':
@@ -25,7 +25,7 @@ export const DocType: FunctionComponent<Props> = ({ type }) => {
       return (
         <span>
           <a
-            href={`#types/${
+            href={`#types/${type.name}/${
               /* TODO: Get rid of it one TypeDoc adds it */
               ((type as unknown) as { id: number }).id
             }`}

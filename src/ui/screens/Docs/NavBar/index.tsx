@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, VNode } from 'preact'
 import { RouterLink } from '~/ui/router'
 import logoPath from './img/logo.svg'
 import { defaultSubmodule } from '@date-fns/docs/consts'
@@ -13,7 +13,7 @@ interface Props {
   selectedPage: string
   versions: DateFnsDocs.VersionPreview[]
   selectedSubmodule: DateFnsDocs.Submodule
-  menuIcon: React.ReactNode
+  menuIcon: VNode
 }
 
 export const NavBar: FunctionComponent<Props> = ({

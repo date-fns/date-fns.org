@@ -7,6 +7,7 @@ import { NotFound } from '~/ui/screens/NotFound'
 import 'reset.css/reset.css?global'
 import './global.css?global'
 import { defaultSubmodule } from '@date-fns/docs/consts'
+import { Modals, ModalsContext, useModals } from './components/Modals'
 
 const win = typeof window !== 'undefined' ? window : undefined
 
@@ -17,9 +18,14 @@ export const UI = () => {
     win?.ga?.('send', 'pageview')
   }, [JSON.stringify(location)])
 
+  const modalsApi = useModals()
+
   return (
     <>
-      <Content location={location} />
+      <ModalsContext.Provider value={modalsApi}>
+        <Content location={location} />
+        <Modals api={modalsApi} />
+      </ModalsContext.Provider>
     </>
   )
 }

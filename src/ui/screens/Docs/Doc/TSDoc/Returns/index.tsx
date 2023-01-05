@@ -11,7 +11,6 @@ interface Props {
 
 export const Returns: FunctionComponent<Props> = ({ fn }) => {
   const description = useMemo(() => findReturns(fn), [fn])
-  console.log({ fn })
   return (
     <DocReturns
       returns={
