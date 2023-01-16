@@ -5,7 +5,7 @@ interface Props {
   type: SomeType
 }
 
-export const DocType: FunctionComponent<Props> = ({ type }) => {
+export const TSDocType: FunctionComponent<Props> = ({ type }) => {
   // console.log({ type })
 
   switch (type.type) {
@@ -16,7 +16,7 @@ export const DocType: FunctionComponent<Props> = ({ type }) => {
       return (
         <span>
           Array{'<'}
-          <DocType type={type.elementType} />
+          <TSDocType type={type.elementType} />
           {'>'}
         </span>
       )

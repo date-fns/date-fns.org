@@ -1,24 +1,28 @@
-import { findReturns } from '@date-fns/docs/utils'
 import { FunctionComponent, h } from 'preact'
-import { useMemo } from 'preact/hooks'
-import type { DeclarationReflection } from 'typedoc'
+import type { SomeType } from 'typedoc'
 import { DocReturns } from '~/ui/components/DocReturns'
-import { DocType } from '~/ui/components/DocType'
+import { TSDocType } from '~/ui/components/TSDocType'
 
 interface Props {
-  fn: DeclarationReflection
+  type: SomeType | undefined
+  description: string
+  header: 'h2' | 'h3'
 }
 
-export const Returns: FunctionComponent<Props> = ({ fn }) => {
-  const description = useMemo(() => findReturns(fn), [fn])
+export const Returns: FunctionComponent<Props> = ({
+  type,
+  description,
+  header,
+}) => {
   return (
     <DocReturns
-      returns={
-        fn.signatures?.map((s) => ({
-          type: s.type && <DocType type={s.type} />,
-          description: description || '',
-        })) || []
-      }
+      returns={[
+        {
+          type: type && <TSDocType type={type} />,
+          description,
+        },
+      ]}
+      header={header}
     />
   )
 }

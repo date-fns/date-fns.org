@@ -7,7 +7,7 @@ interface Props {
   params: DateFnsDocs.JSDocParam[]
 }
 
-export const DocParams: FunctionComponent<Props> = ({ params }) => (
+export const JSDocParams: FunctionComponent<Props> = ({ params }) => (
   <>
     {params.map((param, index) => (
       <tr key={index}>
@@ -55,7 +55,7 @@ const ParamPropsTable: FunctionComponent<{
       </thead>
 
       <tbody>
-        <DocParams params={props} />
+        <JSDocParams params={props} />
       </tbody>
     </table>
   </div>
