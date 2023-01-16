@@ -1,31 +1,31 @@
 import { h, FunctionComponent, Fragment } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import type { ParameterReflection } from 'typedoc'
+import type { ParameterReflection, TypeParameterReflection } from 'typedoc'
 import { TSDocType } from '~/ui/components/TSDocType'
 import { Markdown } from '~/ui/components/Markdown'
 import { joinCommentParts } from '@date-fns/docs/utils'
 import * as styles from './styles.css'
 
 interface Props {
-  args: ParameterReflection[]
+  args: TypeParameterReflection[]
   header: 'h2' | 'h3'
 }
 
-export const Arguments: FunctionComponent<Props> = ({ args, header }) => {
+export const Generics: FunctionComponent<Props> = ({ args, header }) => {
   const headerContent = (
     <>
-      Arguments
-      <DocHeaderAnchor anchor="arguments" />
+      Generics
+      <DocHeaderAnchor anchor="generics" />
     </>
   )
 
   return (
     <section>
       {header === 'h2' ? (
-        <h2 id="arguments">{headerContent}</h2>
+        <h2 id="generics">{headerContent}</h2>
       ) : (
-        <h3 id="arguments">{headerContent}</h3>
+        <h3 id="generics">{headerContent}</h3>
       )}
 
       <table>

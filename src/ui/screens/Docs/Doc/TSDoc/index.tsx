@@ -1,5 +1,5 @@
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import { findDescription, findExamples, findFn } from '@date-fns/docs/utils'
+import { findFnDescription, findFnExamples, findFn } from '@date-fns/docs/utils'
 import { FunctionComponent, h } from 'preact'
 import { useContext, useEffect, useMemo } from 'preact/hooks'
 import { parse } from 'typeroo'
@@ -10,7 +10,7 @@ import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
 import { Markdown } from '~/ui/components/Markdown'
 import { RouterContext } from '~/ui/router'
-import { Returns } from './Returns'
+import { Signatures } from './Signatures'
 import { useTypesModal } from './Types'
 
 interface Props {
@@ -23,9 +23,13 @@ export const TSDoc: FunctionComponent<Props> = ({ page }) => {
   const { location, navigate } = useContext(RouterContext)
   const tsdoc = useMemo(() => parse(page.tsdoc), [page.slug])
   const fn = useMemo(() => findFn(tsdoc), [tsdoc])
-  const description = useMemo(() => fn && findDescription(fn), [fn])
+  const description = useMemo(() => fn && findFnDescription(fn), [fn])
   const { usage, usageTabs } = useMemo(() => generateUsage(tsdoc.name), [tsdoc])
-  const examples = useMemo(() => fn && findExamples(fn).map(extractCode), [fn])
+  const signatures = fn && fn.signatures
+  const examples = useMemo(() => fn && findFnExamples(fn).map(extractCode), [
+    fn,
+  ])
+
   const showTypesModal = useTypesModal()
 
   useEffect(() => {
@@ -66,16 +70,7 @@ export const TSDoc: FunctionComponent<Props> = ({ page }) => {
 
       <DocUsage usage={usage} usageTabs={usageTabs} />
 
-      {/* 
-
-    {page.syntax && <Syntax syntax={page.syntax} />}
-    {page.args && page.args.length > 0 && <Arguments args={page.args} />}
-    {page.content.properties && page.content.properties.length > 0 && (
-      <Properties properties={page.content.properties} />
-    )}
-    */}
-
-      {fn && <Returns fn={fn} />}
+      {signatures && <Signatures signatures={signatures} />}
 
       {examples && <DocExamples examples={examples} />}
 

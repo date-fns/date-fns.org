@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import { DocParams } from '~/ui/components/DocParams'
+import { JSDocParams } from '~/ui/components/JSDocParams'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 interface Props {
@@ -24,7 +24,7 @@ export const Properties: FunctionComponent<Props> = ({ properties }) => (
       </thead>
 
       <tbody>
-        <DocParams params={properties} />
+        <JSDocParams params={properties} />
       </tbody>
     </table>
   </section>
