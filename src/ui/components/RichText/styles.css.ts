@@ -146,3 +146,10 @@ globalStyle(`${content} ul ul`, {
 globalStyle(`${content} ul:last-child`, {
   marginBottom: '0',
 })
+
+globalStyle(`${content} blockquote`, {
+  marginBottom: '10px',
+  borderLeft: '3px solid #b9a2b2',
+  background: '#faf6f0',
+  padding: '0.5rem 1rem',
+})
