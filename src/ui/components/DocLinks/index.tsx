@@ -2,7 +2,6 @@ import { h } from 'preact'
 import { useContext } from 'preact/hooks'
 import { RouterContext, RouterLink } from '~/ui/router'
 import { bugTemplateText, docIssueTemplateText } from './templateText'
-import * as styles from './styles.css'
 
 export const DocLinks = () => {
   const { location } = useContext(RouterContext)
@@ -19,7 +18,6 @@ export const DocLinks = () => {
         <li>
           <div>
             <RouterLink
-              class={styles.link}
               decorated
               to={{
                 name: 'docs',

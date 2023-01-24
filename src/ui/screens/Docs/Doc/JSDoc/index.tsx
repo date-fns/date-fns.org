@@ -11,6 +11,7 @@ import { Returns } from './Returns'
 import { Syntax } from './Syntax'
 import { DocUsage } from '~/ui/components/DocUsage'
 import { DocHeader } from '~/ui/components/DocHeader'
+import { DocDescription } from '~/ui/components/DocDescription'
 
 interface Props {
   doc: DateFnsDocs.JSDocFunction
@@ -20,14 +21,7 @@ export const JSDoc: FunctionComponent<Props> = ({ doc }) => (
   <div>
     <DocHeader>{doc.title}</DocHeader>
 
-    <section>
-      <h2 id="description">
-        Description
-        <DocHeaderAnchor anchor="description" />
-      </h2>
-
-      <Markdown value={doc.content.description} />
-    </section>
+    <DocDescription description={doc.content.description} />
 
     {doc.usage && doc.usageTabs && (
       <DocUsage usage={doc.usage} usageTabs={doc.usageTabs} />
