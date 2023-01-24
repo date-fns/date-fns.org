@@ -4,6 +4,7 @@ import type { DateFnsDocs } from '@date-fns/docs/types'
 import { useRead } from '@typesaurus/preact'
 import { FunctionComponent, h } from 'preact'
 import { useEffect } from 'preact/hooks'
+import { RichText } from '~/ui/components/RichText'
 import { DocLinkContext } from '~/ui/router/DocLinkContext'
 import { Content } from './Content'
 import * as styles from './styles.css'
@@ -52,7 +53,9 @@ export const Doc: FunctionComponent<Props> = ({
         value={{ version: selectedVersion, submodule: selectedSubmodule }}
       >
         <div class={styles.container}>
-          <Content page={page} />
+          <RichText>
+            <Content page={page} />
+          </RichText>
         </div>
       </DocLinkContext.Provider>
     )

@@ -13,18 +13,18 @@ import { RouterContext } from '~/ui/router'
 import { Signatures } from './Signatures'
 import { useTypesModal } from './Types'
 
-interface Props {
-  page: DateFnsDocs.TSDocPage
+interface TypeDocProps {
+  page: DateFnsDocs.TypeDocPage
 }
 
 const typeHashRE = /types\/(\w+)\/(\w+)/
 
-export const TSDoc: FunctionComponent<Props> = ({ page }) => {
+export const TypeDoc: FunctionComponent<TypeDocProps> = ({ page }) => {
   const { location, navigate } = useContext(RouterContext)
-  const tsdoc = useMemo(() => parse(page.tsdoc), [page.slug])
-  const fn = useMemo(() => findFn(tsdoc), [tsdoc])
+  const doc = useMemo(() => parse(page.doc), [page.slug])
+  const fn = useMemo(() => findFn(doc), [doc])
   const description = useMemo(() => fn && findFnDescription(fn), [fn])
-  const { usage, usageTabs } = useMemo(() => generateUsage(tsdoc.name), [tsdoc])
+  const { usage, usageTabs } = useMemo(() => generateUsage(doc.name), [doc])
   const signatures = fn && fn.signatures
   const examples = useMemo(() => fn && findFnExamples(fn).map(extractCode), [
     fn,
@@ -44,7 +44,7 @@ export const TSDoc: FunctionComponent<Props> = ({ page }) => {
 
     showTypesModal({
       typeId,
-      tsdoc,
+      doc,
       onClose: () => {
         // TODO: Fix Switcher to allow replacing the current location
         if (location.name === '404') return
@@ -70,12 +70,12 @@ export const TSDoc: FunctionComponent<Props> = ({ page }) => {
 
       <DocUsage usage={usage} usageTabs={usageTabs} />
 
-      {signatures && <Signatures signatures={signatures} />}
+      {signatures && <Signatures name={doc.name} signatures={signatures} />}
 
       {examples && <DocExamples examples={examples} />}
 
       <code>
-        <pre>{JSON.stringify(tsdoc, null, 2)}</pre>
+        <pre>{JSON.stringify(doc, null, 2)}</pre>
       </code>
 
       <DocLinks />
