@@ -6,10 +6,12 @@ import { Signature } from '../Signature'
 import * as styles from './styles.css'
 
 interface SignaturesProps {
+  name: string
   signatures: SignatureReflection[]
 }
 
 export const Signatures: FunctionComponent<SignaturesProps> = ({
+  name,
   signatures,
 }) => {
   const solo = signatures.length === 1
@@ -28,7 +30,11 @@ export const Signatures: FunctionComponent<SignaturesProps> = ({
             class={classNames(styles.signature, !solo && styles.multiSignature)}
             key={index}
           >
-            <Signature signature={signature} header={solo ? 'h2' : 'h3'} />
+            <Signature
+              name={name}
+              signature={signature}
+              header={solo ? 'h2' : 'h3'}
+            />
           </div>
         ))}
       </div>

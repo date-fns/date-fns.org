@@ -3,7 +3,7 @@ import type { DateFnsDocs } from '@date-fns/docs/types'
 import { parse } from 'typeroo/json'
 import { JSDoc } from './JSDoc'
 import { MarkdownDoc } from './MarkdownDoc'
-import { TSDoc } from './TSDoc'
+import { TypeDoc } from './TypeDoc'
 
 interface Props {
   page: DateFnsDocs.Page
@@ -11,8 +11,8 @@ interface Props {
 
 export const Content: FunctionComponent<Props> = ({ page }) => {
   switch (page.type) {
-    case 'tsdoc':
-      return <TSDoc page={page} />
+    case 'typedoc':
+      return <TypeDoc page={page} />
 
     case 'jsdoc':
       return <JSDoc doc={parse(page.doc)} />

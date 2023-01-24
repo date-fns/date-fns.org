@@ -34,6 +34,7 @@ export const windowBase = style({
   color: '#4a3142',
   width: '100%',
   margin: '0 auto',
+  overflow: 'hidden',
 })
 
 export const window = styleVariants({
@@ -48,6 +49,20 @@ export const window = styleVariants({
     windowBase,
     {
       maxWidth: '50rem',
+    },
+  ],
+
+  large: [
+    windowBase,
+    {
+      maxWidth: '60rem',
+    },
+  ],
+
+  xlarge: [
+    windowBase,
+    {
+      maxWidth: '70rem',
     },
   ],
 })
@@ -72,6 +87,14 @@ export const close = style({
 
     [`${window.medium} &`]: {
       marginLeft: '51rem',
+    },
+
+    [`${window.large} &`]: {
+      marginLeft: '61rem',
+    },
+
+    [`${window.xlarge} &`]: {
+      marginLeft: '71rem',
     },
   },
 })

@@ -1,7 +1,7 @@
 import { FunctionComponent, h } from 'preact'
 import type { SomeType } from 'typedoc'
 import { DocReturns } from '~/ui/components/DocReturns'
-import { TSDocType } from '~/ui/components/TSDocType'
+import { TypeDocType } from '~/ui/components/TypeDocType'
 
 interface Props {
   type: SomeType | undefined
@@ -18,7 +18,7 @@ export const Returns: FunctionComponent<Props> = ({
     <DocReturns
       returns={[
         {
-          type: type && <TSDocType type={type} />,
+          type: type && <TypeDocType type={type} />,
           description,
         },
       ]}

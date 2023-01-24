@@ -5,13 +5,16 @@ import type { SignatureReflection, TypeParameterReflection } from 'typedoc'
 import { Arguments } from '../Arguments'
 import { Generics } from '../Generics'
 import { Returns } from '../Returns'
+import { Type } from '../Type'
 
 interface SignatureProps {
+  name: string
   signature: SignatureReflection
   header: 'h2' | 'h3'
 }
 
 export const Signature: FunctionComponent<SignatureProps> = ({
+  name,
   signature,
   header,
 }) => {
@@ -24,10 +27,10 @@ export const Signature: FunctionComponent<SignatureProps> = ({
 
   return (
     <>
-      {/*page.syntax && <Syntax syntax={page.syntax} />*/}
+      <Type name={name} signature={signature} header={header} />
 
-      {signature.typeParameters && (
-        <Generics args={signature.typeParameters} header={header} />
+      {signature.typeParameter && (
+        <Generics args={signature.typeParameter} header={header} />
       )}
 
       {signature.parameters && signature.parameters.length > 0 && (

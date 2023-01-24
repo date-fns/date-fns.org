@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css'
-import iconURL from './img/icon.svg'
 import cancelURL from './img/cancel.svg'
 
 export const categoriesList = style({
@@ -39,44 +38,6 @@ export const content = style({
   overflowY: 'auto',
   overflowX: 'hidden',
 })
-
-export const item = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  backgroundColor: 'rgba(255,255,255,0.65)',
-  padding: '0.5rem 1rem',
-  borderBottom: '1px solid #e6e0e6',
-  textDecoration: 'none',
-  ':hover': {
-    background: '#fdf6f9',
-  },
-})
-
-export const itemIcon = style({
-  backgroundImage: `url('${iconURL}')`,
-  backgroundSize: '16px',
-  width: '16px',
-  height: '16px',
-  flexShrink: '0',
-  marginLeft: '10px',
-})
-
-export const itemIsSelected = style({
-  backgroundColor: '#fff0f3',
-
-  ':hover': {
-    backgroundColor: '#fff0f3',
-  },
-})
-
-export const itemText = style({
-  fontWeight: '400',
-  fontSize: '0.9rem',
-  color: '#7b6d77',
-})
-
-export const itemTypeJsdoc = style({})
 
 export const loading = style({
   padding: '30px',
@@ -139,15 +100,6 @@ export const widgetContainer = style({
   flex: 'none',
 })
 
-export const itemHeader = style({
-  fontSize: '1rem',
-  marginBottom: '0.4px',
-  wordBreak: 'break-all',
-  color: '#4c193c',
-
-  selectors: {
-    [`${itemTypeJsdoc} &`]: {
-      fontFamily: 'monospace',
-    },
-  },
+export const item = style({
+  textDecoration: 'none',
 })

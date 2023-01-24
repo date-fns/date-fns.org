@@ -3,6 +3,7 @@ import type { DateFnsDocs } from '@date-fns/docs/types'
 import { RouterLink } from '~/ui/router'
 import { docLink } from '~/ui/router/docLink'
 import * as styles from './styles.css'
+import { Item } from '~/ui/components/Item'
 
 interface Props {
   pages: DateFnsDocs.PagePreview[]
@@ -29,15 +30,17 @@ export const Items: FunctionComponent<Props> = ({
           submodule: selectedSubmodule,
           version: selectedVersion,
         })}
-        isSelected={selectedPage === page.slug}
         onClick={onNavigate}
       >
-        <div>
-          <h4 class={styles.itemHeader}>{page.title}</h4>
-          <p class={styles.itemText}>{page.summary}</p>
-        </div>
-
-        <div class={styles.itemIcon} />
+        <Item
+          title={page.title}
+          summary={page.summary}
+          selected={selectedPage === page.slug}
+          code={
+            /* Old versions don't have type */
+            !!page.type && page.type !== 'markdown'
+          }
+        />
       </RouterLink>
     ))}
   </>
