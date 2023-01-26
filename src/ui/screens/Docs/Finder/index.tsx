@@ -1,42 +1,31 @@
-import { h, FunctionComponent } from 'preact'
+import { FunctionComponent, h } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
-import debounce from 'lodash/debounce'
-import { useCallback, useState } from 'preact/hooks'
-import { CancelButton } from './CancelButton'
-import { NoResults } from './NoResults'
-import { Categories } from './Categories'
-import { Widget } from './Widget'
-import { filterPages } from './utils'
-import { db } from '@date-fns/docs/db'
 import { packageName } from '@date-fns/docs/consts'
+import { db } from '@date-fns/docs/db'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { useRead } from '@typesaurus/preact'
+import { useState } from 'preact/hooks'
+import { Search } from '~/ui/components/Search'
+import { Categories } from './Categories'
+import { NoResults } from './NoResults'
 import * as styles from './styles.css'
+import { filterPages } from './utils'
+import { Widget } from './Widget'
 
-type FIXME = any
-
-interface Props {
+interface FinderProps {
   selectedVersion: string
   selectedPage: string
   selectedSubmodule: DateFnsDocs.Submodule
   onNavigate(): void
 }
 
-export const Finder: FunctionComponent<Props> = ({
+export const Finder: FunctionComponent<FinderProps> = ({
   selectedSubmodule,
   selectedVersion,
   selectedPage,
   onNavigate,
 }) => {
   const [query, setQuery] = useState('')
-
-  const trackSearch = useCallback(
-    debounce((newQuery: string) => {
-      // FIXME:
-      // trackAction('Search', { query: newQuery })
-    }, 500),
-    []
-  )
 
   const [versions, { loading }] = useRead(
     db.versions.query(($) => [
@@ -51,23 +40,7 @@ export const Finder: FunctionComponent<Props> = ({
 
     return (
       <div class={styles.container}>
-        <header class={styles.search}>
-          <input
-            class={styles.searchField}
-            autoFocus
-            type="text"
-            name="search"
-            placeholder="Search"
-            value={query}
-            onInput={(e: FIXME) => {
-              const newQuery = e.target.value
-              trackSearch(newQuery)
-              setQuery(newQuery)
-            }}
-          />
-
-          {query.length >= 0 && <CancelButton setQuery={setQuery} />}
-        </header>
+        <Search query={[query, setQuery]} />
 
         <div class={styles.content}>
           {filteredPages.length === 0 ? (

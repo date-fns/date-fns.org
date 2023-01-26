@@ -6,6 +6,8 @@ import { linkify } from 'remarkable/linkify'
 
 const md = new Remarkable().use(linkify)
 
+md.inline.ruler.enable(['mark'])
+
 interface Props {
   value: string
 }

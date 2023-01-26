@@ -1,10 +1,11 @@
-import { h, FunctionComponent } from 'preact'
+import { h, Fragment, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { Content } from './Content'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import * as styles from './styles.css'
 import classNames from 'classnames'
+import { SectionHeader } from '../SectionHeader'
 
 const LOCALSTORAGE_KEY = 'usageSource'
 const DEFAULT_SOURCE = 'commonjs'
@@ -12,11 +13,16 @@ const DEFAULT_SOURCE = 'commonjs'
 interface Props {
   usage: DateFnsDocs.FnUsage
   usageTabs: string[]
+  scope?: string
+  header?: 'h2' | 'h3'
 }
 
-type FIXME = any
-
-export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
+export const DocUsage: FunctionComponent<Props> = ({
+  usageTabs,
+  usage,
+  scope,
+  header,
+}) => {
   const [source, setSource] = useState(DEFAULT_SOURCE)
 
   useEffect(() => {
@@ -34,10 +40,7 @@ export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
 
   return (
     <section>
-      <h2 id="usage">
-        Usage
-        <DocHeaderAnchor anchor="usage" />
-      </h2>
+      <SectionHeader header="Usage" scope={scope} tag={header} />
 
       <ul class={styles.options}>
         {usageTabs.map((usageTab) => {
@@ -55,7 +58,7 @@ export const DocUsage: FunctionComponent<Props> = ({ usageTabs, usage }) => {
                   selectedTab === usageTab && styles.optionLinkIsCurrent
                 )}
                 href="#"
-                onClick={(e: FIXME) => {
+                onClick={(e) => {
                   // FIXME:
                   // trackAction('Changed Usage Source', { source })
                   e.preventDefault()

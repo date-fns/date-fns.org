@@ -1,40 +1,32 @@
-import { h, Fragment, FunctionComponent } from 'preact'
-import { Code } from '~/ui/components/Code'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 import isArray from 'lodash/isArray'
+import { Fragment, FunctionComponent, h } from 'preact'
+import { Code } from '~/ui/components/Code'
 import { Markdown } from '~/ui/components/Markdown'
+import { SectionHeader } from '../SectionHeader'
 import * as styles from './styles.css'
 
 interface Props {
   examples: string[] | string
+  scope?: string
   header?: 'h2' | 'h3'
 }
 
-export const DocExamples: FunctionComponent<Props> = ({ examples, header }) => {
-  const headerContent = (
-    <>
-      Examples
-      <DocHeaderAnchor anchor="examples" />
-    </>
-  )
+export const DocExamples: FunctionComponent<Props> = ({
+  examples,
+  scope,
+  header,
+}) => (
+  <section>
+    <SectionHeader header="Examples" scope={scope} tag={header} />
 
-  return (
-    <section>
-      {header === 'h2' ? (
-        <h2 id="examples">{headerContent}</h2>
-      ) : (
-        <h3 id="description">{headerContent}</h3>
-      )}
-
-      {isArray(examples) ? (
-        examples.map((example, index) => (
-          <div class={styles.codeContainer} key={index}>
-            <Code value={example} />
-          </div>
-        ))
-      ) : (
-        <Markdown value={examples} />
-      )}
-    </section>
-  )
-}
+    {isArray(examples) ? (
+      examples.map((example, index) => (
+        <div class={styles.codeContainer} key={index}>
+          <Code value={example} />
+        </div>
+      ))
+    ) : (
+      <Markdown value={examples} />
+    )}
+  </section>
+)

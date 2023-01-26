@@ -1,9 +1,8 @@
-import classNames from 'classnames'
-import { h, FunctionComponent, Fragment } from 'preact'
+import { Fragment, FunctionComponent, h } from 'preact'
 import type { SignatureReflection } from 'typedoc'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { Entities } from '~/ui/components/Entities'
 import { Signature } from '../Signature'
-import * as styles from './styles.css'
 
 interface SignaturesProps {
   name: string
@@ -24,20 +23,15 @@ export const Signatures: FunctionComponent<SignaturesProps> = ({
         </h2>
       )}
 
-      <div>
+      <Entities>
         {signatures.map((signature, index) => (
-          <div
-            class={classNames(styles.signature, !solo && styles.multiSignature)}
-            key={index}
-          >
-            <Signature
-              name={name}
-              signature={signature}
-              header={solo ? 'h2' : 'h3'}
-            />
-          </div>
+          <Signature
+            name={name}
+            signature={signature}
+            header={solo ? 'h2' : 'h3'}
+          />
         ))}
-      </div>
+      </Entities>
     </section>
   )
 }

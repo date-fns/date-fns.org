@@ -153,3 +153,7 @@ globalStyle(`${content} blockquote`, {
   background: '#faf6f0',
   padding: '0.5rem 1rem',
 })
+
+globalStyle(`${content} mark`, {
+  backgroundColor: '#fffe25',
+})

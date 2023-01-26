@@ -1,32 +1,26 @@
-import { ComponentChildren, FunctionComponent, h, Fragment } from 'preact'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { ComponentChildren, Fragment, FunctionComponent, h } from 'preact'
 import { Markdown } from '~/ui/components/Markdown'
+import { SectionHeader } from '../SectionHeader'
 
 interface ReturnType {
   description: string
   type: ComponentChildren
 }
 
-interface Props {
+interface DocReturnsProps {
   returns: ReturnType[]
+  scope?: string
   header?: 'h2' | 'h3'
 }
 
-export const DocReturns: FunctionComponent<Props> = ({ returns, header }) => {
-  const headerContent = (
-    <>
-      Returns
-      <DocHeaderAnchor anchor="returns" />
-    </>
-  )
-
+export const DocReturns: FunctionComponent<DocReturnsProps> = ({
+  returns,
+  scope,
+  header,
+}) => {
   return (
     <section>
-      {header === 'h2' ? (
-        <h2 id="returns">{headerContent}</h2>
-      ) : (
-        <h3 id="returns">{headerContent}</h3>
-      )}
+      <SectionHeader header="Returns" scope={scope} tag={header} />
 
       <table>
         <thead>

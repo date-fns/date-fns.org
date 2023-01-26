@@ -8,7 +8,7 @@ import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeader } from '~/ui/components/DocHeader'
 import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
-import { extractCodeFromTagString } from '~/utils/docs'
+import { extractCodeFromTagString, generateUsage } from '~/utils/docs'
 import { Signatures } from './Signatures'
 
 interface TypeDocFunctionProps {
@@ -48,22 +48,4 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
       <DocLinks />
     </div>
   )
-}
-
-function generateUsage(name: string) {
-  const usage = {
-    esm: {
-      code: `import { ${name} } from "date-fns";`,
-      title: 'ESM',
-    },
-
-    commonjs: {
-      code: `const ${name} = require("date-fns/${name}");`,
-      title: 'CommonJS',
-    },
-  }
-
-  const usageTabs = ['esm', 'commonjs']
-
-  return { usage, usageTabs }
 }
