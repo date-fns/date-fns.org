@@ -84,6 +84,8 @@ export function getTagName(token: Token) {
       return 'tbody'
     case 'td_open':
       return 'td'
+    case 'mark_open':
+      return 'mark'
     default:
       throw new Error(
         `Can't retrieve the tag name from a token: an unknown token type "${token.type}"`

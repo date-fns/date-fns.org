@@ -1,32 +1,20 @@
-import { ComponentChildren, FunctionComponent, h, Fragment } from 'preact'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { Fragment, FunctionComponent, h } from 'preact'
 import { Markdown } from '~/ui/components/Markdown'
+import { SectionHeader } from '../SectionHeader'
 
 interface DocDescriptionProps {
   description: string
+  scope?: string
   header?: 'h2' | 'h3'
 }
 
 export const DocDescription: FunctionComponent<DocDescriptionProps> = ({
   description,
   header,
-}) => {
-  const headerContent = (
-    <>
-      Description
-      <DocHeaderAnchor anchor="description" />
-    </>
-  )
-
-  return (
-    <section>
-      {header === 'h2' ? (
-        <h2 id="description">{headerContent}</h2>
-      ) : (
-        <h3 id="description">{headerContent}</h3>
-      )}
-
-      <Markdown value={description} />
-    </section>
-  )
-}
+  scope,
+}) => (
+  <section>
+    <SectionHeader header="Description" scope={scope} tag={header} />
+    <Markdown value={description} />
+  </section>
+)
