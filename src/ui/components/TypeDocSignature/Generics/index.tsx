@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact'
+import { FunctionComponent, h, Fragment } from 'preact'
 import { useContext } from 'preact/hooks'
 import type { TypeParameterReflection } from 'typedoc'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
@@ -16,12 +16,12 @@ export const TypeDocSignatureGenerics: FunctionComponent<TypeDocSignatureGeneric
   const inline = useContext(InlineTypeContext)
 
   return (
-    <span>
+    <>
       {'<'}
       {params.map((param, index) => {
         const id = inline.buildId?.(param)
         return (
-          <span>
+          <>
             {inline ? (
               <span id={id}>
                 <IdHightlight id={id} match={inline.idHighlightMatch}>
@@ -33,22 +33,22 @@ export const TypeDocSignatureGenerics: FunctionComponent<TypeDocSignatureGeneric
             )}
 
             {param.type && (
-              <span>
+              <>
                 {' '}
                 extends <TypeDocType type={param.type} />
-              </span>
+              </>
             )}
             {param.default && (
-              <span>
+              <>
                 {' '}
                 = <TypeDocType type={param.default} />
-              </span>
+              </>
             )}
             {index < params.length - 1 && ', '}
-          </span>
+          </>
         )
       })}
       {'>'}
-    </span>
+    </>
   )
 }

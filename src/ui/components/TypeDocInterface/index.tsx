@@ -9,6 +9,7 @@ import type {
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
 import { findSource, ParentTypesMap } from '~/utils/docs'
 import { IdHightlight } from '../IdHighlight'
+import { InlineCode } from '../InlineCode'
 import { Markdown } from '../Markdown'
 import { SourceLink } from '../SourceLink'
 import { TypeDocType } from '../TypeDocType'
@@ -58,7 +59,11 @@ export function TypeDocInterface<
               </td>
 
               <td style={styles.code}>
-                {item.type && <TypeDocType type={item.type} />}
+                {item.type && (
+                  <InlineCode>
+                    <TypeDocType type={item.type} />
+                  </InlineCode>
+                )}
               </td>
 
               <td>

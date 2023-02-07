@@ -3,6 +3,7 @@ import { h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import type { DeclarationReflection, SignatureReflection } from 'typedoc'
 import { Code } from '~/ui/components/Code'
+import { DocUsage } from '~/ui/components/DocUsage'
 import { Item } from '~/ui/components/Item'
 import { Markdown } from '~/ui/components/Markdown'
 import { Missing } from '~/ui/components/Missing'
@@ -14,11 +15,13 @@ import { TypeDocType } from '~/ui/components/TypeDocType'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
 import {
   findSource,
+  generateTypeUsage,
   inlineTypeHash,
   inlineTypeId,
   inlineTypeIdHighlightMatch,
   ParentTypesMap,
   typeHash,
+  typeId as typeIdStr,
 } from '~/utils/docs'
 import * as styles from './styles.css'
 
@@ -35,9 +38,13 @@ export const useTypesModal = createModal<TypesModalProps>(
     const map = useMemo(() => buildMap(types), [types])
     const type = map[typeId] as DeclarationReflection | undefined
     const parentTypesMap = buildParentTypesMap(type)
-
-    console.log('>>> TYPE', type)
-    console.log('>>> MAP', parentTypesMap)
+    const usage = useMemo(
+      () =>
+        type?.kindString &&
+        kindHasUsage(type.kindString) &&
+        generateTypeUsage(type.name),
+      [type]
+    )
 
     return (
       <InlineTypeContext.Provider
@@ -105,6 +112,15 @@ export const useTypesModal = createModal<TypesModalProps>(
                 )}
 
                 <RichText>
+                  {usage && (
+                    <DocUsage
+                      usage={usage.usage}
+                      usageTabs={usage.usageTabs}
+                      header="h3"
+                      scope={typeIdStr(type.name, type.id)}
+                    />
+                  )}
+
                   {type.type && (
                     <section>
                       <h3>Type</h3>
@@ -235,6 +251,18 @@ function buildMap(types: DeclarationReflection[]) {
   })
 
   return map
+}
+
+function kindHasUsage(kindString: string): boolean {
+  switch (kindString) {
+    case 'Type alias':
+    case 'Interface':
+      return true
+
+    case 'Type parameter':
+    default:
+      return false
+  }
 }
 
 function kindToBadgeStyle(kindString: string): keyof typeof styles.badge {

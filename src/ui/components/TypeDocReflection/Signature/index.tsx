@@ -2,12 +2,12 @@ import { Fragment, FunctionComponent, h } from 'preact'
 import type { SignatureReflection } from 'typedoc'
 import { TypeDocSignature } from '../../TypeDocSignature'
 
-interface TypeDocReflectionProps {
+interface TypeDocReflectionSignatureProps {
   signature: SignatureReflection
   listed: boolean | undefined
 }
 
-export const TypeDocReflectionSignature: FunctionComponent<TypeDocReflectionProps> = ({
+export const TypeDocReflectionSignature: FunctionComponent<TypeDocReflectionSignatureProps> = ({
   signature,
   listed,
 }) => {

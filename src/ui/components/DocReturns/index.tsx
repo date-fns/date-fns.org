@@ -1,5 +1,6 @@
 import { ComponentChildren, Fragment, FunctionComponent, h } from 'preact'
 import { Markdown } from '~/ui/components/Markdown'
+import { InlineCode } from '../InlineCode'
 import { SectionHeader } from '../SectionHeader'
 
 interface ReturnType {
@@ -33,7 +34,9 @@ export const DocReturns: FunctionComponent<DocReturnsProps> = ({
         <tbody>
           {returns.map((returnData, index) => (
             <tr key={index}>
-              <td>{returnData.type}</td>
+              <td>
+                <InlineCode>{returnData.type}</InlineCode>
+              </td>
               <td>
                 <Markdown value={returnData.description} />
               </td>

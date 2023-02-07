@@ -1,7 +1,7 @@
 import { FunctionComponent, h } from 'preact'
 import type { ReflectionType } from 'typedoc'
-import { ParentTypesMap } from '~/utils/docs'
 import { Missing } from '../Missing'
+import { TypeDocReflectionObject } from './Object'
 import { TypeDocReflectionSignature } from './Signature'
 
 interface TypeDocReflection {
@@ -27,5 +27,6 @@ export const TypeDocReflection: FunctionComponent<TypeDocReflection> = ({
       />
     )
   }
-  return <Missing data={reflection} />
+
+  return <TypeDocReflectionObject declaration={reflection.declaration} />
 }

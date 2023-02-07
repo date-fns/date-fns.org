@@ -23,15 +23,15 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
 
   switch (type.type) {
     case 'intrinsic':
-      return <span class={styles.code}>{type.name}</span>
+      return <>{type.name}</>
 
     case 'array':
       return (
-        <span class={styles.code}>
+        <>
           Array{'<'}
           <TypeDocType type={type.elementType} />
           {'>'}
-        </span>
+        </>
       )
 
     case 'reference':
@@ -40,107 +40,104 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
       const hash = inline.parentTypesMap?.[id] || typeHash(type.name, id)
       const typeArguments = type.typeArguments
       return (
-        <span class={styles.code}>
-          <span class={styles.unbreakable}>
-            {type.package ? (
-              <span>{type.name}</span>
-            ) : (
-              <a href={hash}>{type.name}</a>
-            )}
+        <>
+          <>
+            {type.package ? <>{type.name}</> : <a href={hash}>{type.name}</a>}
 
             {typeArguments && '<'}
-          </span>
+          </>
           {typeArguments && (
             <>
               {typeArguments.map((arg, index) => (
                 <>
-                  <span class={styles.unbreakable}>
-                    <TypeDocType type={arg} />
-                    {index < typeArguments.length - 1 && ', '}
-                  </span>
+                  <TypeDocType type={arg} />
+                  {index < typeArguments.length - 1 && <>, </>}
                 </>
               ))}
               {'>'}
             </>
           )}
-        </span>
+        </>
       )
 
     case 'union':
       return (
-        <span class={styles.code}>
+        <>
           {type.types.map((t, index) => (
-            <span>
+            <>
+              {index !== 0 && <>|&nbsp;</>}
               <TypeDocType type={t} listed key={index} />
-              {index < type.types.length - 1 && ' | '}
-            </span>
+              {index < type.types.length - 1 && <> </>}
+            </>
           ))}
-        </span>
+        </>
       )
 
+    case 'intersection':
+
     case 'literal':
-      return <span class={styles.code}>{JSON.stringify(type.value)}</span>
+      return <>{JSON.stringify(type.value)}</>
 
     case 'reflection':
       return <TypeDocReflection reflection={type} listed={listed} />
 
     case 'typeOperator':
       return (
-        <span class={classNames(styles.code, styles.unbreakable)}>
+        <>
           {type.operator} <TypeDocType type={type.target} />
-        </span>
+        </>
       )
 
     case 'tuple':
       return (
-        <span class={styles.code}>
+        <>
           [
           {type.elements.map((t, index) => (
-            <span class={styles.unbreakable}>
+            <>
               <TypeDocType type={t} />
               {index < type.elements.length - 1 && ', '}
-            </span>
+            </>
           ))}
           ]
-        </span>
+        </>
       )
 
     case 'conditional':
       return (
-        <span class={styles.code}>
-          <span class={styles.unbreakable}>
+        <>
+          <>
             <TypeDocType type={type.checkType} /> extends{' '}
             <TypeDocType type={type.extendsType} />
-          </span>{' '}
-          <span class={styles.unbreakable}>
+          </>{' '}
+          <>
             ? <TypeDocType type={type.trueType} />
-          </span>{' '}
-          <span class={styles.unbreakable}>
+          </>{' '}
+          <>
             : <TypeDocType type={type.falseType} />
-          </span>
-        </span>
+          </>
+        </>
       )
 
     case 'mapped':
       return (
-        <span class={styles.code}>
+        <>
           {'{'}{' '}
-          <span class={styles.unbreakable}>
+          <>
             [{type.parameter} in <TypeDocType type={type.parameterType} />
             ]:
-          </span>{' '}
+          </>{' '}
           <TypeDocType type={type.templateType} /> {'}'}
-        </span>
+        </>
       )
 
     case 'indexedAccess':
       return (
-        <span class={styles.code}>
-          <span class={styles.unbreakable}>
+        <>
+          <>
             <TypeDocType type={type.objectType} />[
-          </span>
+          </>
           <TypeDocType type={type.indexType} />]
-        </span>
+        </>
       )
 
     case 'query':
@@ -148,7 +145,6 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
     case 'conditional':
     case 'inferred':
     case 'unknown':
-    case 'intersection':
     case 'typeOperator':
     case 'template-literal':
     case 'named-tuple-member':
