@@ -25,6 +25,19 @@ export function generateUsage(name: string, module = name) {
   return { usage, usageTabs }
 }
 
+export function generateTypeUsage(name: string) {
+  const usage = {
+    esm: {
+      code: `import type { ${name} } from "date-fns";`,
+      title: 'ESM',
+    },
+  }
+
+  const usageTabs = ['esm']
+
+  return { usage, usageTabs }
+}
+
 export function extractCodeFromTagString(example: string): string {
   return example.match(/```ts\n([\s\S]+?)\n```/)?.[1] ?? ''
 }
