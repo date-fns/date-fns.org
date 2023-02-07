@@ -7,3 +7,7 @@ export const code = style({
 export const optional = style({
   fontStyle: 'italic',
 })
+
+export const nowrap = style({
+  whiteSpace: 'nowrap',
+})
