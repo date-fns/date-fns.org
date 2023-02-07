@@ -9,6 +9,7 @@ import { Markdown } from '~/ui/components/Markdown'
 import { Missing } from '~/ui/components/Missing'
 import { createModal } from '~/ui/components/Modals'
 import { RichText } from '~/ui/components/RichText'
+import { SectionHeader } from '~/ui/components/SectionHeader'
 import { SourceLink } from '~/ui/components/SourceLink'
 import { TypeDocInterface } from '~/ui/components/TypeDocInterface'
 import { TypeDocType } from '~/ui/components/TypeDocType'
@@ -45,6 +46,7 @@ export const useTypesModal = createModal<TypesModalProps>(
         generateTypeUsage(type.name),
       [type]
     )
+    const scope = type && typeIdStr(type.name, type.id)
 
     return (
       <InlineTypeContext.Provider
@@ -117,27 +119,25 @@ export const useTypesModal = createModal<TypesModalProps>(
                       usage={usage.usage}
                       usageTabs={usage.usageTabs}
                       header="h3"
-                      scope={typeIdStr(type.name, type.id)}
+                      scope={scope}
                     />
                   )}
 
                   {type.type && (
                     <section>
-                      <h3>Type</h3>
-
+                      <SectionHeader header="Type" scope={scope} tag="h3" />
                       <Code value={<TypeDocType type={type.type} />} />
                     </section>
                   )}
 
                   {type.typeParameters && (
                     <section>
-                      <h3>Generics</h3>
-
+                      <SectionHeader header="Generics" scope={scope} tag="h3" />
                       <TypeDocInterface list={type.typeParameters} />
                     </section>
                   )}
 
-                  <TypeContent type={type} />
+                  <TypeContent type={type} scope={scope} />
                 </RichText>
 
                 <code>
@@ -159,17 +159,17 @@ export const useTypesModal = createModal<TypesModalProps>(
 
 interface ContentProps {
   type: DeclarationReflection
+  scope: string | undefined
 }
 
-function TypeContent({ type }: ContentProps) {
+function TypeContent({ type, scope }: ContentProps) {
   switch (type.kindString) {
     case 'Interface':
       if (!type.children?.length) return null
 
       return (
         <div>
-          <h3>Interface</h3>
-
+          <SectionHeader header="Interface" scope={scope} tag="h3" />
           <TypeDocInterface list={type.children} />
         </div>
       )
@@ -179,8 +179,7 @@ function TypeContent({ type }: ContentProps) {
         <div>
           {type.default && (
             <div>
-              <h3>Default type</h3>
-
+              <SectionHeader header="Default type" scope={scope} tag="h3" />
               <Code value={<TypeDocType type={type.default} />} />
             </div>
           )}
