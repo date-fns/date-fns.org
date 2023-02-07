@@ -44,3 +44,8 @@ code:after {
   letter-spacing: -0.2em;
   content: '\00a0';
 }
+
+:root {
+  --color-tooltip-canvas: #280027;
+  --color-tooltip-ink: #fff5ff;
+}

@@ -8,7 +8,11 @@ import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeader } from '~/ui/components/DocHeader'
 import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
-import { extractCodeFromTagString, generateUsage } from '~/utils/docs'
+import {
+  extractCodeFromTagString,
+  findSource,
+  generateUsage,
+} from '~/utils/docs'
 import { Signatures } from './Signatures'
 
 interface TypeDocFunctionProps {
@@ -31,7 +35,7 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
 
   return (
     <div>
-      <DocHeader>{page.title}</DocHeader>
+      <DocHeader source={findSource(fn)}>{page.title}</DocHeader>
 
       {description && <DocDescription description={description} />}
 

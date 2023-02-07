@@ -122,14 +122,16 @@ function Constant({ item, query }: ConstantProps) {
 
   return (
     <section>
-      <h2 id={name}>
-        <span class={styles.name}>
-          <HighlightQuery text={name} query={query} />
+      <h2 id={name} class={styles.sectionHeader}>
+        <span>
+          <span class={styles.name}>
+            <HighlightQuery text={name} query={query} />
+          </span>
+
+          <DocHeaderAnchor anchor={name} />
         </span>
 
         <SourceLink source={findSource(constant)} size="small" />
-
-        <DocHeaderAnchor anchor={name} />
       </h2>
 
       {description && (

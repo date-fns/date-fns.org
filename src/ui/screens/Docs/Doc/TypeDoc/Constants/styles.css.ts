@@ -13,3 +13,9 @@ export const search = style({
 export const name = style({
   fontFamily: 'monospace',
 })
+
+export const sectionHeader = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+})
