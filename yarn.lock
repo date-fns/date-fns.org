@@ -251,10 +251,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@date-fns/docs@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@date-fns/docs/-/docs-0.22.0.tgz#aaaafdba6b5c192ef2e2cb8a969821498592f42d"
-  integrity sha512-LKpsZZZXy2oqAW62TQ7UZCN3uoO1eCj6RTaEHE9h6fruQ9EoxjHV7kl+ENtNPpL4zUCTxwiQgkeRDytH8z0G8Q==
+"@date-fns/docs@0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@date-fns/docs/-/docs-0.24.0.tgz#a69db423f5ffe78992cbbb2094c631da696c3cb0"
+  integrity sha512-/mI63fs/kVMThANrSSDiLsHi8polkI9Ase4S7rkMh5r77pxmhvhSoA78m7mLIRyst5u5dlP9052hKspSxtf92A==
   dependencies:
     firebase-admin "^11.4.1"
     js-fns "^2.5.2"

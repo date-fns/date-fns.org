@@ -1,4 +1,9 @@
-import { joinCommentParts, traverseType } from '@date-fns/docs/utils'
+import {
+  findDescription,
+  findSummary,
+  joinCommentParts,
+  traverseType,
+} from '@date-fns/docs/utils'
 import { h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import type { DeclarationReflection, SignatureReflection } from 'typedoc'
@@ -8,12 +13,16 @@ import { Item } from '~/ui/components/Item'
 import { Markdown } from '~/ui/components/Markdown'
 import { Missing } from '~/ui/components/Missing'
 import { createModal } from '~/ui/components/Modals'
+import { NoSearchResults } from '~/ui/components/NoSearchResults'
 import { RichText } from '~/ui/components/RichText'
+import { Search } from '~/ui/components/Search'
 import { SectionHeader } from '~/ui/components/SectionHeader'
 import { SourceLink } from '~/ui/components/SourceLink'
 import { TypeDocInterface } from '~/ui/components/TypeDocInterface'
 import { TypeDocType } from '~/ui/components/TypeDocType'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
+import { useQuery } from '~/ui/hooks/useQuery'
+import { useActiveItem } from '~/ui/hooks/useActiveItem'
 import {
   findSource,
   generateTypeUsage,
@@ -33,12 +42,18 @@ export interface TypesModalProps {
   nestedId: number | undefined
 }
 
+interface TypeItem {
+  type: DeclarationReflection
+  summary: string | undefined
+  description: string | undefined
+}
+
 export const useTypesModal = createModal<TypesModalProps>(
   ({ parent, typeId, doc }) => {
     const types = useMemo(() => extractTypes(doc), [doc])
     const map = useMemo(() => buildMap(types), [types])
     const type = map[typeId] as DeclarationReflection | undefined
-    const parentTypesMap = buildParentTypesMap(type)
+    const parentTypesMap = useMemo(() => buildParentTypesMap(type), [type])
     const usage = useMemo(
       () =>
         type?.kindString &&
@@ -48,15 +63,39 @@ export const useTypesModal = createModal<TypesModalProps>(
     )
     const scope = type && typeIdStr(type.name, type.id)
 
+    const { query, setQuery, searchRef } = useQuery()
+
+    const navItems: TypeItem[] = useMemo(
+      () =>
+        types.map((t) => {
+          const summary = findSummary(t)
+          const description = findDescription(t)
+          return { type: t, summary, description }
+        }) || [],
+      [types]
+    )
+
+    const filteredNav = useMemo(
+      () =>
+        query
+          ? navItems.filter(
+              (item) =>
+                item.type.name.toLowerCase().includes(query.toLowerCase()) ||
+                item.summary?.toLowerCase().includes(query.toLowerCase()) ||
+                item.description?.toLowerCase().includes(query.toLowerCase())
+            )
+          : navItems,
+      [navItems, query]
+    )
+
+    const { activeRef } = useActiveItem(type?.id)
+
     return (
       <InlineTypeContext.Provider
         value={
           type
             ? {
-                buildId: (t) => {
-                  console.log(type, inlineTypeId(type, t))
-                  return inlineTypeId(type, t)
-                },
+                buildId: inlineTypeId.bind(null, type),
                 idHighlightMatch: inlineTypeIdHighlightMatch,
                 parentTypesMap,
               }
@@ -68,22 +107,31 @@ export const useTypesModal = createModal<TypesModalProps>(
             <TitleIcon /> <span class={styles.titleParent}>{parent}</span> types
           </div>
 
-          <div class={styles.inner}>
+          <div class={styles.main}>
             <div class={styles.nav}>
-              {types.map((type) => (
-                <a href={typeHash(type.name, type.id)} class={styles.item}>
-                  <Item
-                    key={type.id}
-                    title={type.name}
-                    summary={
-                      type.comment?.summary &&
-                      joinCommentParts(type.comment.summary)
-                    }
-                    code
-                    selected={type.id === typeId}
-                  />
-                </a>
-              ))}
+              <Search query={[query, setQuery]} inputRef={searchRef} />
+
+              <div class={styles.list}>
+                {filteredNav.length ? (
+                  filteredNav.map(({ type, summary, description }) => (
+                    <a href={typeHash(type.name, type.id)} class={styles.item}>
+                      <Item
+                        key={type.id}
+                        title={type.name}
+                        summary={summary || description}
+                        code
+                        active={type.id === typeId}
+                        query={query}
+                        activeRef={activeRef}
+                      />
+                    </a>
+                  ))
+                ) : (
+                  <div class={styles.noResults}>
+                    <NoSearchResults noun="types" query={[query, setQuery]} />
+                  </div>
+                )}
+              </div>
             </div>
 
             {type ? (
@@ -216,15 +264,16 @@ function extractTypes(
     switch (child.kindString) {
       // Ignore these types and their children
       case 'Module':
+      case 'Function':
         return
 
-      // Process function singatures and add their type parameters
-      case 'Function':
-        child.signatures?.forEach((signature) => {
-          // @ts-ignore: For some reason TypeDoc contains the error, it's typeParameter not typeParameters
-          signature.typeParameter?.forEach((param) => types.push(param))
-        })
-        return
+      // // Process function singatures and add their type parameters
+      // case 'Function':
+      //   child.signatures?.forEach((signature) => {
+      //     // @ts-ignore: For some reason TypeDoc contains the error, it's typeParameter not typeParameters
+      //     signature.typeParameter?.forEach((param) => types.push(param))
+      //   })
+      //   return
 
       // Add these types, but not process their children
       case 'Interface':
@@ -310,7 +359,6 @@ function buildParentTypesMap(
 
   type?.type &&
     traverseType(type.type, (ref) => {
-      console.log('    ~~~', ref)
       if (ref.type === 'reflection') {
         ref.declaration?.signatures?.forEach((signature) => {
           buildParentTypesMap(refl, signature, map)

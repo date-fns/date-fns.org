@@ -55,10 +55,18 @@ export function findSource(
   return trimHash ? url.replace(/#.*$/, '') : url
 }
 
-export function hightlightMarkdown(text: string, query: string) {
+export function highlightMarkdown(text: string, query: string | undefined) {
   if (!query) return text
   const regex = new RegExp(query, 'gi')
   return text.replace(regex, (match) => `==${match}==`)
+}
+
+export function pageTypeHash(name: string, id: number) {
+  return `#${pageTypeId(name, id)}`
+}
+
+export function pageTypeId(name: string, id: number) {
+  return `page/${name}/${id}/${rand()}`
 }
 
 export function typeHash(name: string, id: number, nested?: string) {
@@ -84,6 +92,27 @@ export function matchTypeHash(hash: string) {
   const nestedId = captures[2] ? parseInt(captures[2]) : undefined
 
   return { typeId, nestedId }
+}
+
+const pageTypeHashRE = /types\/\w+\/(\d+)(?:\/\w+)?/
+
+export function matchPageTypeHash(hash: string) {
+  const captures = hash.match(pageTypeHashRE)
+  if (!captures) return
+
+  const type = captures[1]
+  if (!type) return
+
+  const typeId = parseInt(type)
+  if (isNaN(typeId)) return
+
+  return typeId
+}
+
+export function pageTypeIdHighlightMatch(id: string, hash: string) {
+  const idMatch = matchPageTypeHash(id)
+  const hashMatch = matchPageTypeHash(hash)
+  return (idMatch && idMatch === hashMatch) || false
 }
 
 export function inlineTypeHash(

@@ -1,6 +1,7 @@
 import { match } from 'assert'
 import { FunctionComponent, h } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
+import { isInViewport } from '~/utils/dom'
 import * as styles from './styles.css'
 
 interface IdHightlightProps {
@@ -60,16 +61,5 @@ export const IdHightlight: FunctionComponent<IdHightlightProps> = ({
     <span ref={spanRef} class={styles.text}>
       {children}
     </span>
-  )
-}
-
-function isInViewport(element: HTMLElement): boolean {
-  const rect = element.getBoundingClientRect()
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   )
 }

@@ -1,18 +1,20 @@
 import { FunctionComponent, h } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
 import debounce from 'lodash/debounce'
-import { StateUpdater, useCallback } from 'preact/hooks'
+import { Ref, StateUpdater, useCallback } from 'preact/hooks'
 import * as styles from './styles.css'
 import classNames from 'classnames'
 
 interface SearchProps {
-  query: [string, StateUpdater<string>]
+  query: [string, (query: string) => void]
   bordered?: boolean
+  inputRef?: Ref<HTMLInputElement>
 }
 
 export const Search: FunctionComponent<SearchProps> = ({
   query: [query, setQuery],
   bordered,
+  inputRef,
 }) => {
   const trackSearch = useCallback(
     debounce((newQuery: string) => {
@@ -36,6 +38,7 @@ export const Search: FunctionComponent<SearchProps> = ({
           trackSearch(newQuery)
           setQuery(newQuery)
         }}
+        ref={inputRef}
       />
 
       {query.trim().length > 0 && <Cancel setQuery={setQuery} />}

@@ -1,21 +1,18 @@
-import classNames from 'classnames'
 import { Fragment, FunctionComponent, h } from 'preact'
-import { useMemo } from 'preact/hooks'
+import { RichText } from '../RichText'
 import * as styles from './styles.css'
 
 interface NoSearchResultsProps {
   noun: string
-  query: string
-  setQuery: (query: string) => void
+  query: [string, (query: string) => void]
 }
 
 export const NoSearchResults: FunctionComponent<NoSearchResultsProps> = ({
   noun,
-  query,
-  setQuery,
+  query: [query, setQuery],
 }) => {
   return (
-    <div>
+    <RichText>
       No {noun} found for <span class={styles.query}>{query}</span>.{' '}
       <a
         href="#"
@@ -26,6 +23,6 @@ export const NoSearchResults: FunctionComponent<NoSearchResultsProps> = ({
       >
         Clear query
       </a>
-    </div>
+    </RichText>
   )
 }

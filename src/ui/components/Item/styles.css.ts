@@ -24,7 +24,7 @@ export const icon = style({
   marginLeft: '10px',
 })
 
-export const selected = style({
+export const active = style({
   backgroundColor: '#fff0f3',
 
   ':hover': {

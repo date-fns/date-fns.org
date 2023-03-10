@@ -2,6 +2,7 @@ import { findSignatureReturns } from '@date-fns/docs/utils'
 import { h, FunctionComponent, Fragment } from 'preact'
 import { useMemo } from 'preact/hooks'
 import type { SignatureReflection, TypeParameterReflection } from 'typedoc'
+import { IgnoreParentTypesSourceContext } from '~/ui/contexts/IgnoreParentTypesSource'
 import { Arguments } from '../Arguments'
 import { Generics } from '../Generics'
 import { Returns } from '../Returns'
@@ -27,7 +28,9 @@ export const Signature: FunctionComponent<SignatureProps> = ({
 
   return (
     <>
-      <Type name={name} signature={signature} header={header} />
+      <IgnoreParentTypesSourceContext.Provider value>
+        <Type name={name} signature={signature} header={header} />
+      </IgnoreParentTypesSourceContext.Provider>
 
       {signature.typeParameter && (
         <Generics args={signature.typeParameter} header={header} />

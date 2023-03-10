@@ -1,6 +1,7 @@
 import { FunctionComponent, h, Fragment } from 'preact'
 import { useContext } from 'preact/hooks'
 import type { TypeParameterReflection } from 'typedoc'
+import { IgnoreParentTypesSourceContext } from '~/ui/contexts/IgnoreParentTypesSource'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
 import { ParentTypesMap, typeHash } from '~/utils/docs'
 import { IdHightlight } from '../../IdHighlight'
@@ -14,6 +15,7 @@ export const TypeDocSignatureGenerics: FunctionComponent<TypeDocSignatureGeneric
   params,
 }) => {
   const inline = useContext(InlineTypeContext)
+  const ignoreSource = useContext(IgnoreParentTypesSourceContext)
 
   return (
     <>
@@ -22,7 +24,9 @@ export const TypeDocSignatureGenerics: FunctionComponent<TypeDocSignatureGeneric
         const id = inline.buildId?.(param)
         return (
           <>
-            {inline ? (
+            {inline && ignoreSource && inline.parentTypesMap?.[param.id] ? (
+              <a href={inline.parentTypesMap[param.id]}>{param.name}</a>
+            ) : inline && !ignoreSource ? (
               <span id={id}>
                 <IdHightlight id={id} match={inline.idHighlightMatch}>
                   {param.name}

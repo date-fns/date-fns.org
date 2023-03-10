@@ -28,7 +28,7 @@ export const cancel = style({
   backgroundImage: `url('${cancelURL}')`,
   backgroundSize: '16px',
   position: 'absolute',
-  right: '1.5rem',
+  right: '1rem',
 })
 
 export const input = style({

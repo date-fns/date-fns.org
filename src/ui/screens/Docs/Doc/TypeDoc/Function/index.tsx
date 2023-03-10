@@ -1,17 +1,28 @@
 import type { DateFnsDocs } from '@date-fns/docs/types'
-import { findFn, findFnDescription, findFnExamples } from '@date-fns/docs/utils'
+import {
+  findFn,
+  findFnDescription,
+  findFnExamples,
+  traverseType,
+} from '@date-fns/docs/utils'
 import { FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
-import type { DeclarationReflection } from 'typedoc'
+import type { DeclarationReflection, SignatureReflection } from 'typedoc'
 import { DocDescription } from '~/ui/components/DocDescription'
 import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeader } from '~/ui/components/DocHeader'
 import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
+import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
 import {
   extractCodeFromTagString,
   findSource,
   generateUsage,
+  inlineTypeHash,
+  pageTypeHash,
+  pageTypeId,
+  pageTypeIdHighlightMatch,
+  ParentTypesMap,
 } from '~/utils/docs'
 import { Signatures } from './Signatures'
 
@@ -25,6 +36,7 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
   doc,
 }) => {
   const fn = useMemo(() => findFn(doc), [doc])
+  const parentTypesMap = useMemo(() => buildParentTypesMap(fn), [fn])
   const description = useMemo(() => fn && findFnDescription(fn), [fn])
   const { usage, usageTabs } = useMemo(() => generateUsage(doc.name), [doc])
   const signatures = fn && fn.signatures
@@ -33,11 +45,19 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
     [fn]
   )
 
+  console.log('+++++++++++++++++++++++', parentTypesMap)
+
   return (
-    <div>
+    <InlineTypeContext.Provider
+      value={{
+        buildId: (refl) => pageTypeId(refl.name, refl.id),
+        idHighlightMatch: pageTypeIdHighlightMatch,
+        parentTypesMap,
+      }}
+    >
       <DocHeader source={findSource(fn)}>{page.title}</DocHeader>
 
-      {description && <DocDescription description={description} />}
+      {description && <DocDescription description={description} skipHeader />}
 
       <DocUsage usage={usage} usageTabs={usageTabs} />
 
@@ -50,6 +70,20 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
       </code>
 
       <DocLinks />
-    </div>
+    </InlineTypeContext.Provider>
   )
+}
+
+function buildParentTypesMap(
+  refl: DeclarationReflection | undefined
+): ParentTypesMap {
+  const map: ParentTypesMap = {}
+
+  refl?.signatures?.forEach((signature) => {
+    signature?.typeParameter?.map((r) => {
+      map[r.id] = pageTypeHash(r.name, r.id)
+    })
+  })
+
+  return map
 }
