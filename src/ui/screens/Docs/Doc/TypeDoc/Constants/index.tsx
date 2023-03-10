@@ -22,11 +22,12 @@ import { Search } from '~/ui/components/Search'
 import { SectionHeader } from '~/ui/components/SectionHeader'
 import { SourceLink } from '~/ui/components/SourceLink'
 import { TypeDocType } from '~/ui/components/TypeDocType'
+import { useQuery } from '~/ui/hooks/useQuery'
 import {
   extractCodeFromTagString,
   findSource,
   generateUsage,
-  hightlightMarkdown,
+  highlightMarkdown,
 } from '~/utils/docs'
 import * as styles from './styles.css'
 
@@ -47,7 +48,7 @@ export const TypeDocConstants: FunctionComponent<TypeDocConstantsProps> = ({
 }) => {
   const description = useMemo(() => findDescription(doc), [doc])
 
-  const [query, setQuery] = useState('')
+  const { query, setQuery, searchRef } = useQuery()
 
   const constants: ConstantItem[] = useMemo(
     () =>
@@ -80,7 +81,7 @@ export const TypeDocConstants: FunctionComponent<TypeDocConstantsProps> = ({
 
       <section class={styles.list}>
         <div class={styles.search}>
-          <Search query={[query, setQuery]} bordered />
+          <Search query={[query, setQuery]} inputRef={searchRef} bordered />
         </div>
 
         {filtered.length ? (
@@ -90,7 +91,7 @@ export const TypeDocConstants: FunctionComponent<TypeDocConstantsProps> = ({
             ))}
           </Entities>
         ) : (
-          <NoSearchResults noun="constants" query={query} setQuery={setQuery} />
+          <NoSearchResults noun="constants" query={[query, setQuery]} />
         )}
       </section>
 
@@ -136,7 +137,7 @@ function Constant({ item, query }: ConstantProps) {
 
       {description && (
         <DocDescription
-          description={hightlightMarkdown(description, query)}
+          description={highlightMarkdown(description, query)}
           scope={name}
           header="h3"
         />

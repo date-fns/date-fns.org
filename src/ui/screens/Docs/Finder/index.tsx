@@ -11,6 +11,7 @@ import { NoResults } from './NoResults'
 import * as styles from './styles.css'
 import { filterPages } from './utils'
 import { Widget } from './Widget'
+import { useQuery } from '~/ui/hooks/useQuery'
 
 interface FinderProps {
   selectedVersion: string
@@ -25,7 +26,7 @@ export const Finder: FunctionComponent<FinderProps> = ({
   selectedPage,
   onNavigate,
 }) => {
-  const [query, setQuery] = useState('')
+  const { query, setQuery, searchRef } = useQuery()
 
   const [versions, { loading }] = useRead(
     db.versions.query(($) => [
@@ -40,7 +41,7 @@ export const Finder: FunctionComponent<FinderProps> = ({
 
     return (
       <div class={styles.container}>
-        <Search query={[query, setQuery]} />
+        <Search query={[query, setQuery]} inputRef={searchRef} />
 
         <div class={styles.content}>
           {filteredPages.length === 0 ? (
@@ -53,6 +54,7 @@ export const Finder: FunctionComponent<FinderProps> = ({
               selectedSubmodule={selectedSubmodule}
               selectedPage={selectedPage}
               onNavigate={onNavigate}
+              query={query}
             />
           )}
         </div>

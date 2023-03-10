@@ -1,6 +1,10 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css'
 
-export const wrapper = style({})
+export const wrapper = style({
+  height: 'min(calc(100vh - 8rem), 50rem)',
+  display: 'grid',
+  gridTemplateRows: 'auto 1fr',
+})
 
 export const title = style({
   background: '#ebe1d8',
@@ -23,11 +27,11 @@ export const titleParent = style({
   fontFamily: 'monospace',
 })
 
-export const inner = style({
+export const main = style({
   display: 'grid',
   gridTemplateColumns: '23rem auto',
-  maxHeight: '50rem',
   gridTemplateRows: '1fr',
+  overflow: 'hidden',
 })
 
 export const item = style({
@@ -36,7 +40,18 @@ export const item = style({
 
 export const nav = style({
   borderRight: '1px solid #e6e0e6',
+  display: 'grid',
+  gridTemplateRows: 'auto 1fr',
+  overflow: 'hidden',
+})
+
+export const list = style({
   overflowY: 'auto',
+})
+
+export const noResults = style({
+  textAlign: 'center',
+  padding: '1rem',
 })
 
 export const content = style({

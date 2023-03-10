@@ -2,7 +2,7 @@ import { style, globalStyle } from '@vanilla-extract/css'
 
 export const content = style({
   fontSize: '1rem',
-  lineHeight: '1.6em',
+  lineHeight: '1.6',
 })
 
 globalStyle(`${content} a`, {

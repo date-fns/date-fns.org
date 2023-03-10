@@ -10,6 +10,7 @@ interface Props {
   selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   onNavigate(): void
+  query: string
 }
 
 export const Categories: FunctionComponent<Props> = ({
@@ -19,6 +20,7 @@ export const Categories: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedPage,
   onNavigate,
+  query,
 }) => (
   <ul class={styles.categoriesList}>
     {categories.map((category) => {
@@ -39,6 +41,7 @@ export const Categories: FunctionComponent<Props> = ({
               selectedSubmodule={selectedSubmodule}
               selectedPage={selectedPage}
               onNavigate={onNavigate}
+              query={query}
             />
           </div>
         </li>

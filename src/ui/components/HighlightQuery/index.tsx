@@ -5,7 +5,7 @@ import * as styles from './styles.css'
 
 interface HighlightQueryProps {
   text: string
-  query: string
+  query: string | undefined
 }
 
 export const HighlightQuery: FunctionComponent<HighlightQueryProps> = ({
@@ -33,7 +33,7 @@ interface Chunk {
   type: 'chunk' | 'query'
 }
 
-function highlightText(text: string, query: string): Chunk[] {
+function highlightText(text: string, query: string | undefined): Chunk[] {
   if (!text || !query) return [{ text, type: 'chunk' }]
 
   const chunks: Chunk[] = []

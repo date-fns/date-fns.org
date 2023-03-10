@@ -1,11 +1,8 @@
-import classNames from 'classnames'
 import { Fragment, FunctionComponent, h } from 'preact'
-import type { SignatureReflection, TypeParameterReflection } from 'typedoc'
-import { ParentTypesMap } from '~/utils/docs'
+import type { SignatureReflection } from 'typedoc'
 import { TypeDocType } from '../TypeDocType'
 import { TypeDocSignatureArguments as Arguments } from './Arguments'
 import { TypeDocSignatureGenerics as Generics } from './Generics'
-import * as styles from './styles.css'
 
 interface TypeDocSignatureProps {
   name?: string

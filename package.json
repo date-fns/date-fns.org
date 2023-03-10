@@ -14,7 +14,7 @@
     "start": "env NODE_ENV=development ts-node -r tsconfig-paths/register devServer.ts"
   },
   "dependencies": {
-    "@date-fns/docs": "0.22.0",
+    "@date-fns/docs": "0.24.0",
     "@sentry/browser": "^5.30.0",
     "@sentry/tracing": "^5.30.0",
     "@switcher/preact": "2.3.0",

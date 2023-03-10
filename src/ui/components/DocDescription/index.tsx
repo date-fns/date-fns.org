@@ -6,15 +6,19 @@ interface DocDescriptionProps {
   description: string
   scope?: string
   header?: 'h2' | 'h3'
+  skipHeader?: boolean
 }
 
 export const DocDescription: FunctionComponent<DocDescriptionProps> = ({
   description,
   header,
   scope,
+  skipHeader,
 }) => (
   <section>
-    <SectionHeader header="Description" scope={scope} tag={header} />
+    {!skipHeader && (
+      <SectionHeader header="Description" scope={scope} tag={header} />
+    )}
     <Markdown value={description} />
   </section>
 )
