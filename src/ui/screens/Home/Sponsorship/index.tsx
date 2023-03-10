@@ -88,7 +88,7 @@ const Sponsor: FunctionComponent<{
   sponsor: Sponsor
 }> = ({ tier, sponsor, compact }) => {
   return (
-    <HomeExternalLink href={`${sponsor.url}?ref=date-fns`} newTab={true}>
+    <HomeExternalLink href={sponsor.url} newTab={true}>
       <Item>
         <ItemImageContainer tier={tier}>
           {sponsor.imageUrl ? (
