@@ -2,7 +2,7 @@
   "name": "date-fns.org",
   "version": "3.0.0",
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "scripts": {
     "lint": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json -c tslint.yaml",
@@ -48,7 +48,6 @@
     "firebase": "^8.2.2",
     "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.0",
-    "firebase-tools": "^9.2.0",
     "html-webpack-plugin": "^5.2.0",
     "husky": "^4.3.0",
     "isomorphic-fetch": "^2.2.1",
@@ -98,5 +97,8 @@
   "prettier": {
     "singleQuote": true,
     "semi": false
+  },
+  "devDependencies": {
+    "firebase-tools": "^11.24.1"
   }
 }

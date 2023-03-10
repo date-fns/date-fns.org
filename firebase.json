@@ -2,7 +2,7 @@
   "functions": {
     "source": "build/functions",
     "predeploy": ["yarn build"],
-    "runtime": "nodejs14"
+    "runtime": "nodejs16"
   },
   "hosting": {
     "public": "build/web",
