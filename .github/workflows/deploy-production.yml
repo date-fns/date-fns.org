@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      APP_ENV: production
       NODE_ENV: production
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    - run: yarn install
-    - run: npx firebase use --add "$NODE_ENV"
-    - run: yarn deploy
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - run: yarn
+      - run: npx firebase deploy --project $APP_ENV
