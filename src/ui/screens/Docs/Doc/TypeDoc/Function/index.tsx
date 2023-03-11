@@ -45,8 +45,6 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
     [fn]
   )
 
-  console.log('+++++++++++++++++++++++', parentTypesMap)
-
   return (
     <InlineTypeContext.Provider
       value={{
