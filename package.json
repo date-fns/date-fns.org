@@ -83,20 +83,6 @@
     "webpack-node-externals": "^3.0.0",
     "yarn": "^1.22.10"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,json,css,md}": [
-      "yarn format"
-    ],
-    "*.{ts,tsx}": [
-      "yarn format",
-      "yarn lint"
-    ]
-  },
   "prettier": {
     "singleQuote": true,
     "semi": false
