@@ -94,7 +94,7 @@ export function matchTypeHash(hash: string) {
   return { typeId, nestedId }
 }
 
-const pageTypeHashRE = /types\/\w+\/(\d+)(?:\/\w+)?/
+const pageTypeHashRE = /page\/\w+\/(\d+)(?:\/\w+)?/
 
 export function matchPageTypeHash(hash: string) {
   const captures = hash.match(pageTypeHashRE)
