@@ -27,3 +27,10 @@ export const options = style({
   justifyContent: 'left',
   margin: '0 !important',
 })
+
+export const optionSelect = style({
+  borderColor: '#5844521a',
+  backgroundColor: 'transparent',
+  marginLeft: '0.25rem',
+  color: '#5d3861',
+})

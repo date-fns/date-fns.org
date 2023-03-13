@@ -11,7 +11,6 @@ export function useActiveItem(
   const activeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    console.log('item', activeRef.current)
     scrollIntoViewIfNeeded(activeRef.current, options)
   }, [id])
 

@@ -7,8 +7,31 @@ import type {
 
 export type ParentTypesMap = Record<number, string>
 
-export function generateUsage(name: string, module = name) {
-  const usage = {
+export interface Usage {
+  [usageTab: string]: UsageTab | UsageTabWithOptions
+}
+
+export interface UsageBase {
+  title: string
+  text?: string
+}
+
+export interface UsageTab extends UsageBase {
+  code: string
+}
+
+export interface UsageTabWithOptions extends UsageBase {
+  code: (option: string) => string
+  options: Record<string, string>
+}
+
+export interface UsageMap {
+  usage: Usage
+  usageTabs: string[]
+}
+
+export function generateUsage(name: string, module = name): UsageMap {
+  const usage: Usage = {
     esm: {
       code: `import { ${name} } from "date-fns";`,
       title: 'ESM',
@@ -18,9 +41,21 @@ export function generateUsage(name: string, module = name) {
       code: `const ${name} = require("date-fns/${module}");`,
       title: 'CommonJS',
     },
+
+    cdn: {
+      title: 'CDN',
+      code: (cdn) => `import ${name} from "${cdn}/date-fns/${name}.mjs";`,
+      options: {
+        unpkg: 'https://unpkg.com',
+        Skypack: 'https://cdn.skypack.dev',
+        'esm.sh': 'https://esm.sh',
+        JSPM: 'https://jspm.io',
+        jsDelivr: 'https://cdn.jsdelivr.net/npm',
+      },
+    },
   }
 
-  const usageTabs = ['esm', 'commonjs']
+  const usageTabs = ['esm', 'commonjs', 'cdn']
 
   return { usage, usageTabs }
 }
