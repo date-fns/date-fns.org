@@ -3,11 +3,11 @@ import {
   findFn,
   findFnDescription,
   findFnExamples,
-  traverseType,
+  findSummary,
 } from '@date-fns/docs/utils'
 import { FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
-import type { DeclarationReflection, SignatureReflection } from 'typedoc'
+import type { DeclarationReflection } from 'typedoc'
 import { DocDescription } from '~/ui/components/DocDescription'
 import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeader } from '~/ui/components/DocHeader'
@@ -18,7 +18,6 @@ import {
   extractCodeFromTagString,
   findSource,
   generateUsage,
-  inlineTypeHash,
   pageTypeHash,
   pageTypeId,
   pageTypeIdHighlightMatch,
@@ -37,7 +36,10 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
 }) => {
   const fn = useMemo(() => findFn(doc), [doc])
   const parentTypesMap = useMemo(() => buildParentTypesMap(fn), [fn])
-  const description = useMemo(() => fn && findFnDescription(fn), [fn])
+  const description = useMemo(
+    () => fn && (findFnDescription(fn) || findSummary(fn)),
+    [fn]
+  )
   const { usage, usageTabs } = useMemo(() => generateUsage(doc.name), [doc])
   const signatures = fn && fn.signatures
   const examples = useMemo(
