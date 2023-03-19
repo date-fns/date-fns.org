@@ -1,5 +1,12 @@
 import { style } from '@vanilla-extract/css'
 
+export const screen = style({
+  height: '100%',
+  width: '100%',
+  overflowY: 'auto',
+  background: '#fffdf9',
+})
+
 export const content = style({
   flex: 'auto',
   display: 'flex',
@@ -7,6 +14,9 @@ export const content = style({
   alignItems: 'stretch',
   minHeight: '0',
   position: 'relative',
+  maxWidth: '80rem',
+  margin: '0 auto',
+  width: '100%',
 })
 
 export const loading = style({
@@ -16,15 +26,9 @@ export const loading = style({
 export const navBarContainer = style({
   flex: 'none',
   height: '2rem',
-})
-
-export const screen = style({
-  display: 'flex',
-  height: '100%',
-  width: '100%',
-  flexDirection: 'column',
-  alignItems: 'stretch',
-  overflow: 'hidden',
+  position: 'sticky',
+  top: 0,
+  zIndex: 1,
 })
 
 export const docContainer = style({
@@ -32,6 +36,7 @@ export const docContainer = style({
   minHeight: '100%',
   flex: 'auto',
   overflowY: 'auto',
+  marginLeft: '25rem',
 
   ':after': {
     display: 'none',
@@ -43,6 +48,12 @@ export const docContainer = style({
     left: '0',
     top: '0',
     position: 'absolute',
+  },
+
+  '@media': {
+    'screen and (max-width: 767px)': {
+      marginLeft: 0,
+    },
   },
 })
 
@@ -66,6 +77,9 @@ export const finderContainer = style({
   flex: 'none',
   width: '25rem',
   maxWidth: '100%',
+  position: 'fixed',
+  bottom: 0,
+  top: '2rem',
 
   '@media': {
     'screen and (max-width: 767px)': {

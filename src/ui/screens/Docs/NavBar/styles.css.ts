@@ -7,18 +7,23 @@ export const container = style({
   backgroundImage: `url('${backgroundURL}'})`,
   backgroundSize: 'cover',
   backgroundPosition: 'top center',
-  height: '100%',
   width: '100%',
+  height: '2rem',
+})
+
+export const outer = style({
+  background: 'rgba(118,10,61,0.7)',
 })
 
 export const inner = style({
-  background: 'rgba(118,10,61,0.7)',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
   height: '2rem',
   padding: '0 1rem',
+  maxWidth: '80rem',
+  margin: '0 auto',
 })
 
 export const latestLink = style({
