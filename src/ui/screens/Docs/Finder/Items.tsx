@@ -1,10 +1,9 @@
-import { h, FunctionComponent, Fragment } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
+import { Fragment, FunctionComponent, h } from 'preact'
+import { Item } from '~/ui/components/Item'
 import { RouterLink } from '~/ui/router'
 import { docLink } from '~/ui/router/docLink'
 import * as styles from './styles.css'
-import { Item } from '~/ui/components/Item'
-import { useActiveItem } from '~/ui/hooks/useActiveItem'
 
 interface Props {
   pages: DateFnsDocs.PagePreview[]
@@ -13,6 +12,7 @@ interface Props {
   selectedPage: string
   onNavigate(): void
   query: string
+  activeRef: (element: HTMLDivElement | null) => void
 }
 
 export const Items: FunctionComponent<Props> = ({
@@ -22,11 +22,8 @@ export const Items: FunctionComponent<Props> = ({
   selectedPage,
   onNavigate,
   query,
+  activeRef,
 }) => {
-  const { activeRef } = useActiveItem(selectedPage, {
-    marginTop: 33,
-  })
-
   return (
     <>
       {pages.map((page) => (

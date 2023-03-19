@@ -10,51 +10,42 @@ export function scrollIntoViewIfNeeded(
 ): void {
   if (!element) return
 
+  const parent = findParentWithScroll(element)
+  if (!parent) return
+
   const rect = element.getBoundingClientRect()
-  const scrollParent = findParentWithScroll(element)
-  console.log({ scrollParent })
+  const parentRect = parent.getBoundingClientRect()
 
-  if (!scrollParent) return
+  if (isRectInViewport({ rect, parentRect, marginTop })) return
 
-  const parentRect = scrollParent.getBoundingClientRect()
-
-  const inViewport =
-    rect.top >= parentRect.top + (marginTop || 0) + scrollParent.scrollTop &&
-    rect.left >= parentRect.left &&
-    rect.bottom <= parentRect.bottom + scrollParent.scrollTop &&
-    rect.right <= parentRect.right
-
-  console.log({
-    rect,
-    parentRect,
-    marginTop,
-    inViewport,
-    scrollTop: scrollParent.scrollTop,
-  })
-
-  if (inViewport) return
-
-  scrollParent.scrollTo({
-    top: rect.top - parentRect.top - (marginTop || 0),
-    behavior,
-  })
-
-  // element.scrollIntoView({ behavior })
+  const top = element.offsetTop - parent.offsetTop - (marginTop || 0)
+  parent.scrollTo({ top, behavior })
 }
 
 export function isInViewport(
   element: HTMLElement,
   marginTop?: number
 ): boolean {
+  const parent = findParentWithScroll(element)
+  if (!parent) return true
+
   const rect = element.getBoundingClientRect()
-  const scrollParent = findParentWithScroll(element)
+  const parentRect = parent.getBoundingClientRect()
 
-  if (!scrollParent) return true
+  return isRectInViewport({ rect, parentRect, marginTop })
+}
 
-  const parentRect = scrollParent.getBoundingClientRect()
+interface IsRectInViewportProps {
+  rect: DOMRect
+  parentRect: DOMRect
+  marginTop: number | undefined
+}
 
-  console.log({ rect, parentRect, marginTop })
-
+function isRectInViewport({
+  rect,
+  parentRect,
+  marginTop,
+}: IsRectInViewportProps) {
   return (
     rect.top >= parentRect.top + (marginTop || 0) &&
     rect.left >= parentRect.left &&

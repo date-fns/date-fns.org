@@ -4,14 +4,14 @@ import { packageName } from '@date-fns/docs/consts'
 import { db } from '@date-fns/docs/db'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { useRead } from '@typesaurus/preact'
-import { useState } from 'preact/hooks'
 import { Search } from '~/ui/components/Search'
+import { useActiveItem } from '~/ui/hooks/useActiveItem'
+import { useQuery } from '~/ui/hooks/useQuery'
 import { Categories } from './Categories'
 import { NoResults } from './NoResults'
 import * as styles from './styles.css'
 import { filterPages } from './utils'
 import { Widget } from './Widget'
-import { useQuery } from '~/ui/hooks/useQuery'
 
 interface FinderProps {
   selectedVersion: string
@@ -35,6 +35,8 @@ export const Finder: FunctionComponent<FinderProps> = ({
     ])
   )
 
+  const { activeRef } = useActiveItem(33)
+
   if (versions && versions.length >= 1) {
     const { pages, categories } = versions[0].data
     const filteredPages = filterPages(pages, query, selectedSubmodule)
@@ -55,6 +57,7 @@ export const Finder: FunctionComponent<FinderProps> = ({
               selectedPage={selectedPage}
               onNavigate={onNavigate}
               query={query}
+              activeRef={activeRef}
             />
           )}
         </div>

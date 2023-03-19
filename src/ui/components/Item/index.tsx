@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { Fragment, FunctionComponent, h } from 'preact'
-import { Ref } from 'preact/hooks'
 import { highlightMarkdown } from '~/utils/docs'
 import { HighlightQuery } from '../HighlightQuery'
 import { Markdown } from '../Markdown'
@@ -13,7 +12,7 @@ interface Props {
   active: boolean
   code: boolean
   query?: string
-  activeRef?: Ref<HTMLDivElement>
+  activeRef?: (element: HTMLDivElement | null) => void
 }
 
 export const Item: FunctionComponent<Props> = ({
@@ -26,7 +25,7 @@ export const Item: FunctionComponent<Props> = ({
 }) => (
   <div
     class={classNames(styles.item, active && styles.active)}
-    ref={(active && activeRef) || undefined}
+    ref={active ? activeRef : undefined}
   >
     <div>
       <h4 class={classNames(styles.title, code && styles.codeTitle)}>
