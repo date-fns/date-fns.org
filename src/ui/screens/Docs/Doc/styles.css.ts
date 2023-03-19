@@ -4,11 +4,6 @@ export const wrapper = style({
   padding: '30px',
   color: '#4a3142',
   backgroundColor: '#fffdf9',
-  width: '100%',
+  maxWidth: '55rem',
   minHeight: '100%',
-})
-
-export const inner = style({
-  maxWidth: '60rem',
-  margin: '0 auto',
 })

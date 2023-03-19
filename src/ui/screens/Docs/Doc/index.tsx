@@ -53,34 +53,22 @@ export const Doc: FunctionComponent<Props> = ({
         value={{ version: selectedVersion, submodule: selectedSubmodule }}
       >
         <div class={styles.wrapper}>
-          <div class={styles.inner}>
-            <RichText>
-              <Content page={page} />
-            </RichText>
-          </div>
+          <RichText>
+            <Content page={page} />
+          </RichText>
         </div>
       </DocLinkContext.Provider>
     )
   } else if (pages && pages.length === 0) {
     return (
       <div class={styles.wrapper}>
-        <div class={styles.inner}>
-          This page is not available for this version or this submodule
-        </div>
+        This page is not available for this version or this submodule
       </div>
     )
   } else if (loading) {
-    return (
-      <div class={styles.wrapper}>
-        <div class={styles.inner}>Loading...</div>
-      </div>
-    )
+    return <div class={styles.wrapper}>Loading...</div>
   } else {
     // FIXME:
-    return (
-      <div class={styles.wrapper}>
-        <div class={styles.inner}>Error!</div>
-      </div>
-    )
+    return <div class={styles.wrapper}>Error!</div>
   }
 }

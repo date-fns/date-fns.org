@@ -30,6 +30,7 @@ export const container = style({
   flexDirection: 'column',
   alignItems: 'stretch',
   borderRight: '1px solid #e6e0e6',
+  borderLeft: '1px solid #e6e0e6',
 })
 
 export const content = style({

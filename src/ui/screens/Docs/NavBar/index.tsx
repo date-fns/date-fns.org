@@ -31,50 +31,52 @@ export const NavBar: FunctionComponent<Props> = ({
 
   return (
     <div class={styles.container}>
-      <div class={styles.inner}>
-        <div class={styles.links}>
-          <div class={styles.menuIcon}>{menuIcon}</div>
+      <div class={styles.outer}>
+        <div class={styles.inner}>
+          <div class={styles.links}>
+            <div class={styles.menuIcon}>{menuIcon}</div>
 
-          <RouterLink class={styles.logo} to={{ name: 'home' }}>
-            <img class={styles.logoImage} src={logoPath} />
-            date-fns
-          </RouterLink>
+            <RouterLink class={styles.logo} to={{ name: 'home' }}>
+              <img class={styles.logoImage} src={logoPath} />
+              date-fns
+            </RouterLink>
 
-          <a class={styles.link} href="https://github.com/date-fns/date-fns">
-            GitHub
-          </a>
+            <a class={styles.link} href="https://github.com/date-fns/date-fns">
+              GitHub
+            </a>
 
-          <a
-            class={styles.link}
-            href="https://github.com/date-fns/date-fns/discussions"
-          >
-            Community
-          </a>
+            <a
+              class={styles.link}
+              href="https://github.com/date-fns/date-fns/discussions"
+            >
+              Community
+            </a>
 
-          <a class={styles.link} href="https://twitter.com/date_fns">
-            Twitter
-          </a>
+            <a class={styles.link} href="https://twitter.com/date_fns">
+              Twitter
+            </a>
 
-          <a class={styles.link} href="https://jobs.date-fns.org">
-            JS Jobs
-          </a>
-        </div>
+            <a class={styles.link} href="https://jobs.date-fns.org">
+              JS Jobs
+            </a>
+          </div>
 
-        <div>
-          <VersionSelector
-            selectedVersion={selectedVersion}
-            latestVersion={latestVersion}
-            selectedPage={selectedPage}
-            selectedSubmodule={selectedSubmodule}
-            versions={versions}
-          />
+          <div>
+            <VersionSelector
+              selectedVersion={selectedVersion}
+              latestVersion={latestVersion}
+              selectedPage={selectedPage}
+              selectedSubmodule={selectedSubmodule}
+              versions={versions}
+            />
 
-          <SubmoduleSelector
-            selectedSubmodule={selectedSubmodule}
-            selectedPage={selectedPage}
-            selectedVersion={selectedVersion}
-            submodules={submodules}
-          />
+            <SubmoduleSelector
+              selectedSubmodule={selectedSubmodule}
+              selectedPage={selectedPage}
+              selectedVersion={selectedVersion}
+              submodules={submodules}
+            />
+          </div>
         </div>
       </div>
     </div>
