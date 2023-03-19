@@ -7,12 +7,14 @@ interface Props {
   type: SomeType | undefined
   description: string
   header: 'h2' | 'h3'
+  scope?: string | undefined
 }
 
 export const Returns: FunctionComponent<Props> = ({
   type,
   description,
   header,
+  scope,
 }) => {
   return (
     <DocReturns
@@ -23,6 +25,7 @@ export const Returns: FunctionComponent<Props> = ({
         },
       ]}
       header={header}
+      scope={scope}
     />
   )
 }

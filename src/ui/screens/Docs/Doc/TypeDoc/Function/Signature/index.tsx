@@ -13,12 +13,14 @@ interface SignatureProps {
   name: string
   signature: SignatureReflection
   header: 'h2' | 'h3'
+  index: number | undefined
 }
 
 export const Signature: FunctionComponent<SignatureProps> = ({
   name,
   signature,
   header,
+  index,
 }) => {
   const returns = useMemo(() => findSignatureReturns(signature), [signature])
   const throws = useMemo(
@@ -36,18 +38,24 @@ export const Signature: FunctionComponent<SignatureProps> = ({
     | TypeParameterReflection[]
     | undefined
 
+  const scope = index === undefined ? undefined : `${index + 1}`
+
   return (
     <>
       <IgnoreParentTypesSourceContext.Provider value>
-        <Type name={name} signature={signature} header={header} />
+        <Type name={name} signature={signature} header={header} scope={scope} />
       </IgnoreParentTypesSourceContext.Provider>
 
       {signature.typeParameter && (
-        <Generics args={signature.typeParameter} header={header} />
+        <Generics
+          args={signature.typeParameter}
+          header={header}
+          scope={scope}
+        />
       )}
 
       {signature.parameters && signature.parameters.length > 0 && (
-        <Arguments args={signature.parameters} header={header} />
+        <Arguments args={signature.parameters} header={header} scope={scope} />
       )}
 
       {signature.type && (
@@ -55,10 +63,13 @@ export const Signature: FunctionComponent<SignatureProps> = ({
           description={returns || ''}
           type={signature.type}
           header={header}
+          scope={scope}
         />
       )}
 
-      {throws.length > 0 && <Throws throws={throws} header={header} />}
+      {throws.length > 0 && (
+        <Throws throws={throws} header={header} scope={scope} />
+      )}
 
       <code>
         <pre>{JSON.stringify(signature, null, 2)}</pre>
