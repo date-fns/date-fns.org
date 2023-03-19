@@ -1,5 +1,5 @@
-import { h, FunctionComponent } from 'preact'
 import type { DateFnsDocs } from '@date-fns/docs/types'
+import { FunctionComponent, h } from 'preact'
 import { Items } from './Items'
 import * as styles from './styles.css'
 
@@ -11,6 +11,7 @@ interface Props {
   selectedPage: string
   onNavigate(): void
   query: string
+  activeRef: (element: HTMLDivElement | null) => void
 }
 
 export const Categories: FunctionComponent<Props> = ({
@@ -21,6 +22,7 @@ export const Categories: FunctionComponent<Props> = ({
   selectedPage,
   onNavigate,
   query,
+  activeRef,
 }) => (
   <ul class={styles.categoriesList}>
     {categories.map((category) => {
@@ -42,6 +44,7 @@ export const Categories: FunctionComponent<Props> = ({
               selectedPage={selectedPage}
               onNavigate={onNavigate}
               query={query}
+              activeRef={activeRef}
             />
           </div>
         </li>

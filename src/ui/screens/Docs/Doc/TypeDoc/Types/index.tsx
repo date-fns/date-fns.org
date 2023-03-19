@@ -88,7 +88,7 @@ export const useTypesModal = createModal<TypesModalProps>(
       [navItems, query]
     )
 
-    const { activeRef } = useActiveItem(type?.id)
+    const { activeRef } = useActiveItem()
 
     return (
       <InlineTypeContext.Provider
