@@ -40,6 +40,7 @@ export const Signatures: FunctionComponent<SignaturesProps> = ({
             name={name}
             signature={signature}
             header={solo ? 'h2' : 'h3'}
+            index={solo ? undefined : index}
           />
         ))}
       </Entities>
