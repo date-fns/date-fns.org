@@ -11,6 +11,12 @@ export const avatarImage = style({
   height: '60px',
   borderRadius: '50%',
   border: '1px solid #e4e4dd',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '1px solid #31292d',
+    },
+  },
 })
 
 export const list = style({
@@ -33,6 +39,13 @@ export const quote = style({
   padding: '16px 15px 15px',
   flexGrow: '1',
   position: 'relative',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#31292d',
+      backgroundColor: '#14070e',
+    },
+  },
 })
 
 export const quoteTriangle = style({
@@ -44,6 +57,12 @@ export const quoteTriangle = style({
   position: 'absolute',
   top: '16px',
   left: '-12px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderRightColor: '#31292d',
+    },
+  },
 })
 
 export const quoteTriangleInner = style({
@@ -55,6 +74,12 @@ export const quoteTriangleInner = style({
   borderTop: '11px solid rgba(0,0,0,0)',
   borderBottom: '11px solid rgba(0,0,0,0)',
   borderRight: '11px solid #fff',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderRightColor: '#14070e',
+    },
+  },
 })
 
 export const text = style({
@@ -62,6 +87,12 @@ export const text = style({
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '22px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#cbc0c7',
+    },
+  },
 })
 
 export const item = style({

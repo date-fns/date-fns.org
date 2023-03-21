@@ -1,7 +1,6 @@
 import { FunctionComponent, h } from 'preact'
 import Prism from 'prismjs'
-import 'prismjs/themes/prism.css?global'
-import './global.css?global'
+import './theme.css?global'
 import * as styles from './styles.css'
 
 interface CodeProps {

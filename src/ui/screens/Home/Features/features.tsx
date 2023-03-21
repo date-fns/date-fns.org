@@ -1,10 +1,21 @@
 import { h, Fragment, VNode } from 'preact'
-import { iconType } from './styles.css'
+import ComingIcon from './icons/ComingIcon'
+import ConsistentIcon from './icons/ConsistentIcon'
+import DocsIcon from './icons/DocsIcon'
+import FastIcon from './icons/FastIcon'
+import FPIcon from './icons/FPIcon'
+import I18nIcon from './icons/I18nIcon'
+import ImmutableIcon from './icons/ImmutableIcon'
+import ModularIcon from './icons/ModularIcon'
+import NativeIcon from './icons/NativeIcon'
+import ReliableIcon from './icons/ReliableIcon'
+import SimpleIcon from './icons/SimpleIcon'
+import TypesIcon from './icons/TypesIcon'
 
 export interface Feature {
   title: string
   description: VNode
-  icon: keyof typeof iconType
+  icon: VNode
 }
 
 export const features: Feature[] = [
@@ -24,7 +35,7 @@ export const features: Feature[] = [
         </p>
       </>
     ),
-    icon: 'modular',
+    icon: <ModularIcon />,
   },
 
   {
@@ -42,7 +53,7 @@ export const features: Feature[] = [
         </p>
       </>
     ),
-    icon: 'native',
+    icon: <NativeIcon />,
   },
 
   {
@@ -57,7 +68,7 @@ export const features: Feature[] = [
         <p>It helps to prevent bugs and avoid long debugging sessions.</p>
       </>
     ),
-    icon: 'immutable',
+    icon: <ImmutableIcon />,
   },
 
   {
@@ -75,7 +86,7 @@ export const features: Feature[] = [
         </p>
       </>
     ),
-    icon: 'types',
+    icon: <TypesIcon />,
   },
 
   {
@@ -87,7 +98,7 @@ export const features: Feature[] = [
         bloat your build.
       </>
     ),
-    icon: 'fp',
+    icon: <FPIcon />,
   },
 
   {
@@ -98,7 +109,7 @@ export const features: Feature[] = [
         Only the ones that you use will be included in your project.
       </>
     ),
-    icon: 'i18n',
+    icon: <I18nIcon />,
   },
 
   {
@@ -115,7 +126,7 @@ export const features: Feature[] = [
         </p>
       </>
     ),
-    icon: 'consistent',
+    icon: <ConsistentIcon />,
   },
 
   {
@@ -132,7 +143,7 @@ export const features: Feature[] = [
         </p>
       </>
     ),
-    icon: 'reliable',
+    icon: <ReliableIcon />,
   },
 
   {
@@ -150,7 +161,7 @@ export const features: Feature[] = [
         </p>
       </>
     ),
-    icon: 'simple',
+    icon: <SimpleIcon />,
   },
 
   {
@@ -161,7 +172,7 @@ export const features: Feature[] = [
         users will have the best user experience.
       </>
     ),
-    icon: 'fast',
+    icon: <FastIcon />,
   },
 
   {
@@ -173,7 +184,7 @@ export const features: Feature[] = [
         thanks to JSDoc annotations.
       </>
     ),
-    icon: 'docs',
+    icon: <DocsIcon />,
   },
 
   {
@@ -184,6 +195,6 @@ export const features: Feature[] = [
         features.
       </>
     ),
-    icon: 'coming',
+    icon: <ComingIcon />,
   },
 ]
