@@ -9,6 +9,12 @@ export const outer = style({
   backgroundSize: 'cover',
   backgroundPosition: 'top center',
   overflowY: 'auto',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderBottom: '1px solid #31292d',
+    },
+  },
 })
 
 export const inner = style({
@@ -18,6 +24,12 @@ export const inner = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: 'linear-gradient(#34031bb3, #1e0b14)',
+    },
+  },
 })
 
 export const logo = style({

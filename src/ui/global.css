@@ -48,4 +48,17 @@ code:after {
 :root {
   --color-tooltip-canvas: #280027;
   --color-tooltip-ink: #fff5ff;
+  --icon-color: #770c5699;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --icon-color: #dfc2d6;
+  }
+
+  code {
+    background-color: #1e0814;
+    color: #c5c4c2;
+  }
 }

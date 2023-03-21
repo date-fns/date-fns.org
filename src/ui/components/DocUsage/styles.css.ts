@@ -14,11 +14,25 @@ export const optionLink = style({
   borderTopRightRadius: '3px',
   borderTopLeftRadius: '3px',
   backgroundColor: '#faf6f0',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#4a2f3e',
+      color: '#c9bec5',
+    },
+  },
 })
 
 export const optionLinkIsCurrent = style({
   color: '#000',
   backgroundColor: '#e8d6e3',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#8c1b54',
+      color: '#fff',
+    },
+  },
 })
 
 export const options = style({

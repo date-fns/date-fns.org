@@ -1,17 +1,4 @@
 import { style, globalStyle, styleVariants } from '@vanilla-extract/css'
-import comingURL from './img/coming.svg'
-import consistentURL from './img/consistent.svg'
-import docsURL from './img/docs.svg'
-import fastURL from './img/fast.svg'
-import fpURL from './img/fp.svg'
-import i18nURL from './img/i18n.svg'
-import immutableURL from './img/immutable.svg'
-import modularURL from './img/modular.svg'
-import nativeURL from './img/native.svg'
-import reliableURL from './img/reliable.svg'
-import safeURL from './img/safe.svg'
-import simpleURL from './img/simple.svg'
-import typesURL from './img/types.svg'
 
 export const content = style({
   marginLeft: '15px',
@@ -21,88 +8,100 @@ export const icon = style({
   width: '38px',
   height: '38px',
   backgroundSize: '40px',
-  border: '1px solid rgba(119,12,86,0.6)',
+  border: '1px solid var(--icon-color)',
   borderRadius: '50%',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
   flexShrink: '0',
   marginTop: '2px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {},
+  },
+})
+
+globalStyle(`${icon} > svg`, {
+  height: '60%',
+  display: 'inline-block',
 })
 
 export const iconType = styleVariants({
   coming: {
-    backgroundImage: `url(${comingURL})`,
+    // backgroundImage: `url(${comingURL})`,
     backgroundSize: '20px',
     backgroundPosition: 'center 8px',
   },
 
   consistent: {
-    backgroundImage: `url('${consistentURL}')`,
+    // backgroundImage: `url('${consistentURL}')`,
     backgroundSize: '21px',
     backgroundPosition: 'center 7px',
   },
 
   docs: {
-    backgroundImage: `url('${docsURL}')`,
+    // backgroundImage: `url('${docsURL}')`,
     backgroundSize: '19px',
     backgroundPosition: 'center 7px',
   },
 
   fast: {
-    backgroundImage: `url('${fastURL}')`,
+    // backgroundImage: `url('${fastURL}')`,
     backgroundSize: '15px',
     backgroundPosition: 'center 8px',
   },
 
   fp: {
-    backgroundImage: `url('${fpURL}')`,
+    // backgroundImage: `url('${fpURL}')`,
     backgroundSize: '16px',
     backgroundPosition: 'center 8px',
   },
 
   i18n: {
-    backgroundImage: `url('${i18nURL}')`,
+    // backgroundImage: `url('${i18nURL}')`,
     backgroundSize: '16px',
     backgroundPosition: 'center 9px',
   },
 
   immutable: {
-    backgroundImage: `url('${immutableURL}')`,
+    // backgroundImage: `url('${immutableURL}')`,
     backgroundSize: '17px',
     backgroundPosition: 'center 6px',
   },
 
   modular: {
-    backgroundImage: `url('${modularURL}')`,
+    // backgroundImage: `url('${modularURL}')`,
     backgroundSize: '17px',
     backgroundPosition: 'center 6px',
   },
 
   native: {
-    backgroundImage: `url('${nativeURL}')`,
+    // backgroundImage: `url('${nativeURL}')`,
     backgroundSize: '24px',
     backgroundPosition: 'center 6px',
   },
 
   reliable: {
-    backgroundImage: `url('${reliableURL}')`,
+    // backgroundImage: `url('${reliableURL}')`,
     backgroundSize: '21px',
     backgroundPosition: 'center 6px',
   },
 
   safe: {
-    backgroundImage: `url('${safeURL}')`,
+    // backgroundImage: `url('${safeURL}')`,
     backgroundSize: '18px',
   },
 
   simple: {
-    backgroundImage: `url('${simpleURL}')`,
+    // backgroundImage: `url('${simpleURL}')`,
     backgroundSize: '20px',
     backgroundPosition: 'center 8px',
   },
 
   types: {
-    backgroundImage: `url('${typesURL}')`,
+    // backgroundImage: `url('${typesURL}')`,
     backgroundSize: '20px',
     backgroundPosition: 'center 8px',
   },
@@ -114,6 +113,12 @@ export const list = style({
   fontSize: '17px',
   display: 'flex',
   flexWrap: 'wrap',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ddd2d9',
+    },
+  },
 })
 
 export const title = style({
@@ -127,6 +132,12 @@ export const description = style({
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '22px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#cbc0c7',
+    },
+  },
 })
 
 globalStyle(`${description} p`, {

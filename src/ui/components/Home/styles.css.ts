@@ -39,6 +39,24 @@ export const header = style({
   color: '#770c56',
   fontWeight: '600',
   fontSize: '20px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#c79ab9',
+    },
+  },
+})
+
+export const subHeader = style({
+  color: '#770c56',
+  marginTop: '0.8rem',
+  fontSize: '1rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#c79ab9',
+    },
+  },
 })
 
 export const innerContainer = style({
@@ -52,16 +70,16 @@ export const innerContainer = style({
 export const link = style({
   color: '#862d5b',
   textDecoration: 'none',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ffe7f7',
+    },
+  },
 })
 
 export const linkDecorated = style({
   textDecoration: 'underline',
-})
-
-export const subHeader = style({
-  color: '#770c56',
-  marginTop: '0.8rem',
-  fontSize: '1rem',
 })
 
 export const actions = style({
@@ -91,6 +109,22 @@ export const block = style({
 
     '&:nth-child(odd)': {
       backgroundColor: '#fffdfa',
+    },
+  },
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#31292d',
+
+      selectors: {
+        '&:nth-child(even)': {
+          backgroundColor: '#240e19',
+        },
+
+        '&:nth-child(odd)': {
+          backgroundColor: '#160e12',
+        },
+      },
     },
   },
 })
