@@ -3,8 +3,14 @@ import { style } from '@vanilla-extract/css'
 export const screen = style({
   height: '100%',
   width: '100%',
-  overflowY: 'auto',
+  overflowY: 'scroll',
   background: '#fffdf9',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#12020a',
+    },
+  },
 })
 
 export const content = style({

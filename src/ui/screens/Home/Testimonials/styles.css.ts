@@ -14,7 +14,7 @@ export const avatarImage = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      borderColor: '1px solid #31292d',
+      borderColor: '#2c1622',
     },
   },
 })
@@ -30,6 +30,12 @@ export const name = style({
   fontWeight: '600',
   fontSize: '17px',
   marginBottom: '5px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ddd2d9',
+    },
+  },
 })
 
 export const quote = style({
@@ -42,7 +48,7 @@ export const quote = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      borderColor: '#31292d',
+      borderColor: '#2c1622',
       backgroundColor: '#14070e',
     },
   },

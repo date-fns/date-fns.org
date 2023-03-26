@@ -20,6 +20,14 @@ export const categoryHeader = style({
   position: 'sticky',
   top: '0',
   backgroundColor: '#fffbf5',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#280215',
+      borderColor: '#2c1622',
+      color: '#ddd2d9',
+    },
+  },
 })
 
 export const container = style({
@@ -31,6 +39,12 @@ export const container = style({
   alignItems: 'stretch',
   borderRight: '1px solid #e6e0e6',
   borderLeft: '1px solid #e6e0e6',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 export const content = style({
