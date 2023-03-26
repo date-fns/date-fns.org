@@ -17,7 +17,7 @@ export const code = style({
   '@media': {
     '(prefers-color-scheme: dark)': {
       color: '#c5c4c2',
-      backgroundColor: '#1e0814',
+      backgroundColor: '#12000a',
     },
   },
 })
@@ -27,11 +27,12 @@ export const pre = style({
   border: '1px solid #b9a2b2',
   backgroundColor: '#fffffe',
   padding: '.25rem .5rem',
+  borderRadius: '4px',
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      backgroundColor: '#1e0814',
-      borderColor: '#361e2a',
+      backgroundColor: '#12000a',
+      borderColor: '#2c1622',
     },
   },
 })

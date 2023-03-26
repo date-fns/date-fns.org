@@ -7,6 +7,12 @@ export const content = style({
 
 globalStyle(`${content} a`, {
   color: '#5d3861',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ff80c0',
+    },
+  },
 })
 
 globalStyle(`${content} h1`, {
@@ -15,6 +21,12 @@ globalStyle(`${content} h1`, {
   marginBottom: '30px',
   paddingBottom: '23px',
   borderBottom: '1px solid rgba(88,68,82,0.1)',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#fff6fc',
+    },
+  },
 })
 
 globalStyle(`${content} h2`, {
@@ -24,6 +36,12 @@ globalStyle(`${content} h2`, {
   paddingBottom: '10px',
   marginTop: '30px',
   borderBottom: '1px solid rgba(88,68,82,0.1)',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ddd2d9',
+    },
+  },
 })
 
 globalStyle(`${content} h3`, {
@@ -32,6 +50,12 @@ globalStyle(`${content} h3`, {
   fontSize: '1.2rem',
   marginBottom: '20px',
   marginTop: '20px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ddd2d9',
+    },
+  },
 })
 
 globalStyle(`${content} ol`, {

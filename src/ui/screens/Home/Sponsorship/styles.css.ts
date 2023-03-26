@@ -19,6 +19,7 @@ export const itemImageContainer = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  backgroundColor: 'white',
 })
 
 export const tier = styleVariants({
@@ -63,4 +64,10 @@ export const subheader = style({
   textAlign: 'center',
   color: '#4c193c',
   marginBottom: '25px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ddd2d9',
+    },
+  },
 })

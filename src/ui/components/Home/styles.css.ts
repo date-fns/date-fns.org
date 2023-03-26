@@ -3,6 +3,12 @@ import { style, globalStyle, styleVariants } from '@vanilla-extract/css'
 export const action = style({
   color: '#8c1b54',
   marginTop: '20px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ff80c0',
+    },
+  },
 })
 
 export const buttonBase = style({
@@ -31,6 +37,13 @@ export const button = styleVariants({
       background: 'transparent',
       color: '#8c1b54',
       border: '1px solid #8c1b54',
+
+      '@media': {
+        '(prefers-color-scheme: dark)': {
+          color: '#bb8aa2',
+          borderColor: '#bb8aa2',
+        },
+      },
     },
   ],
 })
@@ -42,7 +55,7 @@ export const header = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      color: '#c79ab9',
+      color: '#ddd2d9',
     },
   },
 })
@@ -54,7 +67,7 @@ export const subHeader = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      color: '#c79ab9',
+      color: '#fbd7a1',
     },
   },
 })
@@ -73,7 +86,11 @@ export const link = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      color: '#ffe7f7',
+      color: '#e1a8c5',
+
+      ':hover': {
+        color: '#ff80c0',
+      },
     },
   },
 })
@@ -114,15 +131,15 @@ export const block = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      borderColor: '#31292d',
+      borderColor: '#2c1622',
 
       selectors: {
         '&:nth-child(even)': {
-          backgroundColor: '#240e19',
+          backgroundColor: '#1a030f',
         },
 
         '&:nth-child(odd)': {
-          backgroundColor: '#160e12',
+          backgroundColor: '#12020a',
         },
       },
     },
@@ -147,6 +164,12 @@ export const text = style({
   textAlign: 'center',
   color: '#4c193c',
   maxWidth: '500px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#cbc0c7',
+    },
+  },
 })
 
 globalStyle(`${text} img`, {

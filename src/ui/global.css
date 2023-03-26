@@ -54,7 +54,7 @@ code:after {
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --icon-color: #dfc2d6;
+    --icon-color: #585056;
   }
 
   code {

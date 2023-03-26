@@ -13,6 +13,17 @@ export const item = style({
   ':hover': {
     background: '#fdf6f9',
   },
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#120009',
+      borderColor: '#2c1622',
+
+      ':hover': {
+        background: '#3c001e',
+      },
+    },
+  },
 })
 
 export const icon = style({
@@ -30,6 +41,16 @@ export const active = style({
   ':hover': {
     backgroundColor: '#fff0f3',
   },
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#2c0016',
+
+      ':hover': {
+        backgroundColor: '#2c0016',
+      },
+    },
+  },
 })
 
 export const title = style({
@@ -37,6 +58,12 @@ export const title = style({
   marginBottom: '0.4px',
   wordBreak: 'break-all',
   color: '#4c193c',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ddd2d9',
+    },
+  },
 })
 
 export const codeTitle = style({
@@ -52,4 +79,10 @@ export const summary = style({
   WebkitLineClamp: 2,
   overflow: 'hidden',
   wordBreak: 'break-all',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#9d8995',
+    },
+  },
 })

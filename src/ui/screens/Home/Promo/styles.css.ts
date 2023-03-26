@@ -12,7 +12,7 @@ export const outer = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      borderBottom: '1px solid #31292d',
+      borderBottom: '1px solid #2c1622',
     },
   },
 })
@@ -27,7 +27,7 @@ export const inner = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      background: 'linear-gradient(#34031bb3, #1e0b14)',
+      background: 'linear-gradient(#2a0517d6, #12020a)',
     },
   },
 })
@@ -56,6 +56,12 @@ export const header = style({
   fontSize: '20px',
   marginTop: '2rem',
   fontWeight: 300,
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#fff6fc',
+    },
+  },
 })
 
 export const text = style({
@@ -66,6 +72,12 @@ export const text = style({
   marginTop: '1rem',
   color: '#ffe9c9',
   maxWidth: '500px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#cbc0c7',
+    },
+  },
 })
 
 export const gettingStarted = style({
