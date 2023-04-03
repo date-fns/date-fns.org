@@ -18,11 +18,11 @@ export const content = style({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'stretch',
-  minHeight: '0',
   position: 'relative',
   maxWidth: '80rem',
   margin: '0 auto',
   width: '100%',
+  minHeight: '100%',
 })
 
 export const loading = style({

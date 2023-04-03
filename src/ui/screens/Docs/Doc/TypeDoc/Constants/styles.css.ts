@@ -4,6 +4,12 @@ export const list = style({
   marginTop: '1rem',
   borderTop: '1px solid #5844521a',
   paddingTop: '1rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 export const search = style({

@@ -47,4 +47,10 @@ export const optionSelect = style({
   backgroundColor: 'transparent',
   marginLeft: '0.25rem',
   color: '#5d3861',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })

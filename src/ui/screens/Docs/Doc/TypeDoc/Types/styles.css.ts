@@ -63,6 +63,12 @@ globalStyle(`${content} h3`, {
   marginBottom: '1rem',
   paddingBottom: '0.5rem',
   borderBottom: '1px solid #5844521a',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 export const header = style({
@@ -73,6 +79,12 @@ export const header = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 export const headerText = style({
