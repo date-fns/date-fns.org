@@ -30,23 +30,36 @@ export function useSponsors(): RequestHookResult<Sponsors> {
           'id'
         ),
         silver: uniqBy(
-          (Date.now() < +new Date(2024, 2, 10)
+          (Date.now() < +new Date(2024, 3, 3)
             ? [
                 {
-                  id: 'automatenspiele',
-                  url:
-                    'https://automatenspielex.com/online-casino-bonus/ohne-einzahlung',
+                  id: 'slotzilla',
+                  url: 'https://www.slotozilla.com/de/',
                   imageUrl:
-                    'https://firebasestorage.googleapis.com/v0/b/date-fns-org.appspot.com/o/sponsors%2Fautomatenspiele.png?alt=media&token=a722fa3f-9514-4932-a4f7-8b13246dcada',
-                  name: 'bonus ohne einzahlung',
+                    'https://firebasestorage.googleapis.com/v0/b/date-fns-org.appspot.com/o/sponsors%2Fslotzilla.png?alt=media&token=99f2558a-4714-4c57-bdb9-ad0aaf35eca2',
+                  name: 'Slotzilla',
                 },
               ]
             : []
           ).concat(
-            result.data.account.orders.nodes
-              .filter(isSilver)
-              .sort(sponsorsSortFn)
-              .map(sponsorsMapFn)
+            (Date.now() < +new Date(2024, 2, 10)
+              ? [
+                  {
+                    id: 'automatenspiele',
+                    url:
+                      'https://automatenspielex.com/online-casino-bonus/ohne-einzahlung',
+                    imageUrl:
+                      'https://firebasestorage.googleapis.com/v0/b/date-fns-org.appspot.com/o/sponsors%2Fautomatenspiele.png?alt=media&token=a722fa3f-9514-4932-a4f7-8b13246dcada',
+                    name: 'bonus ohne einzahlung',
+                  },
+                ]
+              : []
+            ).concat(
+              result.data.account.orders.nodes
+                .filter(isSilver)
+                .sort(sponsorsSortFn)
+                .map(sponsorsMapFn)
+            )
           ),
           'id'
         ),
