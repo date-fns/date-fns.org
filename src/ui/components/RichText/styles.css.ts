@@ -110,6 +110,12 @@ globalStyle(`${content} table`, {
   backgroundColor: '#fffffe',
   borderRadius: '2px',
   marginBottom: '10px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#12000a',
+    },
+  },
 })
 
 globalStyle(`${content} table table`, {
@@ -119,17 +125,36 @@ globalStyle(`${content} table table`, {
 globalStyle(`${content} table table td`, {
   border: '1px solid #d6cdd3',
   padding: '3px 6px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 globalStyle(`${content} table table th`, {
   backgroundColor: '#fdfdfd',
   border: '1px solid #d6cdd3',
   padding: '3px 6px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+      backgroundColor: '#280215',
+    },
+  },
 })
 
 globalStyle(`${content} table td`, {
   border: '1px solid #b9a2b2',
   padding: '5px 10px',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 globalStyle(`${content} table th`, {
@@ -138,6 +163,13 @@ globalStyle(`${content} table th`, {
   fontWeight: '600',
   textAlign: 'left',
   backgroundColor: '#faf6f0',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+      backgroundColor: '#280215',
+    },
+  },
 })
 
 globalStyle(`${content} table:last-child`, {

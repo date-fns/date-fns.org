@@ -10,9 +10,14 @@ export const search = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  backgroundColor: '#faf6f0',
   borderBottom: '1px solid #e6e0e6',
   wordBreak: 'break-all',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 export const bordered = style({
@@ -36,4 +41,12 @@ export const input = style({
   border: '0',
   width: '100%',
   fontSize: '1rem',
+  backgroundColor: 'white',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      backgroundColor: '#120009',
+      color: 'white',
+    },
+  },
 })

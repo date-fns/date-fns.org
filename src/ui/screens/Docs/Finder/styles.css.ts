@@ -43,6 +43,7 @@ export const container = style({
   '@media': {
     '(prefers-color-scheme: dark)': {
       borderColor: '#2c1622',
+      background: '#120009',
     },
   },
 })
