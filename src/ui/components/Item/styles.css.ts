@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css'
-import iconURL from './img/icon.svg'
 
 export const item = style({
   display: 'flex',
@@ -27,8 +26,6 @@ export const item = style({
 })
 
 export const icon = style({
-  backgroundImage: `url('${iconURL}')`,
-  backgroundSize: '16px',
   width: '16px',
   height: '16px',
   flexShrink: '0',

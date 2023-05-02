@@ -61,4 +61,12 @@ code:after {
     background-color: #1e0814;
     color: #c5c4c2;
   }
+
+  body,
+  input,
+  select,
+  textarea,
+  button {
+    color: white;
+  }
 }

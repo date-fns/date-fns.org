@@ -7,6 +7,12 @@ export const block = style({
   flexDirection: 'column',
   color: 'black',
   transition: 'background 150ms ease-out',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: '#411302',
+    },
+  },
 })
 
 export const blockClickable = style({
@@ -30,6 +36,12 @@ export const companyName = style({
 export const container = style({
   background: '#f5d958',
   padding: '0.25rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: '#641d03',
+    },
+  },
 })
 
 export const footer = style({
