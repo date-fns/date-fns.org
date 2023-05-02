@@ -4,7 +4,7 @@ import backgroundURL from './img/navBarBackground.png'
 export const container = style({
   color: '#ffe9c9',
   background: '#5a0530',
-  backgroundImage: `url('${backgroundURL}'})`,
+  backgroundImage: `url('${backgroundURL}')`,
   backgroundSize: 'cover',
   backgroundPosition: 'top center',
   width: '100%',

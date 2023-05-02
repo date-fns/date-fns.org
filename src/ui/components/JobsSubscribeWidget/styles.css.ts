@@ -3,12 +3,24 @@ import { style } from '@vanilla-extract/css'
 export const container = style({
   background: '#f5d958',
   padding: '0.25rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: '#641d03',
+    },
+  },
 })
 
 export const header = style({
   fontSize: '1.05rem',
   lineHeight: '1.4',
   fontWeight: '600',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ded7a9',
+    },
+  },
 })
 
 export const block = style({
@@ -18,6 +30,12 @@ export const block = style({
   flexDirection: 'column',
   color: 'black',
   transition: 'background 150ms ease-out',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: '#411302',
+    },
+  },
 })
 
 export const footer = style({
@@ -27,6 +45,12 @@ export const footer = style({
   display: 'block',
   padding: '0.5rem 0',
   fontSize: '0.8rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#a8a493',
+    },
+  },
 })
 
 export const blockContent = style({
@@ -49,6 +73,14 @@ export const input = style({
   color: 'black',
   marginRight: '0.5rem',
   border: '1px solid black',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#290d03',
+      background: '#290d03',
+      color: 'white',
+    },
+  },
 })
 
 export const subscribeButton = style({
@@ -65,6 +97,17 @@ export const subscribeButton = style({
 
   ':hover': {
     color: 'red',
+  },
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#ded7a9',
+      background: '#925603',
+
+      ':hover': {
+        color: 'white',
+      },
+    },
   },
 })
 
