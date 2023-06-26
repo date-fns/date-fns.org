@@ -13,6 +13,14 @@ export const title = style({
   fontSize: '1rem',
   fontWeight: 600,
   color: '#7b6d77',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: '#280215',
+      borderColor: '#2c1622',
+      color: '#cbc0c7',
+    },
+  },
 })
 
 export const titleIcon = style({
@@ -21,6 +29,12 @@ export const titleIcon = style({
   position: 'relative',
   top: '2px',
   marginRight: '.25rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#c99952',
+    },
+  },
 })
 
 export const titleParent = style({
@@ -43,6 +57,12 @@ export const nav = style({
   display: 'grid',
   gridTemplateRows: 'auto 1fr',
   overflow: 'hidden',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      borderColor: '#2c1622',
+    },
+  },
 })
 
 export const list = style({
@@ -83,6 +103,7 @@ export const header = style({
   '@media': {
     '(prefers-color-scheme: dark)': {
       borderColor: '#2c1622',
+      color: '#fff6fc',
     },
   },
 })
@@ -109,6 +130,14 @@ export const badge = styleVariants({
       color: '#146066',
       borderColor: '#5ae6f1',
       backgroundColor: '#d5fcff',
+
+      '@media': {
+        '(prefers-color-scheme: dark)': {
+          color: '#00b3b3',
+          borderColor: '#4d6a6a',
+          backgroundColor: '#0f1a1a',
+        },
+      },
     },
   ],
 
@@ -118,6 +147,14 @@ export const badge = styleVariants({
       color: '#004813',
       borderColor: '#9dbfa6',
       backgroundColor: '#e2f7e8',
+
+      '@media': {
+        '(prefers-color-scheme: dark)': {
+          color: '#00b300',
+          borderColor: '#4d6a4d',
+          backgroundColor: '#0f1a0f',
+        },
+      },
     },
   ],
 
@@ -127,6 +164,14 @@ export const badge = styleVariants({
       color: '#786c07',
       borderColor: '#ddd491',
       backgroundColor: '#fffad7',
+
+      '@media': {
+        '(prefers-color-scheme: dark)': {
+          color: '#b3a900',
+          borderColor: '#4d4d33',
+          backgroundColor: '#1a1a00',
+        },
+      },
     },
   ],
 })

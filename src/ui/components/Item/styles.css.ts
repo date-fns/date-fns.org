@@ -41,10 +41,10 @@ export const active = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      backgroundColor: '#2c0016',
+      backgroundColor: '#35021b',
 
       ':hover': {
-        backgroundColor: '#2c0016',
+        backgroundColor: '#35021b',
       },
     },
   },

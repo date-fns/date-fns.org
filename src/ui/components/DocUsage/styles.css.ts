@@ -51,6 +51,7 @@ export const optionSelect = style({
   '@media': {
     '(prefers-color-scheme: dark)': {
       borderColor: '#2c1622',
+      color: 'white',
     },
   },
 })

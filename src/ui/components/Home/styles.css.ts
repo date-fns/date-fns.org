@@ -6,7 +6,7 @@ export const action = style({
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      color: '#ff80c0',
+      color: '#d397b6',
     },
   },
 })
@@ -89,7 +89,7 @@ export const link = style({
       color: '#e1a8c5',
 
       ':hover': {
-        color: '#ff80c0',
+        color: '#d397b6',
       },
     },
   },

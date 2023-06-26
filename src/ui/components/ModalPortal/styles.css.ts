@@ -35,6 +35,14 @@ export const windowBase = style({
   width: '100%',
   margin: '0 auto',
   overflow: 'hidden',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      border: '1px solid #2c1622',
+      color: 'white',
+      background: '#1a030f',
+    },
+  },
 })
 
 export const window = styleVariants({
