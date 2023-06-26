@@ -10,7 +10,7 @@ globalStyle(`${content} a`, {
 
   '@media': {
     '(prefers-color-scheme: dark)': {
-      color: '#ff80c0',
+      color: '#d397b6',
     },
   },
 })
@@ -206,8 +206,16 @@ globalStyle(`${content} ul:last-child`, {
 globalStyle(`${content} blockquote`, {
   marginBottom: '10px',
   borderLeft: '3px solid #b9a2b2',
-  background: '#faf6f0',
+  background: '#35001d',
   padding: '0.5rem 1rem',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      background: '#12000a',
+      border: '1px solid #2c1622',
+      borderLeftWidth: '3px',
+    },
+  },
 })
 
 globalStyle(`${content} mark`, {

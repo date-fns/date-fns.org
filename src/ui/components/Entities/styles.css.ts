@@ -16,6 +16,7 @@ export const miltiEntity = style({
   '@media': {
     '(prefers-color-scheme: dark)': {
       borderColor: '#2c1622',
+      background: '#12000a',
     },
   },
 })
