@@ -4,6 +4,7 @@ import { docLink } from '~/ui/router/docLink'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
 import * as styles from './styles.css'
+import { parseMajorVersion } from '~/utils/docs'
 
 const SUBMODULE_LABELS: Record<DateFnsDocs.Submodule, string> = {
   default: 'Default',
@@ -30,6 +31,10 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
   if (submodules.length === 1 && submodules.includes(selectedSubmodule)) {
     return null
   }
+
+  // For v3 don't show submodule selector and render FP section instead
+  const version = parseMajorVersion(selectedVersion)
+  if (version >= 3) return null
 
   return (
     <label class={styles.selector}>

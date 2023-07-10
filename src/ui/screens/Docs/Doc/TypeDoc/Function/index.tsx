@@ -17,6 +17,7 @@ import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
 import {
   extractCodeFromTagString,
   findSource,
+  fnHasOptions,
   generateUsage,
   pageTypeHash,
   pageTypeId,
@@ -24,6 +25,7 @@ import {
   ParentTypesMap,
 } from '~/utils/docs'
 import { Signatures } from './Signatures'
+import { FP } from './FP'
 
 interface TypeDocFunctionProps {
   page: DateFnsDocs.TypeDocPage
@@ -60,6 +62,13 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
       {description && <DocDescription description={description} skipHeader />}
 
       <DocUsage usage={usage} usageTabs={usageTabs} />
+
+      <FP
+        name={doc.name}
+        selectedVersion={page.version}
+        pure={page.pure}
+        hasOptions={fnHasOptions(fn)}
+      />
 
       {signatures && <Signatures name={doc.name} signatures={signatures} />}
 
