@@ -176,3 +176,15 @@ export function inlineTypeIdHighlightMatch(id: string, hash: string) {
 function rand() {
   return btoa(Math.random().toString().slice(2, 5)).slice(0, 3)
 }
+
+export function parseMajorVersion(version: string) {
+  const majorVersionStr = version.match(/v(\d+)/)?.[1]
+  const majorVersion = majorVersionStr && parseInt(majorVersionStr)
+  return majorVersion || 1
+}
+
+export function fnHasOptions(fn: DeclarationReflection | undefined) {
+  return !!fn?.signatures?.find((sig) =>
+    sig.parameters?.find((param) => param.name === 'options')
+  )
+}
