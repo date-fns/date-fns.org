@@ -1,13 +1,10 @@
-import classNames from 'classnames'
-import { FunctionComponent, Fragment, h } from 'preact'
+import { Fragment, FunctionComponent, h } from 'preact'
 import { useContext } from 'preact/hooks'
 import type { SomeType } from 'typedoc'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { ParentTypesMap, typeHash } from '~/utils/docs'
-import { Debug } from '../Debug'
+import { typeHash } from '~/utils/docs'
 import { Missing } from '../Missing'
 import { TypeDocReflection } from '../TypeDocReflection'
-import * as styles from './styles.css'
 
 interface TypeDocTypeProps {
   type: SomeType

@@ -1,5 +1,5 @@
 import { joinCommentParts } from '@date-fns/docs/utils'
-import { Fragment, FunctionComponent, h } from 'preact'
+import { Fragment, h } from 'preact'
 import { useContext } from 'preact/hooks'
 import type {
   DeclarationReflection,
@@ -7,7 +7,8 @@ import type {
   TypeParameterReflection,
 } from 'typedoc'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { findSource, ParentTypesMap } from '~/utils/docs'
+import { findSource } from '~/utils/docs'
+import { Debug } from '../Debug'
 import { IdHightlight } from '../IdHighlight'
 import { InlineCode } from '../InlineCode'
 import { Markdown } from '../Markdown'
@@ -71,9 +72,7 @@ export function TypeDocInterface<
                   <Markdown value={joinCommentParts(item.comment.summary)} />
                 )}
 
-                <code>
-                  <pre>{JSON.stringify(item, null, 2)}</pre>
-                </code>
+                <Debug data={item} />
               </td>
             </tr>
           )

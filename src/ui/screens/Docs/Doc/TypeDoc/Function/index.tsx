@@ -8,6 +8,7 @@ import {
 import { FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import type { DeclarationReflection } from 'typedoc'
+import { Debug } from '~/ui/components/Debug'
 import { DocDescription } from '~/ui/components/DocDescription'
 import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeader } from '~/ui/components/DocHeader'
@@ -15,6 +16,7 @@ import { DocLinks } from '~/ui/components/DocLinks'
 import { DocUsage } from '~/ui/components/DocUsage'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
 import {
+  ParentTypesMap,
   extractCodeFromTagString,
   findSource,
   fnHasOptions,
@@ -22,10 +24,9 @@ import {
   pageTypeHash,
   pageTypeId,
   pageTypeIdHighlightMatch,
-  ParentTypesMap,
 } from '~/utils/docs'
-import { Signatures } from './Signatures'
 import { FP } from './FP'
+import { Signatures } from './Signatures'
 
 interface TypeDocFunctionProps {
   page: DateFnsDocs.TypeDocPage
@@ -72,11 +73,9 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
 
       {signatures && <Signatures name={doc.name} signatures={signatures} />}
 
-      {examples && <DocExamples examples={examples} />}
+      {!signatures && examples && <DocExamples examples={examples} />}
 
-      <code>
-        <pre>{JSON.stringify(doc, null, 2)}</pre>
-      </code>
+      <Debug data={doc} />
 
       <DocLinks />
     </InlineTypeContext.Provider>

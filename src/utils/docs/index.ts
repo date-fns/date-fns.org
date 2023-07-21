@@ -188,3 +188,8 @@ export function fnHasOptions(fn: DeclarationReflection | undefined) {
     sig.parameters?.find((param) => param.name === 'options')
   )
 }
+
+export let debugTypeDoc = false
+try {
+  debugTypeDoc = localStorage.getItem('debug') === 'true'
+} catch (_) {}

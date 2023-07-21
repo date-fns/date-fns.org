@@ -5,10 +5,9 @@ import {
   findSummary,
 } from '@date-fns/docs/utils'
 import { Fragment, FunctionComponent, h } from 'preact'
-import { useMemo, useState } from 'preact/hooks'
+import { useMemo } from 'preact/hooks'
 import type { DeclarationReflection } from 'typedoc'
 import { Code } from '~/ui/components/Code'
-import { Debug } from '~/ui/components/Debug'
 import { DocDescription } from '~/ui/components/DocDescription'
 import { DocExamples } from '~/ui/components/DocExamples'
 import { DocHeader } from '~/ui/components/DocHeader'

@@ -34,6 +34,7 @@ import {
   typeId as typeIdStr,
 } from '~/utils/docs'
 import * as styles from './styles.css'
+import { Debug } from '~/ui/components/Debug'
 
 export interface TypesModalProps {
   parent: string
@@ -188,9 +189,7 @@ export const useTypesModal = createModal<TypesModalProps>(
                   <TypeContent type={type} scope={scope} />
                 </RichText>
 
-                <code>
-                  <pre>{JSON.stringify(type, null, 2)}</pre>
-                </code>
+                <Debug data={type} />
               </div>
             ) : (
               <div class={styles.content}>

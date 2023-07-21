@@ -19,12 +19,13 @@ globalStyle(`${content} h1`, {
   color: '#770c56',
   fontSize: '2.3rem',
   marginBottom: '30px',
-  paddingBottom: '23px',
+  paddingBottom: '12px',
   borderBottom: '1px solid rgba(88,68,82,0.1)',
 
   '@media': {
     '(prefers-color-scheme: dark)': {
       color: '#fff6fc',
+      borderColor: '#2c1622',
     },
   },
 })
