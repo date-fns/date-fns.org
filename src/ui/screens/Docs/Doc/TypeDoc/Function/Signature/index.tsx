@@ -1,4 +1,8 @@
-import { findSignatureReturns, findTags } from '@date-fns/docs/utils'
+import {
+  findExamples,
+  findSignatureReturns,
+  findTags,
+} from '@date-fns/docs/utils'
 import { Fragment, FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import type { SignatureReflection, TypeParameterReflection } from 'typedoc'
@@ -8,6 +12,9 @@ import { Generics } from '../Generics'
 import { Returns } from '../Returns'
 import { Throws } from '../Throws'
 import { Type } from '../Type'
+import { Debug } from '~/ui/components/Debug'
+import { DocExamples } from '~/ui/components/DocExamples'
+import { extractCodeFromTagString } from '~/utils/docs'
 
 interface SignatureProps {
   name: string
@@ -30,6 +37,10 @@ export const Signature: FunctionComponent<SignatureProps> = ({
         if (!captures) return { type: undefined, description: str }
         return { type: captures[1], description: captures[2] || str }
       }),
+    [signature]
+  )
+  const examples = useMemo(
+    () => findExamples(signature).map(extractCodeFromTagString),
     [signature]
   )
 
@@ -71,9 +82,9 @@ export const Signature: FunctionComponent<SignatureProps> = ({
         <Throws throws={throws} header={header} scope={scope} />
       )}
 
-      <code>
-        <pre>{JSON.stringify(signature, null, 2)}</pre>
-      </code>
+      {examples && <DocExamples examples={examples} />}
+
+      <Debug data={signature} />
     </>
   )
 }

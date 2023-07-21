@@ -2,8 +2,6 @@ import { Fragment, FunctionComponent, h } from 'preact'
 import { useContext } from 'preact/hooks'
 import type { DeclarationReflection } from 'typedoc'
 import { TypeIndentContext } from '~/ui/contexts/TypeIndentContext'
-import { Debug } from '../../Debug'
-import { TypeDocSignature } from '../../TypeDocSignature'
 import { TypeDocType } from '../../TypeDocType'
 
 interface TypeDocReflectionObjectProps {

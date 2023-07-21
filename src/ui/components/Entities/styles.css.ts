@@ -3,7 +3,7 @@ import { style, globalStyle } from '@vanilla-extract/css'
 export const entity = style({
   selectors: {
     '&:not(:last-child)': {
-      marginBottom: '1rem',
+      marginBottom: '2rem',
     },
   },
 })
