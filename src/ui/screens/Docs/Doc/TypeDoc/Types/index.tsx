@@ -262,7 +262,6 @@ function extractTypes(
   dec.children?.forEach((child) => {
     switch (child.kindString) {
       // Ignore these types and their children
-      case 'Module':
       case 'Function':
         return
 
@@ -277,6 +276,8 @@ function extractTypes(
       // Add these types, but not process their children
       case 'Interface':
       case 'Type alias':
+        // Ignore external, i.e. Record
+        if (child.flags.isExternal) return
         types.push(child)
         return
 
