@@ -29,6 +29,7 @@ export const IdHightlight: FunctionComponent<IdHightlightProps> = ({
 
     const span = spanRef.current
 
+    // TODO: Use scrollIntoViewIfNeeded(span, { behavior: 'smooth' }) with marginTop for page type
     !isInViewport(span) && span.scrollIntoView({ behavior: 'smooth' })
 
     const cbOut = () => {

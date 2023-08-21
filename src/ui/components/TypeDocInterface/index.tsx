@@ -32,6 +32,7 @@ export function TypeDocInterface<
     | TypeParameterReflection
 >({ list }: TypeDocInterfaceProps<Ref>) {
   const inline = useContext(InlineTypeContext)
+  const hasDefault = list.some((item) => 'default' in item && item.default)
 
   return (
     <table>
@@ -39,6 +40,7 @@ export function TypeDocInterface<
         <tr>
           <th>Name</th>
           <th>Type</th>
+          {hasDefault && <th>Default</th>}
           <th>Description</th>
         </tr>
       </thead>
@@ -66,6 +68,16 @@ export function TypeDocInterface<
                   </InlineCode>
                 )}
               </td>
+
+              {hasDefault && (
+                <td style={styles.code}>
+                  {'default' in item && item.default && (
+                    <InlineCode>
+                      <TypeDocType type={item.default} />
+                    </InlineCode>
+                  )}
+                </td>
+              )}
 
               <td>
                 {item.comment?.summary && (
