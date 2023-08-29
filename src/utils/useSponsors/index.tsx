@@ -31,7 +31,7 @@ export function useSponsors(): RequestHookResult<Sponsors> {
         ).filter((s) => s.name !== 'date-fns'),
         silver: uniqBy(
           ([
-            Date.now() < +new Date(2023, 10, 1) && {
+            Date.now() < +new Date(2023, 11, 1) && {
               id: 'rmvrwng4-kj03dpbk-9b0pz57o-yl9e8xba',
               url: 'https://polskiekasynohex.org/',
               imageUrl:
