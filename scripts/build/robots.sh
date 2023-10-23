@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ "$NODE_ENV" != "production" ]
-then
-  cp "$PWD/scripts/build/assets/robots.txt" "$PWD/build/web"
+if [[ "$APP_ENV" == "staging" ]]; then
+  cp "$PWD/scripts/build/assets/robots.staging.txt" "$PWD/build/web/robots.txt"
+else
+  cp "$PWD/scripts/build/assets/robots.production.txt" "$PWD/build/web/robots.txt"
 fi
