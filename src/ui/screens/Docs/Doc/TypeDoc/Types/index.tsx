@@ -1,5 +1,6 @@
 import {
   findDescription,
+  findFnSummary,
   findSummary,
   joinCommentParts,
   traverseType,
@@ -8,6 +9,7 @@ import { h } from 'preact'
 import { useMemo } from 'preact/hooks'
 import type { DeclarationReflection, SignatureReflection } from 'typedoc'
 import { Code } from '~/ui/components/Code'
+import { Debug } from '~/ui/components/Debug'
 import { DocUsage } from '~/ui/components/DocUsage'
 import { Item } from '~/ui/components/Item'
 import { Markdown } from '~/ui/components/Markdown'
@@ -21,20 +23,19 @@ import { SourceLink } from '~/ui/components/SourceLink'
 import { TypeDocInterface } from '~/ui/components/TypeDocInterface'
 import { TypeDocType } from '~/ui/components/TypeDocType'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { useQuery } from '~/ui/hooks/useQuery'
 import { useActiveItem } from '~/ui/hooks/useActiveItem'
+import { useQuery } from '~/ui/hooks/useQuery'
 import {
+  ParentTypesMap,
   findSource,
   generateTypeUsage,
   inlineTypeHash,
   inlineTypeId,
   inlineTypeIdHighlightMatch,
-  ParentTypesMap,
   typeHash,
   typeId as typeIdStr,
 } from '~/utils/docs'
 import * as styles from './styles.css'
-import { Debug } from '~/ui/components/Debug'
 
 export interface TypesModalProps {
   parent: string
@@ -69,7 +70,7 @@ export const useTypesModal = createModal<TypesModalProps>(
     const navItems: TypeItem[] = useMemo(
       () =>
         types.map((t) => {
-          const summary = findSummary(t)
+          const summary = getSummary(t)
           const description = findDescription(t)
           return { type: t, summary, description }
         }) || [],
@@ -90,6 +91,8 @@ export const useTypesModal = createModal<TypesModalProps>(
     )
 
     const { activeRef } = useActiveItem()
+
+    const summary = useMemo(() => type && getSummary(type), [type])
 
     return (
       <InlineTypeContext.Provider
@@ -152,12 +155,10 @@ export const useTypesModal = createModal<TypesModalProps>(
                   <SourceLink source={findSource(type)} />
                 </div>
 
-                {type.comment?.summary && (
+                {summary && (
                   <RichText>
                     <div class={styles.summary}>
-                      <Markdown
-                        value={joinCommentParts(type.comment.summary)}
-                      />
+                      <Markdown value={summary} />
                     </div>
                   </RichText>
                 )}
@@ -367,4 +368,10 @@ function buildParentTypesMap(
     })
 
   return map
+}
+
+function getSummary(refl: DeclarationReflection) {
+  return refl.comment?.summary
+    ? joinCommentParts(refl.comment?.summary)
+    : refl.type?.type === 'reflection' && findFnSummary(refl.type.declaration)
 }
