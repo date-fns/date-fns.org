@@ -1,18 +1,20 @@
-import { h, FunctionComponent } from 'preact'
-import { useQuery } from '~/utils/useQuery'
-import { db, PACKAGE_NAME, Submodule } from '@date-fns/date-fns-db'
-import { where } from 'typesaurus'
-import { Container } from './style.css'
-import { Content } from './Content'
-import { DocLinkContext } from '~/ui/router/DocLinkContext'
+import { packageName } from '@date-fns/docs/consts'
+import { db } from '@date-fns/docs/db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { useRead } from '@typesaurus/preact'
+import { FunctionComponent, h } from 'preact'
 import { useEffect } from 'preact/hooks'
+import { RichText } from '~/ui/components/RichText'
+import { DocLinkContext } from '~/ui/router/DocLinkContext'
+import { Content } from './Content'
+import * as styles from './styles.css'
 
 const SCROLL_OFFSET = 35
 
 interface Props {
   selectedVersion: string
   selectedPage: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
 }
 
 export const Doc: FunctionComponent<Props> = ({
@@ -20,12 +22,14 @@ export const Doc: FunctionComponent<Props> = ({
   selectedVersion,
   selectedSubmodule,
 }) => {
-  const [pages, { loading }] = useQuery(db.pages, [
-    where('package', '==', PACKAGE_NAME),
-    where('version', '==', selectedVersion),
-    where('slug', '==', selectedPage),
-    where('submodules', 'array-contains', selectedSubmodule),
-  ])
+  const [pages, { loading }] = useRead(
+    db.pages.query(($) => [
+      $.field('package').equal(packageName),
+      $.field('version').equal(selectedVersion),
+      $.field('slug').equal(selectedPage),
+      $.field('submodules').contains(selectedSubmodule),
+    ])
+  )
 
   useEffect(() => {
     if (pages && location.hash) {
@@ -48,21 +52,23 @@ export const Doc: FunctionComponent<Props> = ({
       <DocLinkContext.Provider
         value={{ version: selectedVersion, submodule: selectedSubmodule }}
       >
-        <Container>
-          <Content page={page} />
-        </Container>
+        <div class={styles.wrapper}>
+          <RichText>
+            <Content page={page} />
+          </RichText>
+        </div>
       </DocLinkContext.Provider>
     )
   } else if (pages && pages.length === 0) {
     return (
-      <Container>
+      <div class={styles.wrapper}>
         This page is not available for this version or this submodule
-      </Container>
+      </div>
     )
   } else if (loading) {
-    return <Container>Loading...</Container>
+    return <div class={styles.wrapper}>Loading...</div>
   } else {
     // FIXME:
-    return <Container>Error!</Container>
+    return <div class={styles.wrapper}>Error!</div>
   }
 }

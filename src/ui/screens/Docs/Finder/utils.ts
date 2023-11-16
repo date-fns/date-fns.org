@@ -1,9 +1,9 @@
-import { PagePreview, Submodule } from '@date-fns/date-fns-db'
+import type { DateFnsDocs } from '@date-fns/docs'
 
 export function filterPages(
-  pages: PagePreview[],
+  pages: DateFnsDocs.PagePreview[],
   dirtyQuery: string,
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
 ) {
   let filteredPages = pages
 

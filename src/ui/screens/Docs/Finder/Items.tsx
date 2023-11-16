@@ -1,15 +1,18 @@
-import { h, FunctionComponent, Fragment } from 'preact'
-import { PagePreview, Submodule } from '@date-fns/date-fns-db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { Fragment, FunctionComponent, h } from 'preact'
+import { Item } from '~/ui/components/Item'
 import { RouterLink } from '~/ui/router'
-import { Item, ItemHeader, ItemText, ItemIcon } from './style.css'
 import { docLink } from '~/ui/router/docLink'
+import * as styles from './styles.css'
 
 interface Props {
-  pages: PagePreview[]
+  pages: DateFnsDocs.PagePreview[]
   selectedVersion: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   onNavigate(): void
+  query: string
+  activeRef: (element: HTMLDivElement | null) => void
 }
 
 export const Items: FunctionComponent<Props> = ({
@@ -18,27 +21,35 @@ export const Items: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedPage,
   onNavigate,
-}) => (
-  <>
-    {pages.map((page) => (
-      <Item
-        key={page.slug}
-        tag={RouterLink}
-        to={docLink({
-          page: page.slug,
-          submodule: selectedSubmodule,
-          version: selectedVersion,
-        })}
-        isSelected={selectedPage === page.slug}
-        onClick={onNavigate}
-      >
-        <div>
-          <ItemHeader tag="h4">{page.title}</ItemHeader>
-          <ItemText tag="p">{page.summary}</ItemText>
-        </div>
-
-        <ItemIcon />
-      </Item>
-    ))}
-  </>
-)
+  query,
+  activeRef,
+}) => {
+  return (
+    <>
+      {pages.map((page) => (
+        <RouterLink
+          class={styles.item}
+          key={page.slug}
+          to={docLink({
+            page: page.slug,
+            submodule: selectedSubmodule,
+            version: selectedVersion,
+          })}
+          onClick={onNavigate}
+        >
+          <Item
+            title={page.title}
+            summary={page.summary}
+            active={selectedPage === page.slug}
+            code={
+              /* Old versions don't have type */
+              !!page.type && page.type !== 'markdown'
+            }
+            activeRef={activeRef}
+            query={query}
+          />
+        </RouterLink>
+      ))}
+    </>
+  )
+}

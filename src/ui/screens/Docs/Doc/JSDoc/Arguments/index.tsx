@@ -1,10 +1,10 @@
 import { h, FunctionComponent } from 'preact'
-import { JSDocParam } from '@date-fns/date-fns-db'
-import { DocParams } from '~/ui/components/DocParams'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { JSDocParams } from '~/ui/components/JSDocParams'
 import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
 
 interface Props {
-  args: JSDocParam[]
+  args: DateFnsDocs.JSDocParam[]
 }
 
 export const Arguments: FunctionComponent<Props> = ({ args }) => (
@@ -24,7 +24,7 @@ export const Arguments: FunctionComponent<Props> = ({ args }) => (
       </thead>
 
       <tbody>
-        <DocParams params={args} />
+        <JSDocParams params={args} />
       </tbody>
     </table>
   </section>

@@ -1,12 +1,12 @@
-import { Submodule } from '@date-fns/date-fns-db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { h, FunctionComponent } from 'preact'
 import { RouterLink } from '~/ui/router'
 import { docLink } from '~/ui/router/docLink'
-import { LatestLink } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   latestVersion: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
 }
 
@@ -15,8 +15,8 @@ export const LatestVersionLink: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedPage,
 }) => (
-  <LatestLink
-    tag={RouterLink}
+  <RouterLink
+    class={styles.latestLink}
     to={docLink({
       page: selectedPage,
       submodule: selectedSubmodule,
@@ -24,5 +24,5 @@ export const LatestVersionLink: FunctionComponent<Props> = ({
     })}
   >
     Switch to latest
-  </LatestLink>
+  </RouterLink>
 )

@@ -1,12 +1,13 @@
-import { h } from 'preact'
+import { h, Fragment, VNode } from 'preact'
 import { useContext, useEffect } from 'preact/hooks'
-import { RouterContext } from '~/ui/router'
+import { AppRouteLocation, RouterContext } from '~/ui/router'
 import { Home } from '~/ui/screens/Home'
 import { Docs } from '~/ui/screens/Docs'
 import { NotFound } from '~/ui/screens/NotFound'
 import 'reset.css/reset.css?global'
 import './global.css?global'
-import { DEFAULT_SUBMODULE } from '@date-fns/date-fns-db'
+import { defaultSubmodule } from '@date-fns/docs/consts'
+import { Modals, ModalsContext, useModals } from './components/Modals'
 
 const win = typeof window !== 'undefined' ? window : undefined
 
@@ -17,6 +18,23 @@ export const UI = () => {
     win?.ga?.('send', 'pageview')
   }, [JSON.stringify(location)])
 
+  const modalsApi = useModals()
+
+  return (
+    <>
+      <ModalsContext.Provider value={modalsApi}>
+        <Content location={location} />
+        <Modals api={modalsApi} />
+      </ModalsContext.Provider>
+    </>
+  )
+}
+
+interface ContentProps {
+  location: AppRouteLocation
+}
+
+function Content({ location }: ContentProps): VNode<any> {
   switch (location.name) {
     case 'home':
       return <Home />
@@ -24,7 +42,7 @@ export const UI = () => {
     case 'docs':
       return (
         <Docs
-          selectedSubmodule={DEFAULT_SUBMODULE}
+          selectedSubmodule={defaultSubmodule}
           selectedPage={location.params.page}
         />
       )
@@ -40,7 +58,7 @@ export const UI = () => {
     case 'versionDocs':
       return (
         <Docs
-          selectedSubmodule={DEFAULT_SUBMODULE}
+          selectedSubmodule={defaultSubmodule}
           selectedPage={location.params.page}
           selectedVersion={location.params.version}
         />
@@ -56,7 +74,6 @@ export const UI = () => {
       )
 
     case '404':
-    default:
       return <NotFound />
   }
 }

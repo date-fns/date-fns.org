@@ -58,6 +58,7 @@ export const template = ({ body }: Params = {}) =>
   </head>
   <body>
     <div id="root">${body ?? ''}</div>
+    <div id="portals"></div>
 
     <script src="${entryPath('main', 'js')}"></script>
 

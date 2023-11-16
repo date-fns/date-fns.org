@@ -1,15 +1,17 @@
-import { h, FunctionComponent } from 'preact'
-import { PagePreview, Submodule } from '@date-fns/date-fns-db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
+import { FunctionComponent, h } from 'preact'
 import { Items } from './Items'
-import { CategoriesList, Category, CategoryHeader } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   categories: string[]
-  pages: PagePreview[]
+  pages: DateFnsDocs.PagePreview[]
   selectedVersion: string
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   onNavigate(): void
+  query: string
+  activeRef: (element: HTMLDivElement | null) => void
 }
 
 export const Categories: FunctionComponent<Props> = ({
@@ -19,8 +21,10 @@ export const Categories: FunctionComponent<Props> = ({
   selectedSubmodule,
   selectedPage,
   onNavigate,
+  query,
+  activeRef,
 }) => (
-  <CategoriesList tag="ul">
+  <ul class={styles.categoriesList}>
     {categories.map((category) => {
       const categoryPages = pages.filter((page) => page.category === category)
 
@@ -29,8 +33,8 @@ export const Categories: FunctionComponent<Props> = ({
       }
 
       return (
-        <Category tag="li" key={category}>
-          <CategoryHeader tag="h3">{category}</CategoryHeader>
+        <li class={styles.category} key={category}>
+          <h3 class={styles.categoryHeader}>{category}</h3>
 
           <div>
             <Items
@@ -39,10 +43,12 @@ export const Categories: FunctionComponent<Props> = ({
               selectedSubmodule={selectedSubmodule}
               selectedPage={selectedPage}
               onNavigate={onNavigate}
+              query={query}
+              activeRef={activeRef}
             />
           </div>
-        </Category>
+        </li>
       )
     })}
-  </CategoriesList>
+  </ul>
 )

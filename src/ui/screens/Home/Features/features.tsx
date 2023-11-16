@@ -1,7 +1,24 @@
-import { h, Fragment } from 'preact'
-import { IconType } from './style.css'
+import { h, Fragment, VNode } from 'preact'
+import ComingIcon from './icons/ComingIcon'
+import ConsistentIcon from './icons/ConsistentIcon'
+import DocsIcon from './icons/DocsIcon'
+import FastIcon from './icons/FastIcon'
+import FPIcon from './icons/FPIcon'
+import I18nIcon from './icons/I18nIcon'
+import ImmutableIcon from './icons/ImmutableIcon'
+import ModularIcon from './icons/ModularIcon'
+import NativeIcon from './icons/NativeIcon'
+import ReliableIcon from './icons/ReliableIcon'
+import SimpleIcon from './icons/SimpleIcon'
+import TypesIcon from './icons/TypesIcon'
 
-export const features = [
+export interface Feature {
+  title: string
+  description: VNode
+  icon: VNode
+}
+
+export const features: Feature[] = [
   {
     title: 'Modular',
     description: (
@@ -18,7 +35,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.modular,
+    icon: <ModularIcon />,
   },
 
   {
@@ -26,8 +43,8 @@ export const features = [
     description: (
       <>
         <p>
-          date-fns uses the native <code>Date</code> type and doesn't reinvent the wheel.
-          It doesn't extend core objects for safety's sake.
+          date-fns uses the native <code>Date</code> type and doesn't reinvent
+          the wheel. It doesn't extend core objects for safety's sake.
         </p>
 
         <p>
@@ -36,7 +53,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.native,
+    icon: <NativeIcon />,
   },
 
   {
@@ -51,7 +68,7 @@ export const features = [
         <p>It helps to prevent bugs and avoid long debugging sessions.</p>
       </>
     ),
-    icon: IconType.immutable,
+    icon: <ImmutableIcon />,
   },
 
   {
@@ -69,7 +86,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.types,
+    icon: <TypesIcon />,
   },
 
   {
@@ -81,7 +98,7 @@ export const features = [
         bloat your build.
       </>
     ),
-    icon: IconType.fp,
+    icon: <FPIcon />,
   },
 
   {
@@ -92,7 +109,7 @@ export const features = [
         Only the ones that you use will be included in your project.
       </>
     ),
-    icon: IconType.i18n,
+    icon: <I18nIcon />,
   },
 
   {
@@ -109,7 +126,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.consistent,
+    icon: <ConsistentIcon />,
   },
 
   {
@@ -126,7 +143,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.reliable,
+    icon: <ReliableIcon />,
   },
 
   {
@@ -144,7 +161,7 @@ export const features = [
         </p>
       </>
     ),
-    icon: IconType.simple,
+    icon: <SimpleIcon />,
   },
 
   {
@@ -155,7 +172,7 @@ export const features = [
         users will have the best user experience.
       </>
     ),
-    icon: IconType.fast,
+    icon: <FastIcon />,
   },
 
   {
@@ -167,7 +184,7 @@ export const features = [
         thanks to JSDoc annotations.
       </>
     ),
-    icon: IconType.docs,
+    icon: <DocsIcon />,
   },
 
   {
@@ -178,6 +195,6 @@ export const features = [
         features.
       </>
     ),
-    icon: IconType.coming,
+    icon: <ComingIcon />,
   },
 ]

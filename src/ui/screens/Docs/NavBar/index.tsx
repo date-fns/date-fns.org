@@ -1,30 +1,19 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, VNode } from 'preact'
 import { RouterLink } from '~/ui/router'
-import {
-  Container,
-  Inner,
-  Logo,
-  LogoImage,
-  Links,
-  Link,
-  MenuIcon,
-} from './style.css'
 import logoPath from './img/logo.svg'
-import {
-  DEFAULT_SUBMODULE,
-  Submodule,
-  VersionPreview,
-} from '@date-fns/date-fns-db'
+import { defaultSubmodule } from '@date-fns/docs/consts'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { VersionSelector } from './VersionSelector'
 import { SubmoduleSelector } from './SubmoduleSelector'
+import * as styles from './styles.css'
 
 interface Props {
   selectedVersion: string
   latestVersion: string
   selectedPage: string
-  versions: VersionPreview[]
-  selectedSubmodule: Submodule
-  menuIcon: React.ReactNode
+  versions: DateFnsDocs.VersionPreview[]
+  selectedSubmodule: DateFnsDocs.Submodule
+  menuIcon: VNode
 }
 
 export const NavBar: FunctionComponent<Props> = ({
@@ -38,53 +27,58 @@ export const NavBar: FunctionComponent<Props> = ({
   const versionPreview = versions.find(
     ({ version }) => version === selectedVersion
   )
-  const submodules = versionPreview?.submodules ?? [DEFAULT_SUBMODULE]
+  const submodules = versionPreview?.submodules ?? [defaultSubmodule]
 
   return (
-    <Container>
-      <Inner>
-        <Links>
-          <MenuIcon>{menuIcon}</MenuIcon>
+    <div class={styles.container}>
+      <div class={styles.outer}>
+        <div class={styles.inner}>
+          <div class={styles.links}>
+            <div class={styles.menuIcon}>{menuIcon}</div>
 
-          <Logo tag={RouterLink} to={{ name: 'home' }}>
-            <LogoImage tag="img" src={logoPath} />
-            date-fns
-          </Logo>
+            <RouterLink class={styles.logo} to={{ name: 'home' }}>
+              <img class={styles.logoImage} src={logoPath} />
+              date-fns
+            </RouterLink>
 
-          <Link tag="a" href="https://github.com/date-fns/date-fns">
-            GitHub
-          </Link>
+            <a class={styles.link} href="https://github.com/date-fns/date-fns">
+              GitHub
+            </a>
 
-          <Link tag="a" href="https://github.com/date-fns/date-fns/discussions">
-            Community
-          </Link>
+            <a
+              class={styles.link}
+              href="https://github.com/date-fns/date-fns/discussions"
+            >
+              Community
+            </a>
 
-          <Link tag="a" href="https://twitter.com/date_fns">
-            Twitter
-          </Link>
+            <a class={styles.link} href="https://twitter.com/date_fns">
+              Twitter
+            </a>
 
-          <Link tag="a" href="https://jobs.date-fns.org">
-            JS Jobs
-          </Link>
-        </Links>
+            <a class={styles.link} href="https://jobs.date-fns.org">
+              JS Jobs
+            </a>
+          </div>
 
-        <div>
-          <VersionSelector
-            selectedVersion={selectedVersion}
-            latestVersion={latestVersion}
-            selectedPage={selectedPage}
-            selectedSubmodule={selectedSubmodule}
-            versions={versions}
-          />
+          <div>
+            <VersionSelector
+              selectedVersion={selectedVersion}
+              latestVersion={latestVersion}
+              selectedPage={selectedPage}
+              selectedSubmodule={selectedSubmodule}
+              versions={versions}
+            />
 
-          <SubmoduleSelector
-            selectedSubmodule={selectedSubmodule}
-            selectedPage={selectedPage}
-            selectedVersion={selectedVersion}
-            submodules={submodules}
-          />
+            <SubmoduleSelector
+              selectedSubmodule={selectedSubmodule}
+              selectedPage={selectedPage}
+              selectedVersion={selectedVersion}
+              submodules={submodules}
+            />
+          </div>
         </div>
-      </Inner>
-    </Container>
+      </div>
+    </div>
   )
 }

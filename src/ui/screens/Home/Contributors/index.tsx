@@ -1,9 +1,9 @@
-import { h } from 'preact'
-import { HomeBlock, HomeAction, HomeExternalLink } from '~/ui/components/Home'
-import { List, Item, LinkContent, Avatar, Name } from './style.css'
-import { useContributors } from '~/utils/useContributors'
-import { docLink } from '~/ui/router/docLink'
 import isArray from 'lodash/isArray'
+import { h } from 'preact'
+import { HomeAction, HomeBlock, HomeExternalLink } from '~/ui/components/Home'
+import { docLink } from '~/ui/router/docLink'
+import { useContributors } from '~/utils/useContributors'
+import * as styles from './styles.css'
 
 export const Contributors = () => {
   const [contributors, { loading }] = useContributors()
@@ -19,22 +19,22 @@ export const Contributors = () => {
     >
       {loading && <div>Loading...</div>}
       {contributors && isArray(contributors) && (
-        <List tag="ol">
+        <ol class={styles.list}>
           {contributors.map((contributor) => (
-            <Item tag="li" key={contributor.name}>
+            <li class={styles.item} key={contributor.name}>
               <HomeExternalLink href={contributor.url}>
-                <LinkContent tag="span">
-                  <Avatar
-                    tag="img"
+                <span class={styles.linkContent}>
+                  <img
+                    class={styles.avatar}
                     src={contributor.avatarUrl}
                     alt={`@${contributor.name}'s avatar`}
                   />
-                  <Name tag="span">@{contributor.name}</Name>
-                </LinkContent>
+                  <span class={styles.name}>@{contributor.name}</span>
+                </span>
               </HomeExternalLink>
-            </Item>
+            </li>
           ))}
-        </List>
+        </ol>
       )}
     </HomeBlock>
   )

@@ -1,20 +1,21 @@
 import { h, FunctionComponent } from 'preact'
-import { Label, Select, Selector } from './style.css'
-import { Submodule } from '@date-fns/date-fns-db'
+import type { DateFnsDocs } from '@date-fns/docs/types'
 import { docLink } from '~/ui/router/docLink'
 import { useContext } from 'preact/hooks'
 import { RouterContext } from '~/ui/router'
+import * as styles from './styles.css'
+import { parseMajorVersion } from '~/utils/docs'
 
-const SUBMODULE_LABELS: { [k in Submodule]: string } = {
-  [Submodule.Default]: 'Default',
-  [Submodule.FP]: 'FP',
+const SUBMODULE_LABELS: Record<DateFnsDocs.Submodule, string> = {
+  default: 'Default',
+  fp: 'FP',
 }
 
 interface Props {
-  selectedSubmodule: Submodule
+  selectedSubmodule: DateFnsDocs.Submodule
   selectedPage: string
   selectedVersion: string
-  submodules: Submodule[]
+  submodules: DateFnsDocs.Submodule[]
 }
 
 type FIXME = any
@@ -31,12 +32,16 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
     return null
   }
 
-  return (
-    <Selector tag="label">
-      <Label tag="span">Submodule:</Label>
+  // For v3 don't show submodule selector and render FP section instead
+  const version = parseMajorVersion(selectedVersion)
+  if (version >= 3) return null
 
-      <Select
-        tag="select"
+  return (
+    <label class={styles.selector}>
+      <span class={styles.label}>Submodule:</span>
+
+      <select
+        class={styles.select}
         value={selectedSubmodule}
         onChange={(e: FIXME) =>
           navigate(
@@ -51,12 +56,13 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
         <option key="title" disabled>
           Submodule
         </option>
+
         {submodules.map((submodule) => (
           <option key={submodule} value={submodule}>
             {SUBMODULE_LABELS[submodule]}
           </option>
         ))}
-      </Select>
-    </Selector>
+      </select>
+    </label>
   )
 }

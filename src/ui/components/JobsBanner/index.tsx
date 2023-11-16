@@ -1,23 +1,17 @@
-import { h, FunctionComponent } from 'preact'
-// import classnames from 'classnames'
+import { h } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
-import { Icon } from './Icon'
-import { Emoji } from './Emoji'
-import { Container, Inner, EmojiWrapper } from './style.css'
 import { useEffect, useState } from 'preact/hooks'
+import { Emoji } from './Emoji'
+import { Icon } from './Icon'
+import * as styles from './styles.css'
 
-interface Props {
-  size: 'small' | 'large'
-}
-
-export const JobsBanner: FunctionComponent<Props> = ({ size }) => {
+export const JobsBanner = () => {
   const [kind, setKind] = useState<null | 'subscribe' | 'recommend'>(null)
   useEffect(() => setKind(Math.random() > 0.5 ? 'subscribe' : 'recommend'), [])
 
   return (
-    <Container
-      tag="a"
-      size={size}
+    <a
+      class={styles.container}
       href={
         kind === 'subscribe'
           ? 'https://jobs.date-fns.org'
@@ -29,10 +23,11 @@ export const JobsBanner: FunctionComponent<Props> = ({ size }) => {
         () => console.log('FIXME') /*trackAction('Banner click', { kind }) */
       }
     >
-      <Inner>
-        <EmojiWrapper>
+      <div class={styles.inner}>
+        <div class={styles.emojiWrapper}>
           <Emoji />
-        </EmojiWrapper>
+        </div>
+
         <div>
           {kind === 'subscribe' &&
             'Get jobs worth sharing to your email! JavaScript jobs by date-fns'}
@@ -40,7 +35,7 @@ export const JobsBanner: FunctionComponent<Props> = ({ size }) => {
             "Know someone who's looking for JavaScript devs? Recommend us a job!"}
           <Icon />
         </div>
-      </Inner>
-    </Container>
+      </div>
+    </a>
   )
 }

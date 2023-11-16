@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { RouterLink, AppRouteRef } from '~/ui/router'
-import { Link } from './style.css'
+import * as styles from './styles.css'
 
 interface Props {
   to: AppRouteRef
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const HomeLink: FunctionComponent<Props> = ({ to, title, children }) => (
-  <Link tag={RouterLink} to={to} title={title}>
+  <RouterLink class={styles.link} to={to} title={title}>
     {children}
-  </Link>
+  </RouterLink>
 )
