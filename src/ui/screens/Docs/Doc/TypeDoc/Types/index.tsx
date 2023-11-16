@@ -67,6 +67,7 @@ export const useTypesModal = createModal<TypesModalProps>(
 
     const { query, setQuery, searchRef } = useQuery()
 
+    // @ts-expect-error - TypeDoc is being difficult
     const navItems: TypeItem[] = useMemo(
       () =>
         types.map((t) => {
@@ -225,12 +226,24 @@ function TypeContent({ type, scope }: ContentProps) {
     case 'Type parameter':
       return (
         <div>
-          {type.default && (
-            <div>
-              <SectionHeader header="Default type" scope={scope} tag="h3" />
-              <Code value={<TypeDocType type={type.default} />} />
-            </div>
-          )}
+          {
+            // @ts-expect-error - TypeDoc is being difficult
+            type.default && (
+              <div>
+                <SectionHeader header="Default type" scope={scope} tag="h3" />
+                <Code
+                  value={
+                    <TypeDocType
+                      type={
+                        // @ts-expect-error - TypeDoc is being difficult
+                        type.default
+                      }
+                    />
+                  }
+                />
+              </div>
+            )
+          }
         </div>
       )
 
@@ -354,6 +367,7 @@ function buildParentTypesMap(
   const map: ParentTypesMap = accMap || {}
 
   refl &&
+    // @ts-expect-error - TypeDoc is being difficult
     ((refl && type?.typeParameter) || type?.typeParameters)?.map((ref) => {
       map[ref.id] = inlineTypeHash(refl, ref)
     })

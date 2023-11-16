@@ -74,6 +74,7 @@ export function Drop({
           setTrianglePosition('above')
           return true
         }
+        return false
       },
 
       above: () => {
@@ -84,6 +85,7 @@ export function Drop({
           setTrianglePosition('below')
           return true
         }
+        return false
       },
 
       left: () => {
@@ -94,6 +96,7 @@ export function Drop({
           setTrianglePosition('right')
           return true
         }
+        return false
       },
 
       right: () => {
@@ -104,6 +107,7 @@ export function Drop({
           setTrianglePosition('left')
           return true
         }
+        return false
       },
     }
 

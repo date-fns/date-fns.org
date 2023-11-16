@@ -57,13 +57,19 @@ export const Signature: FunctionComponent<SignatureProps> = ({
         <Type name={name} signature={signature} header={header} scope={scope} />
       </IgnoreParentTypesSourceContext.Provider>
 
-      {signature.typeParameter && (
-        <Generics
-          args={signature.typeParameter}
-          header={header}
-          scope={scope}
-        />
-      )}
+      {
+        // @ts-expect-error - TypeDoc is being difficult
+        signature.typeParameter && (
+          <Generics
+            args={
+              // @ts-expect-error - TypeDoc is being difficult
+              signature.typeParameter
+            }
+            header={header}
+            scope={scope}
+          />
+        )
+      }
 
       {signature.parameters && signature.parameters.length > 0 && (
         <Arguments args={signature.parameters} header={header} scope={scope} />

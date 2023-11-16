@@ -35,7 +35,10 @@ export const JSDoc: FunctionComponent<Props> = ({ doc }) => (
     {doc.content.exceptions && (
       <Exceptions exceptions={doc.content.exceptions} />
     )}
-    {doc.content.examples && <DocExamples examples={doc.content.examples} />}
+    {doc.content.examples && (
+      // @ts-expect-error - TypeDoc is being difficult
+      <DocExamples examples={doc.content.examples} />
+    )}
 
     <DocLinks />
   </div>

@@ -19,9 +19,17 @@ export const TypeDocSignature: FunctionComponent<TypeDocSignatureProps> = ({
     <>
       <span>
         {name && `function ${name}`}
-        {signature.typeParameter && (
-          <Generics params={signature.typeParameter} />
-        )}
+        {
+          // @ts-expect-error - TypeDoc is being difficult
+          signature.typeParameter && (
+            <Generics
+              params={
+                // @ts-expect-error - TypeDoc is being difficult
+                signature.typeParameter
+              }
+            />
+          )
+        }
         (
       </span>
 

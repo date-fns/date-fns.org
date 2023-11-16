@@ -73,7 +73,14 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
     case 'intersection':
 
     case 'literal':
-      return <>{JSON.stringify(type.value)}</>
+      return (
+        <>
+          {
+            // @ts-expect-error - TypeDoc is being difficult
+            JSON.stringify(type.value)
+          }
+        </>
+      )
 
     case 'reflection':
       return <TypeDocReflection reflection={type} listed={listed} />

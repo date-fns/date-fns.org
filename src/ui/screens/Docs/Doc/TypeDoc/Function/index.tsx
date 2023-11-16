@@ -88,6 +88,7 @@ function buildParentTypesMap(
   const map: ParentTypesMap = {}
 
   refl?.signatures?.forEach((signature) => {
+    // @ts-expect-error - TypeDoc is being difficult
     signature?.typeParameter?.map((r) => {
       map[r.id] = pageTypeHash(r.name, r.id)
     })
