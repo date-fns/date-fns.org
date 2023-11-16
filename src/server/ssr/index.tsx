@@ -19,7 +19,7 @@ const ServerUI: FunctionComponent<{ url: string }> = ({ url }) => {
 
 ssr.get('*', (req, res) => {
   const url = req.protocol + '://' + req.get('host') + req.url
-  const body = render(<ServerUI url={url} />)
+  const body = ssrEnabled ? render(<ServerUI url={url} />) : ''
 
   res.send(
     template({
@@ -27,3 +27,5 @@ ssr.get('*', (req, res) => {
     })
   )
 })
+
+const ssrEnabled = false
