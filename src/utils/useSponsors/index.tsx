@@ -29,6 +29,7 @@ export function useSponsors(): RequestHookResult<Sponsors> {
             .map(sponsorsMapFn),
           'id'
         ).filter((s) => s.name !== 'date-fns'),
+
         silver: uniqBy(
           ([
             Date.now() < +new Date(2023, 11, 1) && {
@@ -71,13 +72,25 @@ export function useSponsors(): RequestHookResult<Sponsors> {
           ),
           'id'
         ),
+
         bronze: uniqBy(
-          result.data.account.orders.nodes
-            .filter(isBronze)
-            .sort(sponsorsSortFn)
-            .map(sponsorsMapFn),
+          ([
+            Date.now() < +new Date(2024, 10, 17) && {
+              id: 'utlandskacasino',
+              url: 'https://xn--utlndskacasino-7hb.se/',
+              imageUrl:
+                'https://firebasestorage.googleapis.com/v0/b/date-fns-org.appspot.com/o/sponsors%2Futlandskacasino.png?alt=media&token=72c59dc1-cfcc-4f0e-b788-40e0f5686b04',
+              name: 'Utländska Casino',
+            },
+          ].filter((s) => !!s) as Sponsor[]).concat(
+            result.data.account.orders.nodes
+              .filter(isBronze)
+              .sort(sponsorsSortFn)
+              .map(sponsorsMapFn)
+          ),
           'id'
         ),
+
         backers: uniqBy(
           result.data.account.orders.nodes
             .filter(isBacker)
