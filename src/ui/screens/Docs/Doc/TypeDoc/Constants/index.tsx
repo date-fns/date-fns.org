@@ -1,4 +1,4 @@
-import type { DateFnsDocs } from '@date-fns/docs/types'
+import { DateFnsDocs } from '@date-fns/docs/types'
 import {
   findDescription,
   findExamples,
@@ -109,7 +109,7 @@ function Constant({ item, query }: ConstantProps) {
   const name = constant.name
   const description = item.description || item.summary
 
-  if (constant.kindString !== 'Variable') return null
+  if (constant.kind !== DateFnsDocs.ReflectionKind.Variable) return null
 
   const { usage, usageTabs } = useMemo(() => generateUsage(name, 'constants'), [
     item,

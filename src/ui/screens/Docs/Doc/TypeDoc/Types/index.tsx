@@ -1,7 +1,7 @@
+import { DateFnsDocs } from '@date-fns/docs/types'
 import {
   findDescription,
   findFnSummary,
-  findSummary,
   joinCommentParts,
   traverseType,
 } from '@date-fns/docs/utils'
@@ -57,10 +57,7 @@ export const useTypesModal = createModal<TypesModalProps>(
     const type = map[typeId] as DeclarationReflection | undefined
     const parentTypesMap = useMemo(() => buildParentTypesMap(type), [type])
     const usage = useMemo(
-      () =>
-        type?.kindString &&
-        kindHasUsage(type.kindString) &&
-        generateTypeUsage(type.name),
+      () => type && kindHasUsage(type.kind) && generateTypeUsage(type.name),
       [type]
     )
     const scope = type && typeIdStr(type.name, type.id)
@@ -145,10 +142,8 @@ export const useTypesModal = createModal<TypesModalProps>(
                   <h2 class={styles.headerText}>
                     {type.name}
                     {type.kindString && (
-                      <span
-                        class={styles.badge[kindToBadgeStyle(type.kindString)]}
-                      >
-                        {kindToBadgeTitle(type.kindString)}
+                      <span class={styles.badge[kindToBadgeStyle(type.kind)]}>
+                        {kindToBadgeTitle(type.kind)}
                       </span>
                     )}
                   </h2>
@@ -315,27 +310,28 @@ function buildMap(types: DeclarationReflection[]) {
   return map
 }
 
-function kindHasUsage(kindString: string): boolean {
-  switch (kindString) {
-    case 'Type alias':
-    case 'Interface':
+function kindHasUsage(kind: DateFnsDocs.ReflectionKind): boolean {
+  switch (kind) {
+    case DateFnsDocs.ReflectionKind.TypeAlias:
+    case DateFnsDocs.ReflectionKind.Interface:
       return true
 
-    case 'Type parameter':
     default:
       return false
   }
 }
 
-function kindToBadgeStyle(kindString: string): keyof typeof styles.badge {
-  switch (kindString) {
-    case 'Type alias':
+function kindToBadgeStyle(
+  kind: DateFnsDocs.ReflectionKind
+): keyof typeof styles.badge {
+  switch (kind) {
+    case DateFnsDocs.ReflectionKind.TypeAlias:
       return 'alias'
 
-    case 'Interface':
+    case DateFnsDocs.ReflectionKind.Interface:
       return 'interface'
 
-    case 'Type parameter':
+    case DateFnsDocs.ReflectionKind.TypeParameter:
       return 'generic'
 
     default:
@@ -343,15 +339,15 @@ function kindToBadgeStyle(kindString: string): keyof typeof styles.badge {
   }
 }
 
-function kindToBadgeTitle(kindString: string): string {
-  switch (kindString) {
-    case 'Type alias':
+function kindToBadgeTitle(kind: DateFnsDocs.ReflectionKind): string {
+  switch (kind) {
+    case DateFnsDocs.ReflectionKind.TypeAlias:
       return 'Alias'
 
-    case 'Interface':
+    case DateFnsDocs.ReflectionKind.Interface:
       return 'Interface'
 
-    case 'Type parameter':
+    case DateFnsDocs.ReflectionKind.TypeParameter:
       return 'Generic'
 
     default:
