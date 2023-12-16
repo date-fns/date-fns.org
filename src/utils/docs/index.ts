@@ -30,21 +30,33 @@ export interface UsageMap {
   usageTabs: string[]
 }
 
-export function generateUsage(name: string, module = name): UsageMap {
+export interface GenerateUsageOptions {
+  submodule?: string
+  alwaysSubmodule?: boolean
+}
+
+export function generateUsage(
+  name: string,
+  options?: GenerateUsageOptions
+): UsageMap {
+  const submodule = options?.submodule || name
+  const path = `date-fns${options?.alwaysSubmodule ? `/${submodule}` : ''}`
+
   const usage: Usage = {
     esm: {
-      code: `import { ${name} } from "date-fns";`,
+      code: `import { ${name} } from "${path}";`,
       title: 'ESM',
     },
 
     commonjs: {
-      code: `const ${name} = require("date-fns/${module}");`,
+      code: `const { ${name} } = require("${path}");`,
       title: 'CommonJS',
     },
 
     cdn: {
       title: 'CDN',
-      code: (cdn) => `import ${name} from "${cdn}/date-fns/${name}.mjs";`,
+      code: (cdn) =>
+        `import { ${name} } from "${cdn}/date-fns/${submodule}.mjs";`,
       options: {
         unpkg: 'https://unpkg.com',
         Skypack: 'https://cdn.skypack.dev',
@@ -85,7 +97,7 @@ export function findSource(
     | undefined,
   trimHash = false
 ) {
-  const url = ref?.sources?.[0].url
+  const url = ref && 'sources' in ref && ref?.sources?.[0].url
   if (!url) return
   return trimHash ? url.replace(/#.*$/, '') : url
 }

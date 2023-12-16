@@ -1,10 +1,8 @@
 import { Fragment, FunctionComponent, h } from 'preact'
-import { InlineCode } from '~/ui/components/InlineCode'
 import { Markdown } from '~/ui/components/Markdown'
 import { SectionHeader } from '~/ui/components/SectionHeader'
 
 export interface TypeDocThrow {
-  type: string | undefined
   description: string
 }
 
@@ -26,7 +24,6 @@ export const Throws: FunctionComponent<TypeDocThrowsProps> = ({
       <table>
         <thead>
           <tr>
-            <th>Type</th>
             <th>Description</th>
           </tr>
         </thead>
@@ -34,9 +31,6 @@ export const Throws: FunctionComponent<TypeDocThrowsProps> = ({
         <tbody>
           {throws.map((throwData, index) => (
             <tr key={index}>
-              <td>
-                {throwData.type && <InlineCode>{throwData.type}</InlineCode>}
-              </td>
               <td>
                 <Markdown value={throwData.description} />
               </td>

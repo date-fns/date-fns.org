@@ -111,9 +111,11 @@ function Constant({ item, query }: ConstantProps) {
 
   if (constant.kind !== DateFnsDocs.ReflectionKind.Variable) return null
 
-  const { usage, usageTabs } = useMemo(() => generateUsage(name, 'constants'), [
-    item,
-  ])
+  const { usage, usageTabs } = useMemo(
+    () =>
+      generateUsage(name, { submodule: 'constants', alwaysSubmodule: true }),
+    [item]
+  )
 
   const examples = useMemo(
     () => findExamples(constant).map(extractCodeFromTagString),

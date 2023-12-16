@@ -154,8 +154,8 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
     case 'inferred':
     case 'unknown':
     case 'typeOperator':
-    case 'template-literal':
-    case 'named-tuple-member':
+    case 'templateLiteral':
+    case 'namedTupleMember':
     case 'optional':
     case 'rest':
       return <Missing data={type} />

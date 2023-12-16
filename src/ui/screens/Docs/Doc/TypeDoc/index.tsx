@@ -7,6 +7,7 @@ import { matchTypeHash } from '~/utils/docs'
 import { TypeDocConstants } from './Constants'
 import { TypeDocFunction } from './Function'
 import { useTypesModal } from './Types'
+import type { DeclarationReflection } from 'typedoc'
 
 interface TypeDocProps {
   page: DateFnsDocs.TypeDocPage
@@ -14,7 +15,9 @@ interface TypeDocProps {
 
 export const TypeDoc: FunctionComponent<TypeDocProps> = ({ page }) => {
   const { location, navigate } = useContext(RouterContext)
-  const doc = useMemo(() => parse(page.doc), [page.slug])
+  const doc = useMemo(() => parse(page.doc) as DeclarationReflection, [
+    page.slug,
+  ])
   const showTypesModal = useTypesModal()
 
   useEffect(() => {

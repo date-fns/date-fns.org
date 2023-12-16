@@ -10,11 +10,11 @@ import { IgnoreParentTypesSourceContext } from '~/ui/contexts/IgnoreParentTypesS
 import { Arguments } from '../Arguments'
 import { Generics } from '../Generics'
 import { Returns } from '../Returns'
-import { Throws } from '../Throws'
 import { Type } from '../Type'
 import { Debug } from '~/ui/components/Debug'
 import { DocExamples } from '~/ui/components/DocExamples'
 import { extractCodeFromTagString } from '~/utils/docs'
+import { Throws } from '../Throws'
 
 interface SignatureProps {
   name: string

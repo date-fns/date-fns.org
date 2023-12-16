@@ -41,8 +41,6 @@ export const Finder: FunctionComponent<FinderProps> = ({
     const { pages, categories } = versions[0].data
     const filteredPages = filterPages(pages, query, selectedSubmodule)
 
-    console.log({ filteredPages })
-
     return (
       <div class={styles.container}>
         <Search query={[query, setQuery]} inputRef={searchRef} />
