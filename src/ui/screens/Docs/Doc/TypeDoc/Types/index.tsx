@@ -141,7 +141,7 @@ export const useTypesModal = createModal<TypesModalProps>(
                 <div class={styles.header}>
                   <h2 class={styles.headerText}>
                     {type.name}
-                    {type.kindString && (
+                    {type.kind && (
                       <span class={styles.badge[kindToBadgeStyle(type.kind)]}>
                         {kindToBadgeTitle(type.kind)}
                       </span>
@@ -207,8 +207,8 @@ interface ContentProps {
 }
 
 function TypeContent({ type, scope }: ContentProps) {
-  switch (type.kindString) {
-    case 'Interface':
+  switch (type.kind) {
+    case DateFnsDocs.ReflectionKind.Interface:
       if (!type.children?.length) return null
 
       return (
@@ -218,7 +218,7 @@ function TypeContent({ type, scope }: ContentProps) {
         </div>
       )
 
-    case 'Type parameter':
+    case DateFnsDocs.ReflectionKind.TypeParameter:
       return (
         <div>
           {
@@ -269,9 +269,9 @@ function extractTypes(
   const types = acc || []
 
   dec.children?.forEach((child) => {
-    switch (child.kindString) {
+    switch (child.kind) {
       // Ignore these types and their children
-      case 'Function':
+      case DateFnsDocs.ReflectionKind.Function:
         return
 
       // // Process function singatures and add their type parameters
@@ -283,15 +283,15 @@ function extractTypes(
       //   return
 
       // Add these types, but not process their children
-      case 'Interface':
-      case 'Type alias':
+      case DateFnsDocs.ReflectionKind.Interface:
+      case DateFnsDocs.ReflectionKind.TypeAlias:
         // Ignore external, i.e. Record
         if (child.flags.isExternal) return
         types.push(child)
         return
 
       default:
-        console.log('~~~ UNHANDLED TYPE', child.kindString, child)
+        console.log('~~~ UNHANDLED TYPE', child.kind, child)
     }
 
     if (child.children) extractTypes(child, types)

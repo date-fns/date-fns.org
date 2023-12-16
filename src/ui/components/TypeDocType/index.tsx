@@ -33,13 +33,17 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
 
     case 'reference':
       // TODO: Get rid of it one TypeDoc adds it
-      const id = ((type as unknown) as { id: number }).id
+      const id = ((type as unknown) as { target: number }).target
       const hash = inline.parentTypesMap?.[id] || typeHash(type.name, id)
       const typeArguments = type.typeArguments
       return (
         <>
           <>
-            {type.package ? <>{type.name}</> : <a href={hash}>{type.name}</a>}
+            {type.package !== 'date-fns' ? (
+              <>{type.name}</>
+            ) : (
+              <a href={hash}>{type.name}</a>
+            )}
 
             {typeArguments && '<'}
           </>
