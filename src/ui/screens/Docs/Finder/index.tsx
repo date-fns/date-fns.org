@@ -30,8 +30,8 @@ export const Finder: FunctionComponent<FinderProps> = ({
 
   const [versions, { loading }] = useRead(
     db.versions.query(($) => [
-      $.field('package').equal(packageName),
-      $.field('version').equal(selectedVersion),
+      $.field('package').eq(packageName),
+      $.field('version').eq(selectedVersion),
     ])
   )
 
@@ -40,6 +40,8 @@ export const Finder: FunctionComponent<FinderProps> = ({
   if (versions && versions.length >= 1) {
     const { pages, categories } = versions[0].data
     const filteredPages = filterPages(pages, query, selectedSubmodule)
+
+    console.log({ filteredPages })
 
     return (
       <div class={styles.container}>

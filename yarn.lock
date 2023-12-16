@@ -8582,12 +8582,7 @@ typeroo@^0.9.0:
   resolved "https://registry.yarnpkg.com/typeroo/-/typeroo-0.9.0.tgz#34886e8529423462cd876c8090745b578f83cc9e"
   integrity sha512-dVYoqIFk1OeKuDU3pwdQEsUuTosrf3oIHzXBm+/YaemahBe6iDUZl08MStcyVBPplOfK8Hp4CY1nHZEClqNsuw==
 
-typesaurus@10.0.0-alpha.41:
-  version "10.0.0-alpha.41"
-  resolved "https://registry.yarnpkg.com/typesaurus/-/typesaurus-10.0.0-alpha.41.tgz#c6c9dffedbf06f7b6375c7ff01720f01e952c635"
-  integrity sha512-K3c8pwpkzMiSG8joVLcRcgZTxe20QDObdKP2eJNU8P+bRpDIvF5y3jDkz+teUoqtAp6CAlO1ZXucl9gQhwK3DA==
-
-typesaurus@^10.0.0-beta.12:
+typesaurus@10.0.0-beta.12, typesaurus@^10.0.0-beta.12:
   version "10.0.0-beta.12"
   resolved "https://registry.yarnpkg.com/typesaurus/-/typesaurus-10.0.0-beta.12.tgz#42bee028d6278793ed04fd627b8ed9ea240b34ac"
   integrity sha512-fsY+QATrDy5L514nJO3XJpkATXJwdx6v1Oq26cevj4zv/exmF3WeYxpDupBasbAyaDmeH1FW+fPdTwyisUAinA==

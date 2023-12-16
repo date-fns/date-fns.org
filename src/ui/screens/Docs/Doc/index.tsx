@@ -24,9 +24,9 @@ export const Doc: FunctionComponent<Props> = ({
 }) => {
   const [pages, { loading }] = useRead(
     db.pages.query(($) => [
-      $.field('package').equal(packageName),
-      $.field('version').equal(selectedVersion),
-      $.field('slug').equal(selectedPage),
+      $.field('package').eq(packageName),
+      $.field('version').eq(selectedVersion),
+      $.field('slug').eq(selectedPage),
       $.field('submodules').contains(selectedSubmodule),
     ])
   )
