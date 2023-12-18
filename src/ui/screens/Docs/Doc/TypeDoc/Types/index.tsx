@@ -285,9 +285,14 @@ function extractTypes(
       // Add these types, but not process their children
       case DateFnsDocs.ReflectionKind.Interface:
       case DateFnsDocs.ReflectionKind.TypeAlias:
+      case DateFnsDocs.ReflectionKind.ObjectLiteral:
         // Ignore external, i.e. Record
         if (child.flags.isExternal) return
         types.push(child)
+        return
+
+      // Ignore the properties (i.e. weekStartsOn from Locale)
+      case DateFnsDocs.ReflectionKind.Property:
         return
 
       default:
@@ -341,6 +346,7 @@ function kindToBadgeStyle(
 
 function kindToBadgeTitle(kind: DateFnsDocs.ReflectionKind): string {
   switch (kind) {
+    case DateFnsDocs.ReflectionKind.ObjectLiteral:
     case DateFnsDocs.ReflectionKind.TypeAlias:
       return 'Alias'
 
