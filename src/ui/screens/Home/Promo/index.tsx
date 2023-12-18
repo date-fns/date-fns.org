@@ -9,6 +9,10 @@ import * as styles from './styles.css'
 export const Promo = () => (
   <div class={styles.outer}>
     <div class={styles.inner}>
+      <a href="https://blog.date-fns.org/v3-is-out/" class={styles.newLabel}>
+        <span class={styles.newLabelMessage}>🎉 date-fns v3.0.0 is out!</span>
+      </a>
+
       <div class={styles.logo}>
         <img class={styles.logoImage} src={logoPath} />
         <div class={styles.logoName}>date-fns</div>

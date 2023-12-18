@@ -98,3 +98,23 @@ export const gettingStartedLink = style({
   padding: '1rem',
   width: '12rem',
 })
+
+export const newLabel = style({
+  display: 'flex',
+  marginBottom: '2rem',
+  textDecoration: 'none',
+  border: '1px solid #ffffff63',
+  borderRadius: '1rem',
+  padding: '2px',
+  color: '#ffbedf',
+  fontSize: '1rem',
+})
+
+export const newLabelMessage = style({
+  background: 'linear-gradient(#8c1b54, #5f0030)',
+  color: 'white',
+  fontSize: '.9rem',
+  fontWeight: 500,
+  borderRadius: '9rem',
+  padding: '2px 10px',
+})
