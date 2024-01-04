@@ -70,6 +70,9 @@ export function remarkableTree(tokens: Token[]) {
       const { alt, src, title } = token as ImageToken
       tree.push(tag('img', { alt, src, title }, []))
       pos++
+    } else if (token.type === 'hardbreak') {
+      tree.push(tag('br', {}, []))
+      pos++
 
       // Fail
     } else {
