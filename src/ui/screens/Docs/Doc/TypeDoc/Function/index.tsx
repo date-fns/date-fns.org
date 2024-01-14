@@ -4,6 +4,7 @@ import {
   findFnDescription,
   findFnExamples,
   findSummary,
+  findFnTag,
 } from '@date-fns/docs/utils'
 import { FunctionComponent, h } from 'preact'
 import { useMemo } from 'preact/hooks'
@@ -25,6 +26,7 @@ import {
   pageTypeId,
   pageTypeIdHighlightMatch,
 } from '~/utils/docs'
+import { Alias } from './Alias'
 import { FP } from './FP'
 import { Signatures } from './Signatures'
 
@@ -44,6 +46,7 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
     [fn]
   )
   const { usage, usageTabs } = useMemo(() => generateUsage(doc.name), [doc])
+  const alias = useMemo(() => fn && findFnTag(fn, '@alias'), [fn]);
   const signatures = fn && fn.signatures
   const examples = useMemo(
     () => fn && findFnExamples(fn).map(extractCodeFromTagString),
@@ -70,6 +73,8 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
         pure={page.pure}
         hasOptions={fnHasOptions(fn)}
       />
+
+      {alias && (<Alias alias={alias} />)}
 
       {signatures && <Signatures name={doc.name} signatures={signatures} />}
 
