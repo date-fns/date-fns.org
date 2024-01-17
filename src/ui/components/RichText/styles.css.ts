@@ -209,7 +209,6 @@ globalStyle(`${content} blockquote`, {
   borderLeft: '3px solid #b9a2b2',
   background: '#35001d',
   padding: '0.5rem 1rem',
-  color: '#ffffff',
 
   '@media': {
     '(prefers-color-scheme: dark)': {
