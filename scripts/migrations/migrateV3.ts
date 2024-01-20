@@ -13,7 +13,7 @@ type Page =
     })
 
 const oldDb = schema(($) => ({
-  pages: $.collection<Page>(),
+  pages: $.collection<Page | DateFnsDocs.Page>(),
 }))
 
 type OldSchema = Typesaurus.Schema<typeof oldDb>
@@ -23,7 +23,12 @@ const maxPageSize = 100
 processAll((pages) =>
   Promise.all(
     pages.map((page) => {
-      if (page.data.type === 'markdown') return
+      if (
+        page.data.type === 'markdown' ||
+        !(typeof page.data.doc === 'object' && 'json' in page.data.doc)
+      )
+        return
+
       return db.pages.update(page.ref.id, {
         doc: page.data.doc.json as StringifiedJSON<DateFnsDocs.JSDocFunction>,
       })
