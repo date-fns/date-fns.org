@@ -56,13 +56,12 @@ export function useSponsors(): RequestHookResult<Sponsors> {
               name: 'Slotzilla',
             },
 
-            Date.now() < +new Date(2024, 2, 10) && {
+            Date.now() < +new Date(2025, 2, 10) && {
               id: 'automatenspiele',
-              url:
-                'https://automatenspielex.com/online-casino-bonus/ohne-einzahlung',
+              url: 'https://automatenspielex.com/',
               imageUrl:
                 'https://firebasestorage.googleapis.com/v0/b/date-fns-org.appspot.com/o/sponsors%2Fautomatenspiele.png?alt=media&token=a722fa3f-9514-4932-a4f7-8b13246dcada',
-              name: 'bonus ohne einzahlung',
+              name: 'automatenspielex.com',
             },
           ].filter((s) => !!s) as Sponsor[]).concat(
             result.data.account.orders.nodes
