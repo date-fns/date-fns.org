@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { ComponentChildren, FunctionComponent, h } from 'preact'
 import { createPortal } from 'preact/compat'
-import { Ref, useEffect } from 'preact/hooks'
+import { MutableRef, useEffect } from 'preact/hooks'
 import { ModalPortalCloseIcon } from './CloseIcon'
 import * as styles from './styles.css'
 
@@ -12,7 +12,7 @@ export interface ModalPortalProps {
   size?: keyof typeof styles.window
   closeOnOverlayClick?: boolean
   adjusted?: boolean
-  overlayRef?: Ref<HTMLDivElement | null>
+  overlayRef?: MutableRef<HTMLDivElement | null>
 }
 
 export const ModalPortal: FunctionComponent<ModalPortalProps> = ({

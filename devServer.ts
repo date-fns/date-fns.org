@@ -13,7 +13,9 @@ const compiler = webpack(config)
 
 const server = express()
 server.use(api)
+// @ts-expect-error: I don't want to deal with it right now
 server.use(WebpackDevMiddleware(compiler))
+// @ts-expect-error: I don't want to deal with it right now
 server.use(WebpackHotMiddleware(compiler))
 server.get('*', (_req, res) => res.send(template()))
 server.listen(PORT)

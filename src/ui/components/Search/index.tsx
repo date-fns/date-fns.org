@@ -1,14 +1,14 @@
-import { FunctionComponent, h } from 'preact'
+import { FunctionComponent, h, RefObject } from 'preact'
 // import { trackAction } from 'app/acts/tracking_acts'
-import debounce from 'lodash/debounce'
-import { Ref, StateUpdater, useCallback } from 'preact/hooks'
-import * as styles from './styles.css'
 import classNames from 'classnames'
+import debounce from 'lodash/debounce'
+import { useCallback } from 'preact/hooks'
+import * as styles from './styles.css'
 
 interface SearchProps {
   query: [string, (query: string) => void]
   bordered?: boolean
-  inputRef?: Ref<HTMLInputElement>
+  inputRef?: RefObject<HTMLInputElement>
 }
 
 export const Search: FunctionComponent<SearchProps> = ({

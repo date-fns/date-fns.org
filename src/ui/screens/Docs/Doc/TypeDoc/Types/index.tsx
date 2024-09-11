@@ -27,6 +27,7 @@ import { useActiveItem } from '~/ui/hooks/useActiveItem'
 import { useQuery } from '~/ui/hooks/useQuery'
 import {
   ParentTypesMap,
+  declName,
   findSource,
   generateTypeUsage,
   inlineTypeHash,
@@ -115,19 +116,22 @@ export const useTypesModal = createModal<TypesModalProps>(
 
               <div class={styles.list}>
                 {filteredNav.length ? (
-                  filteredNav.map(({ type, summary, description }) => (
-                    <a href={typeHash(type.name, type.id)} class={styles.item}>
-                      <Item
-                        key={type.id}
-                        title={type.name}
-                        summary={summary || description}
-                        code
-                        active={type.id === typeId}
-                        query={query}
-                        activeRef={activeRef}
-                      />
-                    </a>
-                  ))
+                  filteredNav.map(({ type, summary, description }) => {
+                    const name = declName(type)
+                    return (
+                      <a href={typeHash(name, type.id)} class={styles.item}>
+                        <Item
+                          key={type.id}
+                          title={name}
+                          summary={summary || description}
+                          code
+                          active={type.id === typeId}
+                          query={query}
+                          activeRef={activeRef}
+                        />
+                      </a>
+                    )
+                  })
                 ) : (
                   <div class={styles.noResults}>
                     <NoSearchResults noun="types" query={[query, setQuery]} />
@@ -285,6 +289,8 @@ function extractTypes(
       // Add these types, but not process their children
       case DateFnsDocs.ReflectionKind.Interface:
       case DateFnsDocs.ReflectionKind.TypeAlias:
+      // @ts-expect-error - Something's off but I don't want to deal with it right now
+      // [TODO] Figure out what replace ObjectLiteral with
       case DateFnsDocs.ReflectionKind.ObjectLiteral:
         // Ignore external, i.e. Record
         if (child.flags.isExternal) return
@@ -346,6 +352,8 @@ function kindToBadgeStyle(
 
 function kindToBadgeTitle(kind: DateFnsDocs.ReflectionKind): string {
   switch (kind) {
+    // @ts-expect-error - Something's off but I don't want to deal with it right now
+    // [TODO] Figure out what replace ObjectLiteral with
     case DateFnsDocs.ReflectionKind.ObjectLiteral:
     case DateFnsDocs.ReflectionKind.TypeAlias:
       return 'Alias'

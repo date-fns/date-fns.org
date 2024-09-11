@@ -1,19 +1,13 @@
-import { ModalPortal, ModalPortalProps } from '~/ui/components/ModalPortal'
 import {
   ComponentChild,
   ComponentChildren,
   createContext,
   FunctionComponent,
   h,
+  RefObject,
 } from 'preact'
-import {
-  MutableRef,
-  Ref,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-} from 'preact/hooks'
+import { useContext, useMemo, useRef, useState } from 'preact/hooks'
+import { ModalPortal, ModalPortalProps } from '~/ui/components/ModalPortal'
 import { useRefState } from '~/utils/useRefState'
 
 export interface ModalComponent {
@@ -21,9 +15,9 @@ export interface ModalComponent {
   component: ComponentChildren
 }
 
-export type ModalOverlayRef = MutableRef<HTMLDivElement | null>
+export type ModalOverlayRef = RefObject<HTMLDivElement | null>
 
-export type ModalOnCloseRef = MutableRef<(() => unknown) | null>
+export type ModalOnCloseRef = RefObject<(() => unknown) | null>
 
 export interface ModalAPI {
   modal: ModalComponent | undefined

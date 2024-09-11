@@ -50,7 +50,7 @@ export const Node: FunctionComponent<Props> = ({ node }) => {
       )
 
     case 'text':
-      return <>{node.content}</> ?? null
+      return <>{node.content}</>
 
     case 'softbreak':
       return <>{'\n'}</>

@@ -1,7 +1,7 @@
 import type {
   DeclarationReflection,
   ParameterReflection,
-  SignatureReflection,
+  ReferenceType,
   TypeParameterReflection,
 } from 'typedoc'
 
@@ -124,7 +124,7 @@ export function typeId(name: string, id: number, nested?: string) {
   return `types/${name}/${id}${nested ? `/${nested}` : ''}`
 }
 
-const typeHashRE = /types\/\w+\/(\d+)(?:\/\w+\/(\d+)(?:\/\w+))?/
+const typeHashRE = /types\/[\w\.]+\/(\d+)(?:\/\w+\/(\d+)(?:\/\w+))?/
 
 export function matchTypeHash(hash: string) {
   const captures = hash.match(typeHashRE)
@@ -199,6 +199,19 @@ export function fnHasOptions(fn: DeclarationReflection | undefined) {
   return !!fn?.signatures?.find((sig) =>
     sig.parameters?.find((param) => param.name === 'options')
   )
+}
+
+export function declName(decl: DeclarationReflection) {
+  if (decl.type?.type === 'reference') return referenceName(decl.type)
+  return decl.name
+}
+
+export function referenceName(type: ReferenceType) {
+  // When it's a generic type, we need to use the type name instead of
+  // the full name.
+  return type.refersToTypeParameter
+    ? type.name
+    : type.qualifiedName || type.name
 }
 
 export let debugTypeDoc = false

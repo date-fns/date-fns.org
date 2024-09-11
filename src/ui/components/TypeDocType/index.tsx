@@ -2,7 +2,7 @@ import { Fragment, FunctionComponent, h } from 'preact'
 import { useContext } from 'preact/hooks'
 import type { SomeType } from 'typedoc'
 import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { typeHash } from '~/utils/docs'
+import { referenceName, typeHash } from '~/utils/docs'
 import { Missing } from '../Missing'
 import { TypeDocReflection } from '../TypeDocReflection'
 
@@ -34,15 +34,17 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
     case 'reference':
       // TODO: Get rid of it one TypeDoc adds it
       const id = ((type as unknown) as { target: number }).target
-      const hash = inline.parentTypesMap?.[id] || typeHash(type.name, id)
+      const name = referenceName(type)
+      const hash = inline.parentTypesMap?.[id] || typeHash(name, id)
       const typeArguments = type.typeArguments
+
       return (
         <>
           <>
             {type.package !== 'date-fns' ? (
-              <>{type.name}</>
+              <>{name}</>
             ) : (
-              <a href={hash}>{type.name}</a>
+              <a href={hash}>{name}</a>
             )}
 
             {typeArguments && '<'}
@@ -158,6 +160,7 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
     case 'namedTupleMember':
     case 'optional':
     case 'rest':
+    default:
       return <Missing data={type} />
   }
 }
