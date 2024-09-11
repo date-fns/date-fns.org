@@ -1,5 +1,5 @@
 import 'isomorphic-fetch'
-import { https } from 'firebase-functions'
+import { https } from 'firebase-functions/v1'
 import express from 'express'
 import { api } from '~/server/api'
 import { ssr } from '~/server/ssr'
