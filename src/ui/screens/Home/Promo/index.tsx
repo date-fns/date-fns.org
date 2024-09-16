@@ -9,8 +9,13 @@ import * as styles from './styles.css'
 export const Promo = () => (
   <div class={styles.outer}>
     <div class={styles.inner}>
-      <a href="https://blog.date-fns.org/v3-is-out/" class={styles.newLabel}>
-        <span class={styles.newLabelMessage}>🎉 date-fns v3.0.0 is out!</span>
+      <a
+        href="https://blog.date-fns.org/v40-with-time-zone-support/"
+        class={styles.newLabel}
+      >
+        <span class={styles.newLabelMessage}>
+          🔥 date-fns v4.0 with time zone support!
+        </span>
       </a>
 
       <div class={styles.logo}>
