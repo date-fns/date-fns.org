@@ -78,8 +78,9 @@ export const template = ({ body }: Params = {}) =>
       const CODE_STYLE = 'font-size: 14px; font-family: monospace;'
 
       async function init(dirtyVersion) {
-        const version = dirtyVersion && dirtyVersion.replace(/^v/, '') || '2.29.3'
-        const url = 'https://unpkg.com/date-fns' + (version ? '@' + version : '') + '/esm/index.js'
+        const version = dirtyVersion && dirtyVersion.replace(/^v/, '') || '4.1.0'
+        const indexFile = version[0] === '4' ? '/index.js' : '/esm/index.js'
+        const url = 'https://unpkg.com/date-fns' + (version ? '@' + version : '') + indexFile
         try {
           const dateFns = await import(url)
           window._ = dateFns
