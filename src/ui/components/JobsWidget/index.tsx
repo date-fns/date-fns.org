@@ -55,20 +55,30 @@ export const JobsWidget: FunctionComponent = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class={styles.company}>
-          <img
-            class={styles.logo}
-            src={job.data.companyLogo}
-            key={job.data.companyLogo}
-          />
+        <div class={styles.main}>
+          <div class={styles.companyInfo}>
+            <div class={styles.logoWrapper}>
+              <img
+                class={styles.logo}
+                src={job.data.companyLogo}
+                key={job.data.companyLogo}
+              />
+            </div>
 
-          <div>
-            <div class={styles.companyName}>{job.data.companyName}</div>
-            <div class={styles.location}>{job.data.location}</div>
+            <div class={styles.companyAndLocation}>
+              <div class={styles.hiringLabel}>
+                <span class={styles.companyName}>{job.data.companyName}</span>{' '}
+                is hiring!
+              </div>
+
+              <div class={styles.location}>{job.data.location}</div>
+            </div>
           </div>
 
-          <div class={styles.header}>{job.data.position}</div>
+          <div class={styles.apply}>Apply</div>
         </div>
+
+        {/* <div class={styles.header}>{job.data.position}</div> */}
 
         <div class={styles.buttons}>
           <div class={styles.tags}>
@@ -102,11 +112,10 @@ export const JobsWidget: FunctionComponent = () => {
       <div class={styles.footer}>
         <a
           class={styles.link}
-          href={`${CONFIG.jobsURL}/?utm_source=date-fns&utm_medium=banner&utm_campaign=date-fns-docs`}
-          target="_blank"
+          href="https://jobs.date-fns.org/hire"
           rel="noopener noreferrer"
         >
-          Get the hottest JavaScript Jobs right into your inbox
+          Promote your job here →
         </a>
       </div>
     </div>
