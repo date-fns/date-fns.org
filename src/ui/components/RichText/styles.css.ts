@@ -219,6 +219,24 @@ globalStyle(`${content} blockquote`, {
   },
 })
 
+globalStyle(`${content} blockquote p`, {
+  color: '#cbc0c7',
+})
+
+globalStyle(`${content} blockquote a`, {
+  color: '#cbc0c7',
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#d397b6',
+    },
+  },
+})
+
+globalStyle(`${content} blockquote code`, {
+  background: '#35021b',
+})
+
 globalStyle(`${content} mark`, {
   backgroundColor: '#fffe25',
 })
