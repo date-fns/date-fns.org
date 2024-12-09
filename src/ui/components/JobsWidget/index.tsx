@@ -80,32 +80,12 @@ export const JobsWidget: FunctionComponent = () => {
 
         {/* <div class={styles.header}>{job.data.position}</div> */}
 
-        <div class={styles.buttons}>
-          <div class={styles.tags}>
-            {job.data.tags.slice(0, 3).map((tag) => (
-              <div class={styles.tag} key={tag}>
-                {result.tags[tag]}
-              </div>
-            ))}
-          </div>
-
-          {shuffledJobs.length > 1 && (
-            <button
-              class={styles.nextButton}
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                let newIndex = jobIndex + 1
-                if (newIndex > shuffledJobs.length - 1) {
-                  newIndex = 0
-                }
-                setJobIndex(newIndex)
-              }}
-            >
-              <span>Next job</span>
-              <NextIcon />
-            </button>
-          )}
+        <div class={styles.tags}>
+          {job.data.tags.slice(0, 3).map((tag) => (
+            <div class={styles.tag} key={tag}>
+              {result.tags[tag]}
+            </div>
+          ))}
         </div>
       </a>
 
@@ -117,6 +97,24 @@ export const JobsWidget: FunctionComponent = () => {
         >
           Promote your job here →
         </a>
+
+        {shuffledJobs.length > 1 && (
+          <button
+            class={styles.nextButton}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              let newIndex = jobIndex + 1
+              if (newIndex > shuffledJobs.length - 1) {
+                newIndex = 0
+              }
+              setJobIndex(newIndex)
+            }}
+          >
+            <span class={styles.nextButtonLabel}>Next job</span>
+            <NextIcon />
+          </button>
+        )}
       </div>
     </div>
   )

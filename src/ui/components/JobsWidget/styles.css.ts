@@ -40,15 +40,10 @@ export const blockClickable = style({
   '@media': {
     '(prefers-color-scheme: dark)': {
       ':hover': {
-        background: '#fff7d2',
+        background: '#50112b',
       },
     },
   },
-})
-
-export const buttons = style({
-  display: 'flex',
-  justifyContent: 'center',
 })
 
 export const main = style({
@@ -115,11 +110,50 @@ export const apply = style({
 })
 
 export const footer = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0.5rem 0.5rem',
+  fontSize: '0.8rem',
+})
+
+export const footerLink = style({
   color: '#837430',
-  textAlign: 'center',
   display: 'block',
   padding: '0.3rem 0',
   fontSize: '0.8rem',
+})
+
+export const nextButton = style({
+  display: 'flex',
+  background: '#6f6d62',
+  color: 'white',
+  border: '0',
+  padding: '0.125rem 0.5rem',
+  cursor: 'pointer',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  ':hover': {
+    background: 'black',
+  },
+
+  '@media': {
+    '(prefers-color-scheme: dark)': {
+      color: '#f6e3ea',
+      background: '#2f031a',
+      borderColor: '#472136',
+
+      ':hover': {
+        color: 'white',
+        background: '#50112b',
+      },
+    },
+  },
+})
+
+export const nextButtonLabel = style({
+  marginRight: '0.3rem',
 })
 
 export const header = style({
@@ -153,6 +187,7 @@ export const logoWrapper = style({
   width: '54px',
   height: '54px',
   borderRadius: '50%',
+  overflow: 'hidden',
   background: 'white',
   display: 'flex',
   alignItems: 'center',
@@ -160,7 +195,7 @@ export const logoWrapper = style({
 })
 
 export const logo = style({
-  width: '48px',
+  width: '54px',
   flexShrink: '0',
 })
 
@@ -183,26 +218,9 @@ export const tag = style({
   },
 })
 
-export const nextButton = style({
-  display: 'flex',
-  background: 'black',
-  color: 'white',
-  border: '0',
-  padding: '0.125rem 0.5rem',
-  cursor: 'pointer',
-  alignItems: 'center',
-
-  ':hover': {
-    color: 'red',
-  },
-})
-
-globalStyle(`${nextButton} > *:not(:last-child)`, {
-  marginRight: '0.25rem',
-})
-
 export const tags = style({
   display: 'flex',
+  justifyContent: 'center',
 })
 
 globalStyle(`${tags} > *:not(:last-child)`, {

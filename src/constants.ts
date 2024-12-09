@@ -40,5 +40,5 @@ const config: { [k: string]: Config } = {
   },
 }
 
-const mode = process.env.NODE_ENV ?? 'development'
-export const CONFIG = config[mode] ?? config.development
+const mode = 'production'
+export const CONFIG = config[mode]
