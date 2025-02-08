@@ -18,6 +18,7 @@ import { Finder } from './Finder'
 import hamburgerPath from './img/hamburger.svg'
 import { NavBar } from './NavBar'
 import * as styles from './styles.css'
+import LoadingSpinner from '~/ui/components/Loaders/LoadingSpinner'
 
 interface Props {
   selectedSubmodule: DateFnsDocs.Submodule
@@ -106,7 +107,7 @@ export const Docs: FunctionComponent<Props> = ({
       </div>
     )
   } else if (loading) {
-    return <div class={styles.loading}>Loading...</div>
+    return <div class={styles.loading}><LoadingSpinner/></div>
   } else {
     return <div class={styles.loading}>Failed to load package list!</div>
   }

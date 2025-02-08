@@ -8,6 +8,7 @@ import { RichText } from '~/ui/components/RichText'
 import { DocLinkContext } from '~/ui/router/DocLinkContext'
 import { Content } from './Content'
 import * as styles from './styles.css'
+import LoadingSpinner from '~/ui/components/Loaders/LoadingSpinner'
 
 const SCROLL_OFFSET = 35
 
@@ -66,7 +67,7 @@ export const Doc: FunctionComponent<Props> = ({
       </div>
     )
   } else if (loading) {
-    return <div class={styles.wrapper}>Loading...</div>
+    return <div class={styles.wrapper}><LoadingSpinner/></div>
   } else {
     // FIXME:
     return <div class={styles.wrapper}>Error!</div>

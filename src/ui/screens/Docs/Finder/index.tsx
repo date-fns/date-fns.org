@@ -12,7 +12,6 @@ import { NoResults } from './NoResults'
 import * as styles from './styles.css'
 import { filterPages } from './utils'
 import { Widget } from './Widget'
-
 interface FinderProps {
   selectedVersion: string
   selectedPage: string
@@ -68,7 +67,7 @@ export const Finder: FunctionComponent<FinderProps> = ({
   } else if (loading) {
     return (
       <div class={styles.container}>
-        <div class={styles.loading}>Loading...</div>
+        <div class={styles.loading}></div>
       </div>
     )
   } else {
