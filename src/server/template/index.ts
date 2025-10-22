@@ -78,10 +78,14 @@ export const template = ({ body }: Params = {}) =>
       const CODE_STYLE = 'font-size: 14px; font-family: monospace;'
 
       async function init(dirtyVersion) {
-        const version = dirtyVersion && dirtyVersion.replace(/^v/, '') || '2.29.3'
-        const url = 'https://unpkg.com/date-fns' + (version ? '@' + version : '') + '/esm/index.js'
+        const version = dirtyVersion && dirtyVersion.replace(/^v/, '') || '4.1.0'
+        const url = 'https://unpkg.com/date-fns' + (version ? '@' + version : '')
+        const packageUrl = url + '/package.json'
         try {
-          const dateFns = await import(url)
+          const response = await fetch(packageUrl)
+          const packageJson = await response.json()
+          const indexUrl = url + '/' + packageJson.module
+          const dateFns = await import(indexUrl)
           window._ = dateFns
           window.dateFns = dateFns
 
@@ -98,7 +102,7 @@ export const template = ({ body }: Params = {}) =>
 
       console.log(
         '%c( ⩗) date-fns console\\n' +
-          '%cRun %cinit()%c or %cinit("v2.16.1" /* version */)\\n' +
+          '%cRun %cinit()%c or %cinit("v4.1.0" /* version */)\\n' +
           '%cto make date-fns functions available in console.',
         HEADER_STYLE, MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE, CODE_STYLE, MESSAGE_STYLE,
       )
