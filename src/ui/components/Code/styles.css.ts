@@ -14,8 +14,8 @@ export const code = style({
     display: 'none',
   },
 
-  '@media': {
-    '(prefers-color-scheme: dark)': {
+  selectors: {
+    '[data-theme="dark"] &, .dark-theme &': {
       color: '#c5c4c2',
       backgroundColor: '#12000a',
     },
@@ -29,8 +29,8 @@ export const pre = style({
   padding: '.25rem .5rem',
   borderRadius: '4px',
 
-  '@media': {
-    '(prefers-color-scheme: dark)': {
+  selectors: {
+    '[data-theme="dark"] &, .dark-theme &': {
       backgroundColor: '#12000a',
       borderColor: '#2c1622',
     },
