@@ -5,6 +5,7 @@ import { defaultSubmodule } from '@date-fns/docs/consts'
 import type { DateFnsDocs } from '@date-fns/docs/types'
 import { VersionSelector } from './VersionSelector'
 import { SubmoduleSelector } from './SubmoduleSelector'
+import { ThemeToggle } from '~/ui/components/ThemeToggle'
 import * as styles from './styles.css'
 
 interface Props {
@@ -61,7 +62,7 @@ export const NavBar: FunctionComponent<Props> = ({
             </a>
           </div>
 
-          <div>
+          <div class={styles.rightSection}>
             <VersionSelector
               selectedVersion={selectedVersion}
               latestVersion={latestVersion}
@@ -76,6 +77,8 @@ export const NavBar: FunctionComponent<Props> = ({
               selectedVersion={selectedVersion}
               submodules={submodules}
             />
+
+            <ThemeToggle />
           </div>
         </div>
       </div>

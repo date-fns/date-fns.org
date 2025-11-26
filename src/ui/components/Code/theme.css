@@ -147,23 +147,54 @@ pre[class*='language-'] {
 }
 
 @media (prefers-color-scheme: dark) {
-  .token.keyword {
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.keyword {
     color: #e170be;
   }
 
-  .token.number,
-  .token.string,
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.constant,
-  .token.symbol,
-  .token.deleted {
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.number,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.string,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.property,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.tag,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.boolean,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.constant,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.symbol,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.deleted {
     color: #cfc0c8;
   }
 
-  .token.function,
-  .token.class-name {
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.function,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) .token.class-name {
     color: #db8e66;
   }
+}
+
+[data-theme='dark'] .token.keyword,
+.dark-theme .token.keyword {
+  color: #e170be;
+}
+
+[data-theme='dark'] .token.number,
+[data-theme='dark'] .token.string,
+[data-theme='dark'] .token.property,
+[data-theme='dark'] .token.tag,
+[data-theme='dark'] .token.boolean,
+[data-theme='dark'] .token.constant,
+[data-theme='dark'] .token.symbol,
+[data-theme='dark'] .token.deleted,
+.dark-theme .token.number,
+.dark-theme .token.string,
+.dark-theme .token.property,
+.dark-theme .token.tag,
+.dark-theme .token.boolean,
+.dark-theme .token.constant,
+.dark-theme .token.symbol,
+.dark-theme .token.deleted {
+  color: #cfc0c8;
+}
+
+[data-theme='dark'] .token.function,
+[data-theme='dark'] .token.class-name,
+.dark-theme .token.function,
+.dark-theme .token.class-name {
+  color: #db8e66;
 }

@@ -49,24 +49,59 @@ code:after {
   --color-tooltip-canvas: #280027;
   --color-tooltip-ink: #fff5ff;
   --icon-color: #770c5699;
+  
+  /* Theme variables */
+  --bg-primary: #fffdf9;
+  --bg-code: #faf6f0;
+  --text-primary: black;
+  --text-code: inherit;
+}
+
+:root[data-theme='dark'],
+:root.dark-theme {
+  color-scheme: dark;
+  --color-tooltip-canvas: #280027;
+  --color-tooltip-ink: #fff5ff;
+  --icon-color: #585056;
+  --bg-primary: #12020a;
+  --bg-code: #1e0814;
+  --text-primary: white;
+  --text-code: #c5c4c2;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) {
     color-scheme: dark;
     --icon-color: #585056;
+    --bg-primary: #12020a;
+    --bg-code: #1e0814;
+    --text-primary: white;
+    --text-code: #c5c4c2;
   }
 
-  code {
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) code {
     background-color: #1e0814;
     color: #c5c4c2;
   }
 
-  body,
-  input,
-  select,
-  textarea,
-  button {
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) body,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) input,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) select,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) textarea,
+  :root:not([data-theme]):not(.light-theme):not(.dark-theme) button {
     color: white;
   }
+}
+
+code {
+  background-color: var(--bg-code);
+  color: var(--text-code);
+}
+
+body,
+input,
+select,
+textarea,
+button {
+  color: var(--text-primary);
 }

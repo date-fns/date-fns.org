@@ -124,6 +124,11 @@ export const menuIcon = style({
   },
 })
 
+export const rightSection = style({
+  display: 'flex',
+  alignItems: 'center',
+})
+
 globalStyle(`${menuIcon} img`, {
   width: '18px',
 })

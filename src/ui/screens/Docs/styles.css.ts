@@ -4,13 +4,7 @@ export const screen = style({
   height: '100%',
   width: '100%',
   overflowY: 'scroll',
-  background: '#fffdf9',
-
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      backgroundColor: '#12020a',
-    },
-  },
+  background: 'var(--bg-primary)',
 })
 
 export const content = style({
