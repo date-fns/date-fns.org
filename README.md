@@ -9,8 +9,8 @@ documentation, etc.
 To run the website locally, use:
 
 ```sh
-yarn
-yarn start
+pnpm install
+pnpm dev
 ```
 
 The website will be available on http://localhost:1337/

@@ -1,0 +1,6 @@
+allowBuilds:
+  core-js: false
+  esbuild: true
+  husky: false
+  protobufjs: true
+  yarn: false

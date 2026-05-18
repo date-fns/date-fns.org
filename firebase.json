@@ -1,12 +1,12 @@
 {
   "functions": {
     "source": "build/functions",
-    "predeploy": ["yarn build"],
+    "predeploy": ["pnpm build"],
     "runtime": "nodejs20"
   },
   "hosting": {
     "public": "build/web",
-    "predeploy": ["yarn build"],
+    "predeploy": ["pnpm build"],
     "rewrites": [
       {
         "source": "**",
