@@ -2,7 +2,7 @@
   "functions": {
     "source": "build/functions",
     "predeploy": ["pnpm build"],
-    "runtime": "nodejs20"
+    "runtime": "nodejs22"
   },
   "hosting": {
     "public": "build/web",

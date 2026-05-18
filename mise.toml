@@ -1,5 +1,5 @@
 [tools]
-node = "lts"
+node = "22"
 pnpm = "latest"
 
 [settings]
