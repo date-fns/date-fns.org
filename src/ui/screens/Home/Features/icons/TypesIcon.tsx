@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function TypesIcon() {
   return (
@@ -19,5 +19,5 @@ export default function TypesIcon() {
         </g>
       </g>
     </svg>
-  )
+  );
 }

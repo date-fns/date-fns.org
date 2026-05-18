@@ -1,17 +1,17 @@
-import { ComponentChildren, Fragment, FunctionComponent, h } from 'preact'
-import { Markdown } from '~/ui/components/Markdown'
-import { InlineCode } from '../InlineCode'
-import { SectionHeader } from '../SectionHeader'
+import { ComponentChildren, Fragment, FunctionComponent, h } from "preact";
+import { Markdown } from "~/ui/components/Markdown";
+import { InlineCode } from "../InlineCode";
+import { SectionHeader } from "../SectionHeader";
 
 interface ReturnType {
-  description: string
-  type: ComponentChildren
+  description: string;
+  type: ComponentChildren;
 }
 
 interface DocReturnsProps {
-  returns: ReturnType[]
-  scope?: string
-  header?: 'h2' | 'h3'
+  returns: ReturnType[];
+  scope?: string;
+  header?: "h2" | "h3";
 }
 
 export const DocReturns: FunctionComponent<DocReturnsProps> = ({
@@ -45,5 +45,5 @@ export const DocReturns: FunctionComponent<DocReturnsProps> = ({
         </tbody>
       </table>
     </section>
-  )
-}
+  );
+};

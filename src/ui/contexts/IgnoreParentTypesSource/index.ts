@@ -1,3 +1,3 @@
-import { createContext } from 'preact'
+import { createContext } from "preact";
 
-export const IgnoreParentTypesSourceContext = createContext<boolean>(false)
+export const IgnoreParentTypesSourceContext = createContext<boolean>(false);

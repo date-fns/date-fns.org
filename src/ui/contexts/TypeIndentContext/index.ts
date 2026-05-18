@@ -1,3 +1,3 @@
-import { createContext } from 'preact'
+import { createContext } from "preact";
 
-export const TypeIndentContext = createContext<number>(0)
+export const TypeIndentContext = createContext<number>(0);

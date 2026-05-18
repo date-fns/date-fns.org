@@ -1,9 +1,9 @@
-import { h, FunctionComponent } from 'preact'
-import * as styles from './styles.css'
+import { h, FunctionComponent } from "preact";
+import * as styles from "./styles.css";
 
 interface Props {
-  href: string
-  title?: string
+  href: string;
+  title?: string;
 }
 
 export const HomeExternalAction: FunctionComponent<Props> = ({
@@ -14,4 +14,4 @@ export const HomeExternalAction: FunctionComponent<Props> = ({
   <a class={styles.action} href={href} title={title}>
     {children}
   </a>
-)
+);

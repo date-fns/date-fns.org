@@ -1,15 +1,15 @@
-import { globalStyle, style } from '@vanilla-extract/css'
+import { globalStyle, style } from "@vanilla-extract/css";
 
 export const wrapper = style({
-  display: 'inline-block',
-})
+  display: "inline-block",
+});
 
 export const inlineWrapper = style({
-  display: 'inline',
-})
+  display: "inline",
+});
 
-export const blockWrapper = style({})
+export const blockWrapper = style({});
 
 globalStyle(`${wrapper} > *`, {
-  width: '100%',
-})
+  width: "100%",
+});

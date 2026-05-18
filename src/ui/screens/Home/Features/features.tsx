@@ -1,26 +1,26 @@
-import { h, Fragment, VNode } from 'preact'
-import ComingIcon from './icons/ComingIcon'
-import ConsistentIcon from './icons/ConsistentIcon'
-import DocsIcon from './icons/DocsIcon'
-import FastIcon from './icons/FastIcon'
-import FPIcon from './icons/FPIcon'
-import I18nIcon from './icons/I18nIcon'
-import ImmutableIcon from './icons/ImmutableIcon'
-import ModularIcon from './icons/ModularIcon'
-import NativeIcon from './icons/NativeIcon'
-import ReliableIcon from './icons/ReliableIcon'
-import SimpleIcon from './icons/SimpleIcon'
-import TypesIcon from './icons/TypesIcon'
+import { h, Fragment, VNode } from "preact";
+import ComingIcon from "./icons/ComingIcon";
+import ConsistentIcon from "./icons/ConsistentIcon";
+import DocsIcon from "./icons/DocsIcon";
+import FastIcon from "./icons/FastIcon";
+import FPIcon from "./icons/FPIcon";
+import I18nIcon from "./icons/I18nIcon";
+import ImmutableIcon from "./icons/ImmutableIcon";
+import ModularIcon from "./icons/ModularIcon";
+import NativeIcon from "./icons/NativeIcon";
+import ReliableIcon from "./icons/ReliableIcon";
+import SimpleIcon from "./icons/SimpleIcon";
+import TypesIcon from "./icons/TypesIcon";
 
 export interface Feature {
-  title: string
-  description: VNode
-  icon: VNode
+  title: string;
+  description: VNode;
+  icon: VNode;
 }
 
 export const features: Feature[] = [
   {
-    title: 'Modular',
+    title: "Modular",
     description: (
       <>
         <p>
@@ -29,8 +29,8 @@ export const features: Feature[] = [
         </p>
 
         <p>
-          It works well with modern module bundlers such as{' '}
-          <strong>webpack</strong>, <strong>Browserify</strong>, and{' '}
+          It works well with modern module bundlers such as{" "}
+          <strong>webpack</strong>, <strong>Browserify</strong>, and{" "}
           <strong>Rollup</strong> and also supports tree-shaking.
         </p>
       </>
@@ -39,7 +39,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Native Date',
+    title: "Native Date",
     description: (
       <>
         <p>
@@ -57,7 +57,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Immutable & Pure',
+    title: "Immutable & Pure",
     description: (
       <>
         <p>
@@ -72,11 +72,11 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'TypeScript & Flow',
+    title: "TypeScript & Flow",
     description: (
       <>
         <p>
-          date-fns supports both <strong>TypeScript</strong> and{' '}
+          date-fns supports both <strong>TypeScript</strong> and{" "}
           <strong>Flow</strong>.
         </p>
 
@@ -90,7 +90,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'FP',
+    title: "FP",
     description: (
       <>
         The functional programming submodule provides a better alternative to
@@ -102,7 +102,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'I18n',
+    title: "I18n",
     description: (
       <>
         With support from the amazing community, date-fns has dozens of locales.
@@ -113,7 +113,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Consistent',
+    title: "Consistent",
     description: (
       <>
         <p>
@@ -130,7 +130,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Reliable',
+    title: "Reliable",
     description: (
       <>
         <p>date-fns respects timezones & DST.</p>
@@ -147,7 +147,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Simple',
+    title: "Simple",
     description: (
       <>
         <p>
@@ -165,7 +165,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Fast',
+    title: "Fast",
     description: (
       <>
         In addition to tiny size, date-fns is fast. You can be sure that your
@@ -176,7 +176,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'Docs',
+    title: "Docs",
     description: (
       <>
         Every date-fns function has a detailed description with examples. The
@@ -188,7 +188,7 @@ export const features: Feature[] = [
   },
 
   {
-    title: 'More Coming!',
+    title: "More Coming!",
     description: (
       <>
         date-fns is an active development and we are constantly adding new
@@ -197,4 +197,4 @@ export const features: Feature[] = [
     ),
     icon: <ComingIcon />,
   },
-]
+];

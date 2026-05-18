@@ -1,8 +1,8 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function ConsistentIcon() {
   return (
-    <svg viewBox="0 0 32 30" style={{ height: '55%', marginTop: '-1px' }}>
+    <svg viewBox="0 0 32 30" style={{ height: "55%", marginTop: "-1px" }}>
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path
           d="M16.1695005,18.7467082 C21.1307052,18.7467082 25.1525563,14.6324008 25.1525563,9.55714537 C25.1525563,4.48188995 21.1307052,0.367582514 16.1695005,0.367582514 C11.2082957,0.367582514 7.18644466,4.48188995 7.18644466,9.55714537 C7.18644466,14.6324008 11.2082957,18.7467082 16.1695005,18.7467082 Z"
@@ -17,5 +17,5 @@ export default function ConsistentIcon() {
         </g>
       </g>
     </svg>
-  )
+  );
 }

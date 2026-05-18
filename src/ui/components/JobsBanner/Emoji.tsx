@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export const Emoji = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5">
@@ -20,4 +20,4 @@ export const Emoji = () => (
       <path d="M25 3v2c4 0 8 4 8 8h2c0-6-4-10-10-10" fill="#77b255" />
     </g>
   </svg>
-)
+);

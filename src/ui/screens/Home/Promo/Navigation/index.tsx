@@ -1,7 +1,7 @@
-import { h } from 'preact'
-import githubPath from './img/github.svg'
-import twitterPath from './img/twitter.svg'
-import * as styles from './styles.css'
+import { h } from "preact";
+import githubPath from "./img/github.svg";
+import twitterPath from "./img/twitter.svg";
+import * as styles from "./styles.css";
 
 export const Navigation = () => (
   <nav class={styles.navigation}>
@@ -23,4 +23,4 @@ export const Navigation = () => (
       Follow on Twitter
     </a>
   </nav>
-)
+);

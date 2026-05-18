@@ -1,28 +1,28 @@
-import classNames from 'classnames'
-import isEqual from 'lodash/isEqual'
-import { ComponentChildren, h, JSX, RefObject } from 'preact'
-import { useCallback, useEffect, useState } from 'preact/hooks'
+import classNames from "classnames";
+import isEqual from "lodash/isEqual";
+import { ComponentChildren, h, JSX, RefObject } from "preact";
+import { useCallback, useEffect, useState } from "preact/hooks";
 
-import * as styles from './styles.css'
+import * as styles from "./styles.css";
 
-export const DropInner = Inner
+export const DropInner = Inner;
 
 export interface DropArea {
-  x: number
-  y: number
-  width: number
-  height: number
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
-export type DropPosition = 'above' | 'below' | 'left' | 'right'
+export type DropPosition = "above" | "below" | "left" | "right";
 
 export interface DropProps {
-  children: ComponentChildren
-  area: DropArea
-  ghost?: boolean
-  innerRef?: RefObject<HTMLDivElement | undefined>
-  onClick?: JSX.MouseEventHandler<any>
-  preferPosition?: DropPosition
+  children: ComponentChildren;
+  area: DropArea;
+  ghost?: boolean;
+  innerRef?: RefObject<HTMLDivElement | undefined>;
+  onClick?: JSX.MouseEventHandler<any>;
+  preferPosition?: DropPosition;
 }
 
 /**
@@ -36,89 +36,88 @@ export function Drop({
   onClick,
   preferPosition,
 }: DropProps) {
-  const [trianglePosition, setTrianglePosition] = useState<TrianglePosition>(
-    'below'
-  )
+  const [trianglePosition, setTrianglePosition] =
+    useState<TrianglePosition>("below");
 
-  const [wrapper, setWrapper] = useState<HTMLDivElement | undefined>(undefined)
+  const [wrapper, setWrapper] = useState<HTMLDivElement | undefined>(undefined);
   const [wrapperArea, setWrapperArea] = useState<DropArea | undefined>(
-    undefined
-  )
+    undefined,
+  );
 
   useEffect(() => {
-    if (!wrapper || !wrapperArea?.width) return
+    if (!wrapper || !wrapperArea?.width) return;
 
-    const windowWidth = window.innerWidth
-    const windowHeight = window.innerHeight
-    const width = wrapperArea.width
-    const height = wrapperArea.height
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const width = wrapperArea.width;
+    const height = wrapperArea.height;
 
-    wrapper.style.opacity = '1'
+    wrapper.style.opacity = "1";
 
-    let verticalLeft = area.x + area.width / 2 - width / 2
-    if (verticalLeft < 0) verticalLeft = 0
+    let verticalLeft = area.x + area.width / 2 - width / 2;
+    if (verticalLeft < 0) verticalLeft = 0;
     else if (verticalLeft + width > windowWidth)
-      verticalLeft = windowWidth - width
+      verticalLeft = windowWidth - width;
 
-    let horizontalTop = area.y + area.height / 2 - height / 2
-    if (horizontalTop < 0) horizontalTop = 0
+    let horizontalTop = area.y + area.height / 2 - height / 2;
+    if (horizontalTop < 0) horizontalTop = 0;
     else if (horizontalTop + height > windowHeight)
-      horizontalTop = windowHeight - height
+      horizontalTop = windowHeight - height;
 
     const positioning = {
       below: () => {
-        const belowTop = area.y + area.height
+        const belowTop = area.y + area.height;
         if (belowTop + height < windowHeight) {
-          wrapper.style.top = `${belowTop}px`
-          wrapper.style.left = `${verticalLeft}px`
-          setTrianglePosition('above')
-          return true
+          wrapper.style.top = `${belowTop}px`;
+          wrapper.style.left = `${verticalLeft}px`;
+          setTrianglePosition("above");
+          return true;
         }
-        return false
+        return false;
       },
 
       above: () => {
-        const aboveTop = area.y - height
+        const aboveTop = area.y - height;
         if (aboveTop > 0) {
-          wrapper.style.top = `${aboveTop}px`
-          wrapper.style.left = `${verticalLeft}px`
-          setTrianglePosition('below')
-          return true
+          wrapper.style.top = `${aboveTop}px`;
+          wrapper.style.left = `${verticalLeft}px`;
+          setTrianglePosition("below");
+          return true;
         }
-        return false
+        return false;
       },
 
       left: () => {
-        const left = area.x - width
+        const left = area.x - width;
         if (left > 0) {
-          wrapper.style.top = `${horizontalTop}px`
-          wrapper.style.left = `${left}px`
-          setTrianglePosition('right')
-          return true
+          wrapper.style.top = `${horizontalTop}px`;
+          wrapper.style.left = `${left}px`;
+          setTrianglePosition("right");
+          return true;
         }
-        return false
+        return false;
       },
 
       right: () => {
-        const right = area.x + area.width
+        const right = area.x + area.width;
         if (right + width < windowWidth) {
-          wrapper.style.top = `${horizontalTop}px`
-          wrapper.style.left = `${right}px`
-          setTrianglePosition('left')
-          return true
+          wrapper.style.top = `${horizontalTop}px`;
+          wrapper.style.left = `${right}px`;
+          setTrianglePosition("left");
+          return true;
         }
-        return false
+        return false;
       },
-    }
+    };
 
-    if (preferPosition === 'left') {
-      circlePositioning([positioning.left, positioning.right])
-    } else if (preferPosition === 'right') {
-      circlePositioning([positioning.right, positioning.left])
-    } else if (preferPosition === 'above') {
-      circlePositioning([positioning.above, positioning.below])
+    if (preferPosition === "left") {
+      circlePositioning([positioning.left, positioning.right]);
+    } else if (preferPosition === "right") {
+      circlePositioning([positioning.right, positioning.left]);
+    } else if (preferPosition === "above") {
+      circlePositioning([positioning.above, positioning.below]);
     } else {
-      circlePositioning([positioning.below, positioning.above])
+      circlePositioning([positioning.below, positioning.above]);
     }
   }, [
     trianglePosition,
@@ -130,61 +129,61 @@ export function Drop({
     area.y,
     area.height,
     preferPosition,
-  ])
+  ]);
 
   const wrapperCallback = useCallback(
     (el: HTMLDivElement | null) => {
-      if (!el) return
-      if (innerRef) innerRef.current = el
-      setWrapper(el)
+      if (!el) return;
+      if (innerRef) innerRef.current = el;
+      setWrapper(el);
     },
-    [innerRef]
-  )
+    [innerRef],
+  );
 
   useEffect(() => {
-    const newArea = wrapper?.getBoundingClientRect()
-    if (!isEqual(newArea, wrapperArea)) setWrapperArea(newArea)
-  })
+    const newArea = wrapper?.getBoundingClientRect();
+    if (!isEqual(newArea, wrapperArea)) setWrapperArea(newArea);
+  });
 
   return (
     <div
       class={classNames(
         styles.drop,
         ghost && styles.ghost,
-        ['above', 'below'].includes(trianglePosition) && styles.vertical
+        ["above", "below"].includes(trianglePosition) && styles.vertical,
       )}
       ref={wrapperCallback}
       onClick={onClick}
     >
-      {(trianglePosition === 'above' || trianglePosition === 'left') && (
+      {(trianglePosition === "above" || trianglePosition === "left") && (
         <Triangle position={trianglePosition} />
       )}
 
       <Inner>
-        {typeof children === 'string' ? (
+        {typeof children === "string" ? (
           <div class={styles.string}>{children}</div>
         ) : (
           children
         )}
       </Inner>
 
-      {(trianglePosition === 'below' || trianglePosition === 'right') && (
+      {(trianglePosition === "below" || trianglePosition === "right") && (
         <Triangle position={trianglePosition} />
       )}
     </div>
-  )
+  );
 }
 
 function circlePositioning(fns: Array<() => void | boolean>) {
   for (let i = 0; i < fns.length; i++) {
-    if (fns[i]?.()) return
+    if (fns[i]?.()) return;
   }
 }
 
-export type TrianglePosition = 'above' | 'below' | 'left' | 'right'
+export type TrianglePosition = "above" | "below" | "left" | "right";
 
 interface TriangleProps {
-  position: TrianglePosition
+  position: TrianglePosition;
 }
 
 function Triangle(position: TriangleProps) {
@@ -192,13 +191,13 @@ function Triangle(position: TriangleProps) {
     <div
       class={classNames(styles.triangle, styles.position[position.position])}
     ></div>
-  )
+  );
 }
 
 interface InnerProps {
-  children: ComponentChildren
+  children: ComponentChildren;
 }
 
 function Inner({ children }: InnerProps) {
-  return <div class={classNames(styles.inner)}>{children} </div>
+  return <div class={classNames(styles.inner)}>{children} </div>;
 }

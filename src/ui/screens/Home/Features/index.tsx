@@ -1,7 +1,7 @@
-import { h } from 'preact'
-import { HomeBlock } from '~/ui/components/Home'
-import { features } from './features'
-import * as styles from './styles.css'
+import { h } from "preact";
+import { HomeBlock } from "~/ui/components/Home";
+import { features } from "./features";
+import * as styles from "./styles.css";
 
 export const Features = () => (
   <HomeBlock header="Why date-fns?">
@@ -17,4 +17,4 @@ export const Features = () => (
       ))}
     </ol>
   </HomeBlock>
-)
+);

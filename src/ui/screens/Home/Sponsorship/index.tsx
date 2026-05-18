@@ -1,16 +1,16 @@
-import { h, Fragment, FunctionComponent } from 'preact'
+import { h, Fragment, FunctionComponent } from "preact";
 import {
   HomeBlock,
   HomeText,
   HomeExternalLink,
   HomeButton,
-} from '~/ui/components/Home'
-import { useSponsors, Sponsor } from '~/utils/useSponsors'
-import * as styles from './styles.css'
-import classNames from 'classnames'
+} from "~/ui/components/Home";
+import { useSponsors, Sponsor } from "~/utils/useSponsors";
+import * as styles from "./styles.css";
+import classNames from "classnames";
 
 export const Sponsorship = () => {
-  const [sponsors, { loading }] = useSponsors()
+  const [sponsors, { loading }] = useSponsors();
   return (
     <HomeBlock
       header="Sponsors"
@@ -72,13 +72,13 @@ export const Sponsorship = () => {
         fame and support the developers?
       </HomeText>
     </HomeBlock>
-  )
-}
+  );
+};
 
 const Sponsor: FunctionComponent<{
-  tier?: keyof typeof styles.tier
-  compact?: boolean
-  sponsor: Sponsor
+  tier?: keyof typeof styles.tier;
+  compact?: boolean;
+  sponsor: Sponsor;
 }> = ({ tier, sponsor, compact }) => {
   return (
     <HomeExternalLink href={sponsor.url} newTab={true}>
@@ -86,7 +86,7 @@ const Sponsor: FunctionComponent<{
         <div
           class={classNames(
             styles.itemImageContainer,
-            tier && styles.tier[tier]
+            tier && styles.tier[tier],
           )}
         >
           {sponsor.imageUrl ? (
@@ -103,5 +103,5 @@ const Sponsor: FunctionComponent<{
         {!compact && <span class={styles.itemName}>{sponsor.name}</span>}
       </div>
     </HomeExternalLink>
-  )
-}
+  );
+};

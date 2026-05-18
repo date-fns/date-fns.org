@@ -1,10 +1,10 @@
-import { h, FunctionComponent } from 'preact'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { Markdown } from '~/ui/components/Markdown'
+import { h, FunctionComponent } from "preact";
+import type { DateFnsDocs } from "@date-fns/docs/types";
+import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
+import { Markdown } from "~/ui/components/Markdown";
 
 interface Props {
-  exceptions: DateFnsDocs.JSDocAttribute[]
+  exceptions: DateFnsDocs.JSDocAttribute[];
 }
 
 export const Exceptions: FunctionComponent<Props> = ({ exceptions }) => (
@@ -25,7 +25,7 @@ export const Exceptions: FunctionComponent<Props> = ({ exceptions }) => (
       <tbody>
         {exceptions.map((exception, index) => (
           <tr key={index}>
-            <td>{exception.type.names.join(' | ')}</td>
+            <td>{exception.type.names.join(" | ")}</td>
             <td>
               <Markdown value={exception.description} />
             </td>
@@ -34,4 +34,4 @@ export const Exceptions: FunctionComponent<Props> = ({ exceptions }) => (
       </tbody>
     </table>
   </section>
-)
+);

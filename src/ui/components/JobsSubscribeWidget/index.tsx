@@ -1,5 +1,5 @@
-import { h } from 'preact'
-import * as styles from './styles.css'
+import { h } from "preact";
+import * as styles from "./styles.css";
 // import twitterIconURL from './img/twitterBlack.svg'
 
 export const JobsSubscribeWidget = () => (
@@ -45,4 +45,4 @@ export const JobsSubscribeWidget = () => (
       Follow on Twitter
     </a> */}
   </div>
-)
+);

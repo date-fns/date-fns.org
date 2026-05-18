@@ -1,10 +1,10 @@
-import { DEFAULT_PAGE } from '~/constants'
-import { h } from 'preact'
-import { HomeBlock } from '~/ui/components/Home'
-import { RouterLink } from '~/ui/router'
-import { docLink } from '~/ui/router/docLink'
-import * as styles from './styles.css'
-import classNames from 'classnames'
+import { DEFAULT_PAGE } from "~/constants";
+import { h } from "preact";
+import { HomeBlock } from "~/ui/components/Home";
+import { RouterLink } from "~/ui/router";
+import { docLink } from "~/ui/router/docLink";
+import * as styles from "./styles.css";
+import classNames from "classnames";
 
 export const Footer = () => (
   <HomeBlock>
@@ -36,4 +36,4 @@ export const Footer = () => (
       </div>
     </nav>
   </HomeBlock>
-)
+);

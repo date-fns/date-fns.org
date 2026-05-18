@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function ComingIcon() {
   return (
@@ -9,5 +9,5 @@ export default function ComingIcon() {
         </g>
       </g>
     </svg>
-  )
+  );
 }

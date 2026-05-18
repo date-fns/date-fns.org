@@ -1,5 +1,5 @@
-import { h } from 'preact'
-import * as styles from './styles.css'
+import { h } from "preact";
+import * as styles from "./styles.css";
 
 export const HireWidget = () => (
   <div class={styles.container}>
@@ -24,4 +24,4 @@ export const HireWidget = () => (
 
     {/* <div class={styles.footer}>Subscribe to support date-fns development, it's free!</div> */}
   </div>
-)
+);

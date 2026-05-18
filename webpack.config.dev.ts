@@ -1,21 +1,21 @@
-import { HotModuleReplacementPlugin } from 'webpack'
-import { webpackDefaults } from './config/webpackDefaults'
-import { getPath } from './config/utils'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
+import { HotModuleReplacementPlugin } from "webpack";
+import { webpackDefaults } from "./config/webpackDefaults";
+import { getPath } from "./config/utils";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const config = webpackDefaults({
-  entry: getPath('src/web/index.tsx'),
+  entry: getPath("src/web/index.tsx"),
   output: {
-    path: getPath('build/web/static'),
-    publicPath: '/static/',
+    path: getPath("build/web/static"),
+    publicPath: "/static/",
   },
-  target: 'web',
+  target: "web",
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{ from: getPath('src/static') }],
+      patterns: [{ from: getPath("src/static") }],
     }),
     new HotModuleReplacementPlugin(),
   ],
-})
+});
 
-export default config
+export default config;

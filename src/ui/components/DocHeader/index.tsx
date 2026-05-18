@@ -1,10 +1,10 @@
-import { ComponentChildren, FunctionComponent, h } from 'preact'
-import { SourceLink } from '../SourceLink'
-import * as styles from './styles.css'
+import { ComponentChildren, FunctionComponent, h } from "preact";
+import { SourceLink } from "../SourceLink";
+import * as styles from "./styles.css";
 
 interface DocHeaderProps {
-  children: ComponentChildren
-  source?: string
+  children: ComponentChildren;
+  source?: string;
 }
 
 export const DocHeader: FunctionComponent<DocHeaderProps> = ({
@@ -15,4 +15,4 @@ export const DocHeader: FunctionComponent<DocHeaderProps> = ({
     <span>{children}</span>
     <SourceLink source={source} />
   </h1>
-)
+);

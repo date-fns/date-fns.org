@@ -1,19 +1,19 @@
-import { h, FunctionComponent, VNode } from 'preact'
-import { RouterLink } from '~/ui/router'
-import logoPath from './img/logo.svg'
-import { defaultSubmodule } from '@date-fns/docs/consts'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { VersionSelector } from './VersionSelector'
-import { SubmoduleSelector } from './SubmoduleSelector'
-import * as styles from './styles.css'
+import { h, FunctionComponent, VNode } from "preact";
+import { RouterLink } from "~/ui/router";
+import logoPath from "./img/logo.svg";
+import { defaultSubmodule } from "@date-fns/docs/consts";
+import type { DateFnsDocs } from "@date-fns/docs/types";
+import { VersionSelector } from "./VersionSelector";
+import { SubmoduleSelector } from "./SubmoduleSelector";
+import * as styles from "./styles.css";
 
 interface Props {
-  selectedVersion: string
-  latestVersion: string
-  selectedPage: string
-  versions: DateFnsDocs.VersionPreview[]
-  selectedSubmodule: DateFnsDocs.Submodule
-  menuIcon: VNode
+  selectedVersion: string;
+  latestVersion: string;
+  selectedPage: string;
+  versions: DateFnsDocs.VersionPreview[];
+  selectedSubmodule: DateFnsDocs.Submodule;
+  menuIcon: VNode;
 }
 
 export const NavBar: FunctionComponent<Props> = ({
@@ -25,9 +25,9 @@ export const NavBar: FunctionComponent<Props> = ({
   menuIcon,
 }) => {
   const versionPreview = versions.find(
-    ({ version }) => version === selectedVersion
-  )
-  const submodules = versionPreview?.submodules ?? [defaultSubmodule]
+    ({ version }) => version === selectedVersion,
+  );
+  const submodules = versionPreview?.submodules ?? [defaultSubmodule];
 
   return (
     <div class={styles.container}>
@@ -36,7 +36,7 @@ export const NavBar: FunctionComponent<Props> = ({
           <div class={styles.links}>
             <div class={styles.menuIcon}>{menuIcon}</div>
 
-            <RouterLink class={styles.logo} to={{ name: 'home' }}>
+            <RouterLink class={styles.logo} to={{ name: "home" }}>
               <img class={styles.logoImage} src={logoPath} />
               date-fns
             </RouterLink>
@@ -80,5 +80,5 @@ export const NavBar: FunctionComponent<Props> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

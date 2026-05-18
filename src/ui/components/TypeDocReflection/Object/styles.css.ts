@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css'
+import { style } from "@vanilla-extract/css";
 
 export const code = style({
-  whiteSpace: 'nowrap',
-  fontFamily: 'monospace',
-})
+  whiteSpace: "nowrap",
+  fontFamily: "monospace",
+});

@@ -1,14 +1,14 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { useMemo } from 'preact/hooks'
-import { Code } from '~/ui/components/Code'
-import { Markdown } from '~/ui/components/Markdown'
-import { SectionHeader } from '../SectionHeader'
-import * as styles from './styles.css'
+import { Fragment, FunctionComponent, h } from "preact";
+import { useMemo } from "preact/hooks";
+import { Code } from "~/ui/components/Code";
+import { Markdown } from "~/ui/components/Markdown";
+import { SectionHeader } from "../SectionHeader";
+import * as styles from "./styles.css";
 
 interface Props {
-  examples: string[]
-  scope?: string
-  header?: 'h2' | 'h3'
+  examples: string[];
+  scope?: string;
+  header?: "h2" | "h3";
 }
 
 export const DocExamples: FunctionComponent<Props> = ({
@@ -16,7 +16,7 @@ export const DocExamples: FunctionComponent<Props> = ({
   scope,
   header,
 }) => {
-  const richExamples = useMemo(() => enrichExamples(examples), [examples])
+  const richExamples = useMemo(() => enrichExamples(examples), [examples]);
 
   return (
     <section>
@@ -34,25 +34,25 @@ export const DocExamples: FunctionComponent<Props> = ({
         </div>
       ))}
     </section>
-  )
-}
+  );
+};
 
 interface Example {
-  description?: string
-  code: string
+  description?: string;
+  code: string;
 }
 
 function enrichExamples(examples: string[]): Example[] {
   return examples.map((example) => {
-    const captures = example.match(/^((?:\/\/.+\n)*)((?:.*\n?)*)/)
-    if (!captures) return { code: example }
+    const captures = example.match(/^((?:\/\/.+\n)*)((?:.*\n?)*)/);
+    if (!captures) return { code: example };
 
     return {
       description: captures[1]
         .split(/\n/)
-        .map((str) => str.replace(/^\/\/\s?/, '').trim())
-        .join(' '),
+        .map((str) => str.replace(/^\/\/\s?/, "").trim())
+        .join(" "),
       code: captures[2],
-    }
-  })
+    };
+  });
 }

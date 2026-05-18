@@ -1,5 +1,5 @@
 name: Deploy (production)
-'on':
+"on":
   push:
     branches: [main]
 jobs:

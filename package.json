@@ -84,10 +84,6 @@
     "oxfmt": "^0.50.0",
     "tsx": "^4.19.0"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "engines": {
     "node": "22"
   },

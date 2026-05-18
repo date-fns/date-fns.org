@@ -1,3 +1,3 @@
-import { h } from 'preact'
+import { h } from "preact";
 
-export const NotFound = () => <div>404 Not Found</div>
+export const NotFound = () => <div>404 Not Found</div>;

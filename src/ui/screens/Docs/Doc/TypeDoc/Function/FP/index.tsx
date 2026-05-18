@@ -1,14 +1,14 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { RouterLink } from '~/ui/router'
-import { docLink } from '~/ui/router/docLink'
-import { parseMajorVersion } from '~/utils/docs'
-import * as styles from './styles.css'
+import { Fragment, FunctionComponent, h } from "preact";
+import { RouterLink } from "~/ui/router";
+import { docLink } from "~/ui/router/docLink";
+import { parseMajorVersion } from "~/utils/docs";
+import * as styles from "./styles.css";
 
 interface Props {
-  name: string
-  pure: boolean | undefined
-  selectedVersion: string
-  hasOptions: boolean
+  name: string;
+  pure: boolean | undefined;
+  selectedVersion: string;
+  hasOptions: boolean;
 }
 
 export const FP: FunctionComponent<Props> = ({
@@ -17,24 +17,24 @@ export const FP: FunctionComponent<Props> = ({
   selectedVersion,
   hasOptions,
 }) => {
-  const version = selectedVersion && parseMajorVersion(selectedVersion)
-  if (!version || version < 3) return null
+  const version = selectedVersion && parseMajorVersion(selectedVersion);
+  if (!version || version < 3) return null;
 
   return pure ? (
     <div class={styles.fpNote}>
-      🦄 The function is also available in the FP submodule as{' '}
+      🦄 The function is also available in the FP submodule as{" "}
       <code>{name}</code>
       {hasOptions && (
         <Fragment>
-          {' '}
+          {" "}
           and <code>{name}WithOptions</code>
         </Fragment>
       )}
-      .{' '}
+      .{" "}
       <RouterLink
         decorated
         to={docLink({
-          page: 'FP-Guide',
+          page: "FP-Guide",
           version: selectedVersion,
         })}
       >
@@ -48,5 +48,5 @@ export const FP: FunctionComponent<Props> = ({
       uses <code>Date.now()</code> internally hence impure and can't be safely
       curried.
     </div>
-  )
-}
+  );
+};

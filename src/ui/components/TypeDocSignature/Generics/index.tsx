@@ -1,27 +1,27 @@
-import { FunctionComponent, h, Fragment } from 'preact'
-import { useContext } from 'preact/hooks'
-import type { TypeParameterReflection } from 'typedoc'
-import { IgnoreParentTypesSourceContext } from '~/ui/contexts/IgnoreParentTypesSource'
-import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { ParentTypesMap, typeHash } from '~/utils/docs'
-import { IdHightlight } from '../../IdHighlight'
-import { TypeDocType } from '../../TypeDocType'
+import { FunctionComponent, h, Fragment } from "preact";
+import { useContext } from "preact/hooks";
+import type { TypeParameterReflection } from "typedoc";
+import { IgnoreParentTypesSourceContext } from "~/ui/contexts/IgnoreParentTypesSource";
+import { InlineTypeContext } from "~/ui/contexts/InlineTypeContext";
+import { ParentTypesMap, typeHash } from "~/utils/docs";
+import { IdHightlight } from "../../IdHighlight";
+import { TypeDocType } from "../../TypeDocType";
 
 interface TypeDocSignatureGenericsProps {
-  params: TypeParameterReflection[]
+  params: TypeParameterReflection[];
 }
 
-export const TypeDocSignatureGenerics: FunctionComponent<TypeDocSignatureGenericsProps> = ({
-  params,
-}) => {
-  const inline = useContext(InlineTypeContext)
-  const ignoreSource = useContext(IgnoreParentTypesSourceContext)
+export const TypeDocSignatureGenerics: FunctionComponent<
+  TypeDocSignatureGenericsProps
+> = ({ params }) => {
+  const inline = useContext(InlineTypeContext);
+  const ignoreSource = useContext(IgnoreParentTypesSourceContext);
 
   return (
     <>
-      {'<'}
+      {"<"}
       {params.map((param, index) => {
-        const id = inline.buildId?.(param)
+        const id = inline.buildId?.(param);
         return (
           <>
             {inline && ignoreSource && inline.parentTypesMap?.[param.id] ? (
@@ -38,21 +38,21 @@ export const TypeDocSignatureGenerics: FunctionComponent<TypeDocSignatureGeneric
 
             {param.type && (
               <>
-                {' '}
+                {" "}
                 extends <TypeDocType type={param.type} />
               </>
             )}
             {param.default && (
               <>
-                {' '}
+                {" "}
                 = <TypeDocType type={param.default} />
               </>
             )}
-            {index < params.length - 1 && ', '}
+            {index < params.length - 1 && ", "}
           </>
-        )
+        );
       })}
-      {'>'}
+      {">"}
     </>
-  )
-}
+  );
+};

@@ -1,24 +1,24 @@
-import { h, FunctionComponent } from 'preact'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { docLink } from '~/ui/router/docLink'
-import { useContext } from 'preact/hooks'
-import { RouterContext } from '~/ui/router'
-import * as styles from './styles.css'
-import { parseMajorVersion } from '~/utils/docs'
+import { h, FunctionComponent } from "preact";
+import type { DateFnsDocs } from "@date-fns/docs/types";
+import { docLink } from "~/ui/router/docLink";
+import { useContext } from "preact/hooks";
+import { RouterContext } from "~/ui/router";
+import * as styles from "./styles.css";
+import { parseMajorVersion } from "~/utils/docs";
 
 const SUBMODULE_LABELS: Record<DateFnsDocs.Submodule, string> = {
-  default: 'Default',
-  fp: 'FP',
-}
+  default: "Default",
+  fp: "FP",
+};
 
 interface Props {
-  selectedSubmodule: DateFnsDocs.Submodule
-  selectedPage: string
-  selectedVersion: string
-  submodules: DateFnsDocs.Submodule[]
+  selectedSubmodule: DateFnsDocs.Submodule;
+  selectedPage: string;
+  selectedVersion: string;
+  submodules: DateFnsDocs.Submodule[];
 }
 
-type FIXME = any
+type FIXME = any;
 
 export const SubmoduleSelector: FunctionComponent<Props> = ({
   selectedSubmodule,
@@ -26,15 +26,15 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
   selectedVersion,
   submodules,
 }) => {
-  const { navigate } = useContext(RouterContext)
+  const { navigate } = useContext(RouterContext);
 
   if (submodules.length === 1 && submodules.includes(selectedSubmodule)) {
-    return null
+    return null;
   }
 
   // For v3 don't show submodule selector and render FP section instead
-  const version = parseMajorVersion(selectedVersion)
-  if (version >= 3) return null
+  const version = parseMajorVersion(selectedVersion);
+  if (version >= 3) return null;
 
   return (
     <label class={styles.selector}>
@@ -49,7 +49,7 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
               page: selectedPage,
               submodule: e.target.value,
               version: selectedVersion,
-            })
+            }),
           )
         }
       >
@@ -64,5 +64,5 @@ export const SubmoduleSelector: FunctionComponent<Props> = ({
         ))}
       </select>
     </label>
-  )
-}
+  );
+};

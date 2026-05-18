@@ -27,4 +27,4 @@ query {
     }
   }
 }
-`.trim()
+`.trim();

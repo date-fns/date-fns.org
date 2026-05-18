@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function SafeIcon() {
   return (
@@ -10,5 +10,5 @@ export default function SafeIcon() {
         ></path>
       </g>
     </svg>
-  )
+  );
 }

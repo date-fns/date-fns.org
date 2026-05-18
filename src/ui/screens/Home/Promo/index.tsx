@@ -1,10 +1,10 @@
-import { h } from 'preact'
-import { DEFAULT_PAGE } from '~/constants'
-import { RouterLink } from '~/ui/router'
-import { docLink } from '~/ui/router/docLink'
-import logoPath from './img/logo.svg'
-import { Navigation } from './Navigation'
-import * as styles from './styles.css'
+import { h } from "preact";
+import { DEFAULT_PAGE } from "~/constants";
+import { RouterLink } from "~/ui/router";
+import { docLink } from "~/ui/router/docLink";
+import logoPath from "./img/logo.svg";
+import { Navigation } from "./Navigation";
+import * as styles from "./styles.css";
 
 export const Promo = () => (
   <div class={styles.outer}>
@@ -27,7 +27,7 @@ export const Promo = () => (
 
       <p class={styles.text}>
         date-fns provides the most comprehensive, yet simple and consistent
-        toolset for manipulating <strong>JavaScript dates</strong> in{' '}
+        toolset for manipulating <strong>JavaScript dates</strong> in{" "}
         <strong>a&nbsp;browser</strong> & <strong>Node.js</strong>.
       </p>
 
@@ -43,4 +43,4 @@ export const Promo = () => (
       <Navigation />
     </div>
   </div>
-)
+);

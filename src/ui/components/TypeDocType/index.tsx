@@ -1,53 +1,53 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { useContext } from 'preact/hooks'
-import type { SomeType } from 'typedoc'
-import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { referenceName, typeHash } from '~/utils/docs'
-import { Missing } from '../Missing'
-import { TypeDocReflection } from '../TypeDocReflection'
+import { Fragment, FunctionComponent, h } from "preact";
+import { useContext } from "preact/hooks";
+import type { SomeType } from "typedoc";
+import { InlineTypeContext } from "~/ui/contexts/InlineTypeContext";
+import { referenceName, typeHash } from "~/utils/docs";
+import { Missing } from "../Missing";
+import { TypeDocReflection } from "../TypeDocReflection";
 
 interface TypeDocTypeProps {
-  type: SomeType
+  type: SomeType;
   /** When the type is part of union or intersection */
-  listed?: boolean
+  listed?: boolean;
 }
 
 export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
   type,
   listed,
 }) => {
-  const inline = useContext(InlineTypeContext)
+  const inline = useContext(InlineTypeContext);
 
   switch (type.type) {
-    case 'intrinsic':
-      return <>{type.name}</>
+    case "intrinsic":
+      return <>{type.name}</>;
 
-    case 'array':
+    case "array":
       return (
         <>
-          Array{'<'}
+          Array{"<"}
           <TypeDocType type={type.elementType} />
-          {'>'}
+          {">"}
         </>
-      )
+      );
 
-    case 'reference':
+    case "reference":
       // TODO: Get rid of it one TypeDoc adds it
-      const id = ((type as unknown) as { target: number }).target
-      const name = referenceName(type)
-      const hash = inline.parentTypesMap?.[id] || typeHash(name, id)
-      const typeArguments = type.typeArguments
+      const id = (type as unknown as { target: number }).target;
+      const name = referenceName(type);
+      const hash = inline.parentTypesMap?.[id] || typeHash(name, id);
+      const typeArguments = type.typeArguments;
 
       return (
         <>
           <>
-            {type.package !== 'date-fns' ? (
+            {type.package !== "date-fns" ? (
               <>{name}</>
             ) : (
               <a href={hash}>{name}</a>
             )}
 
-            {typeArguments && '<'}
+            {typeArguments && "<"}
           </>
           {typeArguments && (
             <>
@@ -57,13 +57,13 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
                   {index < typeArguments.length - 1 && <>, </>}
                 </>
               ))}
-              {'>'}
+              {">"}
             </>
           )}
         </>
-      )
+      );
 
-    case 'union':
+    case "union":
       return (
         <>
           {type.types.map((t, index) => (
@@ -74,11 +74,11 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
             </>
           ))}
         </>
-      )
+      );
 
-    case 'intersection':
+    case "intersection":
 
-    case 'literal':
+    case "literal":
       return (
         <>
           {
@@ -86,61 +86,61 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
             JSON.stringify(type.value)
           }
         </>
-      )
+      );
 
-    case 'reflection':
-      return <TypeDocReflection reflection={type} listed={listed} />
+    case "reflection":
+      return <TypeDocReflection reflection={type} listed={listed} />;
 
-    case 'typeOperator':
+    case "typeOperator":
       return (
         <>
           {type.operator} <TypeDocType type={type.target} />
         </>
-      )
+      );
 
-    case 'tuple':
+    case "tuple":
       return (
         <>
           [
           {type.elements.map((t, index) => (
             <>
               <TypeDocType type={t} />
-              {index < type.elements.length - 1 && ', '}
+              {index < type.elements.length - 1 && ", "}
             </>
           ))}
           ]
         </>
-      )
+      );
 
-    case 'conditional':
+    case "conditional":
       return (
         <>
           <>
-            <TypeDocType type={type.checkType} /> extends{' '}
+            <TypeDocType type={type.checkType} /> extends{" "}
             <TypeDocType type={type.extendsType} />
-          </>{' '}
+          </>{" "}
           <>
             ? <TypeDocType type={type.trueType} />
-          </>{' '}
+          </>{" "}
           <>
             : <TypeDocType type={type.falseType} />
           </>
         </>
-      )
+      );
 
-    case 'mapped':
+    case "mapped":
       return (
         <>
-          {'{'}{' '}
+          {"{"}{" "}
           <>
             [{type.parameter} in <TypeDocType type={type.parameterType} />
             ]:
-          </>{' '}
-          <TypeDocType type={type.templateType} /> {'}'}
+          </>{" "}
+          <TypeDocType type={type.templateType} /> {"}"}
         </>
-      )
+      );
 
-    case 'indexedAccess':
+    case "indexedAccess":
       return (
         <>
           <>
@@ -148,19 +148,19 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
           </>
           <TypeDocType type={type.indexType} />]
         </>
-      )
+      );
 
-    case 'query':
-    case 'predicate':
-    case 'conditional':
-    case 'inferred':
-    case 'unknown':
-    case 'typeOperator':
-    case 'templateLiteral':
-    case 'namedTupleMember':
-    case 'optional':
-    case 'rest':
+    case "query":
+    case "predicate":
+    case "conditional":
+    case "inferred":
+    case "unknown":
+    case "typeOperator":
+    case "templateLiteral":
+    case "namedTupleMember":
+    case "optional":
+    case "rest":
     default:
-      return <Missing data={type} />
+      return <Missing data={type} />;
   }
-}
+};

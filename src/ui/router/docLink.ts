@@ -1,11 +1,11 @@
-import { DateFnsDocs } from '@date-fns/docs'
-import { defaultSubmodule } from '@date-fns/docs/consts'
-import { AppRouteRef } from '~/ui/router'
+import { DateFnsDocs } from "@date-fns/docs";
+import { defaultSubmodule } from "@date-fns/docs/consts";
+import { AppRouteRef } from "~/ui/router";
 
 export interface DocLinkParams {
-  page: string
-  submodule?: DateFnsDocs.Submodule
-  version?: string
+  page: string;
+  submodule?: DateFnsDocs.Submodule;
+  version?: string;
 }
 export function docLink({
   page,
@@ -15,21 +15,21 @@ export function docLink({
   if (!submodule || submodule === defaultSubmodule) {
     return version
       ? {
-          name: 'versionDocs',
+          name: "versionDocs",
           params: {
             page,
             version,
           },
         }
       : {
-          name: 'docs',
+          name: "docs",
           params: { page },
-        }
+        };
   }
 
   return version
     ? {
-        name: 'submoduleVersionDocs',
+        name: "submoduleVersionDocs",
         params: {
           page,
           version,
@@ -37,10 +37,10 @@ export function docLink({
         },
       }
     : {
-        name: 'submoduleDocs',
+        name: "submoduleDocs",
         params: {
           page,
           submodule,
         },
-      }
+      };
 }

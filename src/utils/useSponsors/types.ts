@@ -1,45 +1,45 @@
 export interface SponsorsResponseNode {
   fromAccount: {
-    imageUrl: string
-    name: string
-    website?: string
-    slug: string
-    id: string
-  }
+    imageUrl: string;
+    name: string;
+    website?: string;
+    slug: string;
+    id: string;
+  };
   tier: null | {
-    slug: string
-  }
+    slug: string;
+  };
   amount: {
-    value: number
-  }
+    value: number;
+  };
   totalDonations: {
-    value: number
-  }
-  createdAt: string
-  updatedAt: string
-  status: string
+    value: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+  status: string;
 }
 
 export interface SponsorsResponse {
   data: {
     account: {
       orders: {
-        nodes: SponsorsResponseNode[]
-      }
-    }
-  }
+        nodes: SponsorsResponseNode[];
+      };
+    };
+  };
 }
 
 export interface Sponsor {
-  id: string
-  url: string
-  imageUrl: string
-  name: string
+  id: string;
+  url: string;
+  imageUrl: string;
+  name: string;
 }
 
 export interface Sponsors {
-  gold: Sponsor[]
-  silver: Sponsor[]
-  bronze: Sponsor[]
-  backers: Sponsor[]
+  gold: Sponsor[];
+  silver: Sponsor[];
+  bronze: Sponsor[];
+  backers: Sponsor[];
 }

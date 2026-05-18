@@ -1,18 +1,18 @@
-import classNames from 'classnames'
-import { Fragment, FunctionComponent, h } from 'preact'
-import { highlightMarkdown } from '~/utils/docs'
-import { HighlightQuery } from '../HighlightQuery'
-import { Markdown } from '../Markdown'
-import { RichText } from '../RichText'
-import * as styles from './styles.css'
+import classNames from "classnames";
+import { Fragment, FunctionComponent, h } from "preact";
+import { highlightMarkdown } from "~/utils/docs";
+import { HighlightQuery } from "../HighlightQuery";
+import { Markdown } from "../Markdown";
+import { RichText } from "../RichText";
+import * as styles from "./styles.css";
 
 interface Props {
-  title: string
-  summary: string | undefined
-  active: boolean
-  code: boolean
-  query?: string
-  activeRef?: (element: HTMLDivElement | null) => void
+  title: string;
+  summary: string | undefined;
+  active: boolean;
+  code: boolean;
+  query?: string;
+  activeRef?: (element: HTMLDivElement | null) => void;
 }
 
 export const Item: FunctionComponent<Props> = ({
@@ -43,7 +43,7 @@ export const Item: FunctionComponent<Props> = ({
 
     <Icon />
   </div>
-)
+);
 
 function Icon() {
   return (
@@ -59,5 +59,5 @@ function Icon() {
         </g>
       </g>
     </svg>
-  )
+  );
 }

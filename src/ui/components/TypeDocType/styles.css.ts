@@ -1,9 +1,9 @@
-import { style } from '@vanilla-extract/css'
+import { style } from "@vanilla-extract/css";
 
 export const code = style({
-  fontFamily: 'monospace',
-})
+  fontFamily: "monospace",
+});
 
 export const unbreakable = style({
-  whiteSpace: 'nowrap',
-})
+  whiteSpace: "nowrap",
+});

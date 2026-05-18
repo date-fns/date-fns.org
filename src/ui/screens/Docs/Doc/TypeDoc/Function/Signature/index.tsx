@@ -2,25 +2,25 @@ import {
   findExamples,
   findSignatureReturns,
   findTags,
-} from '@date-fns/docs/utils'
-import { Fragment, FunctionComponent, h } from 'preact'
-import { useMemo } from 'preact/hooks'
-import type { SignatureReflection, TypeParameterReflection } from 'typedoc'
-import { IgnoreParentTypesSourceContext } from '~/ui/contexts/IgnoreParentTypesSource'
-import { Arguments } from '../Arguments'
-import { Generics } from '../Generics'
-import { Returns } from '../Returns'
-import { Type } from '../Type'
-import { Debug } from '~/ui/components/Debug'
-import { DocExamples } from '~/ui/components/DocExamples'
-import { extractCodeFromTagString } from '~/utils/docs'
-import { Throws } from '../Throws'
+} from "@date-fns/docs/utils";
+import { Fragment, FunctionComponent, h } from "preact";
+import { useMemo } from "preact/hooks";
+import type { SignatureReflection, TypeParameterReflection } from "typedoc";
+import { IgnoreParentTypesSourceContext } from "~/ui/contexts/IgnoreParentTypesSource";
+import { Arguments } from "../Arguments";
+import { Generics } from "../Generics";
+import { Returns } from "../Returns";
+import { Type } from "../Type";
+import { Debug } from "~/ui/components/Debug";
+import { DocExamples } from "~/ui/components/DocExamples";
+import { extractCodeFromTagString } from "~/utils/docs";
+import { Throws } from "../Throws";
 
 interface SignatureProps {
-  name: string
-  signature: SignatureReflection
-  header: 'h2' | 'h3'
-  index: number | undefined
+  name: string;
+  signature: SignatureReflection;
+  header: "h2" | "h3";
+  index: number | undefined;
 }
 
 export const Signature: FunctionComponent<SignatureProps> = ({
@@ -29,27 +29,27 @@ export const Signature: FunctionComponent<SignatureProps> = ({
   header,
   index,
 }) => {
-  const returns = useMemo(() => findSignatureReturns(signature), [signature])
+  const returns = useMemo(() => findSignatureReturns(signature), [signature]);
   const throws = useMemo(
     () =>
-      findTags(signature, '@throws').map((str) => {
-        const captures = str.match(/^(?:(\w+) - )?(.*)$/)
-        if (!captures) return { type: undefined, description: str }
-        return { type: captures[1], description: captures[2] || str }
+      findTags(signature, "@throws").map((str) => {
+        const captures = str.match(/^(?:(\w+) - )?(.*)$/);
+        if (!captures) return { type: undefined, description: str };
+        return { type: captures[1], description: captures[2] || str };
       }),
-    [signature]
-  )
+    [signature],
+  );
   const examples = useMemo(
     () => findExamples(signature).map(extractCodeFromTagString),
-    [signature]
-  )
+    [signature],
+  );
 
   // @ts-ignore: Typing is inproper in TypeDoc
   const typeParameters = signature.typeParameter as
     | TypeParameterReflection[]
-    | undefined
+    | undefined;
 
-  const scope = index === undefined ? undefined : `${index + 1}`
+  const scope = index === undefined ? undefined : `${index + 1}`;
 
   return (
     <>
@@ -77,7 +77,7 @@ export const Signature: FunctionComponent<SignatureProps> = ({
 
       {signature.type && (
         <Returns
-          description={returns || ''}
+          description={returns || ""}
           type={signature.type}
           header={header}
           scope={scope}
@@ -92,5 +92,5 @@ export const Signature: FunctionComponent<SignatureProps> = ({
 
       <Debug data={signature} />
     </>
-  )
-}
+  );
+};

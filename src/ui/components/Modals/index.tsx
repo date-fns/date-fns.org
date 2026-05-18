@@ -5,41 +5,41 @@ import {
   FunctionComponent,
   h,
   RefObject,
-} from 'preact'
-import { useContext, useMemo, useRef, useState } from 'preact/hooks'
-import { ModalPortal, ModalPortalProps } from '~/ui/components/ModalPortal'
-import { useRefState } from '~/utils/useRefState'
+} from "preact";
+import { useContext, useMemo, useRef, useState } from "preact/hooks";
+import { ModalPortal, ModalPortalProps } from "~/ui/components/ModalPortal";
+import { useRefState } from "~/utils/useRefState";
 
 export interface ModalComponent {
-  id: string
-  component: ComponentChildren
+  id: string;
+  component: ComponentChildren;
 }
 
-export type ModalOverlayRef = RefObject<HTMLDivElement | null>
+export type ModalOverlayRef = RefObject<HTMLDivElement | null>;
 
-export type ModalOnCloseRef = RefObject<(() => unknown) | null>
+export type ModalOnCloseRef = RefObject<(() => unknown) | null>;
 
 export interface ModalAPI {
-  modal: ModalComponent | undefined
-  props: ShowModalInnerProps
-  showModal: ShowModal
-  overlayRef: ModalOverlayRef
-  onCloseRef: ModalOnCloseRef
+  modal: ModalComponent | undefined;
+  props: ShowModalInnerProps;
+  showModal: ShowModal;
+  overlayRef: ModalOverlayRef;
+  onCloseRef: ModalOnCloseRef;
 }
 
 export type ShowModalInnerProps = Pick<
   ModalPortalProps,
-  'size' | 'bare' | 'closeOnOverlayClick' | 'adjusted'
->
+  "size" | "bare" | "closeOnOverlayClick" | "adjusted"
+>;
 
 export interface ShowModalProps {
-  modalId: string
-  component: ComponentChild | null
-  props?: ShowModalInnerProps
-  onClose?: () => unknown
+  modalId: string;
+  component: ComponentChild | null;
+  props?: ShowModalInnerProps;
+  onClose?: () => unknown;
 }
 
-export type ShowModal = (props: ShowModalProps) => void
+export type ShowModal = (props: ShowModalProps) => void;
 
 export const ModalsContext = createContext<ModalAPI>({
   modal: undefined,
@@ -47,34 +47,34 @@ export const ModalsContext = createContext<ModalAPI>({
   showModal: () => {},
   overlayRef: { current: null },
   onCloseRef: { current: null },
-})
+});
 
 export interface ModalsProps {
-  api: ModalAPI
+  api: ModalAPI;
 }
 
 export function Modals({
   api: { modal, props, showModal, overlayRef },
 }: ModalsProps) {
-  if (!modal) return null
+  if (!modal) return null;
   return (
     <ModalPortal
       close={() => {
-        showModal({ modalId: modal.id, component: undefined })
+        showModal({ modalId: modal.id, component: undefined });
       }}
       overlayRef={overlayRef}
       {...props}
     >
       {modal.component}
     </ModalPortal>
-  )
+  );
 }
 
 export function useModals(): ModalAPI {
-  const [modal, setModal] = useRefState<ModalComponent | undefined>(undefined)
-  const [props, setProps] = useState<ShowModalInnerProps>({ size: 'medium' })
-  const overlayRef: ModalOverlayRef = useRef(null)
-  const onCloseRef: ModalOnCloseRef = useRef(null)
+  const [modal, setModal] = useRefState<ModalComponent | undefined>(undefined);
+  const [props, setProps] = useState<ShowModalInnerProps>({ size: "medium" });
+  const overlayRef: ModalOverlayRef = useRef(null);
+  const onCloseRef: ModalOnCloseRef = useRef(null);
 
   const showModal: ShowModal = ({
     modalId,
@@ -83,36 +83,36 @@ export function useModals(): ModalAPI {
     onClose,
   }) => {
     // Call current modal onClose callback
-    if (!component) onCloseRef.current?.()
+    if (!component) onCloseRef.current?.();
     // Assign new callback
-    onCloseRef.current = onClose || null
+    onCloseRef.current = onClose || null;
 
     // Ignore close if another modal got opened
-    if (!component && modalId !== modal.current?.id) return
+    if (!component && modalId !== modal.current?.id) return;
 
-    setModal(component ? { id: modalId, component } : undefined)
-    setProps(newProps || {})
-  }
+    setModal(component ? { id: modalId, component } : undefined);
+    setProps(newProps || {});
+  };
 
-  return { modal: modal.current, props, showModal, overlayRef, onCloseRef }
+  return { modal: modal.current, props, showModal, overlayRef, onCloseRef };
 }
 
 export interface ModalPropsBase {
-  close: () => void
-  overlayRef: ModalOverlayRef
+  close: () => void;
+  overlayRef: ModalOverlayRef;
 }
 
 export interface ModalPropsExtra {
-  onClose: () => unknown
+  onClose: () => unknown;
 }
 
 export function createModal<Props extends Record<string, any>>(
   Component: FunctionComponent<Props & ModalPropsBase>,
-  innerProps?: Omit<ModalPortalProps, keyof ModalPropsBase | 'children'>
+  innerProps?: Omit<ModalPortalProps, keyof ModalPropsBase | "children">,
 ) {
   return (): ((props: Props & ModalPropsExtra) => void) => {
-    const modalId = useMemo(() => Date.now().toString(), [])
-    const { showModal, overlayRef } = useContext(ModalsContext)
+    const modalId = useMemo(() => Date.now().toString(), []);
+    const { showModal, overlayRef } = useContext(ModalsContext);
 
     return ({ onClose, ...props }) => {
       showModal({
@@ -122,14 +122,14 @@ export function createModal<Props extends Record<string, any>>(
           <Component
             {...props}
             close={() => {
-              showModal({ modalId, component: null })
+              showModal({ modalId, component: null });
             }}
             overlayRef={overlayRef}
           />
         ),
         props: innerProps,
         onClose,
-      })
-    }
-  }
+      });
+    };
+  };
 }

@@ -1,18 +1,18 @@
-import { DefinePlugin, Configuration } from 'webpack'
-import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { getMode, getPath } from './utils'
-import merge from 'webpack-merge'
+import { DefinePlugin, Configuration } from "webpack";
+import { VanillaExtractPlugin } from "@vanilla-extract/webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { getMode, getPath } from "./utils";
+import merge from "webpack-merge";
 
 export function webpackDefaults(config: Configuration): Configuration {
-  const mode = getMode()
-  const isProduction = mode === 'production'
-  const isWeb = config.target === 'web'
+  const mode = getMode();
+  const isProduction = mode === "production";
+  const isWeb = config.target === "web";
 
   return merge(
     {
       mode,
-      devtool: isProduction ? 'source-map' : 'inline-source-map',
+      devtool: isProduction ? "source-map" : "inline-source-map",
       module: {
         rules: [
           tsRule(),
@@ -22,9 +22,9 @@ export function webpackDefaults(config: Configuration): Configuration {
         ],
       },
       resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.json'],
+        extensions: [".tsx", ".ts", ".js", ".json"],
         alias: {
-          '~': getPath('src'),
+          "~": getPath("src"),
         },
       },
       plugins: [
@@ -32,21 +32,21 @@ export function webpackDefaults(config: Configuration): Configuration {
         new MiniCssExtractPlugin(
           isProduction
             ? {
-                filename: '[name]-[fullhash].css',
-                chunkFilename: '[id]-[fullhash].css',
+                filename: "[name]-[fullhash].css",
+                chunkFilename: "[id]-[fullhash].css",
               }
             : {
-                filename: '[name].css',
-                chunkFilename: '[id].css',
-              }
+                filename: "[name].css",
+                chunkFilename: "[id].css",
+              },
         ),
         new DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+          "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         }),
       ],
     },
-    config
-  )
+    config,
+  );
 }
 
 function tsRule() {
@@ -54,30 +54,30 @@ function tsRule() {
     test: /\.tsx?$/,
     use: [
       {
-        loader: 'ts-loader',
+        loader: "ts-loader",
         options: {
           context: process.cwd(),
-          configFile: getPath('tsconfig.json'),
+          configFile: getPath("tsconfig.json"),
         },
       },
     ],
     exclude: [/node_modules/, /\.css\.ts$/i],
-  }
+  };
 }
 
 function cssRule(isWeb: boolean) {
   const cssLoaders = isWeb
     ? [
         { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
-        'css-loader',
+        "css-loader",
       ]
-    : 'null-loader'
+    : "null-loader";
 
   return {
     test: /\.css$/,
     use: cssLoaders,
     exclude: [/\.vanilla\.css$/i],
-  }
+  };
 }
 
 function vanillaExtractRule() {
@@ -86,18 +86,18 @@ function vanillaExtractRule() {
     use: [
       MiniCssExtractPlugin.loader,
       {
-        loader: require.resolve('css-loader'),
+        loader: require.resolve("css-loader"),
         options: {
           url: false, // Required as image imports should be handled via JS/TS import statements
         },
       },
     ],
-  }
+  };
 }
 
 export function fileRule(isWeb: boolean) {
   return {
     test: /\.(png|jpg|gif|svg)$/,
-    use: [{ loader: 'file-loader', options: { emitFile: isWeb } }],
-  }
+    use: [{ loader: "file-loader", options: { emitFile: isWeb } }],
+  };
 }

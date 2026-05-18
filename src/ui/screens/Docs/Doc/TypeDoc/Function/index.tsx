@@ -1,21 +1,21 @@
-import type { DateFnsDocs } from '@date-fns/docs/types'
+import type { DateFnsDocs } from "@date-fns/docs/types";
 import {
   findFn,
   findFnDescription,
   findFnExamples,
   findSummary,
   findFnTag,
-} from '@date-fns/docs/utils'
-import { FunctionComponent, h } from 'preact'
-import { useMemo } from 'preact/hooks'
-import type { DeclarationReflection } from 'typedoc'
-import { Debug } from '~/ui/components/Debug'
-import { DocDescription } from '~/ui/components/DocDescription'
-import { DocExamples } from '~/ui/components/DocExamples'
-import { DocHeader } from '~/ui/components/DocHeader'
-import { DocLinks } from '~/ui/components/DocLinks'
-import { DocUsage } from '~/ui/components/DocUsage'
-import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
+} from "@date-fns/docs/utils";
+import { FunctionComponent, h } from "preact";
+import { useMemo } from "preact/hooks";
+import type { DeclarationReflection } from "typedoc";
+import { Debug } from "~/ui/components/Debug";
+import { DocDescription } from "~/ui/components/DocDescription";
+import { DocExamples } from "~/ui/components/DocExamples";
+import { DocHeader } from "~/ui/components/DocHeader";
+import { DocLinks } from "~/ui/components/DocLinks";
+import { DocUsage } from "~/ui/components/DocUsage";
+import { InlineTypeContext } from "~/ui/contexts/InlineTypeContext";
 import {
   ParentTypesMap,
   extractCodeFromTagString,
@@ -25,33 +25,33 @@ import {
   pageTypeHash,
   pageTypeId,
   pageTypeIdHighlightMatch,
-} from '~/utils/docs'
-import { Alias } from './Alias'
-import { FP } from './FP'
-import { Signatures } from './Signatures'
+} from "~/utils/docs";
+import { Alias } from "./Alias";
+import { FP } from "./FP";
+import { Signatures } from "./Signatures";
 
 interface TypeDocFunctionProps {
-  page: DateFnsDocs.TypeDocPage
-  doc: DeclarationReflection
+  page: DateFnsDocs.TypeDocPage;
+  doc: DeclarationReflection;
 }
 
 export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
   page,
   doc,
 }) => {
-  const fn = useMemo(() => findFn(doc), [doc])
-  const parentTypesMap = useMemo(() => buildParentTypesMap(fn), [fn])
+  const fn = useMemo(() => findFn(doc), [doc]);
+  const parentTypesMap = useMemo(() => buildParentTypesMap(fn), [fn]);
   const description = useMemo(
     () => fn && (findFnDescription(fn) || findSummary(fn)),
-    [fn]
-  )
-  const { usage, usageTabs } = useMemo(() => generateUsage(doc.name), [doc])
-  const alias = useMemo(() => fn && findFnTag(fn, '@alias'), [fn]);
-  const signatures = fn && fn.signatures
+    [fn],
+  );
+  const { usage, usageTabs } = useMemo(() => generateUsage(doc.name), [doc]);
+  const alias = useMemo(() => fn && findFnTag(fn, "@alias"), [fn]);
+  const signatures = fn && fn.signatures;
   const examples = useMemo(
     () => fn && findFnExamples(fn).map(extractCodeFromTagString),
-    [fn]
-  )
+    [fn],
+  );
 
   return (
     <InlineTypeContext.Provider
@@ -74,7 +74,7 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
         hasOptions={fnHasOptions(fn)}
       />
 
-      {alias && (<Alias alias={alias} />)}
+      {alias && <Alias alias={alias} />}
 
       {signatures && <Signatures name={doc.name} signatures={signatures} />}
 
@@ -84,20 +84,20 @@ export const TypeDocFunction: FunctionComponent<TypeDocFunctionProps> = ({
 
       <DocLinks />
     </InlineTypeContext.Provider>
-  )
-}
+  );
+};
 
 function buildParentTypesMap(
-  refl: DeclarationReflection | undefined
+  refl: DeclarationReflection | undefined,
 ): ParentTypesMap {
-  const map: ParentTypesMap = {}
+  const map: ParentTypesMap = {};
 
   refl?.signatures?.forEach((signature) => {
     // @ts-expect-error - TypeDoc is being difficult
     signature?.typeParameter?.map((r) => {
-      map[r.id] = pageTypeHash(r.name, r.id)
-    })
-  })
+      map[r.id] = pageTypeHash(r.name, r.id);
+    });
+  });
 
-  return map
+  return map;
 }

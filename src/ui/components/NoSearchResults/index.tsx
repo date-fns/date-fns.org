@@ -1,10 +1,10 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { RichText } from '../RichText'
-import * as styles from './styles.css'
+import { Fragment, FunctionComponent, h } from "preact";
+import { RichText } from "../RichText";
+import * as styles from "./styles.css";
 
 interface NoSearchResultsProps {
-  noun: string
-  query: [string, (query: string) => void]
+  noun: string;
+  query: [string, (query: string) => void];
 }
 
 export const NoSearchResults: FunctionComponent<NoSearchResultsProps> = ({
@@ -13,16 +13,16 @@ export const NoSearchResults: FunctionComponent<NoSearchResultsProps> = ({
 }) => {
   return (
     <RichText>
-      No {noun} found for <span class={styles.query}>{query}</span>.{' '}
+      No {noun} found for <span class={styles.query}>{query}</span>.{" "}
       <a
         href="#"
         onClick={(e) => {
-          e.preventDefault()
-          setQuery('')
+          e.preventDefault();
+          setQuery("");
         }}
       >
         Clear query
       </a>
     </RichText>
-  )
-}
+  );
+};

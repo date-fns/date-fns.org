@@ -1,16 +1,16 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { Code } from '../Code'
-import { debugTypeDoc } from '~/utils/docs'
+import { Fragment, FunctionComponent, h } from "preact";
+import { Code } from "../Code";
+import { debugTypeDoc } from "~/utils/docs";
 
 interface DebugProps {
-  data: unknown
+  data: unknown;
 }
 
 export const Debug: FunctionComponent<DebugProps> = ({ data }) => {
-  if (!debugTypeDoc) return null
+  if (!debugTypeDoc) return null;
   return (
     <Code
-      value={typeof data === 'string' ? data : JSON.stringify(data, null, 2)}
+      value={typeof data === "string" ? data : JSON.stringify(data, null, 2)}
     />
-  )
-}
+  );
+};

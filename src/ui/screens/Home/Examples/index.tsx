@@ -1,28 +1,28 @@
-import { h } from 'preact'
-import { useState } from 'preact/hooks'
-import { Code } from '~/ui/components/Code'
-import { HomeBlock } from '~/ui/components/Home'
+import { h } from "preact";
+import { useState } from "preact/hooks";
+import { Code } from "~/ui/components/Code";
+import { HomeBlock } from "~/ui/components/Home";
 // TODO: import { trackAction } from 'app/acts/tracking_acts'
-import classNames from 'classnames'
-import * as styles from './styles.css'
+import classNames from "classnames";
+import * as styles from "./styles.css";
 
 // TODO: Generate example results with date-fns v2
 const examples = [
   {
-    label: 'Format date',
+    label: "Format date",
     code: `
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 format(new Date(), "'Today is a' eeee")
 //=> "Today is a ${
       [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
       ][new Date().getDay()]
     }"
 
@@ -34,7 +34,7 @@ formatRelative(subDays(new Date(), 3), new Date())
 `.trim(),
   },
   {
-    label: 'I18n',
+    label: "I18n",
     code: `
 import { formatRelative, subDays } from 'date-fns'
 import { es, ru } from 'date-fns/locale'
@@ -50,7 +50,7 @@ formatRelative(subDays(new Date(), 3), new Date(), { locale: ru })
 `.trim(),
   },
   {
-    label: 'Composition & FP',
+    label: "Composition & FP",
     code: `
 import { addYears, formatWithOptions } from 'date-fns/fp'
 import { eo } from 'date-fns/locale'
@@ -71,13 +71,13 @@ const formattedDates = dates.map(addFiveYears).map(dateToString).map(toUpper)
 //=> ['1 JANUARO 2022', '11 FEBRUARO 2022', '2 JULIO 2022']
 `.trim(),
   },
-]
+];
 
-const IS_PRERELEASE = false
+const IS_PRERELEASE = false;
 
 export const Examples = () => {
-  const [currentExampleIndex, setExampleIndex] = useState(0)
-  const currentExample = examples[currentExampleIndex]
+  const [currentExampleIndex, setExampleIndex] = useState(0);
+  const currentExample = examples[currentExampleIndex];
 
   return (
     <HomeBlock header="Examples">
@@ -89,19 +89,19 @@ export const Examples = () => {
                 <a
                   class={classNames(
                     styles.optionLink,
-                    index === currentExampleIndex && styles.optionLinkIsCurrent
+                    index === currentExampleIndex && styles.optionLinkIsCurrent,
                   )}
                   href="#"
                   onClick={(e) => {
                     // TODO: trackAction('Changed Example', { exampleIndex: currentExampleIndex })
-                    e.preventDefault()
-                    setExampleIndex(index)
+                    e.preventDefault();
+                    setExampleIndex(index);
                   }}
                 >
                   {example.label}
                 </a>
               </li>
-            )
+            );
           })}
         </ul>
 
@@ -118,5 +118,5 @@ export const Examples = () => {
         </div>
       )}
     </HomeBlock>
-  )
-}
+  );
+};

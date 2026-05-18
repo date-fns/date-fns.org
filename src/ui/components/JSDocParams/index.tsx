@@ -1,10 +1,10 @@
-import { h, FunctionComponent, Fragment } from 'preact'
-import type { DateFnsDocs } from '@date-fns/docs'
-import { Markdown } from '~/ui/components/Markdown'
-import * as styles from './styles.css'
+import { h, FunctionComponent, Fragment } from "preact";
+import type { DateFnsDocs } from "@date-fns/docs";
+import { Markdown } from "~/ui/components/Markdown";
+import * as styles from "./styles.css";
 
 interface Props {
-  params: DateFnsDocs.JSDocParam[]
+  params: DateFnsDocs.JSDocParam[];
 }
 
 export const JSDocParams: FunctionComponent<Props> = ({ params }) => (
@@ -27,20 +27,20 @@ export const JSDocParams: FunctionComponent<Props> = ({ params }) => (
       </tr>
     ))}
   </>
-)
+);
 
 const ParamOptionalLabel: FunctionComponent<{
-  defaultValue?: string
+  defaultValue?: string;
 }> = ({ defaultValue }) => (
   <div class={styles.optionalLabel}>
     {defaultValue !== undefined
       ? `(optional, default=${defaultValue})`
-      : '(optional)'}
+      : "(optional)"}
   </div>
-)
+);
 
 const ParamPropsTable: FunctionComponent<{
-  props: DateFnsDocs.JSDocParam[]
+  props: DateFnsDocs.JSDocParam[];
 }> = ({ props }) => (
   <div>
     <div class={styles.propsLabel}>Properties:</div>
@@ -59,17 +59,17 @@ const ParamPropsTable: FunctionComponent<{
       </tbody>
     </table>
   </div>
-)
+);
 
 const ParamType: FunctionComponent<{
-  type: DateFnsDocs.JSDocType
-  variable?: boolean
+  type: DateFnsDocs.JSDocType;
+  variable?: boolean;
 }> = ({ type, variable }) => {
-  const names = type.names
-  const types = names.join(' | ')
+  const names = type.names;
+  const types = names.join(" | ");
   if (variable) {
-    return <span>{names.length > 1 ? `...(${types})` : `...${types}`}</span>
+    return <span>{names.length > 1 ? `...(${types})` : `...${types}`}</span>;
   } else {
-    return <span>{types}</span>
+    return <span>{types}</span>;
   }
-}
+};

@@ -1,11 +1,11 @@
 const githubUrl =
-  'https://github.com/date-fns/date-fns/issues/new?assignees=&labels=&template=bug_report.md'
+  "https://github.com/date-fns/date-fns/issues/new?assignees=&labels=&template=bug_report.md";
 
 /**
  * Returns GitHub document issue template URL with prefilled title and body
  */
 export function docIssueTemplateText(url: string, fn: string): string {
-  const title = encodeURIComponent(`Problem in ${fn} documentation`)
+  const title = encodeURIComponent(`Problem in ${fn} documentation`);
   const body = encodeURIComponent(`
    There is an issue with the [${fn} documentation](${url})
 
@@ -16,15 +16,15 @@ export function docIssueTemplateText(url: string, fn: string): string {
   ### Suggested edits
 
   <!-- Suggest how the documentation can be improved -->
-  `)
-  return githubUrl + '&title=' + title + '&body=' + body
+  `);
+  return githubUrl + "&title=" + title + "&body=" + body;
 }
 
 /**
  * Returns GitHub function issue template URL with prefilled title and body
  */
 export function bugTemplateText(url: string, fn: string): string {
-  const title = encodeURIComponent(`Problem with ${fn} function`)
+  const title = encodeURIComponent(`Problem with ${fn} function`);
 
   const body = encodeURIComponent(`
   There is an issue with the [${fn} function](${url})
@@ -57,6 +57,6 @@ export function bugTemplateText(url: string, fn: string): string {
   - Your timezone: <!-- Fill in your timezone name (i.e. Asia/Singapore) -->
   - Your current time: <!-- Fill in the time when did you tested the probmlem (i.e. 16:20) -->
 
-  `)
-  return githubUrl + '&title=' + title + '&body=' + body
+  `);
+  return githubUrl + "&title=" + title + "&body=" + body;
 }

@@ -1,10 +1,10 @@
-import { h, ComponentChild, FunctionComponent } from 'preact'
-import * as styles from './styles.css'
+import { h, ComponentChild, FunctionComponent } from "preact";
+import * as styles from "./styles.css";
 
 interface Props {
-  header?: ComponentChild
-  subHeader?: ComponentChild
-  actions?: ComponentChild
+  header?: ComponentChild;
+  subHeader?: ComponentChild;
+  actions?: ComponentChild;
 }
 
 export const HomeBlock: FunctionComponent<Props> = ({
@@ -24,4 +24,4 @@ export const HomeBlock: FunctionComponent<Props> = ({
       <div class={styles.actions}>{actions}</div>
     </div>
   </div>
-)
+);

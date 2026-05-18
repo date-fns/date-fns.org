@@ -1,8 +1,8 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function SimpleIcon() {
   return (
-    <svg viewBox="0 0 32 26" style={{ height: '50%', marginTop: '-3px' }}>
+    <svg viewBox="0 0 32 26" style={{ height: "50%", marginTop: "-3px" }}>
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon
           stroke="var(--icon-color)"
@@ -10,5 +10,5 @@ export default function SimpleIcon() {
         ></polygon>
       </g>
     </svg>
-  )
+  );
 }

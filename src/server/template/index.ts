@@ -1,7 +1,7 @@
-import { entryPath } from './entryPath'
+import { entryPath } from "./entryPath";
 
 interface Params {
-  body?: string
+  body?: string;
 }
 
 export const template = ({ body }: Params = {}) =>
@@ -54,13 +54,13 @@ export const template = ({ body }: Params = {}) =>
     <meta property='og:image:width' content='600'>
     <meta property='og:image:height' content='330'>
 
-    <link href="${entryPath('main', 'css')}" rel="stylesheet">
+    <link href="${entryPath("main", "css")}" rel="stylesheet">
   </head>
   <body>
-    <div id="root">${body ?? ''}</div>
+    <div id="root">${body ?? ""}</div>
     <div id="portals"></div>
 
-    <script src="${entryPath('main', 'js')}"></script>
+    <script src="${entryPath("main", "js")}"></script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -106,4 +106,4 @@ export const template = ({ body }: Params = {}) =>
     </script>
   </body>
 </html>
-`.trim()
+`.trim();

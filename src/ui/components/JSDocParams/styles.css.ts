@@ -1,11 +1,11 @@
-import { style } from '@vanilla-extract/css'
+import { style } from "@vanilla-extract/css";
 
 export const optionalLabel = style({
-  fontStyle: 'italic',
-})
+  fontStyle: "italic",
+});
 
 export const propsLabel = style({
-  fontWeight: 'bold',
-  marginTop: '10px',
-  marginBottom: '5px',
-})
+  fontWeight: "bold",
+  marginTop: "10px",
+  marginBottom: "5px",
+});

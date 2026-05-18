@@ -1,16 +1,16 @@
-import { Fragment, h } from 'preact'
+import { Fragment, h } from "preact";
 import {
   HomeBlock,
   HomeExternalAction,
   HomeExternalLink,
-} from '~/ui/components/Home'
-import * as styles from './styles.css'
+} from "~/ui/components/Home";
+import * as styles from "./styles.css";
 
 const testimonials = [
   {
-    name: 'jrop',
-    url: 'https://github.com/jrop',
-    avatar: 'https://github.com/jrop.png',
+    name: "jrop",
+    url: "https://github.com/jrop",
+    avatar: "https://github.com/jrop.png",
     text: `
       date-fns is the modular path to date/time manipulation. Where I
       work, it helped us get our bundle sizes down, especially because
@@ -19,9 +19,9 @@ const testimonials = [
   },
 
   {
-    name: 'Nicholas Kircher',
-    url: 'https://github.com/MiracleBlue',
-    avatar: 'https://github.com/MiracleBlue.png',
+    name: "Nicholas Kircher",
+    url: "https://github.com/MiracleBlue",
+    avatar: "https://github.com/MiracleBlue.png",
     text: `
       date-fns gave us the power to work directly with date objects,
       without worrying about conversion or mutations. It's a real game
@@ -30,17 +30,17 @@ const testimonials = [
   },
 
   {
-    name: 'Miljan Aleksic',
+    name: "Miljan Aleksic",
     title: (
       <>
-        , author of{' '}
+        , author of{" "}
         <HomeExternalLink href="https://vuikit.js.org/">
           Vuikit
         </HomeExternalLink>
       </>
     ),
-    url: 'https://github.com/miljan-aleksic',
-    avatar: 'https://github.com/miljan-aleksic.png',
+    url: "https://github.com/miljan-aleksic",
+    avatar: "https://github.com/miljan-aleksic.png",
     text: `
       Sasha and Lesha Koss made what anyone dealing with dates in JS
       ever wanted, but didn’t got the time, the knowledge or the
@@ -48,7 +48,7 @@ const testimonials = [
       becoming an amazing universe. Thank you!
     `,
   },
-]
+];
 
 export const Testimonials = () => (
   <HomeBlock
@@ -84,4 +84,4 @@ export const Testimonials = () => (
       ))}
     </div>
   </HomeBlock>
-)
+);

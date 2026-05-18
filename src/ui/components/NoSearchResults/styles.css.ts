@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css'
+import { style } from "@vanilla-extract/css";
 
 export const query = style({
-  backgroundColor: '#fffe25',
-})
+  backgroundColor: "#fffe25",
+});

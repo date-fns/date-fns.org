@@ -1,12 +1,12 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { Markdown } from '~/ui/components/Markdown'
-import { SectionHeader } from '../SectionHeader'
+import { Fragment, FunctionComponent, h } from "preact";
+import { Markdown } from "~/ui/components/Markdown";
+import { SectionHeader } from "../SectionHeader";
 
 interface DocDescriptionProps {
-  description: string
-  scope?: string
-  header?: 'h2' | 'h3'
-  skipHeader?: boolean
+  description: string;
+  scope?: string;
+  header?: "h2" | "h3";
+  skipHeader?: boolean;
 }
 
 export const DocDescription: FunctionComponent<DocDescriptionProps> = ({
@@ -21,4 +21,4 @@ export const DocDescription: FunctionComponent<DocDescriptionProps> = ({
     )}
     <Markdown value={description} />
   </section>
-)
+);

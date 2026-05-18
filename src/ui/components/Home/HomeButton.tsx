@@ -1,11 +1,11 @@
-import { h, FunctionComponent } from 'preact'
-import classNames from 'classnames'
-import * as styles from './styles.css'
+import { h, FunctionComponent } from "preact";
+import classNames from "classnames";
+import * as styles from "./styles.css";
 
 interface Props {
-  href: string
-  newTab?: boolean
-  type: keyof typeof styles.button
+  href: string;
+  newTab?: boolean;
+  type: keyof typeof styles.button;
 }
 
 export const HomeButton: FunctionComponent<Props> = ({
@@ -17,10 +17,10 @@ export const HomeButton: FunctionComponent<Props> = ({
   <a
     class={classNames(styles.button[type])}
     href={href}
-    target={newTab ? '_blank' : undefined}
-    rel={newTab ? 'noopener noreferrer' : undefined}
+    target={newTab ? "_blank" : undefined}
+    rel={newTab ? "noopener noreferrer" : undefined}
     type={type}
   >
     {children}
   </a>
-)
+);

@@ -1,13 +1,13 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import type { TypeParameterReflection } from 'typedoc'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { SectionHeader } from '~/ui/components/SectionHeader'
-import { TypeDocInterface } from '~/ui/components/TypeDocInterface'
+import { Fragment, FunctionComponent, h } from "preact";
+import type { TypeParameterReflection } from "typedoc";
+import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
+import { SectionHeader } from "~/ui/components/SectionHeader";
+import { TypeDocInterface } from "~/ui/components/TypeDocInterface";
 
 interface Props {
-  args: TypeParameterReflection[]
-  scope?: string
-  header?: 'h2' | 'h3'
+  args: TypeParameterReflection[];
+  scope?: string;
+  header?: "h2" | "h3";
 }
 
 export const Generics: FunctionComponent<Props> = ({ args, scope, header }) => (
@@ -15,4 +15,4 @@ export const Generics: FunctionComponent<Props> = ({ args, scope, header }) => (
     <SectionHeader header="Generics" scope={scope} tag={header} />
     <TypeDocInterface list={args} />
   </section>
-)
+);

@@ -1,20 +1,20 @@
-import { h, FunctionComponent } from 'preact'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { useContext } from 'preact/hooks'
-import { RouterContext } from '~/ui/router'
-import { LatestVersionLink } from './LatestVersionLink'
-import { docLink } from '~/ui/router/docLink'
-import * as styles from './styles.css'
+import { h, FunctionComponent } from "preact";
+import type { DateFnsDocs } from "@date-fns/docs/types";
+import { useContext } from "preact/hooks";
+import { RouterContext } from "~/ui/router";
+import { LatestVersionLink } from "./LatestVersionLink";
+import { docLink } from "~/ui/router/docLink";
+import * as styles from "./styles.css";
 
 interface Props {
-  selectedVersion: string
-  latestVersion: string
-  selectedPage: string
-  selectedSubmodule: DateFnsDocs.Submodule
-  versions: DateFnsDocs.VersionPreview[]
+  selectedVersion: string;
+  latestVersion: string;
+  selectedPage: string;
+  selectedSubmodule: DateFnsDocs.Submodule;
+  versions: DateFnsDocs.VersionPreview[];
 }
 
-type FIXME = any
+type FIXME = any;
 
 export const VersionSelector: FunctionComponent<Props> = ({
   selectedVersion,
@@ -23,7 +23,7 @@ export const VersionSelector: FunctionComponent<Props> = ({
   selectedSubmodule,
   versions,
 }) => {
-  const { navigate } = useContext(RouterContext)
+  const { navigate } = useContext(RouterContext);
 
   return (
     <label class={styles.selector}>
@@ -38,7 +38,7 @@ export const VersionSelector: FunctionComponent<Props> = ({
               page: selectedPage,
               submodule: selectedSubmodule,
               version: e.target.value,
-            })
+            }),
           )
         }
       >
@@ -61,5 +61,5 @@ export const VersionSelector: FunctionComponent<Props> = ({
         />
       )}
     </label>
-  )
-}
+  );
+};

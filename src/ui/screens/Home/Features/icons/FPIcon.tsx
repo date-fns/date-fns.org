@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function FPIcon() {
   return (
@@ -23,5 +23,5 @@ export default function FPIcon() {
         </g>
       </g>
     </svg>
-  )
+  );
 }

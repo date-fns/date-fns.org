@@ -1,11 +1,11 @@
-import classNames from 'classnames'
-import { FunctionComponent, h } from 'preact'
-import WithDrop from '../WithDrop'
-import * as styles from './styles.css'
+import classNames from "classnames";
+import { FunctionComponent, h } from "preact";
+import WithDrop from "../WithDrop";
+import * as styles from "./styles.css";
 
 interface SourceLinkProps {
-  source: string | undefined
-  size?: keyof typeof styles.size
+  source: string | undefined;
+  size?: keyof typeof styles.size;
 }
 
 export const SourceLink: FunctionComponent<SourceLinkProps> = ({
@@ -21,7 +21,7 @@ export const SourceLink: FunctionComponent<SourceLinkProps> = ({
     >
       <WithDrop drop="View the source code on the GitHub">
         <svg
-          class={classNames(styles.icon, styles.size[size || 'medium'])}
+          class={classNames(styles.icon, styles.size[size || "medium"])}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 496 512"
         >
@@ -32,4 +32,4 @@ export const SourceLink: FunctionComponent<SourceLinkProps> = ({
         </svg>
       </WithDrop>
     </a>
-  ) : null
+  ) : null;

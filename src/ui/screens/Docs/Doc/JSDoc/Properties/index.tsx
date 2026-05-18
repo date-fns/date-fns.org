@@ -1,10 +1,10 @@
-import { h, FunctionComponent } from 'preact'
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { JSDocParams } from '~/ui/components/JSDocParams'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { h, FunctionComponent } from "preact";
+import type { DateFnsDocs } from "@date-fns/docs/types";
+import { JSDocParams } from "~/ui/components/JSDocParams";
+import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
 
 interface Props {
-  properties: DateFnsDocs.JSDocParam[]
+  properties: DateFnsDocs.JSDocParam[];
 }
 
 export const Properties: FunctionComponent<Props> = ({ properties }) => (
@@ -28,4 +28,4 @@ export const Properties: FunctionComponent<Props> = ({ properties }) => (
       </tbody>
     </table>
   </section>
-)
+);

@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from "preact";
 
 export default function ReliableIcon() {
   return (
@@ -10,5 +10,5 @@ export default function ReliableIcon() {
         ></path>
       </g>
     </svg>
-  )
+  );
 }

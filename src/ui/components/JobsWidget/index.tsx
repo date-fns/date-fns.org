@@ -1,46 +1,47 @@
-import { h, FunctionComponent } from 'preact'
-import shuffle from 'lodash/shuffle'
-import { NextIcon } from './NextIcon'
-import { CONFIG } from '~/constants'
-import { useJobs } from '~/utils/useJobs'
-import { useEffect, useMemo, useState } from 'preact/hooks'
-import { JobsSubscribeWidget } from '~/ui/components/JobsSubscribeWidget'
-import { request } from '~/utils/request'
-import * as Sentry from '@sentry/browser'
-import * as styles from './styles.css'
-import classNames from 'classnames'
+import { h, FunctionComponent } from "preact";
+import shuffle from "lodash/shuffle";
+import { NextIcon } from "./NextIcon";
+import { CONFIG } from "~/constants";
+import { useJobs } from "~/utils/useJobs";
+import { useEffect, useMemo, useState } from "preact/hooks";
+import { JobsSubscribeWidget } from "~/ui/components/JobsSubscribeWidget";
+import { request } from "~/utils/request";
+import * as Sentry from "@sentry/browser";
+import * as styles from "./styles.css";
+import classNames from "classnames";
 
 export const JobsWidget: FunctionComponent = () => {
-  const [result] = useJobs()
-  const [jobIndex, setJobIndex] = useState(0)
-  const shuffledJobs = useMemo(() => shuffle(result?.jobs ?? []), [
-    result?.jobs,
-  ])
+  const [result] = useJobs();
+  const [jobIndex, setJobIndex] = useState(0);
+  const shuffledJobs = useMemo(
+    () => shuffle(result?.jobs ?? []),
+    [result?.jobs],
+  );
 
-  const job = shuffledJobs[jobIndex]
+  const job = shuffledJobs[jobIndex];
 
   const [trackedJobs, setTrackedJobs] = useState<{ [jobId: string]: boolean }>(
-    {}
-  )
+    {},
+  );
 
   useEffect(() => {
     if (job && !trackedJobs[job.ref.id]) {
       request(`${CONFIG.jobsURL}/api/impression?id=${job.ref.id}`).catch(
         (error) => {
-          console.error(error)
-          Sentry.captureException(error)
-        }
-      )
-      setTrackedJobs({ ...trackedJobs, [job.ref.id]: true })
+          console.error(error);
+          Sentry.captureException(error);
+        },
+      );
+      setTrackedJobs({ ...trackedJobs, [job.ref.id]: true });
     }
-  }, [job])
+  }, [job]);
 
   if (!result) {
-    return null
+    return null;
   }
 
   if (shuffledJobs.length === 0) {
-    return <JobsSubscribeWidget />
+    return <JobsSubscribeWidget />;
   }
 
   return (
@@ -67,7 +68,7 @@ export const JobsWidget: FunctionComponent = () => {
 
             <div class={styles.companyAndLocation}>
               <div class={styles.hiringLabel}>
-                <span class={styles.companyName}>{job.data.companyName}</span>{' '}
+                <span class={styles.companyName}>{job.data.companyName}</span>{" "}
                 is hiring!
               </div>
 
@@ -102,13 +103,13 @@ export const JobsWidget: FunctionComponent = () => {
           <button
             class={styles.nextButton}
             onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              let newIndex = jobIndex + 1
+              e.preventDefault();
+              e.stopPropagation();
+              let newIndex = jobIndex + 1;
               if (newIndex > shuffledJobs.length - 1) {
-                newIndex = 0
+                newIndex = 0;
               }
-              setJobIndex(newIndex)
+              setJobIndex(newIndex);
             }}
           >
             <span class={styles.nextButtonLabel}>Next job</span>
@@ -117,5 +118,5 @@ export const JobsWidget: FunctionComponent = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};

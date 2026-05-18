@@ -1,13 +1,13 @@
-import { style } from '@vanilla-extract/css'
+import { style } from "@vanilla-extract/css";
 
 export const code = style({
-  fontFamily: 'monospace',
-})
+  fontFamily: "monospace",
+});
 
 export const optional = style({
-  fontStyle: 'italic',
-})
+  fontStyle: "italic",
+});
 
 export const nowrap = style({
-  whiteSpace: 'nowrap',
-})
+  whiteSpace: "nowrap",
+});

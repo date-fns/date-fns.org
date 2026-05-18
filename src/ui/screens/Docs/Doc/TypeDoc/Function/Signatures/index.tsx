@@ -1,20 +1,20 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import type { SignatureReflection } from 'typedoc'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { Entities } from '~/ui/components/Entities'
-import { RichText } from '~/ui/components/RichText'
-import { Signature } from '../Signature'
+import { Fragment, FunctionComponent, h } from "preact";
+import type { SignatureReflection } from "typedoc";
+import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
+import { Entities } from "~/ui/components/Entities";
+import { RichText } from "~/ui/components/RichText";
+import { Signature } from "../Signature";
 
 interface SignaturesProps {
-  name: string
-  signatures: SignatureReflection[]
+  name: string;
+  signatures: SignatureReflection[];
 }
 
 export const Signatures: FunctionComponent<SignaturesProps> = ({
   name,
   signatures,
 }) => {
-  const solo = signatures.length === 1
+  const solo = signatures.length === 1;
   return (
     <section>
       {!solo && (
@@ -39,11 +39,11 @@ export const Signatures: FunctionComponent<SignaturesProps> = ({
           <Signature
             name={name}
             signature={signature}
-            header={solo ? 'h2' : 'h3'}
+            header={solo ? "h2" : "h3"}
             index={solo ? undefined : index}
           />
         ))}
       </Entities>
     </section>
-  )
-}
+  );
+};

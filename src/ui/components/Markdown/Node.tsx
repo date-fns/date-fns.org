@@ -1,37 +1,37 @@
-import { h, FunctionComponent, Fragment } from 'preact'
-import { getUrlIdFromText, renderTree } from './utils'
-import { MarkdownCode } from '~/ui/components/MarkdownCode'
-import { RouterLink } from '~/ui/router'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
-import { AnyNode } from '~/utils/remarkableTree'
-import { docLink } from '~/ui/router/docLink'
-import { useContext } from 'preact/hooks'
-import { DocLinkContext } from '~/ui/router/DocLinkContext'
+import { h, FunctionComponent, Fragment } from "preact";
+import { getUrlIdFromText, renderTree } from "./utils";
+import { MarkdownCode } from "~/ui/components/MarkdownCode";
+import { RouterLink } from "~/ui/router";
+import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
+import { AnyNode } from "~/utils/remarkableTree";
+import { docLink } from "~/ui/router/docLink";
+import { useContext } from "preact/hooks";
+import { DocLinkContext } from "~/ui/router/DocLinkContext";
 
 interface Props {
-  node: AnyNode
+  node: AnyNode;
 }
 
 export const Node: FunctionComponent<Props> = ({ node }) => {
-  const docLinkParams = useContext(DocLinkContext)
+  const docLinkParams = useContext(DocLinkContext);
 
   switch (node.type) {
-    case 'tag':
-      const extraAttrs: { id?: string } = {}
-      const extraChildren = []
+    case "tag":
+      const extraAttrs: { id?: string } = {};
+      const extraChildren = [];
 
       if (/^h[2-6]$/.test(node.tagName)) {
-        const headerLinkId = getUrlIdFromText(node)
-        extraAttrs.id = headerLinkId
-        extraChildren.push(<DocHeaderAnchor anchor={headerLinkId} />)
+        const headerLinkId = getUrlIdFromText(node);
+        extraAttrs.id = headerLinkId;
+        extraChildren.push(<DocHeaderAnchor anchor={headerLinkId} />);
       }
 
       // Replace internal links with Link component
       if (
-        node.tagName === 'a' &&
-        node.attrs.href?.startsWith('https://date-fns.org/docs/')
+        node.tagName === "a" &&
+        node.attrs.href?.startsWith("https://date-fns.org/docs/")
       ) {
-        const page = node.attrs.href.replace('https://date-fns.org/docs/', '')
+        const page = node.attrs.href.replace("https://date-fns.org/docs/", "");
 
         // Check for the case if the link is exactly 'https://date-fns.org/docs/'
         if (page) {
@@ -39,25 +39,25 @@ export const Node: FunctionComponent<Props> = ({ node }) => {
             <RouterLink to={docLink({ ...docLinkParams, page })}>
               {renderTree(node.children)}
             </RouterLink>
-          )
+          );
         }
       }
 
       return h(
         node.tagName,
         Object.assign({}, node.attrs, extraAttrs),
-        renderTree(node.children).concat(extraChildren)
-      )
+        renderTree(node.children).concat(extraChildren),
+      );
 
-    case 'text':
-      return <>{node.content}</>
+    case "text":
+      return <>{node.content}</>;
 
-    case 'softbreak':
-      return <>{'\n'}</>
+    case "softbreak":
+      return <>{"\n"}</>;
 
-    case 'code':
+    case "code":
       return (
         <MarkdownCode value={node.content.trim()} language={node.language} />
-      )
+      );
   }
-}
+};

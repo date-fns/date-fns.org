@@ -1,38 +1,38 @@
-import { joinCommentParts } from '@date-fns/docs/utils'
-import { Fragment, h } from 'preact'
-import { useContext } from 'preact/hooks'
+import { joinCommentParts } from "@date-fns/docs/utils";
+import { Fragment, h } from "preact";
+import { useContext } from "preact/hooks";
 import type {
   DeclarationReflection,
   ParameterReflection,
   TypeParameterReflection,
-} from 'typedoc'
-import { InlineTypeContext } from '~/ui/contexts/InlineTypeContext'
-import { findSource } from '~/utils/docs'
-import { Debug } from '../Debug'
-import { IdHightlight } from '../IdHighlight'
-import { InlineCode } from '../InlineCode'
-import { Markdown } from '../Markdown'
-import { SourceLink } from '../SourceLink'
-import { TypeDocType } from '../TypeDocType'
-import * as styles from './styles.css'
+} from "typedoc";
+import { InlineTypeContext } from "~/ui/contexts/InlineTypeContext";
+import { findSource } from "~/utils/docs";
+import { Debug } from "../Debug";
+import { IdHightlight } from "../IdHighlight";
+import { InlineCode } from "../InlineCode";
+import { Markdown } from "../Markdown";
+import { SourceLink } from "../SourceLink";
+import { TypeDocType } from "../TypeDocType";
+import * as styles from "./styles.css";
 
 interface TypeDocInterfaceProps<
   Ref extends
     | ParameterReflection
     | DeclarationReflection
-    | TypeParameterReflection
+    | TypeParameterReflection,
 > {
-  list: Ref[]
+  list: Ref[];
 }
 
 export function TypeDocInterface<
   Ref extends
     | ParameterReflection
     | DeclarationReflection
-    | TypeParameterReflection
+    | TypeParameterReflection,
 >({ list }: TypeDocInterfaceProps<Ref>) {
-  const inline = useContext(InlineTypeContext)
-  const hasDefault = list.some((item) => 'default' in item && item.default)
+  const inline = useContext(InlineTypeContext);
+  const hasDefault = list.some((item) => "default" in item && item.default);
 
   return (
     <table>
@@ -47,7 +47,7 @@ export function TypeDocInterface<
 
       <tbody>
         {list.map((item, index) => {
-          const id = inline.buildId?.(item)
+          const id = inline.buildId?.(item);
           return (
             <tr key={index} id={id}>
               <td class={styles.code}>
@@ -71,7 +71,7 @@ export function TypeDocInterface<
 
               {hasDefault && (
                 <td style={styles.code}>
-                  {'default' in item && item.default && (
+                  {"default" in item && item.default && (
                     <InlineCode>
                       <TypeDocType type={item.default} />
                     </InlineCode>
@@ -87,9 +87,9 @@ export function TypeDocInterface<
                 <Debug data={item} />
               </td>
             </tr>
-          )
+          );
         })}
       </tbody>
     </table>
-  )
+  );
 }

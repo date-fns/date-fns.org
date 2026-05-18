@@ -1,25 +1,25 @@
-import { useJSON } from '~/utils/useJSON'
-import { RequestHookResult } from '~/types/hooks'
+import { useJSON } from "~/utils/useJSON";
+import { RequestHookResult } from "~/types/hooks";
 
 const CONTRIBUTORS_URL =
-  'https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999'
+  "https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999";
 
 type ContributorsFetchResponse = {
-  id: string
-  html_url: string
-  avatar_url: string
-  login: string
-}[]
+  id: string;
+  html_url: string;
+  avatar_url: string;
+  login: string;
+}[];
 
 interface Contributor {
-  id: string
-  url: string
-  avatarUrl: string
-  name: string
+  id: string;
+  url: string;
+  avatarUrl: string;
+  name: string;
 }
 
 export function useContributors(): RequestHookResult<Contributor[] | {}> {
-  const [result, meta] = useJSON<ContributorsFetchResponse>(CONTRIBUTORS_URL)
+  const [result, meta] = useJSON<ContributorsFetchResponse>(CONTRIBUTORS_URL);
 
   if (result) {
     return [
@@ -30,8 +30,8 @@ export function useContributors(): RequestHookResult<Contributor[] | {}> {
         name: user.login,
       })),
       meta,
-    ]
+    ];
   }
 
-  return [result, meta]
+  return [result, meta];
 }

@@ -1,17 +1,17 @@
-import type { DateFnsDocs } from '@date-fns/docs/types'
-import { FunctionComponent, h } from 'preact'
-import { Items } from './Items'
-import * as styles from './styles.css'
+import type { DateFnsDocs } from "@date-fns/docs/types";
+import { FunctionComponent, h } from "preact";
+import { Items } from "./Items";
+import * as styles from "./styles.css";
 
 interface Props {
-  categories: string[]
-  pages: DateFnsDocs.PagePreview[]
-  selectedVersion: string
-  selectedSubmodule: DateFnsDocs.Submodule
-  selectedPage: string
-  onNavigate(): void
-  query: string
-  activeRef: (element: HTMLDivElement | null) => void
+  categories: string[];
+  pages: DateFnsDocs.PagePreview[];
+  selectedVersion: string;
+  selectedSubmodule: DateFnsDocs.Submodule;
+  selectedPage: string;
+  onNavigate(): void;
+  query: string;
+  activeRef: (element: HTMLDivElement | null) => void;
 }
 
 export const Categories: FunctionComponent<Props> = ({
@@ -26,10 +26,10 @@ export const Categories: FunctionComponent<Props> = ({
 }) => (
   <ul class={styles.categoriesList}>
     {categories.map((category) => {
-      const categoryPages = pages.filter((page) => page.category === category)
+      const categoryPages = pages.filter((page) => page.category === category);
 
       if (categoryPages.length === 0) {
-        return null
+        return null;
       }
 
       return (
@@ -48,7 +48,7 @@ export const Categories: FunctionComponent<Props> = ({
             />
           </div>
         </li>
-      )
+      );
     })}
   </ul>
-)
+);

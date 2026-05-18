@@ -1,19 +1,19 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import type { SignatureReflection } from 'typedoc'
-import { TypeDocType } from '../TypeDocType'
-import { TypeDocSignatureArguments as Arguments } from './Arguments'
-import { TypeDocSignatureGenerics as Generics } from './Generics'
+import { Fragment, FunctionComponent, h } from "preact";
+import type { SignatureReflection } from "typedoc";
+import { TypeDocType } from "../TypeDocType";
+import { TypeDocSignatureArguments as Arguments } from "./Arguments";
+import { TypeDocSignatureGenerics as Generics } from "./Generics";
 
 interface TypeDocSignatureProps {
-  name?: string
-  signature: SignatureReflection
+  name?: string;
+  signature: SignatureReflection;
 }
 
 export const TypeDocSignature: FunctionComponent<TypeDocSignatureProps> = ({
   name,
   signature,
 }) => {
-  const withArgs = signature.parameters && signature.parameters.length > 0
+  const withArgs = signature.parameters && signature.parameters.length > 0;
 
   return (
     <>
@@ -40,10 +40,10 @@ export const TypeDocSignature: FunctionComponent<TypeDocSignatureProps> = ({
         )
         {signature.type && (
           <span>
-            {name ? ':' : ' =>'} <TypeDocType type={signature.type} />
+            {name ? ":" : " =>"} <TypeDocType type={signature.type} />
           </span>
         )}
       </span>
     </>
-  )
-}
+  );
+};

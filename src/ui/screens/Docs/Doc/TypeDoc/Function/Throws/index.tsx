@@ -1,15 +1,15 @@
-import { Fragment, FunctionComponent, h } from 'preact'
-import { Markdown } from '~/ui/components/Markdown'
-import { SectionHeader } from '~/ui/components/SectionHeader'
+import { Fragment, FunctionComponent, h } from "preact";
+import { Markdown } from "~/ui/components/Markdown";
+import { SectionHeader } from "~/ui/components/SectionHeader";
 
 export interface TypeDocThrow {
-  description: string
+  description: string;
 }
 
 export interface TypeDocThrowsProps {
-  throws: TypeDocThrow[]
-  scope?: string
-  header?: 'h2' | 'h3'
+  throws: TypeDocThrow[];
+  scope?: string;
+  header?: "h2" | "h3";
 }
 
 export const Throws: FunctionComponent<TypeDocThrowsProps> = ({
@@ -39,5 +39,5 @@ export const Throws: FunctionComponent<TypeDocThrowsProps> = ({
         </tbody>
       </table>
     </section>
-  )
-}
+  );
+};

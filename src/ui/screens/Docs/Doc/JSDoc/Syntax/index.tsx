@@ -1,9 +1,9 @@
-import { h, FunctionComponent } from 'preact'
-import { Code } from '~/ui/components/Code'
-import { DocHeaderAnchor } from '~/ui/components/DocHeaderAnchor'
+import { h, FunctionComponent } from "preact";
+import { Code } from "~/ui/components/Code";
+import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
 
 interface Props {
-  syntax: string
+  syntax: string;
 }
 
 export const Syntax: FunctionComponent<Props> = ({ syntax }) => (
@@ -15,4 +15,4 @@ export const Syntax: FunctionComponent<Props> = ({ syntax }) => (
 
     <Code value={syntax} />
   </section>
-)
+);

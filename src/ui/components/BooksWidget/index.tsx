@@ -1,13 +1,13 @@
-import { h, FunctionComponent } from 'preact'
-import shuffle from 'lodash/shuffle'
-import { useMemo, useState } from 'preact/hooks'
-import { books } from './constants'
-import * as styles from './styles.css'
+import { h, FunctionComponent } from "preact";
+import shuffle from "lodash/shuffle";
+import { useMemo, useState } from "preact/hooks";
+import { books } from "./constants";
+import * as styles from "./styles.css";
 
 export const BooksWidget: FunctionComponent = () => {
-  const shuffledBooks = useMemo(() => shuffle(books), [])
-  const [bookIndex, setBookIndex] = useState(0)
-  const book = shuffledBooks[bookIndex]
+  const shuffledBooks = useMemo(() => shuffle(books), []);
+  const [bookIndex, setBookIndex] = useState(0);
+  const book = shuffledBooks[bookIndex];
 
   return (
     <div>
@@ -35,16 +35,16 @@ export const BooksWidget: FunctionComponent = () => {
         <button
           class={styles.badgeNext}
           onClick={() => {
-            let newIndex = bookIndex + 1
+            let newIndex = bookIndex + 1;
             if (newIndex > books.length - 1) {
-              newIndex = 0
+              newIndex = 0;
             }
-            setBookIndex(newIndex)
+            setBookIndex(newIndex);
           }}
         >
           Next book
         </button>
       </div>
     </div>
-  )
-}
+  );
+};

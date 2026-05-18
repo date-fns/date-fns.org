@@ -1,34 +1,34 @@
-import type { DateFnsDocs } from '@date-fns/docs'
+import type { DateFnsDocs } from "@date-fns/docs";
 import {
   createRouter,
   InferRoute,
   InferRouteRef,
   route,
-} from '@switcher/preact'
-import { RouteLocation, RouteNotFoundLocation } from '@switcher/preact/core'
+} from "@switcher/preact";
+import { RouteLocation, RouteNotFoundLocation } from "@switcher/preact/core";
 
 export const appRoutes = [
-  route('home', '/'),
-  route('docs', (params: { page: string }) => `/docs/${params.page}`),
+  route("home", "/"),
+  route("docs", (params: { page: string }) => `/docs/${params.page}`),
   route(
-    'versionDocs',
+    "versionDocs",
     (params: { version: string; page: string }) =>
-      `/${params.version}/docs/${params.page}`
+      `/${params.version}/docs/${params.page}`,
   ),
   route(
-    'submoduleDocs',
+    "submoduleDocs",
     (params: { submodule: DateFnsDocs.Submodule; page: string }) =>
-      `/docs/${params.submodule}/${params.page}`
+      `/docs/${params.submodule}/${params.page}`,
   ),
   route(
-    'submoduleVersionDocs',
+    "submoduleVersionDocs",
     (params: {
-      submodule: DateFnsDocs.Submodule
-      version: string
-      page: string
-    }) => `/${params.version}/docs/${params.submodule}/${params.page}`
+      submodule: DateFnsDocs.Submodule;
+      version: string;
+      page: string;
+    }) => `/${params.version}/docs/${params.submodule}/${params.page}`,
   ),
-]
+];
 
 export const {
   buildHref,
@@ -37,19 +37,19 @@ export const {
   RouterLink,
   resolveLocation,
   refToLocation,
-} = createRouter(appRoutes)
+} = createRouter(appRoutes);
 
 // Type to use in prop definitions
-export type AppRoutes = typeof appRoutes
+export type AppRoutes = typeof appRoutes;
 
-export type AppRouteRef = InferRouteRef<AppRoutes>
+export type AppRouteRef = InferRouteRef<AppRoutes>;
 
-export type AppRoute = InferRoute<AppRoutes>
+export type AppRoute = InferRoute<AppRoutes>;
 
-export type AppRouteMeta = AppRoute['meta']
+export type AppRouteMeta = AppRoute["meta"];
 
 export type AppRouteLocation =
   | RouteLocation<AppRoute, AppRouteMeta>
-  | RouteNotFoundLocation<AppRouteMeta>
+  | RouteNotFoundLocation<AppRouteMeta>;
 
-export type AppRouteName = AppRouteLocation['name']
+export type AppRouteName = AppRouteLocation["name"];

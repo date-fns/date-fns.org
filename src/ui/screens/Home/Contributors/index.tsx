@@ -1,18 +1,18 @@
-import isArray from 'lodash/isArray'
-import { h } from 'preact'
-import { HomeAction, HomeBlock, HomeExternalLink } from '~/ui/components/Home'
-import { docLink } from '~/ui/router/docLink'
-import { useContributors } from '~/utils/useContributors'
-import * as styles from './styles.css'
+import isArray from "lodash/isArray";
+import { h } from "preact";
+import { HomeAction, HomeBlock, HomeExternalLink } from "~/ui/components/Home";
+import { docLink } from "~/ui/router/docLink";
+import { useContributors } from "~/utils/useContributors";
+import * as styles from "./styles.css";
 
 export const Contributors = () => {
-  const [contributors, { loading }] = useContributors()
+  const [contributors, { loading }] = useContributors();
 
   return (
     <HomeBlock
       header="Contributors"
       actions={
-        <HomeAction to={docLink({ page: 'Contributing' })}>
+        <HomeAction to={docLink({ page: "Contributing" })}>
           Contribute to date-fns
         </HomeAction>
       }
@@ -37,5 +37,5 @@ export const Contributors = () => {
         </ol>
       )}
     </HomeBlock>
-  )
-}
+  );
+};

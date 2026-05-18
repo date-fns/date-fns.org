@@ -1,14 +1,14 @@
-import { h } from 'preact'
-import { useContext } from 'preact/hooks'
-import { RouterContext, RouterLink } from '~/ui/router'
-import { bugTemplateText, docIssueTemplateText } from './templateText'
+import { h } from "preact";
+import { useContext } from "preact/hooks";
+import { RouterContext, RouterLink } from "~/ui/router";
+import { bugTemplateText, docIssueTemplateText } from "./templateText";
 
 export const DocLinks = () => {
-  const { location } = useContext(RouterContext)
-  const pageUrl = window.location.href
-  const fnName = location.params?.page || ''
-  const docIssueUrl = docIssueTemplateText(pageUrl, fnName)
-  const bugIssueUrl = bugTemplateText(pageUrl, fnName)
+  const { location } = useContext(RouterContext);
+  const pageUrl = window.location.href;
+  const fnName = location.params?.page || "";
+  const docIssueUrl = docIssueTemplateText(pageUrl, fnName);
+  const bugIssueUrl = bugTemplateText(pageUrl, fnName);
 
   return (
     <section>
@@ -20,9 +20,9 @@ export const DocLinks = () => {
             <RouterLink
               decorated
               to={{
-                name: 'docs',
+                name: "docs",
                 params: {
-                  page: 'Contributing',
+                  page: "Contributing",
                 },
               }}
             >
@@ -48,5 +48,5 @@ export const DocLinks = () => {
         </li>
       </ul>
     </section>
-  )
-}
+  );
+};
