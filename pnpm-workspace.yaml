@@ -3,4 +3,5 @@ allowBuilds:
   esbuild: true
   husky: false
   protobufjs: true
+  re2: false
   yarn: false
