@@ -9,6 +9,7 @@ import { RouteLocation, RouteNotFoundLocation } from "@switcher/preact/core";
 
 export const appRoutes = [
   route("home", "/"),
+  route("youDontNeedDateFns", "/you-dont-need-date-fns"),
   route("docs", (params: { page: string }) => `/docs/${params.page}`),
   route(
     "versionDocs",

@@ -1,7 +1,7 @@
-import { style, globalStyle } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 
 export const content = style({
-  fontSize: "1rem",
+  fontSize: "1em",
   lineHeight: "1.6",
 });
 
@@ -17,7 +17,7 @@ globalStyle(`${content} a`, {
 
 globalStyle(`${content} h1`, {
   color: "#770c56",
-  fontSize: "2.3rem",
+  fontSize: "2.3em",
   marginBottom: "30px",
   paddingBottom: "12px",
   borderBottom: "1px solid rgba(88,68,82,0.1)",
@@ -25,14 +25,15 @@ globalStyle(`${content} h1`, {
   "@media": {
     "(prefers-color-scheme: dark)": {
       color: "#fff6fc",
-      borderColor: "#2c1622",
+      borderColor: "#4a2a3c",
     },
   },
 });
 
 globalStyle(`${content} h2`, {
   color: "#4a3142",
-  fontSize: "1.3rem",
+  fontWeight: "600",
+  fontSize: "1.3em",
   marginBottom: "15px",
   paddingBottom: "10px",
   marginTop: "30px",
@@ -40,21 +41,23 @@ globalStyle(`${content} h2`, {
 
   "@media": {
     "(prefers-color-scheme: dark)": {
-      color: "#ddd2d9",
+      color: "#9d8996",
+      borderColor: "#2c1622",
     },
   },
 });
 
 globalStyle(`${content} h3`, {
   color: "#4a3142",
-  fontWeight: "500",
-  fontSize: "1.2rem",
+  fontWeight: "600",
+  fontSize: "1.2em",
   marginBottom: "20px",
   marginTop: "20px",
 
   "@media": {
     "(prefers-color-scheme: dark)": {
-      color: "#ddd2d9",
+      color: "#9d8996",
+      borderColor: "#2c1622",
     },
   },
 });
@@ -208,7 +211,7 @@ globalStyle(`${content} blockquote`, {
   marginBottom: "10px",
   borderLeft: "3px solid #b9a2b2",
   background: "#35001d",
-  padding: "0.5rem 1rem",
+  padding: "0.5em 1em",
 
   "@media": {
     "(prefers-color-scheme: dark)": {

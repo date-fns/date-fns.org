@@ -1,8 +1,8 @@
-import { webpackDefaults } from "./config/webpackDefaults";
-import { getPath, getMode } from "./config/utils";
-import nodeExternals from "webpack-node-externals";
 import AssetsWebpackPlugin from "assets-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import nodeExternals from "webpack-node-externals";
+import { getMode, getPath } from "./config/utils";
+import { webpackDefaults } from "./config/webpackDefaults";
 
 const mode = getMode();
 const isProduction = mode === "production";
@@ -20,7 +20,6 @@ const webConfig = webpackDefaults({
     new CopyWebpackPlugin({
       patterns: [{ from: getPath("src/static") }],
     }),
-    // @ts-expect-error: I don't want to deal with it right now
     ...(isProduction
       ? // Put webpack-assets.json into functions build
         // so it knows which JS and CSS file to link in the web page.
@@ -41,7 +40,6 @@ const functionsConfig = webpackDefaults({
   target: "node",
   // Do not bundle all external libraries
   externals: [
-    // @ts-expect-error: I don't want to deal with it right now
     nodeExternals({
       allowlist: [/\.css\?global$/],
     }),

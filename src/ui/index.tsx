@@ -1,13 +1,14 @@
-import { h, Fragment, VNode } from "preact";
-import { useContext, useEffect } from "preact/hooks";
-import { AppRouteLocation, RouterContext } from "~/ui/router";
-import { Home } from "~/ui/screens/Home";
-import { Docs } from "~/ui/screens/Docs";
-import { NotFound } from "~/ui/screens/NotFound";
-import "reset.css/reset.css?global";
-import "./global.css?global";
 import { defaultSubmodule } from "@date-fns/docs/consts";
+import { Fragment, h, VNode } from "preact";
+import { useContext, useEffect } from "preact/hooks";
+import "reset.css/reset.css?global";
+import { AppRouteLocation, RouterContext } from "~/ui/router";
+import { Docs } from "~/ui/screens/Docs";
+import { Home } from "~/ui/screens/Home";
+import { NotFound } from "~/ui/screens/NotFound";
 import { Modals, ModalsContext, useModals } from "./components/Modals";
+import "./global.css?global";
+import { YouDontNeedDateFns } from "./screens/YouDontNeedDateFns";
 
 const win = typeof window !== "undefined" ? window : undefined;
 
@@ -38,6 +39,9 @@ function Content({ location }: ContentProps): VNode<any> {
   switch (location.name) {
     case "home":
       return <Home />;
+
+    case "youDontNeedDateFns":
+      return <YouDontNeedDateFns />;
 
     case "docs":
       return (
