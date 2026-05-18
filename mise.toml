@@ -1,0 +1,6 @@
+[tools]
+nodejs = "20"
+yarn = "1"
+
+[settings]
+lockfile = true
