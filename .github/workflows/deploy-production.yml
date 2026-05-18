@@ -10,9 +10,10 @@ jobs:
       APP_ENV: production
       NODE_ENV: production
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 16.x
-      - run: yarn
-      - run: npx firebase deploy --project $APP_ENV
+          node-version: 22
+      - run: pnpm install
+      - run: pnpm build
+      - run: pnpm firebase deploy --project $APP_ENV

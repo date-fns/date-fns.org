@@ -7,10 +7,10 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn
-      - run: yarn lint
-      - run: yarn test
+          node-version: 22
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
