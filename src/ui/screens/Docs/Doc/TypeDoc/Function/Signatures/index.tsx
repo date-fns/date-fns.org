@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import type { SignatureReflection } from "typedoc";
 import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
 import { Entities } from "~/ui/components/Entities";
@@ -41,6 +41,7 @@ export const Signatures: FunctionComponent<SignaturesProps> = ({
             signature={signature}
             header={solo ? "h2" : "h3"}
             index={solo ? undefined : index}
+            key={index}
           />
         ))}
       </Entities>

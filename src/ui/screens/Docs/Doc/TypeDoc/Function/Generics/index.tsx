@@ -1,6 +1,5 @@
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import type { TypeParameterReflection } from "typedoc";
-import { DocHeaderAnchor } from "~/ui/components/DocHeaderAnchor";
 import { SectionHeader } from "~/ui/components/SectionHeader";
 import { TypeDocInterface } from "~/ui/components/TypeDocInterface";
 

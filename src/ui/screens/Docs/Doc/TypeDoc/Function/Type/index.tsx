@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import type { SignatureReflection } from "typedoc";
 import { Code } from "~/ui/components/Code";
 import { SectionHeader } from "~/ui/components/SectionHeader";

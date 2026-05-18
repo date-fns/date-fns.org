@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import { highlightMarkdown } from "~/utils/docs";
 import { HighlightQuery } from "../HighlightQuery";
 import { Markdown } from "../Markdown";

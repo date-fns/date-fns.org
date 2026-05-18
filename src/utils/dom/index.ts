@@ -1,5 +1,3 @@
-import { consoleTestResultHandler } from "tslint/lib/test";
-
 export interface ScrollIntoViewIfNeededOptions extends ScrollToOptions {
   marginTop?: number;
 }

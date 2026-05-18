@@ -48,7 +48,7 @@ export async function requestJSON(url: string, options: RequestOptions = {}) {
   const response = await request(url, {
     ...options,
     headers: {
-      ...(options.headers ?? {}),
+      ...options.headers,
       Accept: "application/json",
     },
   });

@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import { useMemo } from "preact/hooks";
 import { Code } from "~/ui/components/Code";
 import { Markdown } from "~/ui/components/Markdown";

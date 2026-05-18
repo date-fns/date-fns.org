@@ -85,8 +85,8 @@ export const TypeDocConstants: FunctionComponent<TypeDocConstantsProps> = ({
 
         {filtered.length ? (
           <Entities alwaysMulti>
-            {filtered.map((item) => (
-              <Constant item={item} query={query} />
+            {filtered.map((item, idx) => (
+              <Constant item={item} query={query} key={idx} />
             ))}
           </Entities>
         ) : (

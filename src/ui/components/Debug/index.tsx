@@ -1,6 +1,6 @@
-import { Fragment, FunctionComponent, h } from "preact";
-import { Code } from "../Code";
+import { FunctionComponent, h } from "preact";
 import { debugTypeDoc } from "~/utils/docs";
+import { Code } from "../Code";
 
 interface DebugProps {
   data: unknown;

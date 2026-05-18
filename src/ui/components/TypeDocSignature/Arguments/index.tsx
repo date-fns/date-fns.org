@@ -2,7 +2,6 @@ import { Fragment, FunctionComponent, h } from "preact";
 import { useContext } from "preact/hooks";
 import type { ParameterReflection } from "typedoc";
 import { TypeIndentContext } from "~/ui/contexts/TypeIndentContext";
-import { ParentTypesMap } from "~/utils/docs";
 import { TypeDocType } from "../../TypeDocType";
 
 interface TypeDocSignatureArgumentsProps {

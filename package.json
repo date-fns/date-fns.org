@@ -2,7 +2,7 @@
   "name": "date-fns.org",
   "version": "3.0.0",
   "scripts": {
-    "lint": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json -c tslint.yaml",
+    "lint": "oxlint",
     "format": "prettier --write",
     "build": "rm -rf build && env NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.firebase.ts && ./scripts/build/robots.sh && ./scripts/build/packageJSON.js",
     "deploy": "firebase deploy",
@@ -19,7 +19,6 @@
     "@types/cors": "^2.8.7",
     "@types/enzyme": "^3.10.8",
     "@types/lodash": "^4.14.167",
-    "@types/mocha": "^8.2.0",
     "@types/node": "20",
     "@types/power-assert": "^1.5.3",
     "@types/prismjs": "^1.16.3",
@@ -69,7 +68,6 @@
     "typedoc": "^0.26.7",
     "typeroo": "^0.9.0",
     "typesaurus": "^10.7.0",
-    "typescript": "^5.6.2",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-middleware": "6",
@@ -79,9 +77,13 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/mocha": "^8.2.3",
     "firebase-tools": "^13.16.0",
     "oxfmt": "^0.50.0",
-    "tsx": "^4.19.0"
+    "oxlint": "^1.65.0",
+    "oxlint-tsgolint": "^0.22.1",
+    "tsx": "^4.19.0",
+    "typescript": "^6.0.3"
   },
   "engines": {
     "node": "22"

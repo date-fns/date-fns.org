@@ -1,4 +1,5 @@
 import classNames from "classnames";
+// @ts-ignore -- js-fns types fail to discover
 import { debounce } from "js-fns";
 import { ComponentChildren, h } from "preact";
 import { createPortal } from "preact/compat";

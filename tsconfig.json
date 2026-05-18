@@ -10,7 +10,6 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "skipLibCheck": true,
-    "baseUrl": ".",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -18,9 +17,9 @@
     "allowJs": true,
     "checkJs": false,
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
-    "noImplicitAny": true
+    "noImplicitAny": true,
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

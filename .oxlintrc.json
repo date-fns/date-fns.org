@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "options": {
+    "typeAware": true
+  },
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "no-unused-expressions": "off",
+    // TODO: Enable it sometime:
+    "react-hooks/exhaustive-deps": "off",
+    "no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_.*",
+        "varsIgnorePattern": "^_.*|Fragment$"
+      }
+    ]
+
+  },
+  "settings": {
+    "react": {
+      "fragment": "Fragment"
+    }
+  },
+  "env": {
+    "builtin": true
+  }
+}

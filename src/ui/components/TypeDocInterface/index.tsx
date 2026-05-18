@@ -9,7 +9,7 @@ import type {
 import { InlineTypeContext } from "~/ui/contexts/InlineTypeContext";
 import { findSource } from "~/utils/docs";
 import { Debug } from "../Debug";
-import { IdHightlight } from "../IdHighlight";
+import { IdHighlight } from "../IdHighlight";
 import { InlineCode } from "../InlineCode";
 import { Markdown } from "../Markdown";
 import { SourceLink } from "../SourceLink";
@@ -52,10 +52,10 @@ export function TypeDocInterface<
             <tr key={index} id={id}>
               <td class={styles.code}>
                 <span class={styles.nowrap}>
-                  <IdHightlight id={id} match={inline.idHighlightMatch}>
+                  <IdHighlight id={id} match={inline.idHighlightMatch}>
                     {item.name}
                     {item.flags.isOptional && <span>?</span>}
-                  </IdHightlight>
+                  </IdHighlight>
 
                   <SourceLink source={findSource(item)} size="small" />
                 </span>

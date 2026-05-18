@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ComponentChildren, Fragment, FunctionComponent, h } from "preact";
+import { ComponentChildren, FunctionComponent, h } from "preact";
 import * as styles from "./styles.css";
 
 interface EntitiesProps {

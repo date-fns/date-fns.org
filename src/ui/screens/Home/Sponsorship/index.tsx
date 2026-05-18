@@ -1,13 +1,13 @@
-import { h, Fragment, FunctionComponent } from "preact";
+import classNames from "classnames";
+import { Fragment, FunctionComponent, h } from "preact";
 import {
   HomeBlock,
-  HomeText,
-  HomeExternalLink,
   HomeButton,
+  HomeExternalLink,
+  HomeText,
 } from "~/ui/components/Home";
-import { useSponsors, Sponsor } from "~/utils/useSponsors";
+import { Sponsor, useSponsors } from "~/utils/useSponsors";
 import * as styles from "./styles.css";
-import classNames from "classnames";
 
 export const Sponsorship = () => {
   const [sponsors, { loading }] = useSponsors();

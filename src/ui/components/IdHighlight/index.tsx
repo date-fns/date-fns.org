@@ -1,15 +1,14 @@
-import { match } from "assert";
 import { FunctionComponent, h } from "preact";
 import { useEffect, useRef } from "preact/hooks";
 import { isInViewport } from "~/utils/dom";
 import * as styles from "./styles.css";
 
-interface IdHightlightProps {
+interface IdHighlightProps {
   id: string | undefined;
   match?: (id: string, hash: string) => boolean;
 }
 
-export const IdHightlight: FunctionComponent<IdHightlightProps> = ({
+export const IdHighlight: FunctionComponent<IdHighlightProps> = ({
   id,
   children,
   match,

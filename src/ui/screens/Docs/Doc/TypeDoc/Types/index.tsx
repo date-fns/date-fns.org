@@ -119,7 +119,11 @@ export const useTypesModal = createModal<TypesModalProps>(
                   filteredNav.map(({ type, summary, description }) => {
                     const name = declName(type);
                     return (
-                      <a href={typeHash(name, type.id)} class={styles.item}>
+                      <a
+                        href={typeHash(name, type.id)}
+                        class={styles.item}
+                        key={name}
+                      >
                         <Item
                           key={type.id}
                           title={name}

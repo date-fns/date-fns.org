@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 
 interface MissingProps {
   data?: unknown;

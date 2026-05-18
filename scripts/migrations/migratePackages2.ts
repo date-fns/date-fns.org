@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 
 admin.initializeApp();
 
-Promise.all([
+void Promise.all([
   db.packages.get(db.packages.id("uy8G6tshVArbzEofZ6P1")),
   db.packages.get(db.packages.id("date-fns")),
 ]).then(

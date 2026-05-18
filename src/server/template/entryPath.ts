@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
         "utf8",
       ),
     );
-  } catch (err) {}
+  } catch {}
 }
 
 export function entryPath(entryName: string, type = "js") {

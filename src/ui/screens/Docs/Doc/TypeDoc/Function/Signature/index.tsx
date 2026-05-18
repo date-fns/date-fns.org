@@ -5,16 +5,16 @@ import {
 } from "@date-fns/docs/utils";
 import { Fragment, FunctionComponent, h } from "preact";
 import { useMemo } from "preact/hooks";
-import type { SignatureReflection, TypeParameterReflection } from "typedoc";
+import type { SignatureReflection } from "typedoc";
+import { Debug } from "~/ui/components/Debug";
+import { DocExamples } from "~/ui/components/DocExamples";
 import { IgnoreParentTypesSourceContext } from "~/ui/contexts/IgnoreParentTypesSource";
+import { extractCodeFromTagString } from "~/utils/docs";
 import { Arguments } from "../Arguments";
 import { Generics } from "../Generics";
 import { Returns } from "../Returns";
-import { Type } from "../Type";
-import { Debug } from "~/ui/components/Debug";
-import { DocExamples } from "~/ui/components/DocExamples";
-import { extractCodeFromTagString } from "~/utils/docs";
 import { Throws } from "../Throws";
+import { Type } from "../Type";
 
 interface SignatureProps {
   name: string;
@@ -43,11 +43,6 @@ export const Signature: FunctionComponent<SignatureProps> = ({
     () => findExamples(signature).map(extractCodeFromTagString),
     [signature],
   );
-
-  // @ts-ignore: Typing is inproper in TypeDoc
-  const typeParameters = signature.typeParameter as
-    | TypeParameterReflection[]
-    | undefined;
 
   const scope = index === undefined ? undefined : `${index + 1}`;
 

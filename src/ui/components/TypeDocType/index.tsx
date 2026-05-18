@@ -152,10 +152,8 @@ export const TypeDocType: FunctionComponent<TypeDocTypeProps> = ({
 
     case "query":
     case "predicate":
-    case "conditional":
     case "inferred":
     case "unknown":
-    case "typeOperator":
     case "templateLiteral":
     case "namedTupleMember":
     case "optional":

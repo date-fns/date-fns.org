@@ -1,6 +1,5 @@
-import type { DateFnsDocs } from "@date-fns/docs/types";
 import classNames from "classnames";
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { Code } from "~/ui/components/Code";
 import { Markdown } from "~/ui/components/Markdown";
@@ -36,7 +35,7 @@ export const DocUsage: FunctionComponent<Props> = ({
         LS_SELECTED_OPTIONS_KEY,
         JSON.stringify(newOptions),
       );
-    } catch (_e) {}
+    } catch {}
   }
 
   useEffect(() => {
@@ -138,7 +137,7 @@ function getSelectedOptions() {
     return JSON.parse(
       window.localStorage.getItem(LS_SELECTED_OPTIONS_KEY) || "{}",
     );
-  } catch (_e) {
+  } catch {
     return {};
   }
 }

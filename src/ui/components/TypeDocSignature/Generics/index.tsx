@@ -1,10 +1,10 @@
-import { FunctionComponent, h, Fragment } from "preact";
+import { Fragment, FunctionComponent, h } from "preact";
 import { useContext } from "preact/hooks";
 import type { TypeParameterReflection } from "typedoc";
 import { IgnoreParentTypesSourceContext } from "~/ui/contexts/IgnoreParentTypesSource";
 import { InlineTypeContext } from "~/ui/contexts/InlineTypeContext";
-import { ParentTypesMap, typeHash } from "~/utils/docs";
-import { IdHightlight } from "../../IdHighlight";
+import { typeHash } from "~/utils/docs";
+import { IdHighlight } from "../../IdHighlight";
 import { TypeDocType } from "../../TypeDocType";
 
 interface TypeDocSignatureGenericsProps {
@@ -28,9 +28,9 @@ export const TypeDocSignatureGenerics: FunctionComponent<
               <a href={inline.parentTypesMap[param.id]}>{param.name}</a>
             ) : inline && !ignoreSource ? (
               <span id={id}>
-                <IdHightlight id={id} match={inline.idHighlightMatch}>
+                <IdHighlight id={id} match={inline.idHighlightMatch}>
                   {param.name}
-                </IdHightlight>
+                </IdHighlight>
               </span>
             ) : (
               <a href={typeHash(param.name, param.id)}>{param.name}</a>

@@ -8,7 +8,7 @@ export const SENTRY_URL =
 
 interface Config {
   jobsURL: string;
-  firebaseApp: Object;
+  firebaseApp: object;
   apiURL: string;
 }
 const config: { [k: string]: Config } = {

@@ -1,4 +1,4 @@
-import { ComponentChildren, Fragment, FunctionComponent, h } from "preact";
+import { ComponentChildren, FunctionComponent, h } from "preact";
 import { Markdown } from "~/ui/components/Markdown";
 import { InlineCode } from "../InlineCode";
 import { SectionHeader } from "../SectionHeader";

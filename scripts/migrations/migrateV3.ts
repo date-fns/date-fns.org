@@ -1,4 +1,4 @@
-import { db, DateFnsDocs } from "@date-fns/docs";
+import { DateFnsDocs, db } from "@date-fns/docs";
 import * as admin from "firebase-admin";
 import { last } from "lodash";
 import { StringifiedJSON } from "typeroo/json";
@@ -20,9 +20,9 @@ type OldSchema = Typesaurus.Schema<typeof oldDb>;
 
 const maxPageSize = 100;
 
-processAll((pages) =>
+void processAll((pages) =>
   Promise.all(
-    pages.map((page) => {
+    pages.map(async (page) => {
       if (
         page.data.type === "markdown" ||
         !(typeof page.data.doc === "object" && "json" in page.data.doc)

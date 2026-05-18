@@ -1,7 +1,8 @@
 /* eslint-env mocha */
 
-import { text, tag, softbreak, code, getTagName, getAttrs } from ".";
+import { describe, it } from "mocha";
 import assert from "power-assert";
+import { code, getAttrs, getTagName, softbreak, tag, text } from ".";
 
 describe("Remarkable tree utils", () => {
   describe("text", () => {

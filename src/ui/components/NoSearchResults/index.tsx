@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from "preact";
 import { RichText } from "../RichText";
 import * as styles from "./styles.css";
 

@@ -17,7 +17,7 @@ interface FinderProps {
   selectedVersion: string;
   selectedPage: string;
   selectedSubmodule: DateFnsDocs.Submodule;
-  onNavigate(): void;
+  onNavigate(this: void): void;
 }
 
 export const Finder: FunctionComponent<FinderProps> = ({

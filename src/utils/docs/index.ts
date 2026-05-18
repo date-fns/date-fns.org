@@ -124,7 +124,7 @@ export function typeId(name: string, id: number, nested?: string) {
   return `types/${name}/${id}${nested ? `/${nested}` : ""}`;
 }
 
-const typeHashRE = /types\/[\w\.]+\/(\d+)(?:\/\w+\/(\d+)(?:\/\w+))?/;
+const typeHashRE = /types\/[\w.]+\/(\d+)(?:\/\w+\/(\d+)(?:\/\w+))?/;
 
 export function matchTypeHash(hash: string) {
   const captures = hash.match(typeHashRE);
@@ -217,4 +217,4 @@ export function referenceName(type: ReferenceType) {
 export let debugTypeDoc = false;
 try {
   debugTypeDoc = localStorage.getItem("debug") === "true";
-} catch (_) {}
+} catch {}

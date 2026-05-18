@@ -1,4 +1,4 @@
-import { style, globalStyle } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 
 export const wrapper = style({
   padding: "30px",

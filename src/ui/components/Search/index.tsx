@@ -17,7 +17,7 @@ export const Search: FunctionComponent<SearchProps> = ({
   inputRef,
 }) => {
   const trackSearch = useCallback(
-    debounce((newQuery: string) => {
+    debounce((_newQuery: string) => {
       // FIXME:
       // trackAction('Search', { query: newQuery })
     }, 500),
@@ -47,7 +47,7 @@ export const Search: FunctionComponent<SearchProps> = ({
 };
 
 interface CancelProps {
-  setQuery(query: string): void;
+  setQuery(this: void, query: string): void;
 }
 
 function Cancel({ setQuery }: CancelProps) {

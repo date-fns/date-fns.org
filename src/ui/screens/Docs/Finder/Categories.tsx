@@ -9,7 +9,7 @@ interface Props {
   selectedVersion: string;
   selectedSubmodule: DateFnsDocs.Submodule;
   selectedPage: string;
-  onNavigate(): void;
+  onNavigate(this: void): void;
   query: string;
   activeRef: (element: HTMLDivElement | null) => void;
 }
