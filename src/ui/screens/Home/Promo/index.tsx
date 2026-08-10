@@ -2,6 +2,7 @@ import { h } from "preact";
 import { DEFAULT_PAGE } from "~/constants";
 import { RouterLink } from "~/ui/router";
 import { docLink } from "~/ui/router/docLink";
+import { Sponsors } from "../Sponsors";
 import logoPath from "./img/logo.svg";
 import { Navigation } from "./Navigation";
 import * as styles from "./styles.css";
@@ -41,6 +42,8 @@ export const Promo = () => (
       </div>
 
       <Navigation />
+
+      <Sponsors />
     </div>
   </div>
 );

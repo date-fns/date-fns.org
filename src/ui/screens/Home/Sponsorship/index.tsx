@@ -13,7 +13,7 @@ export const Sponsorship = () => {
   const [sponsors, { loading }] = useSponsors();
   return (
     <HomeBlock
-      header="Sponsors"
+      header="OpenCollective"
       actions={
         <>
           <HomeButton href="https://opencollective.com/date-fns" type="primary">
