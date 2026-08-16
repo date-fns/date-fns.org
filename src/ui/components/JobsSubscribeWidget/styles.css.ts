@@ -3,6 +3,7 @@ import { style } from "@vanilla-extract/css";
 export const container = style({
   background: "#f5d958",
   padding: "0.25rem",
+  position: "relative",
 
   "@media": {
     "(prefers-color-scheme: dark)": {
@@ -121,4 +122,36 @@ export const twitterIcon = style({
 export const twitterLink = style({
   color: "black",
   textDecoration: "none",
+});
+
+export const closeButton = style({
+  position: "absolute",
+  top: "0.25rem",
+  right: "0.25rem",
+  width: "1.5rem",
+  height: "1.5rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "transparent",
+  border: "0",
+  fontSize: "1.25rem",
+  lineHeight: "1",
+  color: "black",
+  cursor: "pointer",
+  zIndex: 1,
+
+  ":hover": {
+    color: "red",
+  },
+
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      color: "#ded7a9",
+
+      ":hover": {
+        color: "white",
+      },
+    },
+  },
 });
