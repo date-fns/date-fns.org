@@ -211,6 +211,7 @@ globalStyle(`${content} blockquote`, {
   marginBottom: "10px",
   borderLeft: "3px solid #b9a2b2",
   background: "#35001d",
+  color: "#ffffff",
   padding: "0.5em 1em",
 
   "@media": {
@@ -218,6 +219,16 @@ globalStyle(`${content} blockquote`, {
       background: "#12000a",
       border: "1px solid #2c1622",
       borderLeftWidth: "3px",
+    },
+  },
+});
+
+globalStyle(`${content} blockquote a`, {
+  color: "#f5c6de",
+
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      color: "#d397b6",
     },
   },
 });
