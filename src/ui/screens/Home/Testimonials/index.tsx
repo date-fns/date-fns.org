@@ -63,7 +63,7 @@ export const Testimonials = () => (
       {testimonials.map((testimonial, index) => (
         <div class={styles.item} key={index}>
           <div class={styles.avatar}>
-            <img class={styles.avatarImage} src={testimonial.avatar} />
+            <img class={styles.avatarImage} src={testimonial.avatar} alt={`Avatar of ${testimonial.name}`}/>
           </div>
 
           <div class={styles.quote}>
