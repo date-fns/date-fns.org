@@ -37,6 +37,7 @@ import {
   typeId as typeIdStr,
 } from "~/utils/docs";
 import * as styles from "./styles.css";
+import { extractTypes } from "./utils";
 
 export interface TypesModalProps {
   parent: string;
@@ -268,51 +269,6 @@ function TitleIcon() {
       />
     </svg>
   );
-}
-
-function extractTypes(
-  dec: DeclarationReflection,
-  acc?: DeclarationReflection[],
-): DeclarationReflection[] {
-  const types = acc || [];
-
-  dec.children?.forEach((child) => {
-    switch (child.kind) {
-      // Ignore these types and their children
-      case DateFnsDocs.ReflectionKind.Function:
-        return;
-
-      // // Process function singatures and add their type parameters
-      // case 'Function':
-      //   child.signatures?.forEach((signature) => {
-      //     // @ts-ignore: For some reason TypeDoc contains the error, it's typeParameter not typeParameters
-      //     signature.typeParameter?.forEach((param) => types.push(param))
-      //   })
-      //   return
-
-      // Add these types, but not process their children
-      case DateFnsDocs.ReflectionKind.Interface:
-      case DateFnsDocs.ReflectionKind.TypeAlias:
-      // @ts-expect-error - Something's off but I don't want to deal with it right now
-      // [TODO] Figure out what replace ObjectLiteral with
-      case DateFnsDocs.ReflectionKind.ObjectLiteral:
-        // Ignore external, i.e. Record
-        if (child.flags.isExternal) return;
-        types.push(child);
-        return;
-
-      // Ignore the properties (i.e. weekStartsOn from Locale)
-      case DateFnsDocs.ReflectionKind.Property:
-        return;
-
-      default:
-        console.log("~~~ UNHANDLED TYPE", child.kind, child);
-    }
-
-    if (child.children) extractTypes(child, types);
-  });
-
-  return types;
 }
 
 function buildMap(types: DeclarationReflection[]) {
