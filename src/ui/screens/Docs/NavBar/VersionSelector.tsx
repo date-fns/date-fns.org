@@ -1,5 +1,6 @@
 import { h, FunctionComponent } from "preact";
 import type { DateFnsDocs } from "@date-fns/docs/types";
+import uniqBy from "lodash/uniqBy";
 import { useContext } from "preact/hooks";
 import { RouterContext } from "~/ui/router";
 import { LatestVersionLink } from "./LatestVersionLink";
@@ -46,7 +47,7 @@ export const VersionSelector: FunctionComponent<Props> = ({
           Version
         </option>
 
-        {versions.map(({ version }) => (
+        {uniqBy(versions, "version").map(({ version }) => (
           <option key={version} value={version}>
             {version}
           </option>
