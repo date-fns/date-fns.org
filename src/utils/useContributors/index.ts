@@ -1,10 +1,10 @@
 import { useJSON } from "~/utils/useJSON";
 import { RequestHookResult } from "~/types/hooks";
+import { CONFIG } from "~/constants";
 
-const CONTRIBUTORS_URL =
-  "https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999";
+const CONTRIBUTORS_URL = `${CONFIG.apiURL}/contributors`;
 
-type ContributorsFetchResponse = {
+export type ContributorsFetchResponse = {
   id: string;
   html_url: string;
   avatar_url: string;
