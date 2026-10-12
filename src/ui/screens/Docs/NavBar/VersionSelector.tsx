@@ -4,6 +4,7 @@ import { useContext } from "preact/hooks";
 import { RouterContext } from "~/ui/router";
 import { LatestVersionLink } from "./LatestVersionLink";
 import { docLink } from "~/ui/router/docLink";
+import { filterDuplicateVersions } from "~/utils/versions";
 import * as styles from "./styles.css";
 
 interface Props {
@@ -38,7 +39,7 @@ export const VersionSelector: FunctionComponent<Props> = ({
               page: selectedPage,
               submodule: selectedSubmodule,
               version: e.target.value,
-            }),
+            })
           )
         }
       >
@@ -46,7 +47,7 @@ export const VersionSelector: FunctionComponent<Props> = ({
           Version
         </option>
 
-        {versions.map(({ version }) => (
+        {filterDuplicateVersions(versions).map(({ version }) => (
           <option key={version} value={version}>
             {version}
           </option>

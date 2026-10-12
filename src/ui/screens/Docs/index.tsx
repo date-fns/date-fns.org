@@ -9,6 +9,7 @@ import { DEFAULT_PAGE } from "~/constants";
 import { RouterContext } from "~/ui/router";
 import { docLink } from "~/ui/router/docLink";
 import {
+  filterDuplicateVersions,
   filterPreReleaseVersions,
   getLatestVersion,
   sortVersions,
@@ -39,21 +40,20 @@ export const Docs: FunctionComponent<Props> = ({
           page: DEFAULT_PAGE,
           submodule: selectedSubmodule,
           version: urlSelectedVersion,
-        }),
+        })
       );
     }
   });
 
   const [dateFnsPackage, { loading }] = useRead(
-    db.packages.get(db.packages.id(packageName)),
+    db.packages.get(db.packages.id(packageName))
   );
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   if (dateFnsPackage) {
-    const latestVersion = getLatestVersion(
-      dateFnsPackage.data.versions,
-    ).version;
+    const latestVersion = getLatestVersion(dateFnsPackage.data.versions)
+      .version;
     const selectedVersion = urlSelectedVersion ?? latestVersion;
 
     return (
@@ -63,11 +63,13 @@ export const Docs: FunctionComponent<Props> = ({
             selectedVersion={selectedVersion}
             latestVersion={latestVersion}
             selectedPage={selectedPage}
-            versions={sortVersions(
-              filterPreReleaseVersions(
-                dateFnsPackage.data.versions,
-                selectedVersion,
-              ),
+            versions={filterDuplicateVersions(
+              sortVersions(
+                filterPreReleaseVersions(
+                  dateFnsPackage.data.versions,
+                  selectedVersion
+                )
+              )
             )}
             selectedSubmodule={selectedSubmodule}
             menuIcon={
@@ -80,7 +82,7 @@ export const Docs: FunctionComponent<Props> = ({
           <div
             class={classNames(
               styles.finderContainer,
-              menuOpen && styles.finderContainerMenuOpen,
+              menuOpen && styles.finderContainerMenuOpen
             )}
           >
             <Finder
@@ -94,7 +96,7 @@ export const Docs: FunctionComponent<Props> = ({
           <div
             class={classNames(
               styles.docContainer,
-              menuOpen && styles.docContainerMenuOpen,
+              menuOpen && styles.docContainerMenuOpen
             )}
             onClick={menuOpen ? () => setMenuOpen(false) : undefined}
           >
