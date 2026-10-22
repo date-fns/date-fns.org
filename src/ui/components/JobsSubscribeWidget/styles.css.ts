@@ -60,6 +60,8 @@ export const blockContent = style({
 export const form = style({
   display: "flex",
   alignItems: "center",
+  flexWrap: "wrap",
+  gap: "0.5rem 0",
   margin: "0.5rem 0 0",
 });
 
@@ -81,6 +83,13 @@ export const input = style({
       color: "white",
     },
   },
+});
+
+export const actions = style({
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  flex: "none",
 });
 
 export const subscribeButton = style({
@@ -106,6 +115,46 @@ export const subscribeButton = style({
 
       ":hover": {
         color: "white",
+      },
+    },
+  },
+});
+
+export const cancelButton = style({
+  flex: "none",
+  height: "2rem",
+  fontSize: "1rem",
+  display: "block",
+  background: "transparent",
+  color: "black",
+  border: "1px solid black",
+  padding: "0 0.75rem",
+  cursor: "pointer",
+  alignItems: "center",
+  transition: "color 150ms ease-out, border-color 150ms ease-out",
+
+  ":hover": {
+    color: "red",
+    borderColor: "red",
+  },
+
+  ":focus-visible": {
+    outline: "2px solid black",
+    outlineOffset: "1px",
+  },
+
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      color: "#ded7a9",
+      borderColor: "#925603",
+
+      ":hover": {
+        color: "white",
+        borderColor: "white",
+      },
+
+      ":focus-visible": {
+        outline: "2px solid #ded7a9",
       },
     },
   },
