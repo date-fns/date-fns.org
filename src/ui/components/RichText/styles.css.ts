@@ -211,6 +211,9 @@ globalStyle(`${content} blockquote`, {
   marginBottom: "10px",
   borderLeft: "3px solid #b9a2b2",
   background: "#35001d",
+  // The background is dark in both color schemes, so the text must be light.
+  // Without this the text inherits the dark light-mode body color (~1.2:1).
+  color: "#fff6fc",
   padding: "0.5em 1em",
 
   "@media": {
@@ -218,10 +221,32 @@ globalStyle(`${content} blockquote`, {
       background: "#12000a",
       border: "1px solid #2c1622",
       borderLeftWidth: "3px",
+      color: "white",
     },
   },
 });
 
+globalStyle(`${content} blockquote a`, {
+  color: "#ffc9e6",
+
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      color: "#d397b6",
+    },
+  },
+});
+
+// Inline code keeps its own light chip background, so it needs its own
+// dark text instead of inheriting the blockquote's light text color.
+globalStyle(`${content} blockquote code`, {
+  color: "black",
+
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      color: "#c5c4c2",
+    },
+  },
+});
 globalStyle(`${content} mark`, {
   backgroundColor: "#fffe25",
 });
